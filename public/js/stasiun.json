@@ -1,0 +1,6 @@
+{
+    "stasiun": [
+        { "nama": "Pasar Senen", "lokasi": "Jakarta", "kode": "PSE" },
+        { "nama": "Gambir", "lokasi": "Jakarta", "kode": "GMR" }
+    ]
+}

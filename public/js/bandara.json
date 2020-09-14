@@ -1,0 +1,19 @@
+{
+    "bandara": [
+        {
+            "nama": "Halim Perdana Kusuma",
+            "lokasi": "Jakarta, Indonesia",
+            "kode": "HLP"
+        },
+        {
+            "nama": "Soekarno Hatta",
+            "lokasi": "Jakarta, Indonesia",
+            "kode": "CGK"
+        },
+        {
+            "nama": "Ngurah Rai",
+            "lokasi": "Denpasar-Bali, Indonesia",
+            "kode": "DPS"
+        }
+    ]
+}
