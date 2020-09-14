@@ -717,6 +717,15 @@ hr {
 #wrapperPencarianPenerbangan
     .wrapper-result
     .wrapper-flight-list
+    .left
+    .logo-airline
+    img {
+    width: auto;
+    height: auto;
+}
+#wrapperPencarianPenerbangan
+    .wrapper-result
+    .wrapper-flight-list
     .departure-time {
     padding: 0px 30px 0px 0px;
 }
@@ -811,6 +820,33 @@ hr {
     color: #8a93a7;
     font-family: OpenSans-Regular;
 }
+
+.wrapper-result .wrapper-flight-list .btn-details .nav-tabs,
+.wrapper-result .wrapper-flight-list .btn-details .nav-tabs .nav-link.active,
+.wrapper-result .wrapper-flight-list .btn-details .nav-tabs .nav-link:hover {
+    border: none;
+}
+
+.wrapper-result .wrapper-flight-list .btn-details .nav-tabs .nav-link {
+    font-size: 14px;
+    color: #0064d2;
+    border: none;
+}
+
+.wrapper-result .wrapper-flight-list .btn-details .nav-tabs .nav-item {
+    margin: 0;
+}
+
+#wrapperPencarianPenerbangan
+    .wrapper-result
+    .wrapper-flight-list
+    .btn-details
+    .nav-tabs
+    .nav-link.active {
+    color: #367ffa;
+    background: none;
+}
+
 .tooltip {
     font-family: OpenSans-SemiBold;
     font-size: 14px;

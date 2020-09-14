@@ -188,8 +188,8 @@
                     <span class="maskapai-penerbangan col">Lion Air</span>
                   </div>
                   <div class="d-flex">
-                    <div class="logo-airline d-flex justify-content-center align-items-center">
-                      <img src="{{ url('img/logo_partners/Lion.png') }}" alt="Logo Maskapai" width="42px" height="42px">
+                    <div class="logo-airline d-flex justify-content-center align-items-center p-3">
+                      <img src="{{ url('img/logo_partners/Lion.png') }}" alt="Logo Maskapai" class="img-fluid">
                     </div>
                     <div class="departure-time">
                       <div class="text-time">21:50</div>
@@ -239,9 +239,14 @@
                   </div>
                 </div>
                 <div class="col-auto mt-4 btn-details">
-                  <span>Detail Penerbangan</span>
-                  <span>Detail Harga</span>
-                  <span>Kebijakan</span>
+                  <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                      <a href="#" class="nav-link active">Detail Penerbangan</a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="#" class="nav-link">Detail Harga</a>
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
