@@ -782,4 +782,8 @@ $(document).ready(function () {
     });
 
     $("[data-toggle='tooltip']").tooltip();
+    $(".filter-box .collapse.in").on("show.bs.collapse", function () {
+        console.log(this);
+        $("i.fa.fa-chevron-down").addClass("i.fa.fa-chevron-up");
+    });
 });

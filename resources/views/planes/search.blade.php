@@ -52,9 +52,10 @@
       </div>
     </div>
     
-    <!-- Filter -->
+   
     <div class="container" id="wrapperPencarianPenerbangan">
       <div class="row">
+         <!-- Filter -->
         <div class="col-lg-4 filter-box">
           <div class="filter-header row mb-3">
             <div class="col-6 text-filter">
@@ -65,7 +66,6 @@
             </div>
           </div>
           <div class="filter-body card">
-            <img class="card-img-top" src="">
             <div class="card-body">
               <div id="filterAccordion">
                 <div class="card">
@@ -178,45 +178,70 @@
           </div>
         </div>
 
+        <!-- List Penerbangan -->
         <div class="col-lg-8 px-lg-0 px-md-0">
           <div class="wrapper-result">
             <div class="wrapper-flight-list bg-white border">
               <div class="row">
-                <div class="col-lg-6">
-                  <div class="row">
-                    <span class="maskapai-penerbangan">Lion Air</span>
+                <div class="col-lg-6 left pr-0">
+                  <div class="row row-cols-1">
+                    <span class="maskapai-penerbangan col">Lion Air</span>
                   </div>
-                  <div class="row">
-                    <img src="{{ url('img/logo_partners/Lion.png') }}" alt="Logo Maskapai" class="border">
+                  <div class="d-flex">
+                    <div class="logo-airline d-flex justify-content-center align-items-center">
+                      <img src="{{ url('img/logo_partners/Lion.png') }}" alt="Logo Maskapai" width="42px" height="42px">
+                    </div>
                     <div class="departure-time">
                       <div class="text-time">21:50</div>
                       <div class="text-code">DPS</div>
                     </div>
-                    <div class="flight-duration">
-                      <div class="durasi">12j 0m</div>
-                      <div class="timeline">asdsdds</div>
-                      <div>1 Transit</div>
+                    <div class="flight-icon d-flex align-items-center">
+                      <img src="{{ url('img/icons/ic_pesawat_tampak_atas_abu.png') }}" width="16px" height="16px" alt="ICON-pesawat">
                     </div>
+                    <!-- <div class="flight-duration text-center">
+                      <div class="text-total-time">12j 0m</div>
+                      <div class="timeline">
+                        <hr class="hr-line">
+                      </div>
+                      <div class="text-total-time">1 Transit</div>
+                    </div> -->
                     <div class="arrival-time">
                       <div class="text-time">21:50</div>
                       <div class="text-code">DPS</div>
                     </div>
+                    <div class="flight-duration">
+                      <div class="text-total-time">4j 20m</div>
+                      <div class="flight-type">1 Transit</div>
+                    </div>
                   </div>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-6 right">
                   <div class="row">
-                    <div class="col-lg-5">
-                      <div class="baggage-list d-flex">
-                        <div class="facilities-icon">
+                    <div class="col-lg-6 px-0">
+                      <div class="baggage-list text-center">
+                        <span class="facilities-icon">
                           <img src="{{ url('img/icons/fasilitas/ic_bagasi.png') }}" alt="ICON-baggage" width="20px" height="20px" data-toggle="tooltip" data-placement="bottom" title="Bagasi 5kg">
-                        </div>
-                        <div class="facilities-icon">
+                        </span>
+                        <span class="facilities-icon">
                           <img src="{{ url('img/icons/fasilitas/ic_bagasi.png') }}" alt="ICON-baggage" width="20px" height="20px" data-toggle="tooltip" data-placement="bottom" title="Bagasi 5kg">
-                        </div>
+                        </span>
+                        <span class="facilities-icon">
+                          <img src="{{ url('img/icons/fasilitas/ic_bagasi.png') }}" alt="ICON-baggage" width="20px" height="20px" data-toggle="tooltip" data-placement="bottom" title="Bagasi 5kg">
+                        </span>
                       </div>
                     </div>
-                    <div class="col-lg-7"></div>
+                    <div class="col-lg-6 pl-0">
+                      <div class="text-price text-right">
+                        IDR 500.000
+                        <label class="text-pax">/org</label>
+                      </div>
+                    </div>
                   </div>
+                </div>
+                <div class="col-auto mt-4 btn-details">
+                  <span>Detail Penerbangan</span>
+                  <span>Detail Harga</span>
+                  <span>Kebijakan</span>
                 </div>
               </div>
             </div>
