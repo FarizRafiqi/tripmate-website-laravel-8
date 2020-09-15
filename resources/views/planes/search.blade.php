@@ -52,7 +52,6 @@
       </div>
     </div>
     
-   
     <div class="container" id="wrapperPencarianPenerbangan">
       <div class="row">
          <!-- Filter -->
@@ -179,17 +178,17 @@
         </div>
 
         <!-- List Penerbangan -->
-        <div class="col-lg-8 px-lg-0 px-md-0">
+        <div class="col-lg-8 px-lg-0">
           <div class="wrapper-result">
             <div class="wrapper-flight-list bg-white border">
               <div class="row">
-                <div class="col-lg-6 left pr-0">
+                <div class="col-lg-6 col-md-6 left pr-0">
                   <div class="row row-cols-1">
                     <span class="maskapai-penerbangan col">Lion Air</span>
                   </div>
                   <div class="d-flex">
-                    <div class="logo-airline d-flex justify-content-center align-items-center p-3">
-                      <img src="{{ url('img/logo_partners/Lion.png') }}" alt="Logo Maskapai" class="img-fluid">
+                    <div class="logo-airline">
+                      <img src="{{ url('img/logo_partners/Lion.png') }}" alt="AIRLINE_ICON">
                     </div>
                     <div class="departure-time">
                       <div class="text-time">21:50</div>
@@ -206,18 +205,18 @@
                       <div class="text-total-time">1 Transit</div>
                     </div> -->
                     <div class="arrival-time">
-                      <div class="text-time">21:50</div>
+                      <div class="text-time">21:51</div>
                       <div class="text-code">DPS</div>
                     </div>
                     <div class="flight-duration">
-                      <div class="text-total-time">4j 20m</div>
-                      <div class="flight-type">1 Transit</div>
+                      <div class="text-total-time">0j 1m</div>
+                      <div class="flight-type">Langsung</div>
                     </div>
                   </div>
                 </div>
-                <div class="col-lg-6 right">
+                <div class="col-lg-6 col-md-6 right">
                   <div class="row">
-                    <div class="col-lg-6 px-0">
+                    <div class="col-6 px-0">
                       <div class="baggage-list text-center">
                         <span class="facilities-icon">
                           <img src="{{ url('img/icons/fasilitas/ic_bagasi.png') }}" alt="ICON-baggage" width="20px" height="20px" data-toggle="tooltip" data-placement="bottom" title="Bagasi 5kg">
@@ -230,23 +229,67 @@
                         </span>
                       </div>
                     </div>
-                    <div class="col-lg-6 pl-0">
+                    <div class="col-6 pl-0">
                       <div class="text-price text-right">
-                        IDR 500.000
+                        IDR 25.500.000
                         <label class="text-pax">/org</label>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="col-auto mt-4 btn-details">
+                <div class="col-12 mt-4 btn-details">
+                  <!-- Nav tabs -->
                   <ul class="nav nav-tabs">
                     <li class="nav-item">
-                      <a href="#" class="nav-link active">Detail Penerbangan</a>
+                      <a href="#flight-detail" class="nav-link" id="flight-detail-tab">Detail Penerbangan</a>
                     </li>
                     <li class="nav-item">
-                      <a href="#" class="nav-link">Detail Harga</a>
+                      <a href="#price-detail" class="nav-link" id="price-detail-tab">Detail Harga</a>
                     </li>
                   </ul>
+                  
+                  <!-- Tab panes -->
+                  <div class="tab-content wrapper-collapse">
+                    <hr class="d-none">
+                    <div class="tab-pane" id="flight-detail" role="tabpanel" aria-labelledby="flight-detail-tab">
+                      <div class="row">
+                        <div class="col-auto">
+                          <div class="text-time-fd">21:50</div>
+                          <div class="text-date-fd">15 Sep</div>
+                        </div>
+                        <div class="col-lg-8 col-md-6 text-left">
+                          <div class="text-airport">Soekarno Hatta</div>
+                          <div class="text-airport-terminal"></div>
+                        </div>
+                        <div class="col-lg-2 col-md-3 text-right">
+                          <i class="far fa-clock"></i>
+                          <span class="text-total-time">
+                            0j 1m
+                          </span>
+                        </div>
+                      </div>
+                      <div class="row align-items-center">
+                        <div class="col-auto mr-2">
+                          <div class="text-date-fd">
+                            0j 1m
+                          </div>
+                        </div>
+                        <div class="col-10 detail-info-wrapper ">
+                          <div class="row">
+                            <div class="details-info-header">
+                              <div class="logo-airline d-flex justify-content-center align-items-center">
+                                <img src="{{ url('img/logo_partners/BatikAir2.png') }}" alt="AIRLINE_ICON" class="img-fluid">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row"></div>
+                    </div>
+
+                    <div class="tab-pane" id="price-detail" role="tabpanel" aria-labelledby="price-detail-tab">konten 2</div>
+                  </div>
+
                 </div>
               </div>
             </div>
@@ -254,5 +297,6 @@
         </div>
       </div>
     </div>
+
   </div>
 @endsection

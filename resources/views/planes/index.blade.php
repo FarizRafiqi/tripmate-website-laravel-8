@@ -5,6 +5,7 @@
 @section("content")
 	<div class="home">
 		<div class="home-page-widget-overlay"></div>
+		<!-- Banner -->
 		<div class="banner bg-gradation-blue">
 			<div class="home-slider">
 				<div id="carouselHomepage" class="carousel slide" data-ride="carousel">
@@ -35,6 +36,7 @@
 				</div>
 			</div>
 		</div>
+
 		<div class="container">
 			<!-- Flight Form -->
 			<div class="card product-widget p-4" id="productWidget">
@@ -44,7 +46,7 @@
 							<div class="row">
 
 								<!-- Input Bandara Penerbangan -->
-								<div class="col-lg-6 col-md-6 col-sm-12 col-12 mb-3 form-group mt-2" id="containerInputBandara1">
+								<div class="col-lg-6 col-md-6 col-sm-12 col-12 mb-3 form-group" id="containerInputBandara1">
 									<label for="input-bandara-asal">Dari</label>
 									<div class="input-group product-search-input-container">
 										<img src="{{ url('img/icons/ic_pesawat_takeoff.png') }}" class="tm tm-pesawat-takeoff">
@@ -62,7 +64,7 @@
 								<div class="reverse-button-container position-relative">
 										<span><img src="{{ url('img/icons/ic_opposite_arrow.svg') }}" alt="" class="tm tm-opposite-arrow" id="opposite-arrow"></span>
 								</div>
-								<div class="col-lg-6 col-md-6 col-sm-12 col-12 mb-3 mt-2 form-group" id="containerInputBandara2">
+								<div class="col-lg-6 col-md-6 col-sm-12 col-12 mb-3 form-group" id="containerInputBandara2">
 									<label for="input-bandara-tujuan">Ke</label>
 									<div class="input-group product-search-input-container">
 										<img src="{{ url('img/icons/ic_pesawat_landing.png') }}" class="tm tm-pesawat-landing">
@@ -83,7 +85,7 @@
 										<label for="inputTanggalBerangkat">Tanggal Berangkat</label>
 										<div class="input-group product-search-input-container date">
 												<img src="{{ url('img/icons/ic_kalender.png') }}" class="tm tm-kalender">
-												<input type="text" class="form-control product-search-input" name="dDate" id="inputTanggalBerangkat" value="<?= strftime("%A, %d %b %Y"); ?>">
+												<input type="text" class="form-control product-search-input" name="dDate" id="inputTanggalBerangkat" value="<?= strftime("%a, %d %b %Y"); ?>">
 										</div>
 								</div>
 								

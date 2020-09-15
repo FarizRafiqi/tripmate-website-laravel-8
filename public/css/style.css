@@ -13,6 +13,78 @@ body {
     background: #fff;
 }
 
+img {
+    -webkit-user-drag: none;
+}
+
+.bg-gradation-blue {
+    background: linear-gradient(to right, #367ffa, #59cbfd);
+}
+
+.container,
+hr {
+    max-width: 1180px;
+}
+
+.not-allowed {
+    cursor: not-allowed;
+}
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+/* || Icons */
+[class*=" tm-"],
+[class^="tm"] {
+    z-index: 900;
+}
+
+[class*=" tm-pesawat-"],
+[class*=" tm-kalender"],
+[class*=" tm-kereta-"] {
+    position: absolute;
+}
+
+[class*=" tm-pesawat-"] {
+    margin: 5px 8px;
+}
+
+[class*=" tm-kereta-"] {
+    margin: 0 8px;
+}
+
+[class*=" tm-kalender"] {
+    margin: 0px 5px;
+}
+
+.product-widget [class^="tm"],
+.product-widget [class*=" tm-"],
+.train-form [class^="tm"],
+.train-form [class*=" tm-"] {
+    width: 45px;
+    height: 45px;
+}
+
+.tm.tm-kereta-reverse {
+    transform: scaleX(-1);
+}
+
+.fa.fa-plus,
+.fa.fa-minus {
+    color: #367ffa;
+}
+
+i.fa.fa-city {
+    color: #367ffa;
+}
+
+.tm-refundable {
+    font-size: 64px;
+}
+
+/* Overlay */
 .home-page-widget-overlay {
     transition: all 0.3s ease;
     position: fixed;
@@ -32,18 +104,7 @@ body {
     opacity: 1;
 }
 
-img {
-    -webkit-user-drag: none;
-}
-
-.bg-gradation-blue {
-    background: linear-gradient(to right, #367ffa, #59cbfd);
-}
-
-.container {
-    max-width: 1180px;
-}
-
+/* || Carousal */
 .home-page .container .banner {
     width: 100%;
     height: 360px;
@@ -89,6 +150,7 @@ img {
 .carousel-control-next .carousel-control-next-icon {
     transform: rotate(225deg);
 }
+
 /* || Header */
 #header-container .container .navbar .navbar-toggler {
     border: 2px solid orange;
@@ -145,16 +207,6 @@ img {
     font-size: 14px;
 }
 
-/* Form halaman kereta api */
-.home-page .home-train .card.train-form {
-    margin-bottom: 80px;
-}
-
-/* Form halaman pesawat */
-.home .container .card.product-widget {
-    margin-bottom: 85px;
-}
-
 .product-widget .product-list a.product {
     width: 100%;
     height: 70px;
@@ -169,6 +221,15 @@ img {
 /* input[type="date"]::-webkit-calendar-picker-indicator {
     display: none;
 } */
+
+/* || Form Pencarian Penerbangan dan Kereta Api */
+.home-page .home-train .card.train-form {
+    margin-bottom: 80px;
+}
+
+.home .container .card.product-widget {
+    margin-bottom: 85px;
+}
 
 .form-group .input-group .product-search-input {
     width: 100%;
@@ -188,14 +249,14 @@ img {
 #input-stasiun-tujuan {
     padding-left: 55px;
 }
-/* || Custom Select Box Passenger */
+/* Custom Select Box Passenger */
 
 .product-widget form .row .passenger-dropdown-container .dropdown-toggle,
 .train-form form .row .passenger-dropdown-container .dropdown-toggle {
     padding: 10px 10px;
 }
 
-/* Untuk mereset icon caret atau panah terbalik bootstrap */
+/* Untuk mereset icon caret bootstrap */
 .product-widget form .passenger-dropdown-container .dropdown-toggle::after,
 .train-form form .passenger-dropdown-container .dropdown-toggle::after,
 .tm.tm-caret {
@@ -230,11 +291,6 @@ img {
     padding: 16px;
 }
 
-select {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-}
-
 .product-widget
     .passenger-dropdown-container
     .dropdown-menu
@@ -244,22 +300,7 @@ select {
     pointer-events: none;
 }
 
-.container-tambah-penerbangan {
-    height: 38px;
-}
-
-.container-tambah-penerbangan label {
-    cursor: pointer;
-}
-
-.container-tambah-penerbangan:hover {
-    opacity: 0.7;
-}
-
-.not-allowed {
-    cursor: not-allowed;
-}
-/* || Button Cari Penerbangan */
+/* Button Cari Penerbangan */
 .product-form-search-button {
     background-color: #367ffa;
     color: #fff;
@@ -281,10 +322,6 @@ select {
 .display {
     display: block;
     animation: dropdownAnimation 0.3s ease-in-out 1;
-}
-
-i.fa.fa-city {
-    color: #367ffa;
 }
 
 @keyframes dropdownAnimation {
@@ -341,6 +378,7 @@ i.fa.fa-city {
     }
 }
 
+/* Dropdown list */
 .dropdown.boxairport,
 .dropdown.stasiun-list-box {
     z-index: 1100;
@@ -412,7 +450,11 @@ i.fa.fa-city {
     border-radius: 4px;
 }
 
-/* || Feature */
+.train-form .reverse-button-container span .tm.tm-opposite-arrow {
+    top: 36%;
+}
+
+/* || Feature Section*/
 .feature .container .feature-box {
     max-width: 980px;
     margin: 32px auto -7px;
@@ -445,17 +487,10 @@ i.fa.fa-city {
     padding: 0 0 0 20px;
 }
 
-hr {
-    max-width: 1180px;
-}
-
 .home hr {
     margin: 48px 0 50px;
 }
 
-.footer-group hr {
-    margin-bottom: 0;
-}
 /* || Book Cheap */
 .book-cheap .col-description {
     margin-top: 40px;
@@ -564,19 +599,20 @@ hr {
     font-size: 14px;
 }
 
-/* || Content Link Kereta Api */
 .content-link {
     padding: 0px 90px;
 }
 
 /* || Preview Flight */
-.preview-flight .right-side [class^="text-"] {
-    font-family: OpenSans-SemiBold;
-}
 
 .flight {
     background: #f5f6fa;
 }
+
+.preview-flight .right-side [class^="text-"] {
+    font-family: OpenSans-SemiBold;
+}
+
 .preview-flight {
     background: #fff;
 }
@@ -680,6 +716,7 @@ hr {
     color: #35405a;
 }
 
+/* || List Penerbangan */
 .flight #wrapperPencarianPenerbangan {
     margin-top: 21px;
 }
@@ -705,24 +742,20 @@ hr {
     font-size: 14px;
 }
 
-#wrapperPencarianPenerbangan
-    .wrapper-result
-    .wrapper-flight-list
-    .left
-    .logo-airline {
+.logo-airline {
     width: 85px;
     height: 50px;
 }
 
-#wrapperPencarianPenerbangan
-    .wrapper-result
-    .wrapper-flight-list
-    .left
-    .logo-airline
-    img {
-    width: auto;
-    height: auto;
+.logo-airline img {
+    max-width: 100%;
+    max-height: 100%;
 }
+
+.wrapper-result .row .left .logo-airline {
+    padding: 8px 15px;
+}
+
 #wrapperPencarianPenerbangan
     .wrapper-result
     .wrapper-flight-list
@@ -821,20 +854,29 @@ hr {
     font-family: OpenSans-Regular;
 }
 
+/* Nav Tabs */
+#wrapperPencarianPenerbangan
+    .wrapper-result
+    .wrapper-flight-list
+    .btn-details
+    .nav-tabs {
+    margin-left: 85px;
+}
+
 .wrapper-result .wrapper-flight-list .btn-details .nav-tabs,
-.wrapper-result .wrapper-flight-list .btn-details .nav-tabs .nav-link.active,
-.wrapper-result .wrapper-flight-list .btn-details .nav-tabs .nav-link:hover {
+.wrapper-result .wrapper-flight-list .btn-details .nav-tabs .nav-link:hover,
+.wrapper-result .wrapper-flight-list .btn-details .nav-tabs .nav-link {
     border: none;
 }
 
 .wrapper-result .wrapper-flight-list .btn-details .nav-tabs .nav-link {
     font-size: 14px;
     color: #0064d2;
-    border: none;
+    padding: 0;
 }
 
 .wrapper-result .wrapper-flight-list .btn-details .nav-tabs .nav-item {
-    margin: 0;
+    margin: 0 10px 20px 0;
 }
 
 #wrapperPencarianPenerbangan
@@ -843,8 +885,72 @@ hr {
     .btn-details
     .nav-tabs
     .nav-link.active {
+    padding-bottom: 23px;
     color: #367ffa;
-    background: none;
+    background: linear-gradient(#367ffa, #367ffa);
+    background-repeat: no-repeat;
+    background-position: 100% 100%;
+    background-size: 100% 1px;
+}
+
+/* flight detail */
+#wrapperPencarianPenerbangan
+    .wrapper-result
+    .wrapper-flight-list
+    .btn-details
+    .wrapper-collapse
+    hr {
+    margin-top: -1.3rem;
+}
+
+.wrapper-collapse .row .text-airport,
+.wrapper-collapse .row .text-time-fd,
+.wrapper-collapse .row .text-date-fd {
+    font-size: 14px;
+    color: #35405a;
+}
+
+#wrapperPencarianPenerbangan
+    .wrapper-result
+    .wrapper-flight-list
+    .btn-details
+    .text-airport::before {
+    content: "";
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #dee2ee;
+    top: 6px;
+    left: -3px;
+}
+
+.wrapper-collapse .row .text-time-fd {
+    font-family: OpenSans-SemiBold;
+}
+
+.wrapper-collapse .row .detail-info-wrapper {
+    background: #f2f8ff;
+    padding: 24px;
+    border-left: 1.4px solid #dee2ee;
+}
+
+.wrapper-collapse .row .detail-info-wrapper::before {
+    content: "";
+    position: absolute;
+    width: 1.4px;
+    height: 34px;
+    background: #dee2ee;
+    top: -32px;
+    left: -2px;
+}
+
+.wrapper-collapse .row .detail-info-wrapper .logo-airline {
+    width: 34px;
+    height: 20px;
+    padding: 2px;
+    background: #fff;
+    border: 1px solid #dee2ee;
 }
 
 .tooltip {
@@ -894,39 +1000,9 @@ footer.footer-group .copyright {
 footer.footer-group hr {
     max-width: 100%;
 }
-/* Icons */
-[class*=" tm-"],
-[class^="tm"] {
-    width: 45px;
-    height: 45px;
-    z-index: 900;
-}
 
-[class*=" tm-pesawat-"],
-[class*=" tm-kalender"],
-[class*=" tm-kereta-"] {
-    position: absolute;
-}
-
-[class*=" tm-pesawat-"] {
-    margin: 5px 8px;
-}
-
-[class*=" tm-kereta-"] {
-    margin: 0 8px;
-}
-
-[class*=" tm-kalender"] {
-    margin: 0px 5px;
-}
-
-.tm.tm-kereta-reverse {
-    transform: scaleX(-1);
-}
-
-.fa.fa-plus,
-.fa.fa-minus {
-    color: #367ffa;
+.footer-group hr {
+    margin-bottom: 0;
 }
 /* input[type="date"]::-webkit-calendar-picker-indicator {
     display: none;
@@ -943,10 +1019,6 @@ footer.footer-group hr {
     border: 1px solid #367ffa;
     border-radius: 50%;
     background: white;
-}
-
-.train-form .reverse-button-container span .tm.tm-opposite-arrow {
-    top: 36%;
 }
 
 /* || Responsive Layouts */
@@ -1024,6 +1096,19 @@ footer.footer-group hr {
         padding: 0;
     }
 
+    #wrapperPencarianPenerbangan
+        .wrapper-result
+        .wrapper-flight-list
+        .left
+        .text-time,
+    #wrapperPencarianPenerbangan
+        .wrapper-result
+        .wrapper-flight-list
+        .left
+        .text-total-time {
+        font-size: 16px;
+    }
+
     footer.footer-group .footer-content .container .row .contact-us {
         display: flex;
         justify-content: space-around;
@@ -1055,22 +1140,6 @@ footer.footer-group hr {
         line-height: normal;
         margin: 40px 0;
         font-size: 28px;
-    }
-
-    #wrapperPencarianPenerbangan
-        .wrapper-result
-        .wrapper-flight-list
-        .left
-        .text-time {
-        font-size: 16px;
-    }
-
-    #wrapperPencarianPenerbangan
-        .wrapper-result
-        .wrapper-flight-list
-        .left
-        .text-total-time {
-        font-size: 16px;
     }
 }
 

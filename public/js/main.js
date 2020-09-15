@@ -786,4 +786,19 @@ $(document).ready(function () {
         console.log(this);
         $("i.fa.fa-chevron-down").addClass("i.fa.fa-chevron-up");
     });
+
+    // tab detail penerbangan
+    $(".btn-details .nav-tabs .nav-item #flight-detail-tab").on(
+        "click",
+        function (e) {
+            e.preventDefault();
+            $(this).toggleClass("active");
+            $(
+                ".btn-details .tab-content.wrapper-collapse #flight-detail"
+            ).toggleClass("active");
+            $(
+                "#wrapperPencarianPenerbangan .wrapper-result .wrapper-flight-list .btn-details .wrapper-collapse hr"
+            ).toggleClass("d-none");
+        }
+    );
 });

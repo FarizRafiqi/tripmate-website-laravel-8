@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="{{ url('css/style.css') }}">
         <link rel="stylesheet" href="{{ url('plugin/bootstrap-datepicker-master/dist/css/bootstrap-datepicker.css') }}">
         <script src="https://kit.fontawesome.com/b769966f19.js" crossorigin="anonymous"></script>
+        <!-- <link rel="stylesheet" href="https://i.icomoon.io/public/temp/1a42e1cd12/icontripmate/style.css"> -->
     </head>
     <body>
     
