@@ -721,24 +721,16 @@ i.fa.fa-city {
     margin-top: 21px;
 }
 
-.flight #wrapperPencarianPenerbangan .wrapper-result .wrapper-flight-list {
+.flight .wrapper-result .wrapper-flight-list {
     padding: 16px 24px;
     color: #35405a;
 }
 
-#wrapperPencarianPenerbangan
-    .wrapper-result
-    .wrapper-flight-list
-    .left
-    .row.row-cols-1 {
+.wrapper-result .wrapper-flight-list .left .row.row-cols-1 {
     margin-bottom: 16px;
 }
 
-#wrapperPencarianPenerbangan
-    .wrapper-result
-    .wrapper-flight-list
-    .left
-    .maskapai-penerbangan {
+.wrapper-result .wrapper-flight-list .left .maskapai-penerbangan {
     font-size: 14px;
 }
 
@@ -756,38 +748,24 @@ i.fa.fa-city {
     padding: 8px 15px;
 }
 
-#wrapperPencarianPenerbangan
-    .wrapper-result
-    .wrapper-flight-list
-    .departure-time {
+.wrapper-result .wrapper-flight-list .departure-time {
     padding: 0px 30px 0px 0px;
 }
 
-#wrapperPencarianPenerbangan
-    .wrapper-result
-    .wrapper-flight-list
-    .arrival-time {
+.wrapper-result .wrapper-flight-list .arrival-time {
     padding: 0px 0px 0px 30px;
 }
 
-#wrapperPencarianPenerbangan
-    .wrapper-result
-    .wrapper-flight-list
-    .left
-    .text-time {
+.wrapper-result .wrapper-flight-list .left .text-time {
     font-size: 20px;
     font-family: OpenSans-SemiBold;
 }
 
-#wrapperPencarianPenerbangan
-    .wrapper-result
-    .wrapper-flight-list
-    .left
-    .text-code {
+.wrapper-result .wrapper-flight-list .left .text-code {
     font-size: 14px;
 }
 
-/* #wrapperPencarianPenerbangan
+/* 
     .wrapper-result
     .wrapper-flight-list
     .left
@@ -798,7 +776,7 @@ i.fa.fa-city {
     border-top: 1px solid #c6cbda;
 } */
 
-/* #wrapperPencarianPenerbangan
+/* 
     .wrapper-result
     .wrapper-flight-list
     .left
@@ -806,60 +784,38 @@ i.fa.fa-city {
     font-size: 12px;
     color: #58627a;
 } */
-#wrapperPencarianPenerbangan
-    .wrapper-result
-    .wrapper-flight-list
-    .left
-    .flight-duration {
+
+.wrapper-result .wrapper-flight-list .left .flight-duration {
     padding: 0 0 0 30px;
 }
 
-#wrapperPencarianPenerbangan
-    .wrapper-result
-    .wrapper-flight-list
-    .left
-    .text-total-time {
+.wrapper-result .wrapper-flight-list .left .text-total-time {
     font-size: 20px;
 }
 
-#wrapperPencarianPenerbangan .wrapper-result .wrapper-flight-list .right .row {
+.wrapper-result .wrapper-flight-list .right .row {
     margin-top: 36px;
 }
 
-#wrapperPencarianPenerbangan
-    .wrapper-result
-    .wrapper-flight-list
-    .right
-    .baggage-list {
+.wrapper-result .wrapper-flight-list .right .baggage-list {
     margin-top: 5px;
 }
 
-#wrapperPencarianPenerbangan
-    .wrapper-result
-    .wrapper-flight-list
-    .right
-    .text-price {
+.wrapper-result .wrapper-flight-list .right .text-price {
     font-size: 20px;
     font-family: OpenSans-SemiBold;
     color: #fd9e0a;
 }
 
-#wrapperPencarianPenerbangan
-    .wrapper-result
-    .wrapper-flight-list
-    .right
-    .text-pax {
+.wrapper-result .wrapper-flight-list .right .text-pax {
     font-size: 12px;
     color: #8a93a7;
     font-family: OpenSans-Regular;
 }
 
 /* Nav Tabs */
-#wrapperPencarianPenerbangan
-    .wrapper-result
-    .wrapper-flight-list
-    .btn-details
-    .nav-tabs {
+
+.wrapper-result .wrapper-flight-list .btn-details .nav-tabs {
     margin-left: 85px;
 }
 
@@ -879,12 +835,7 @@ i.fa.fa-city {
     margin: 0 10px 20px 0;
 }
 
-#wrapperPencarianPenerbangan
-    .wrapper-result
-    .wrapper-flight-list
-    .btn-details
-    .nav-tabs
-    .nav-link.active {
+.wrapper-result .wrapper-flight-list .btn-details .nav-tabs .nav-link.active {
     padding-bottom: 23px;
     color: #367ffa;
     background: linear-gradient(#367ffa, #367ffa);
@@ -894,12 +845,8 @@ i.fa.fa-city {
 }
 
 /* flight detail */
-#wrapperPencarianPenerbangan
-    .wrapper-result
-    .wrapper-flight-list
-    .btn-details
-    .wrapper-collapse
-    hr {
+
+.wrapper-result .wrapper-flight-list .btn-details .wrapper-collapse hr {
     margin-top: -1.3rem;
 }
 
@@ -907,14 +854,16 @@ i.fa.fa-city {
 .wrapper-collapse .row .text-time-fd,
 .wrapper-collapse .row .text-date-fd {
     font-size: 14px;
+    font-family: OpenSans-Regular;
+    font-weight: 400;
     color: #35405a;
 }
 
-#wrapperPencarianPenerbangan
-    .wrapper-result
-    .wrapper-flight-list
-    .btn-details
-    .text-airport::before {
+.wrapper-collapse .row .text-airport {
+    padding-left: 9px;
+}
+
+.wrapper-collapse .row .text-airport::before {
     content: "";
     position: absolute;
     width: 7px;
@@ -929,20 +878,44 @@ i.fa.fa-city {
     font-family: OpenSans-SemiBold;
 }
 
-.wrapper-collapse .row .detail-info-wrapper {
-    background: #f2f8ff;
-    padding: 24px;
+.wrapper-collapse .row table {
+    width: 100%;
+}
+
+.wrapper-collapse .row .th-detail::before {
+    content: "";
+    position: absolute;
+    width: 1.5px;
+    height: 32px;
+    background: #dee2ee;
+    top: -32px;
+    left: 1px;
+}
+
+.wrapper-collapse .row .th-detail::after {
+    content: "";
+    position: absolute;
+    width: 1.5px;
+    height: 32px;
+    background: #dee2ee;
+    bottom: -10px;
+    left: 0.5px;
+}
+
+.wrapper-collapse .row .col-flight-detail-1 {
+    width: 73px;
+}
+
+.wrapper-collapse .row .box-flight-detail {
+    padding: 32px 0;
     border-left: 1.4px solid #dee2ee;
 }
 
-.wrapper-collapse .row .detail-info-wrapper::before {
-    content: "";
-    position: absolute;
-    width: 1.4px;
-    height: 34px;
-    background: #dee2ee;
-    top: -32px;
-    left: -2px;
+.wrapper-collapse .row .detail-info-wrapper {
+    background: #f2f8ff;
+    padding: 24px;
+    font-size: 14px;
+    font-weight: normal;
 }
 
 .wrapper-collapse .row .detail-info-wrapper .logo-airline {
@@ -951,6 +924,25 @@ i.fa.fa-city {
     padding: 2px;
     background: #fff;
     border: 1px solid #dee2ee;
+}
+
+.wrapper-collapse .row .detail-info-wrapper .details-info-header .line {
+    width: 1px;
+    height: 14px;
+    background: #c6cbda;
+    margin: 0 5px;
+}
+
+.wrapper-result .wrapper-flight-list .row .detail-info-wrapper hr {
+    margin: 1rem 0 0 0;
+}
+
+/* .wrapper-result .wrapper-flight-list .row .details-info-content {
+    max-width: 70%;
+} */
+
+.wrapper-result .wrapper-flight-list .row .details-info-content .baggage-list {
+    margin: 19px 0 0 0;
 }
 
 .tooltip {
@@ -1004,9 +996,11 @@ footer.footer-group hr {
 .footer-group hr {
     margin-bottom: 0;
 }
+
 /* input[type="date"]::-webkit-calendar-picker-indicator {
     display: none;
 } */
+
 .reverse-button-container {
     right: -22px;
 }
@@ -1096,16 +1090,8 @@ footer.footer-group hr {
         padding: 0;
     }
 
-    #wrapperPencarianPenerbangan
-        .wrapper-result
-        .wrapper-flight-list
-        .left
-        .text-time,
-    #wrapperPencarianPenerbangan
-        .wrapper-result
-        .wrapper-flight-list
-        .left
-        .text-total-time {
+    .wrapper-result .wrapper-flight-list .left .text-time,
+    .wrapper-result .wrapper-flight-list .left .text-total-time {
         font-size: 16px;
     }
 
@@ -1224,6 +1210,10 @@ footer.footer-group hr {
         line-height: 40px;
     }
 
+    /* .wrapper-collapse .row .col-flight-detail-2 {
+        width: 670px;
+    } */
+
     footer.footer-group .footer-content .container .row .contact-us {
         display: inline-block;
     }
@@ -1235,19 +1225,15 @@ footer.footer-group hr {
         transform: rotate(0deg);
     }
 
-    #wrapperPencarianPenerbangan
-        .wrapper-result
-        .wrapper-flight-list
-        .left
-        .text-time {
+    .wrapper-result .wrapper-flight-list .left .text-time {
         font-size: 20px;
     }
 
-    #wrapperPencarianPenerbangan
-        .wrapper-result
-        .wrapper-flight-list
-        .left
-        .text-total-time {
+    .wrapper-result .wrapper-flight-list .left .text-total-time {
         font-size: 20px;
     }
+
+    /* .wrapper-collapse .row .col-flight-detail-2 {
+        width: 680px;
+    } */
 }

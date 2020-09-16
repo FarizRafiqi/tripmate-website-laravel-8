@@ -257,10 +257,12 @@
                           <div class="text-time-fd">21:50</div>
                           <div class="text-date-fd">15 Sep</div>
                         </div>
+
                         <div class="col-lg-8 col-md-6 text-left">
                           <div class="text-airport">Soekarno Hatta</div>
                           <div class="text-airport-terminal"></div>
                         </div>
+
                         <div class="col-lg-2 col-md-3 text-right">
                           <i class="far fa-clock"></i>
                           <span class="text-total-time">
@@ -268,25 +270,61 @@
                           </span>
                         </div>
                       </div>
-                      <div class="row align-items-center">
-                        <div class="col-auto mr-2">
-                          <div class="text-date-fd">
-                            0j 1m
-                          </div>
+                      <div class="row pr-3">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <th class="col-flight-detail-1 text-date-fd col">0j 1m</th>
+                              <th class="th-detail position-relative">
+                                <div class="col-flight-detail-2">
+                                  <div class="box-flight-detail">
+                                    <div class="detail-info-wrapper">
+                                      <div class="details-info-header d-flex align-items-center">
+                                        <div class="logo-airline d-flex justify-content-center align-items-center mr-2">
+                                          <img src="{{ url('img/logo_partners/Lion.png') }}" alt="AIRLINE_ICON" class="img-fluid">
+                                        </div>
+
+                                        <div class="header-title">
+                                          JT-369
+                                        </div>
+
+                                        <div class="line"></div>
+
+                                        <div class="header-title cabin-class">Ekonomi</div>
+                                      </div>
+                                      <hr class="d-none">
+                                      <div class="details-info-content">
+                                        <div class="baggage-list row row-cols-3 align-items-center">
+                                          <div class="facilities-icon col pl-0 mb-3">
+                                            <img src="{{ url('img/icons/fasilitas/ic_bagasi.png') }}" alt="ICON-baggage" width="20px" height="20px">
+                                            <span class="text-facilities ml-1">
+                                              Bagasi 20Kg
+                                            </span>
+                                          </div>
+                                        </div>
+                                        
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </th>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="row">
+                        <div class="col-auto">
+                          <div class="text-time-fd">21:50</div>
+                          <div class="text-date-fd">15 Sep</div>
                         </div>
-                        <div class="col-10 detail-info-wrapper ">
-                          <div class="row">
-                            <div class="details-info-header">
-                              <div class="logo-airline d-flex justify-content-center align-items-center">
-                                <img src="{{ url('img/logo_partners/BatikAir2.png') }}" alt="AIRLINE_ICON" class="img-fluid">
-                              </div>
-                            </div>
-                          </div>
+
+                        <div class="col-lg-8 col-md-6 text-left">
+                          <div class="text-airport">Soekarno Hatta</div>
+                          <div class="text-airport-terminal"></div>
                         </div>
                       </div>
-                      <div class="row"></div>
                     </div>
-
+                      
                     <div class="tab-pane" id="price-detail" role="tabpanel" aria-labelledby="price-detail-tab">konten 2</div>
                   </div>
 
