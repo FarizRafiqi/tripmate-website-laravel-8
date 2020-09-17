@@ -84,7 +84,7 @@
 									</div>
 							</div>
 							<div class="reverse-button-container position-relative">
-									<span><img src="{{ url('img/icons/ic_opposite_arrow.svg') }}" alt="" class="tm tm-opposite-arrow" id="opposite-arrow"></span>
+									<span><i class="fas fa-exchange-alt" id="switch-btn"></i></span>
 							</div>
 							<div class="col-lg-6 col-md-6 col-sm-12 col-12 mb-3 mt-2 form-group" id="containerInputBandara2">
 									<label for="input-bandara-tujuan">Ke</label>
@@ -103,10 +103,10 @@
 							</div>
 							<!-- Input Tanggal Penerbangan -->
 							<div class="col-lg-6 col-md-6 col-sm-12 mb-3 form-group" id="containerTanggalBerangkat">
-									<label for="inputTanggalBerangkat">Tanggal Berangkat</label>
+									<label for="#input-tanggal-berangkat">Tanggal Berangkat</label>
 									<div class="input-group product-search-input-container date">
 											<img src="{{ url('img/icons/ic_kalender.png') }}" class="tm tm-kalender">
-											<input type="text" class="form-control product-search-input" id="inputTanggalBerangkat"
+											<input type="text" class="form-control product-search-input" id="input-tanggal-berangkat"
 											value="<?= strftime("%a, %d %b %Y"); ?>">
 									</div>
 							</div>
@@ -118,7 +118,7 @@
 									</div>
 									<div class="input-group product-search-input-container date" id="inputTanggalPulangContainer">
 											<img src="{{ url('img/icons/ic_kalender.png') }}" class="tm tm-kalender">
-											<input type="text" class="form-control product-search-input" id="inputTanggalPulang">
+											<input type="text" class="form-control product-search-input" id="input-tanggal-pulang">
 									</div>
 							</div>
 							<!-- Input Jumlah Penumpang -->

@@ -35,6 +35,10 @@ select {
     -moz-appearance: none;
 }
 
+.btn-primary {
+    background: #367ffa;
+}
+
 /* || Icons */
 [class*=" tm-"],
 [class^="tm"] {
@@ -59,10 +63,8 @@ select {
     margin: 0px 5px;
 }
 
-.product-widget [class^="tm"],
-.product-widget [class*=" tm-"],
-.train-form [class^="tm"],
-.train-form [class*=" tm-"] {
+[class^="tm"],
+[class*=" tm-"] {
     width: 45px;
     height: 45px;
 }
@@ -102,6 +104,7 @@ i.fa.fa-city {
     z-index: 800;
     visibility: visible;
     opacity: 1;
+    transition: all 0.3s ease-in-out;
 }
 
 /* || Carousal */
@@ -152,6 +155,11 @@ i.fa.fa-city {
 }
 
 /* || Header */
+.logo {
+    width: 238px;
+    height: 78px;
+}
+
 #header-container .container .navbar .navbar-toggler {
     border: 2px solid orange;
 }
@@ -169,13 +177,6 @@ i.fa.fa-city {
 #header-container .navbar-nav .nav-item .nav-link:hover {
     background: linear-gradient(#ffffff, #ffffff);
     background-repeat: no-repeat;
-    background-position: 22% 100%;
-    background-size: 50% 1px;
-}
-
-.logo {
-    width: 238px;
-    height: 78px;
 }
 
 #header-container .navbar #navbarNav .header-right #btn-register {
@@ -190,6 +191,7 @@ i.fa.fa-city {
 /* || Product Widget */
 .card.product-widget,
 .card.train-form,
+.card.flight-form,
 .card.product-widget form .row .product-list a.product,
 .card.train-form form .row .product-list a.product,
 .card.product-widget form .row .product-form-search-button,
@@ -199,7 +201,8 @@ i.fa.fa-city {
 }
 
 .card.product-widget,
-.card.train-form {
+.card.train-form,
+.card.flight-form {
     margin-top: -2.5rem;
     box-shadow: 0 2px 16px 0 rgba(57, 89, 163, 0.3);
     z-index: 1100;
@@ -223,12 +226,9 @@ i.fa.fa-city {
 } */
 
 /* || Form Pencarian Penerbangan dan Kereta Api */
-.home-page .home-train .card.train-form {
+.home-page .home-train .card.train-form,
+.home-page .home-flight .card.flight-form {
     margin-bottom: 80px;
-}
-
-.home .container .card.product-widget {
-    margin-bottom: 85px;
 }
 
 .form-group .input-group .product-search-input {
@@ -243,22 +243,20 @@ i.fa.fa-city {
 
 #input-bandara-asal,
 #input-bandara-tujuan,
-#inputTanggalBerangkat,
-#inputTanggalPulang,
+#input-tanggal-berangkat,
+#input-tanggal-pulang,
 #input-stasiun-asal,
 #input-stasiun-tujuan {
     padding-left: 55px;
 }
 /* Custom Select Box Passenger */
 
-.product-widget form .row .passenger-dropdown-container .dropdown-toggle,
-.train-form form .row .passenger-dropdown-container .dropdown-toggle {
+form .row .passenger-dropdown-container .dropdown-toggle {
     padding: 10px 10px;
 }
 
 /* Untuk mereset icon caret bootstrap */
-.product-widget form .passenger-dropdown-container .dropdown-toggle::after,
-.train-form form .passenger-dropdown-container .dropdown-toggle::after,
+form .passenger-dropdown-container .dropdown-toggle::after,
 .tm.tm-caret {
     /* display: none; */
     position: absolute;
@@ -276,27 +274,23 @@ i.fa.fa-city {
     transform: rotate(-225deg);
 }
 
-.product-widget form .passenger-dropdown-container .dropdown-menu,
-.train-form form .passenger-dropdown-container .dropdown-menu {
+form .passenger-dropdown-container .dropdown-menu {
     width: 260px;
 }
 
-.product-widget .passenger-dropdown-container .dropdown-menu > .dropdown-item,
-.train-form .passenger-dropdown-container .dropdown-menu > .dropdown-item {
+.passenger-dropdown-container .dropdown-menu > .dropdown-item {
     padding: 0px 16px;
 }
 
-.product-widget .passenger-dropdown-container .dropdown-menu .dropdown-header,
-.train-form .passenger-dropdown-container .dropdown-menu .dropdown-header {
+.passenger-dropdown-container .dropdown-menu .dropdown-header {
     padding: 16px;
 }
 
-.product-widget
-    .passenger-dropdown-container
+.passenger-dropdown-container
     .dropdown-menu
     .dropdown-item
     .input-group
-    > input[type="text"].form-control {
+    > input[type="text"] {
     pointer-events: none;
 }
 
@@ -448,10 +442,6 @@ i.fa.fa-city {
     height: 24px;
     line-height: 24px;
     border-radius: 4px;
-}
-
-.train-form .reverse-button-container span .tm.tm-opposite-arrow {
-    top: 36%;
 }
 
 /* || Feature Section*/
@@ -638,7 +628,7 @@ i.fa.fa-city {
     background: #8a93a7;
 }
 
-.preview-flight .preview-flight-content .col-lg-2 div.btn-ubah-pencarian {
+.preview-flight .preview-flight-content div.btn-ubah-pencarian {
     background: #f7f7f7;
     text-transform: uppercase;
     color: #367ffa;
@@ -667,6 +657,13 @@ i.fa.fa-city {
     border-left: 10px solid #fff;
     top: 37px;
     left: -1px;
+}
+
+/* || Form Ubah Pencarian */
+
+.wrapper-change-search i[class*="fa"] {
+    color: #367ffa;
+    font-size: 20px;
 }
 
 /* Filter Box */
@@ -723,37 +720,22 @@ i.fa.fa-city {
 
 .flight .wrapper-result .wrapper-flight-list {
     padding: 16px 24px;
+    margin-bottom: 8px;
     color: #35405a;
 }
 
-.wrapper-result .wrapper-flight-list .left .row.row-cols-1 {
-    margin-bottom: 16px;
-}
-
-.wrapper-result .wrapper-flight-list .left .maskapai-penerbangan {
+.wrapper-result .wrapper-flight-list .maskapai-penerbangan {
     font-size: 14px;
 }
 
 .logo-airline {
-    width: 85px;
-    height: 50px;
+    width: 100%;
+    height: 40px;
 }
 
 .logo-airline img {
     max-width: 100%;
     max-height: 100%;
-}
-
-.wrapper-result .row .left .logo-airline {
-    padding: 8px 15px;
-}
-
-.wrapper-result .wrapper-flight-list .departure-time {
-    padding: 0px 30px 0px 0px;
-}
-
-.wrapper-result .wrapper-flight-list .arrival-time {
-    padding: 0px 0px 0px 30px;
 }
 
 .wrapper-result .wrapper-flight-list .left .text-time {
@@ -785,16 +767,8 @@ i.fa.fa-city {
     color: #58627a;
 } */
 
-.wrapper-result .wrapper-flight-list .left .flight-duration {
-    padding: 0 0 0 30px;
-}
-
 .wrapper-result .wrapper-flight-list .left .text-total-time {
     font-size: 20px;
-}
-
-.wrapper-result .wrapper-flight-list .right .row {
-    margin-top: 36px;
 }
 
 .wrapper-result .wrapper-flight-list .right .baggage-list {
@@ -813,41 +787,34 @@ i.fa.fa-city {
     font-family: OpenSans-Regular;
 }
 
-/* Nav Tabs */
+/* Detail Penerbangan */
 
-.wrapper-result .wrapper-flight-list .btn-details .nav-tabs {
-    margin-left: 85px;
-}
-
-.wrapper-result .wrapper-flight-list .btn-details .nav-tabs,
-.wrapper-result .wrapper-flight-list .btn-details .nav-tabs .nav-link:hover,
-.wrapper-result .wrapper-flight-list .btn-details .nav-tabs .nav-link {
-    border: none;
-}
-
-.wrapper-result .wrapper-flight-list .btn-details .nav-tabs .nav-link {
+.wrapper-result .wrapper-flight-list .btn-details {
+    width: 60%;
     font-size: 14px;
+}
+
+.wrapper-result .wrapper-flight-list .btn-details a {
     color: #0064d2;
-    padding: 0;
 }
 
-.wrapper-result .wrapper-flight-list .btn-details .nav-tabs .nav-item {
-    margin: 0 10px 20px 0;
-}
-
-.wrapper-result .wrapper-flight-list .btn-details .nav-tabs .nav-link.active {
+.wrapper-result .wrapper-flight-list .btn-details a.active {
     padding-bottom: 23px;
-    color: #367ffa;
-    background: linear-gradient(#367ffa, #367ffa);
-    background-repeat: no-repeat;
-    background-position: 100% 100%;
-    background-size: 100% 1px;
+    border-bottom: 1px solid #367ffa;
 }
 
-/* flight detail */
+.wrapper-result .wrapper-flight-list .btn-book-now a.btn {
+    text-transform: uppercase;
+    border-radius: 24px;
+    min-width: 100px;
+    font-size: 16px;
+    font-family: OpenSans-SemiBold;
+    border: none;
+    outline: none;
+}
 
-.wrapper-result .wrapper-flight-list .btn-details .wrapper-collapse hr {
-    margin-top: -1.3rem;
+.wrapper-result .wrapper-flight-list .wrapper-collapse hr {
+    margin: 5px 0 0 0;
 }
 
 .wrapper-collapse .row .text-airport,
@@ -933,16 +900,76 @@ i.fa.fa-city {
     margin: 0 5px;
 }
 
-.wrapper-result .wrapper-flight-list .row .detail-info-wrapper hr {
+/* .wrapper-result .wrapper-flight-list .row .detail-info-wrapper hr {
     margin: 1rem 0 0 0;
-}
-
-/* .wrapper-result .wrapper-flight-list .row .details-info-content {
-    max-width: 70%;
 } */
 
 .wrapper-result .wrapper-flight-list .row .details-info-content .baggage-list {
     margin: 19px 0 0 0;
+}
+
+.wrapper-collapse .transit {
+    position: relative;
+    width: 100%;
+    padding: 12px;
+    border-radius: 4px;
+    background-color: #f5f6fa;
+    margin: 32px 0;
+}
+
+.wrapper-collapse .transit::before {
+    content: "";
+    position: absolute;
+    border-left: 1.5px dashed #dee2ee;
+    height: 64px;
+    top: -64px;
+    left: 59px;
+}
+
+.wrapper-collapse .transit::after {
+    content: "";
+    position: absolute;
+    border-left: 1.5px dashed #dee2ee;
+    height: 38px;
+    bottom: -38px;
+    left: 59px;
+}
+
+.wrapper-collapse .transit .text-transit {
+    font-size: 14px;
+    color: #58627a;
+    text-align: center;
+}
+
+.wrapper-collapse .transit .text-transit label {
+    font-family: OpenSans-SemiBold;
+}
+
+/* detail harga penerbangan */
+#price-detail .price-details .text-subtitle,
+#price-detail .price-details .text-free,
+#price-detail .price-details .text-total {
+    font-size: 14px;
+    color: #35405a;
+}
+
+#price-detail .price-details .row ul {
+    font-size: 14px;
+    color: #8a93a7;
+}
+
+#price-detail .price-details .row ul li {
+    padding: 6px 0;
+}
+
+#price-detail .price-details .text-total,
+#price-detail .price-details .col-price-total {
+    font-size: 16px;
+}
+
+#price-detail .price-details .col-price-total {
+    font-family: OpenSans-SemiBold;
+    color: #0064d2;
 }
 
 .tooltip {
@@ -1005,7 +1032,9 @@ footer.footer-group hr {
     right: -22px;
 }
 
-.reverse-button-container span .tm.tm-opposite-arrow {
+.reverse-button-container span {
+    width: 50px;
+    height: 50px;
     position: absolute;
     cursor: pointer;
     top: 40%;
@@ -1013,6 +1042,15 @@ footer.footer-group hr {
     border: 1px solid #367ffa;
     border-radius: 50%;
     background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.reverse-button-container span .fas.fa-exchange-alt {
+    font-size: 30px;
+    color: #367ffa;
 }
 
 /* || Responsive Layouts */
@@ -1024,7 +1062,7 @@ footer.footer-group hr {
     }
 
     #header-container .navbar-nav .nav-item .nav-link:hover {
-        background-position: 0 100%;
+        background-position: 0% 100%;
         background-size: 7% 1px;
     }
 
@@ -1040,14 +1078,16 @@ footer.footer-group hr {
         width: 106.5%;
     }
 
-    .reverse-button-container span .tm.tm-opposite-arrow {
-        top: 93px;
-        right: 36px;
+    .home-page .reverse-button-container span {
+        top: 90px;
+        right: 38px;
         transform: rotate(90deg);
     }
 
-    .train-form .reverse-button-container span .tm.tm-opposite-arrow {
-        top: 85px;
+    .train-form .reverse-button-container span,
+    .home-flight .reverse-button-container span {
+        top: 82px;
+        right: 38px;
         transform: rotate(90deg);
     }
 
@@ -1135,11 +1175,6 @@ footer.footer-group hr {
         height: 100%;
     }
 
-    #header-container .navbar-nav .nav-item .nav-link:hover {
-        background-position: 22% 100%;
-        background-size: 50% 1px;
-    }
-
     .home-popular {
         text-align: left;
         padding: 0px 94px;
@@ -1149,14 +1184,16 @@ footer.footer-group hr {
         display: none;
     }
 
-    .reverse-button-container span .tm.tm-opposite-arrow {
-        top: 40px;
+    .home-page .reverse-button-container span {
+        top: 36%;
         right: 0;
         transform: rotate(0deg);
     }
 
-    .train-form .reverse-button-container span .tm.tm-opposite-arrow {
-        top: 33px;
+    .train-form .reverse-button-container span,
+    .home-flight .reverse-button-container span {
+        top: 32%;
+        right: 0;
         transform: rotate(0deg);
     }
 
@@ -1197,22 +1234,30 @@ footer.footer-group hr {
 
 /*Large devices (desktops, 992px and up)*/
 @media (min-width: 992px) {
+    #header-container .navbar-nav .nav-item .nav-link:hover {
+        background-position: 22% 100%;
+        background-size: 50% 1px;
+    }
+
     .product-widget form .illustration-container {
         display: inline-block;
     }
 
-    .train-form .reverse-button-container span .tm.tm-opposite-arrow {
+    .train-form .reverse-button-container span .fas.fa-exchange-alt {
         top: 36%;
-        right: 45%;
     }
 
     .tripmate-advantages .container .row h3.title {
         line-height: 40px;
     }
 
-    /* .wrapper-collapse .row .col-flight-detail-2 {
-        width: 670px;
-    } */
+    .wrapper-result .wrapper-flight-list .left .flight-icon {
+        padding: 0;
+    }
+
+    .wrapper-result .wrapper-flight-list .btn-details {
+        margin-left: 17%;
+    }
 
     footer.footer-group .footer-content .container .row .contact-us {
         display: inline-block;
@@ -1221,7 +1266,7 @@ footer.footer-group hr {
 
 /* Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
-    .reverse-button-container span .tm.tm-opposite-arrow {
+    .reverse-button-container span .fas.fa-exchange-alt {
         transform: rotate(0deg);
     }
 
@@ -1233,7 +1278,13 @@ footer.footer-group hr {
         font-size: 20px;
     }
 
-    /* .wrapper-collapse .row .col-flight-detail-2 {
-        width: 680px;
-    } */
+    .wrapper-result .wrapper-flight-list .left .flight-icon {
+        padding: 0 15px 0 15px;
+    }
+
+    .wrapper-result .wrapper-flight-list .btn-details {
+        margin-left: 96px;
+        width: 60%;
+        font-size: 14px;
+    }
 }

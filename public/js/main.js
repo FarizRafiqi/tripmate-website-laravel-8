@@ -1,6 +1,6 @@
 $(document).ready(function () {
     // aktifkan overlay homepage setelah user mengklik widget produk
-    $("#productWidget")
+    $(".home-page form")
         .children()
         .on("click", function () {
             $(".home-page-widget-overlay").addClass("show");
@@ -258,7 +258,7 @@ $(document).ready(function () {
 
     // Tukar bandara, bandara pergi untuk pulang, bandara pulang untuk pergi
     let i = 0;
-    $("#opposite-arrow").on("click", function () {
+    $("#switch-btn").on("click", function () {
         if (i == 0) {
             $(this).css({
                 transition: "transform .2s ease-in",
@@ -733,8 +733,42 @@ $(document).ready(function () {
         });
     });
     // PLUGIN
-    // Plugin Datepicker
 
+    // Plugin Datepicker
+    // Utk halaman homepage, penerbangan, kereta api
+    $("#input-tanggal-berangkat").datepicker({
+        startDate: new Date(),
+        orientation: "bottom auto",
+        endDate: new Date(moment().add(1, "y")),
+        format: "D, dd M yyyy",
+        todayHighlight: true,
+        templates: {
+            leftArrow: "<i class='fa fa-chevron-left'></i>",
+            rightArrow: "<i class='fa fa-chevron-right'></i>",
+        },
+        language: "id",
+        autoclose: true,
+    });
+
+    $("#input-tanggal-pulang").datepicker({
+        startDate: new Date(moment().add(1, "d")),
+        orientation: "bottom auto",
+        endDate: new Date(moment().add(1, "y")),
+        format: "D, dd M yyyy",
+        todayHighlight: true,
+        templates: {
+            leftArrow: "<i class='fa fa-chevron-left'></i>",
+            rightArrow: "<i class='fa fa-chevron-right'></i>",
+        },
+        language: "id",
+        autoclose: true,
+    });
+
+    $("#input-tanggal-pulang").val(
+        moment().locale("id").add(1, "d").format("ddd, D MMM YYYY")
+    );
+
+    // untuk halaman pencarian
     $("#inputTanggalBerangkat").datepicker({
         startDate: new Date(),
         orientation: "bottom auto",
@@ -762,11 +796,6 @@ $(document).ready(function () {
         language: "id",
         autoclose: true,
     });
-
-    $("#inputTanggalPulang").val(
-        moment().locale("id").add(1, "d").format("ddd, D MMM YYYY")
-    );
-
     // Plugin Input Spinner
 
     let config = {
@@ -784,21 +813,29 @@ $(document).ready(function () {
     $("[data-toggle='tooltip']").tooltip();
     $(".filter-box .collapse.in").on("show.bs.collapse", function () {
         console.log(this);
-        $("i.fa.fa-chevron-down").addClass("i.fa.fa-chevron-up");
+        $("i.fa.fa-chevron-down").addClass(".fa-chevron-up");
     });
 
-    // tab detail penerbangan
-    $(".btn-details .nav-tabs .nav-item #flight-detail-tab").on(
-        "click",
-        function (e) {
-            e.preventDefault();
-            $(this).toggleClass("active");
-            $(
-                ".btn-details .tab-content.wrapper-collapse #flight-detail"
-            ).toggleClass("active");
-            $(
-                "#wrapperPencarianPenerbangan .wrapper-result .wrapper-flight-list .btn-details .wrapper-collapse hr"
-            ).toggleClass("d-none");
+    $("a[id*='flight-detail-btn']").on("click", function () {
+        if ($("a[id*='price-detail-btn']").hasClass("active")) {
+            $("a[id*='price-detail-btn']").removeClass("active");
         }
-    );
+
+        $(this).toggleClass("active");
+    });
+
+    $("a[id*='price-detail-btn']").on("click", function () {
+        if ($("a[id*='flight-detail-btn']").hasClass("active")) {
+            $("a[id*='flight-detail-btn']").removeClass("active");
+        }
+
+        $(this).toggleClass("active");
+    });
+
+    // let lastID = $("a[id*='flight-detail-btn-']").last().attr("id");
+    // let splitID = lastID.split("-");
+
+    // // ID baru
+    // let newID = Number(splitID[3]) + 1;
+    // $("a[id*='flight-detail-btn-']").last().attr("id", newID);
 });
