@@ -313,8 +313,7 @@ form .passenger-dropdown-container .dropdown-menu {
     z-index: 1000;
 }
 
-.display {
-    display: block;
+.dropdown-menu.show {
     animation: dropdownAnimation 0.3s ease-in-out 1;
 }
 
@@ -666,59 +665,112 @@ form .passenger-dropdown-container .dropdown-menu {
     font-size: 20px;
 }
 
-/* Filter Box */
-.flight .filter-box .filter-header #btnReset,
-.flight .filter-box .filter-body .card-body .card .card-header .collapse-label {
+.wrapper-form .form-group .form-control {
+    font-family: OpenSans-SemiBold;
+    font-size: 16px;
+    color: #35405a;
+    width: 90%;
+    border: none;
+}
+
+.wrapper-form .form-group {
+    margin-bottom: 0;
+}
+
+.wrapper-form .box-flight-form {
+    padding: 20px 15px 22px;
+}
+
+.wrapper-form .form-group input[id*="inputBandara"] {
+    padding-left: 36px;
+}
+
+.form-group
+    .custom-checkbox
+    .custom-control-input:focus
+    ~ .custom-control-label::before {
+    box-shadow: none;
+}
+
+.wrapper-form .form-group input[id*="inputTanggal"] {
+    padding-left: 30px;
+}
+
+.wrapper-form .form-group .form-control:focus {
+    border: none;
+    outline: 0;
+    box-shadow: none;
+}
+
+.wrapper-form .form-group label {
+    font-size: 14px;
+    color: #8a93a7;
+}
+
+.form-group .fa.fa-plane-departure,
+.form-group .fa.fa-plane-arrival {
+    position: absolute;
+    top: 40px;
+    left: 16px;
+}
+
+.form-group .far.fa-calendar-alt {
+    top: 35px;
+    left: -9px;
+}
+
+.form-group .fa.fa-arrow-right,
+.form-group .fa.fa-arrow-left {
+    top: 48px;
+    left: -3px;
+    font-size: 12px;
+    color: #fd9e0a;
+}
+
+.wrapper-change-search .form-group .form-control:disabled {
+    background: none;
+    color: #c6cbda;
+}
+
+/* || Filter Box */
+.wrapper-search-result .col-filter .filter-header #btnReset,
+.wrapper-search-result .card-header .collapse-label {
     font-size: 16px;
     font-family: OpenSans-SemiBold;
 }
 
-.flight .filter-box .filter-header #btnReset {
+.wrapper-search-result .col-filter .filter-header #btnReset {
     color: #367ffa;
     cursor: pointer;
 }
 
-.flight .filter-box .filter-body .card-body .card-header {
+.wrapper-search-result .col-filter .filter-body .card-body .card-header {
     background: #fff;
 }
 
-.flight .filter-box .filter-body .card-body .card {
+.wrapper-search-result .col-filter .filter-body .card-body .card {
     border: none;
 }
 
-.flight .filter-box .filter-body .card-body {
+.wrapper-search-result .col-filter .filter-body .card-body {
     padding: 16px 16px 0 16px;
 }
 
-.flight
-    .filter-box
-    .filter-body
-    .card-body
-    .card
-    .card-header
-    .collapse-label
-    .fa-chevron-down {
+.wrapper-search-result .col-filter .collapse-label .fa-chevron-down {
     color: #367ffa;
     font-size: 24px;
 }
 
-.flight
-    .filter-box
-    .filter-body
-    .card-body
-    .card
-    .card-header
-    .collapse-label
-    a {
+.wrapper-search-result .card-header .collapse-label a {
     color: #35405a;
 }
 
 /* || List Penerbangan */
-.flight #wrapperPencarianPenerbangan {
+#wrapperPencarianPenerbangan {
     margin-top: 21px;
 }
 
-.flight .wrapper-result .wrapper-flight-list {
+.wrapper-search-result .wrapper-result .wrapper-flight-list {
     padding: 16px 24px;
     margin-bottom: 8px;
     color: #35405a;
@@ -811,6 +863,7 @@ form .passenger-dropdown-container .dropdown-menu {
     font-family: OpenSans-SemiBold;
     border: none;
     outline: none;
+    box-shadow: none;
 }
 
 .wrapper-result .wrapper-flight-list .wrapper-collapse hr {

@@ -62,16 +62,20 @@
 											</div>
 										</div>
 									</div>
+
 									<div class="reverse-button-container position-relative">
 										<span><i class="fas fa-exchange-alt" id="switch-btn"></i></span>
 									</div>
+
 									<div class="col-lg-6 col-md-6 col-sm-12 col-12 mt-lg-0 mt-md-0 mt-2 mb-3 form-group" id="containerInputBandara2">
 										<label for="input-bandara-tujuan">Ke</label>
 										<div class="input-group product-search-input-container">
 											<img src="{{ url('img/icons/ic_pesawat_landing.png') }}" class="tm tm-pesawat-landing">
 											<input type="text" class="form-control product-search-input" name="arrival" id="input-bandara-tujuan" placeholder="Mau ke mana?" autocomplete="off">
 										</div>
+
 										<div class="dropdown boxairport" id="boxAirport2">
+											<button class="btn btn-secondary dropdown-toggle d-none" type="button" id="btnBoxAirport2" data-toggle="dropdown"></button>
 											<div class="dropdown-menu shadow">
 												<div class="dropdown-header">
 													Pilih kota atau bandara
@@ -79,6 +83,7 @@
 												</div>
 											</div>
 										</div>
+
 									</div>
 	
 									<!-- Input Tanggal Penerbangan -->
@@ -86,7 +91,7 @@
 											<label for="#input-tanggal-berangkat">Tanggal Berangkat</label>
 											<div class="input-group product-search-input-container date">
 													<img src="{{ url('img/icons/ic_kalender.png') }}" class="tm tm-kalender">
-													<input type="text" class="form-control product-search-input" name="dDate" id="input-tanggal-berangkat" value="<?= strftime("%a, %d %b %Y"); ?>">
+													<input type="text" class="form-control product-search-input" name="dDate" id="input-tanggal-berangkat" value="<?= strftime("%a, %d %b %Y"); ?>" autocomplete="off">
 											</div>
 									</div>
 									
@@ -97,7 +102,7 @@
 											</div>
 											<div class="input-group product-search-input-container date" id="inputTanggalPulangContainer">
 													<img src="{{ url('img/icons/ic_kalender.png') }}" class="tm tm-kalender">
-													<input type="text" class="form-control product-search-input" name="aDate" id="input-tanggal-pulang" value="<?= strftime("%A, %d %b %Y"); ?>">
+													<input type="text" class="form-control product-search-input" name="aDate" id="input-tanggal-pulang">
 											</div>
 									</div>
 	
