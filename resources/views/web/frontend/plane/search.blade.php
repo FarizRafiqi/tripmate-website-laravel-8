@@ -1,14 +1,19 @@
-@extends('layouts.main')
+@extends('web.frontend.layout')
 
 @section('title', 'Harga Tiket Pesawat Murah - Cari & Pesan Tiket Hanya di TripMate')
 
+@push('stylesheets')
+  <link rel="stylesheet" href="{{ url('plugin/bootstrap-datepicker-master/dist/css/bootstrap-datepicker.css') }}">
+@endpush
+
 @section('content')
   <div class="flight">
-    <!-- Pratinjau Penerbangan -->
+    <!-- Preview Flight -->
     <div class="preview-flight">
       <div class="overlay"></div>
       <div class="container-fluid bg-white">
         <div class="container px-0 position-relative">
+          
           <div class="row preview-flight-content">
             <div class="col-xl-10 col-lg-9 col-md-8 col-12">
               <div class="choose-flight row align-items-center pl-lg-0">
@@ -54,7 +59,7 @@
             </div>
           </div>
 
-          <!-- Form Ubah Penerbangan -->
+          <!-- Change Flight Form -->
           <div class="wrapper-change-search d-none">
             <div class="wrapper-form bg-white">
               <form>
@@ -108,10 +113,14 @@
               </form>
             </div>
           </div>
+          <!-- End of Change Flight Form -->
+
         </div>
       </div>
     </div>
-    
+    <!-- End of Preview Flight -->
+
+    <!-- Search Result -->
     <div class="wrapper-search-result position-relative" id="wrapperPencarianPenerbangan">
       <div class="container">
         <div class="row">
@@ -239,24 +248,31 @@
               </div>
             </div>
           </div>
-  
-          <!-- Hasil Pencarian -->
+          <!-- End of Filter -->
+
+          <!-- Available Flight List -->
           <div class="col-lg-8 col-md-8 pr-xl-0 col-result">
             <div class="wrapper-result">
-              <!-- List Penerbangan -->
+
+              <!-- Flight Ticket List -->
               <div class="wrapper-flight-list bg-white">
                 <div class="row">
                   <div class="col-12">
                       <span class="maskapai-penerbangan">Lion Air</span>
                   </div>
-                  <div class="col-lg-7 col-md-7 left">
+
+                  <!-- Left Side of Card -->
+                  <div class="col-lg-7 col-md-8 left">
                     <div class="row align-items-center">
-                      <div class="col-xl-3 col-lg-3 pr-0">
+
+                      <div class="col-xl-3 col-lg-3 col-md-3 pr-0">
                         <div class="logo-airline text-xl-center text-lg-center text-md-center">
                           <img src="{{ url('img/logo_partners/Lion.png') }}" alt="AIRLINE_ICON">
                         </div>
                       </div>
-                      <div class="col-xl-6 col-lg-5 pl-0">
+
+                      <!-- Flight Timeline -->
+                      <div class="col-xl-6 col-lg-5 col-md-5 pl-0">
                         <div class="row row-cols-3 align-items-center">
                           <div class="departure-time col-auto">
                             <div class="text-time">21:50</div>
@@ -278,18 +294,24 @@
                           </div>
                         </div>
                       </div>
-                      <div class="col-xl-3 col-lg-4 pr-0">
+                       <!-- End Flight Timeline -->
+
+                      <div class="col-xl-3 col-lg-4 col-md-4 pr-0">
                         <div class="flight-duration">
                           <div class="text-total-time">0j 1m</div>
                           <div class="flight-type">Langsung</div>
                         </div>
                       </div>
+
                     </div>
                   </div>
-                  <div class="col-lg-5 col-md-5 right pl-0">
+                  <!-- End of Left Side of Card -->
+
+                  <!-- Right Side -->
+                  <div class="col-lg-5 col-md-4 pl-0 right">
                     <div class="row">
-                      <!-- List fasilitas -->
-                      <div class="col-4 d-lg-inline-block d-md-inline-block d-none px-0">
+                      <!-- Facilities List -->
+                      <div class="col-lg-4 col-4 d-lg-inline-block d-md-none d-none px-0">
                         <div class="baggage-list text-center">
                           <span class="facilities-icon">
                             <img src="{{ url('img/icons/fasilitas/ic_bagasi.png') }}" alt="ICON-baggage" width="20px" height="20px" data-toggle="tooltip" data-placement="bottom" title="Bagasi 5kg">
@@ -302,7 +324,8 @@
                           </span>
                         </div>
                       </div>
-                      <div class="col-8 pl-0">
+                      <!-- End of Facilities List -->
+                      <div class="col-lg-8 col-md-12 col-8 pl-0">
                         <div class="text-price text-right">
                           IDR 25.500.000
                           <label class="text-pax">/org</label>
@@ -310,17 +333,23 @@
                       </div>
                     </div>
                   </div>
+                  <!-- End of Right Side -->
+
+                  <!-- Detail Buttons -->
                   <div class="col-9 mt-4">
                     <p class="btn-details align-middle">
                       <a href="#flight-detail" class="text-decoration-none" id="flight-detail-btn-1" data-toggle="collapse">Detail Penerbangan</a>
                       <a href="#price-detail" class="text-decoration-none ml-4" id="price-detail-btn-1" data-toggle="collapse">Detail Harga</a>
                     </p>
                   </div>
+                  <!-- End of Detail Buttons -->
+
                   <div class="col-3 mt-3 btn-book-now text-right">
                     <a href="#" class="btn bg-gradation-blue text-white">PILIH</a>
                   </div>
                 </div>
-                <!-- Detail Penerbangan -->
+
+                <!-- Flight Detail -->
                 <div class="wrapper-collapse collapse" id="flight-detail" data-parent=".wrapper-flight-list">
                   <hr>
                   <div class="row pt-3">
@@ -394,17 +423,22 @@
                       <div class="text-airport-terminal"></div>
                     </div>
                   </div>
-                  <!-- <div class="transit">
+
+                  <!-- Flight Transit -->
+                  <div class="transit">
                     <div class="row">
                       <div class="text-transit col">
                         <label>0j 1m</label>
                         Transit di Lombok (LOP)
                       </div>
                     </div>
-                  </div> -->
+                  </div>
+                  <!-- End of Flight Transit -->
+
                 </div>
-  
-                <!-- Detail Harga -->
+                <!-- End of Flight Detail -->
+
+                <!-- Price Detail -->
                 <div class="wrapper-collapse collapse" id="price-detail" data-parent=".wrapper-flight-list">
                   <hr>
                   <div class="wrapper-detail price-details pt-3">
@@ -449,9 +483,12 @@
                     </div>
                   </div>
                 </div>
-              </div>
+                <!-- End of Price Detail -->
 
-              <!-- Empty States jika tidak ada penerbangan yang tersedia -->
+              </div>
+              <!-- End of Flight Ticket List -->
+
+              <!-- Empty States No Flight Available -->
               <div class="no-flight-available bg-white py-5 px-5">
                 <div>
                   <img src="{{ url('img/empty-state-no-flight-available-edit.png') }}" class="img-fluid" alt="illustration">
@@ -465,11 +502,20 @@
                 </div>
 
               </div>
+              <!-- End of Empty States No Flight Available -->
+
             </div>
           </div>
+          <!-- End of Available Flight List -->
         </div>
       </div>
     </div>
-
+    <!-- End of Search Result -->
   </div>
 @endsection
+
+@push('scripts')
+  <script src="{{ url('plugin/moment-js/moment-js.js') }}"></script>
+  <script src="{{ url('plugin/bootstrap-datepicker-master/dist/js/bootstrap-datepicker.min.js') }}"></script>
+  <script src="{{ url('plugin/bootstrap-datepicker-master/dist/locales/bootstrap-datepicker.id.min.js') }}"></script>
+@endpush

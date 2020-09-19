@@ -773,15 +773,6 @@ $("#checkboxTanggalPulang").on("click", function () {
     }
 });
 
-// Plugin Input Spinner
-
-let config = {
-    incrementButton: "<i class='fa fa-plus'></i>",
-    decrementButton: "<i class='fa fa-minus'></i>",
-};
-
-$("input[type='number']").inputSpinner(config);
-
 // Halaman Pencarian
 // untuk membatasi jumlah karakter pada teks airport sehingga tidak terlalu panjang
 $(".preview-flight .right-side .list .text-airport").each(function (i, e) {

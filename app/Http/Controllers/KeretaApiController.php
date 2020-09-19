@@ -13,7 +13,7 @@ class KeretaApiController extends Controller
      */
     public function index()
     {
-        return view("trains.index");
+        return view("web.frontend.train.index");
     }
 
     /**

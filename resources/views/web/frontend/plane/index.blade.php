@@ -1,9 +1,13 @@
-@extends("layouts.main")
+@extends('web.frontend.layout')
 
-@section('title', "Harga Tiket Pesawat Murah")
+@section('title', 'Harga Tiket Pesawat Murah')
+
+@push('stylesheets')
+  <link rel="stylesheet" href="{{ url('plugin/bootstrap-datepicker-master/dist/css/bootstrap-datepicker.css') }}">
+@endpush
 
 @section("content")
-	<div class="home-page">
+  <div class="home-page">
 		<div class="home-flight">
 			<div class="overlay"></div>
 			<!-- Banner -->
@@ -37,7 +41,9 @@
 					</div>
 				</div>
 			</div>
-	
+      <!-- End of Banner -->
+
+      <!-- Main Content -->
 			<div class="container">
 				<!-- Flight Form -->
 				<div class="card flight-form p-4" id="flightForm">
@@ -46,7 +52,7 @@
 							<div class="col-lg-6 col-md-12 col-sm-12">
 								<div class="row">
 	
-									<!-- Input Bandara Penerbangan -->
+									<!-- Airport Inputs -->
 									<div class="col-lg-6 col-md-6 col-sm-12 col-12 mb-3 form-group" id="containerInputBandara1">
 										<label for="input-bandara-asal">Dari</label>
 										<div class="input-group product-search-input-container">
@@ -85,8 +91,9 @@
 										</div>
 
 									</div>
-	
-									<!-- Input Tanggal Penerbangan -->
+                  <!-- End of Airport Inputs -->
+
+									<!-- Flight Date Inputs -->
 									<div class="col-lg-6 col-md-6 col-sm-12 mb-3 form-group" id="containerTanggalBerangkat">
 											<label for="#input-tanggal-berangkat">Tanggal Berangkat</label>
 											<div class="input-group product-search-input-container date">
@@ -105,8 +112,9 @@
 													<input type="text" class="form-control product-search-input" name="aDate" id="input-tanggal-pulang">
 											</div>
 									</div>
-	
-									<!-- Input Jumlah Penumpang -->
+                  <!-- End Flight Date Inputs -->
+
+									<!-- Passenger Amount Inputs -->
 									<div class="col-lg-6 col-md-6 form-group passenger-dropdown-container dropdown">
 										<label>Penumpang</label>
 										<div class="input-group">
@@ -156,8 +164,9 @@
 											</div>
 										</div>
 									</div>
-	
-									<!-- Input Kelas Kabin -->
+                  <!-- End of Passenger Amount Inputs -->
+
+									<!-- Cabin Class Inputs -->
 									<div class="col-lg-6 col-md-6 form-group">
 										<label for="selectBoxKelasKabin">Kelas Kabin</label>
 										<div class="input-group">
@@ -167,23 +176,29 @@
 											</select>
 										</div>
 									</div>
-	
-									<!-- Button Cari Penerbangan -->
+                  <!-- End of Cabin Class Inputs -->
+
+									<!-- Search Button -->
 									<div class="col-lg-12">
 											<button type="submit" class="btn product-form-search-button w-100">Cari Penerbangan</button>
-									</div>
+                  </div>
+                  <!-- End of Search Button -->
 								</div>
 							</div>
-	
+
+              <!-- Flight Illustration -->
 							<div class="col-lg-6 d-lg-inline-block d-none illustration-container">
 								<div class="row row-cols-1">
 									<img src="{{ url('img/icons/aircraft-illustration.svg') }}" alt="ilustrasi pesawat" height="320px">
 								</div>
-							</div>
+              </div>
+              <!-- End of Flight Illustration -->
+
 						</div>
 					</form>
 				</div>
-	
+        <!-- End of Flight Form -->
+
 				<!-- TripMate Partners Section -->
 				<section class="tripmate-partners">
 					<div id="partner-flight">
@@ -226,10 +241,13 @@
 						</div>
 					</div>
 				</section>
-	
+        <!-- End of TripMate Partners Section -->
+
+        <!-- Divider -->
 				<hr class="mx-auto">
-	
-				<div class="book-cheap">
+
+        <!-- Smart Feature of TripMate -->
+				<section class="book-cheap">
 					<div class="text-book-cheap text-center">Pesan Tiket Pesawat Murah di TripMate</div>
 					<div class="col-description row">
 						<div class="col-lg-4 col-12 pr-0">
@@ -266,10 +284,13 @@
 							</div>
 						</div>
 					</div>
-				</div>
-	
+				</section>
+        <!-- End of Smart Feature of TripMate -->
+
+        <!-- Divider -->
 				<hr class="mx-auto">
-				
+
+        <!-- Popular Flight Ticket -->
 				<div class="home-popular">
 					<div class="text-popular-title text-center mb-4">Tujuan Terpopuler</div>
 					<div class="list-popular row">
@@ -284,7 +305,9 @@
 						<div class="col-lg-4 col-md-4 col-auto"><a href="#">Tiket Pesawat Murah Ke Bali</a></div>
 					</div>
 				</div>
-	
+        <!-- End of Popular Ticket -->
+
+        <!-- Popular Flight Routes -->
 				<div class="home-popular mt-5">
 					<div class="text-popular-title text-center mb-4">Rute Terpopuler</div>
 					<div class="list-popular row">
@@ -298,9 +321,29 @@
 						<div class="col-lg-4 col-md-4 col-auto"><a href="#">Tiket Pesawat Jakarta Bali</a></div>
 						<div class="col-lg-4 col-md-4 col-auto"><a href="#">Tiket Pesawat Jakarta Bali</a></div>
 					</div>
-				</div>
+        </div>
+        <!-- End of Popular Flight Routes -->
+
+        <!-- Divider -->
 				<hr class="mx-auto">
-			</div>
+      </div>
+      <!-- End of Main Content-->
 		</div>
 	</div>
 @endsection
+
+@push('scripts')
+  <script src="{{ url('plugin/bootstrap-input-spinner/src/bootstrap-input-spinner.js') }}"></script>
+  <script src="{{ url('plugin/moment-js/moment-js.js') }}"></script>
+  <script src="{{ url('plugin/bootstrap-datepicker-master/dist/js/bootstrap-datepicker.min.js') }}"></script>
+	<script src="{{ url('plugin/bootstrap-datepicker-master/dist/locales/bootstrap-datepicker.id.min.js') }}"></script>
+	<script>
+		// Plugin Input Spinner
+		let config = {
+				incrementButton: "<i class='fa fa-plus'></i>",
+				decrementButton: "<i class='fa fa-minus'></i>",
+		};
+
+		$("input[type='number']").inputSpinner(config);
+	</script>
+@endpush

@@ -13,7 +13,7 @@ class PesawatController extends Controller
      */
     public function index()
     {
-        return view("planes.index");
+        return view("web.frontend.plane.index");
     }
 
     /**
@@ -83,6 +83,6 @@ class PesawatController extends Controller
     }
 
     public function search(){
-        return view("planes.search");
+        return view("web.frontend.plane.search");
     }
 }

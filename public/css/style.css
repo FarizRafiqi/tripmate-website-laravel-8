@@ -7,6 +7,7 @@
     src: url("../fonts/Open_Sans/OpenSans-SemiBold.ttf");
 }
 
+/* Base */
 body {
     font-family: "OpenSans-Regular";
     scroll-behavior: smooth;
@@ -1087,13 +1088,13 @@ form .passenger-dropdown-container .dropdown-menu {
 
 /* || Footer */
 
-footer.footer-group .footer-content .contact-us-content span.icon-image img {
+footer .contact-us-content span.icon-image img {
     width: 50px;
     height: 50px;
     margin-right: 20px;
 }
 
-footer.footer-group .footer-content .container .contact-us {
+footer .contact-us {
     font-size: 14px;
 }
 
@@ -1101,26 +1102,26 @@ footer.footer-group .footer-content .container .contact-us {
     color: #58627a;
 }
 
-footer.footer-group .footer-content .container .footer-list {
+footer .footer-list {
     color: #35405a;
 }
 
-footer.footer-group .footer-content .container .footer-list .footer-item-title {
+footer .footer-list .footer-item-title {
     margin-bottom: 29px;
     font-size: 16px;
     font-family: "OpenSans-SemiBold";
     text-transform: uppercase;
 }
 
-footer.footer-group .footer-content .container .footer-list .footer-item a {
+footer .footer-list .footer-item a {
     text-decoration: none;
 }
 
-footer.footer-group .copyright {
+footer .footer-group .copyright {
     padding: 30px 0;
 }
 
-footer.footer-group hr {
+footer .footer-group hr {
     max-width: 100%;
 }
 
@@ -1373,6 +1374,11 @@ footer.footer-group hr {
     .wrapper-form .btn.btn-orange {
         width: 109px;
     }
+
+    .wrapper-result .wrapper-flight-list .left .flight-icon {
+        padding: 0;
+    }
+
     /* TripMate Advantages Section */
     .tripmate-advantages .container .row h3.title {
         line-height: 40px;
@@ -1405,6 +1411,10 @@ footer.footer-group hr {
 
     .tripmate-advantages .container .row h3.title {
         line-height: 40px;
+    }
+
+    .wrapper-result .wrapper-flight-list .left .flight-icon {
+        padding: 0 15px;
     }
 
     .wrapper-result .wrapper-flight-list .left .flight-icon {

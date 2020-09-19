@@ -1,6 +1,10 @@
-@extends("layouts.main")
+@extends('web.frontend.layout')
 
-@section("title", "tripmate - Pesan Kereta Lebih Mudah")
+@section('title', 'tripmate - pesan kereta lebih mudah')
+
+@push('stylesheets')
+  <link rel="stylesheet" href="{{ url('plugin/bootstrap-datepicker-master/dist/css/bootstrap-datepicker.css') }}">
+@endpush
 
 @section("content")
 	<div class="home-page">
@@ -11,34 +15,37 @@
 				<div class="home-slider">
 					<div id="carouselHomepage" class="carousel slide" data-ride="carousel">
 						<ol class="carousel-indicators">
-								<li data-target="#carouselHomepage" data-slide-to="0" class="active"></li>
-								<li data-target="#carouselHomepage" data-slide-to="1"></li>
-								<li data-target="#carouselHomepage" data-slide-to="2"></li>
+              <li data-target="#carouselHomepage" data-slide-to="0" class="active"></li>
+              <li data-target="#carouselHomepage" data-slide-to="1"></li>
+              <li data-target="#carouselHomepage" data-slide-to="2"></li>
 						</ol>
 						<div class="carousel-inner">
-								<div class="carousel-item active">
-										<a href="{{ url('/') }}"><img src="{{ url('img/banner-example.png') }}" class="d-block" alt=""></a>
-								</div>
-								<div class="carousel-item">
-										<a href="{{ url('/') }}"><img src="{{ url('img/banner-example.png') }}" class="d-block" alt=""></a>
-								</div>
-								<div class="carousel-item">
-										<a href="{{ url('/') }}"><img src="{{ url('img/banner-example.png') }}" class="d-block" alt=""></a>
-								</div>
+							<div class="carousel-item active">
+								<a href="{{ url('/') }}"><img src="{{ url('img/banner-example.png') }}" class="d-block" alt=""></a>
+							</div>
+							<div class="carousel-item">
+								<a href="{{ url('/') }}"><img src="{{ url('img/banner-example.png') }}" class="d-block" alt=""></a>
+							</div>
+							<div class="carousel-item">
+								<a href="{{ url('/') }}"><img src="{{ url('img/banner-example.png') }}" class="d-block" alt=""></a>
+							</div>
 						</div>
 						<a class="carousel-control-prev" href="#carouselHomepage" data-slide="prev">
-								<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-								<span class="sr-only">Previous</span>
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
 						</a>
 						<a class="carousel-control-next" href="#carouselHomepage" data-slide="next">
-								<span class="carousel-control-next-icon" aria-hidden="true"></span>
-								<span class="sr-only">Next</span>
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
 						</a>
 					</div>
 				</div>
 			</div>
+      <!-- End of Banner -->
 
+      <!-- Main -->
 			<div class="container">
+
 				<!-- Train Form -->
 				<div class="card train-form p-4" id="formTrain">
 					<form action="" method="POST">
@@ -49,16 +56,16 @@
 									<div class="col-lg-6 col-md-6 col-sm-12 col-12 mb-3 form-group">
 										<label for="input-stasiun-asal">Dari</label>
 										<div class="input-group product-search-input-container">
-												<img src="{{ url('img/icons/ic_kereta_biru_hadap_kanan.png') }}" class="tm tm-kereta-normal">
-												<input type="text" class="form-control product-search-input" id="input-stasiun-asal" autocomplete="off" placeholder="Kota atau stasiun" required>
+											<img src="{{ url('img/icons/ic_kereta_biru_hadap_kanan.png') }}" class="tm tm-kereta-normal">
+											<input type="text" class="form-control product-search-input" id="input-stasiun-asal" autocomplete="off" placeholder="Kota atau stasiun" required>
 										</div>
 										<div class="dropdown stasiun-list-box" id="boxStasiun1">
-												<div class="dropdown-menu shadow">
-														<div class="dropdown-header">
-															Pilih kota atau stasiun
-															<i class="fa fa-times"></i>
-														</div>
-												</div>
+											<div class="dropdown-menu shadow">
+                        <div class="dropdown-header">
+                          Pilih kota atau stasiun
+                          <i class="fa fa-times"></i>
+                        </div>
+											</div>
 										</div>
 									</div>
 									<div class="reverse-button-container position-relative">
@@ -67,34 +74,34 @@
 									<div class="col-lg-6 col-md-6 col-sm-12 col-12 mt-lg-0 mt-md-0 mt-2 mb-3 form-group">
 										<label for="input-bandara-tujuan">Ke</label>
 										<div class="input-group product-search-input-container">
-												<img src="{{ url('img/icons/ic_kereta_biru_hadap_kanan.png') }}" class="tm tm-kereta-reverse">
-												<input type="text" class="form-control product-search-input" id="input-stasiun-tujuan" autocomplete="off" placeholder="Mau ke mana?" required>
+                      <img src="{{ url('img/icons/ic_kereta_biru_hadap_kanan.png') }}" class="tm tm-kereta-reverse">
+                      <input type="text" class="form-control product-search-input" id="input-stasiun-tujuan" autocomplete="off" placeholder="Mau ke mana?" required>
 										</div>
 										<div class="dropdown stasiun-list-box" id="boxStasiun2">
-												<div class="dropdown-menu shadow">
-														<div class="dropdown-header">
-															Pilih kota atau stasiun
-															<i class="fa fa-times"></i>
-														</div>
-												</div>
+                      <div class="dropdown-menu shadow">
+                        <div class="dropdown-header">
+                          Pilih kota atau stasiun
+                          <i class="fa fa-times"></i>
+                        </div>
+                      </div>
 										</div>
 									</div>
 									<!-- Input Tanggal Perjalanan -->
 									<div class="col-lg-6 col-md-6 col-sm-12 mb-3 form-group">
 										<label for="#input-tanggal-berangkat">Tanggal Berangkat</label>
 										<div class="input-group product-search-input-container date">
-												<img src="{{ url('img/icons/ic_kalender.png') }}" class="tm tm-kalender">
-												<input type="text" class="form-control product-search-input" id="input-tanggal-berangkat" value="<?= strftime("%a, %d %b %Y"); ?>">
+                      <img src="{{ url('img/icons/ic_kalender.png') }}" class="tm tm-kalender">
+                      <input type="text" class="form-control product-search-input" id="input-tanggal-berangkat" value="<?= strftime("%a, %d %b %Y"); ?>">
 										</div>
 									</div>
 									<div class="col-lg-6 col-md-6 col-sm-12 mb-3 form-group">
 										<div class="custom-control custom-checkbox mb-2">
-												<input type="checkbox" class="custom-control-input" id="returnCheckbox">
-												<label class="custom-control-label" for="returnCheckbox">Tanggal Pulang</label>
+                      <input type="checkbox" class="custom-control-input" id="returnCheckbox">
+                      <label class="custom-control-label" for="returnCheckbox">Tanggal Pulang</label>
 										</div>
 										<div class="input-group product-search-input-container date" id="inputTanggalPulangContainer">
-												<img src="{{ url('img/icons/ic_kalender.png') }}" class="tm tm-kalender">
-												<input type="text" class="form-control product-search-input" id="input-tanggal-pulang">
+                      <img src="{{ url('img/icons/ic_kalender.png') }}" class="tm tm-kalender">
+                      <input type="text" class="form-control product-search-input" id="input-tanggal-pulang">
 										</div>
 									</div>
 									<!-- Input Jumlah Penumpang -->
@@ -109,30 +116,30 @@
 													<i class="fa fa-times"></i>
 												</div>
 												<div class="dropdown-item">
-														<div class="row">
-																<div class="col-5 passenger-type">
-																		<label for="adultPassenger">Dewasa</label>
-																		<p><small>Usia 3+</small></p>
-																</div>
-																<div class="col-7">
-																		<input type="number" name="" min="1" max="4" id="adultPassenger" value="1">
-																</div>
-														</div>
+                          <div class="row">
+                            <div class="col-5 passenger-type">
+                              <label for="adultPassenger">Dewasa</label>
+                              <p><small>Usia 3+</small></p>
+                            </div>
+                            <div class="col-7">
+                              <input type="number" name="" min="1" max="4" id="adultPassenger" value="1">
+                            </div>
+                          </div>
 												</div>
 												<div class="dropdown-divider"></div>
 												<div class="dropdown-item">
-														<div class="row">
-																<div class="col-5 passenger-type">
-																		<label for="infantPassenger">Bayi</label>
-																		<p><small>Dibawah 3</small></p>
-																</div>
-																<div class="col-7">
-																		<input type="number" name="" id="infantPassenger"
-																		min="0"
-																		max="4"
-																		value="0">
-																</div>
-														</div>
+                          <div class="row">
+                            <div class="col-5 passenger-type">
+                              <label for="infantPassenger">Bayi</label>
+                              <p><small>Dibawah 3</small></p>
+                            </div>
+                            <div class="col-7">
+                              <input type="number" name="" id="infantPassenger"
+                              min="0"
+                              max="4"
+                              value="0">
+                            </div>
+                          </div>
 												</div>
 											</div>
 										</div>
@@ -153,7 +160,9 @@
 						</div>
 					</form>
 				</div>
-				
+        <!-- End of Train Form -->
+        
+        <!-- Advantages -->
 				<div class="book-cheap">
 					<div class="text-book-cheap text-center">Keuntungan Membeli Tiket Kereta di TripMate</div>
 					<div class="col-description row">
@@ -192,6 +201,7 @@
 						</div>
 					</div>
 				</div>
+        <!-- End of Advantages-->
 
 				<!-- Favorit Trains -->
 				<hr class="mx-auto">
@@ -208,10 +218,12 @@
 						<div class="col-lg-4 col-md-4 col-6"><a href="#">Gajayana</a></div>
 						<div class="col-lg-4 col-md-4 col-6"><a href="#">Argo Wilis</a></div>
 					</div>
-				</div>
+        </div>
+        <!-- End of Favorit Trains -->
+
+        <hr class="mx-auto">
 
 				<!-- Popular Train Routes -->
-				<hr class="mx-auto">
 				<div class="content-link">
 					<div class="content-link-title text-center mb-4">Rute Kereta Api Populer</div>
 					<div class="list-popular row">
@@ -226,9 +238,28 @@
 						<div class="col-lg-4 col-md-4 col-6"><a href="#">Surabaya - Yogyakarta</a></div>
 					</div>
 				</div>
+        <!-- End of Popular Train Routes -->
 
 				<hr class="mx-auto">
-			</div>
+      </div>
+      <!-- End of Main -->
+
 		</div>
 	</div>
 @endsection
+
+@push('scripts')
+  <script src="{{ url('plugin/bootstrap-input-spinner/src/bootstrap-input-spinner.js') }}"></script>
+  <script src="{{ url('plugin/moment-js/moment-js.js') }}"></script>
+  <script src="{{ url('plugin/bootstrap-datepicker-master/dist/js/bootstrap-datepicker.min.js') }}"></script>
+	<script src="{{ url('plugin/bootstrap-datepicker-master/dist/locales/bootstrap-datepicker.id.min.js') }}"></script>
+	<script>
+		// Plugin Input Spinner
+		let config = {
+				incrementButton: "<i class='fa fa-plus'></i>",
+				decrementButton: "<i class='fa fa-minus'></i>",
+		};
+
+		$("input[type='number']").inputSpinner(config);
+	</script>
+@endpush
