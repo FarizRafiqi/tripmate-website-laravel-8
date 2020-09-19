@@ -1,14 +1,14 @@
 @font-face {
-    font-family: OpenSans-Regular;
+    font-family: "OpenSans-Regular";
     src: url("../fonts/Open_Sans/OpenSans-Regular.ttf");
 }
 @font-face {
-    font-family: OpenSans-SemiBold;
+    font-family: "OpenSans-SemiBold";
     src: url("../fonts/Open_Sans/OpenSans-SemiBold.ttf");
 }
 
 body {
-    font-family: OpenSans-Regular;
+    font-family: "OpenSans-Regular";
     scroll-behavior: smooth;
     background: #fff;
 }
@@ -19,6 +19,11 @@ img {
 
 .bg-gradation-blue {
     background: linear-gradient(to right, #367ffa, #59cbfd);
+}
+
+.btn-orange {
+    background-color: #fd9e0a;
+    color: #fff;
 }
 
 .container,
@@ -87,7 +92,7 @@ i.fa.fa-city {
 }
 
 /* Overlay */
-.home-page-widget-overlay {
+.overlay {
     transition: all 0.3s ease;
     position: fixed;
     width: 100%;
@@ -99,7 +104,7 @@ i.fa.fa-city {
     z-index: -9999;
 }
 
-.home-page-widget-overlay.show {
+.overlay.show {
     background: rgba(2, 2, 2, 0.7);
     z-index: 800;
     visibility: visible;
@@ -170,7 +175,7 @@ i.fa.fa-city {
 
 #header-container .nav-item .nav-link,
 #header-container .nav-item .btn {
-    font-family: OpenSans-SemiBold;
+    font-family: "OpenSans-SemiBold";
     font-size: 14px;
 }
 
@@ -237,7 +242,7 @@ i.fa.fa-city {
     border: 1px solid #367ffa;
     border-radius: 10px;
     font-size: 16px;
-    font-family: OpenSans-SemiBold;
+    font-family: "OpenSans-SemiBold";
     color: #35405a;
 }
 
@@ -599,7 +604,7 @@ form .passenger-dropdown-container .dropdown-menu {
 }
 
 .preview-flight .right-side [class^="text-"] {
-    font-family: OpenSans-SemiBold;
+    font-family: "OpenSans-SemiBold";
 }
 
 .preview-flight {
@@ -632,7 +637,7 @@ form .passenger-dropdown-container .dropdown-menu {
     text-transform: uppercase;
     color: #367ffa;
     font-size: 16px;
-    font-family: OpenSans-SemiBold;
+    font-family: "OpenSans-SemiBold";
     border-radius: 24px;
     border: none;
     outline: none;
@@ -658,7 +663,19 @@ form .passenger-dropdown-container .dropdown-menu {
     left: -1px;
 }
 
+.preview-flight .wrapper-change-search {
+    position: absolute;
+    top: 13.5%;
+    right: 0;
+    left: 0;
+    z-index: 1100;
+}
+
 /* || Form Ubah Pencarian */
+
+/* .wrapper-change-search {
+    max-width: 100%;
+} */
 
 .wrapper-change-search i[class*="fa"] {
     color: #367ffa;
@@ -666,7 +683,7 @@ form .passenger-dropdown-container .dropdown-menu {
 }
 
 .wrapper-form .form-group .form-control {
-    font-family: OpenSans-SemiBold;
+    font-family: "OpenSans-SemiBold";
     font-size: 16px;
     color: #35405a;
     width: 90%;
@@ -707,24 +724,33 @@ form .passenger-dropdown-container .dropdown-menu {
     color: #8a93a7;
 }
 
-.form-group .fa.fa-plane-departure,
-.form-group .fa.fa-plane-arrival {
+.wrapper-form .form-group .fa.fa-plane-departure,
+.wrapper-form .form-group .fa.fa-plane-arrival {
     position: absolute;
     top: 40px;
     left: 16px;
 }
 
-.form-group .far.fa-calendar-alt {
+.wrapper-form .form-group .far.fa-calendar-alt {
     top: 35px;
     left: -9px;
 }
 
-.form-group .fa.fa-arrow-right,
-.form-group .fa.fa-arrow-left {
+.wrapper-form .form-group .fa.fa-arrow-right,
+.wrapper-form .form-group .fa.fa-arrow-left {
     top: 48px;
     left: -3px;
     font-size: 12px;
     color: #fd9e0a;
+}
+
+.wrapper-form .btn.btn-orange {
+    padding: 12px 24px;
+    font-size: 16px;
+    font-family: "OpenSans-SemiBold";
+    color: #fff;
+    border-radius: 24px;
+    height: 48px;
 }
 
 .wrapper-change-search .form-group .form-control:disabled {
@@ -732,16 +758,20 @@ form .passenger-dropdown-container .dropdown-menu {
     color: #c6cbda;
 }
 
-/* || Filter Box */
+/* || List Filter */
 .wrapper-search-result .col-filter .filter-header #btnReset,
 .wrapper-search-result .card-header .collapse-label {
     font-size: 16px;
-    font-family: OpenSans-SemiBold;
+    font-family: "OpenSans-SemiBold";
 }
 
 .wrapper-search-result .col-filter .filter-header #btnReset {
     color: #367ffa;
     cursor: pointer;
+}
+
+.wrapper-search-result .col-filter .filter-body.card {
+    border: none;
 }
 
 .wrapper-search-result .col-filter .filter-body .card-body .card-header {
@@ -792,7 +822,7 @@ form .passenger-dropdown-container .dropdown-menu {
 
 .wrapper-result .wrapper-flight-list .left .text-time {
     font-size: 20px;
-    font-family: OpenSans-SemiBold;
+    font-family: "OpenSans-SemiBold";
 }
 
 .wrapper-result .wrapper-flight-list .left .text-code {
@@ -829,14 +859,14 @@ form .passenger-dropdown-container .dropdown-menu {
 
 .wrapper-result .wrapper-flight-list .right .text-price {
     font-size: 20px;
-    font-family: OpenSans-SemiBold;
+    font-family: "OpenSans-SemiBold";
     color: #fd9e0a;
 }
 
 .wrapper-result .wrapper-flight-list .right .text-pax {
     font-size: 12px;
     color: #8a93a7;
-    font-family: OpenSans-Regular;
+    font-family: "OpenSans-Regular";
 }
 
 /* Detail Penerbangan */
@@ -855,12 +885,12 @@ form .passenger-dropdown-container .dropdown-menu {
     border-bottom: 1px solid #367ffa;
 }
 
-.wrapper-result .wrapper-flight-list .btn-book-now a.btn {
+.wrapper-result .wrapper-flight-list .btn-book-now .btn {
     text-transform: uppercase;
     border-radius: 24px;
     min-width: 100px;
     font-size: 16px;
-    font-family: OpenSans-SemiBold;
+    font-family: "OpenSans-SemiBold";
     border: none;
     outline: none;
     box-shadow: none;
@@ -870,20 +900,20 @@ form .passenger-dropdown-container .dropdown-menu {
     margin: 5px 0 0 0;
 }
 
-.wrapper-collapse .row .text-airport,
-.wrapper-collapse .row .text-time-fd,
-.wrapper-collapse .row .text-date-fd {
+#flight-detail .row .text-airport,
+#flight-detail .row .text-time-fd,
+#flight-detail .row .text-date-fd {
     font-size: 14px;
-    font-family: OpenSans-Regular;
+    font-family: "OpenSans-Regular";
     font-weight: 400;
     color: #35405a;
 }
 
-.wrapper-collapse .row .text-airport {
+#flight-detail .row .text-airport {
     padding-left: 9px;
 }
 
-.wrapper-collapse .row .text-airport::before {
+#flight-detail .row .text-airport::before {
     content: "";
     position: absolute;
     width: 7px;
@@ -894,15 +924,15 @@ form .passenger-dropdown-container .dropdown-menu {
     left: -3px;
 }
 
-.wrapper-collapse .row .text-time-fd {
-    font-family: OpenSans-SemiBold;
+#flight-detail .row .text-time-fd {
+    font-family: "OpenSans-SemiBold";
 }
 
-.wrapper-collapse .row table {
+#flight-detail .row table {
     width: 100%;
 }
 
-.wrapper-collapse .row .th-detail::before {
+#flight-detail .row .th-detail::before {
     content: "";
     position: absolute;
     width: 1.5px;
@@ -912,7 +942,7 @@ form .passenger-dropdown-container .dropdown-menu {
     left: 1px;
 }
 
-.wrapper-collapse .row .th-detail::after {
+#flight-detail .row .th-detail::after {
     content: "";
     position: absolute;
     width: 1.5px;
@@ -922,23 +952,23 @@ form .passenger-dropdown-container .dropdown-menu {
     left: 0.5px;
 }
 
-.wrapper-collapse .row .col-flight-detail-1 {
+#flight-detail .row .col-flight-detail-1 {
     width: 73px;
 }
 
-.wrapper-collapse .row .box-flight-detail {
+#flight-detail .row .box-flight-detail {
     padding: 32px 0;
     border-left: 1.4px solid #dee2ee;
 }
 
-.wrapper-collapse .row .detail-info-wrapper {
+#flight-detail .row .detail-info-wrapper {
     background: #f2f8ff;
     padding: 24px;
     font-size: 14px;
     font-weight: normal;
 }
 
-.wrapper-collapse .row .detail-info-wrapper .logo-airline {
+#flight-detail .row .detail-info-wrapper .logo-airline {
     width: 34px;
     height: 20px;
     padding: 2px;
@@ -946,22 +976,18 @@ form .passenger-dropdown-container .dropdown-menu {
     border: 1px solid #dee2ee;
 }
 
-.wrapper-collapse .row .detail-info-wrapper .details-info-header .line {
+#flight-detail .row .detail-info-wrapper .details-info-header .line {
     width: 1px;
     height: 14px;
     background: #c6cbda;
     margin: 0 5px;
 }
 
-/* .wrapper-result .wrapper-flight-list .row .detail-info-wrapper hr {
-    margin: 1rem 0 0 0;
-} */
-
-.wrapper-result .wrapper-flight-list .row .details-info-content .baggage-list {
+#flight-detail .row .detail-info-wrapper .baggage-list {
     margin: 19px 0 0 0;
 }
 
-.wrapper-collapse .transit {
+#flight-detail .transit {
     position: relative;
     width: 100%;
     padding: 12px;
@@ -970,7 +996,7 @@ form .passenger-dropdown-container .dropdown-menu {
     margin: 32px 0;
 }
 
-.wrapper-collapse .transit::before {
+#flight-detail .transit::before {
     content: "";
     position: absolute;
     border-left: 1.5px dashed #dee2ee;
@@ -979,7 +1005,7 @@ form .passenger-dropdown-container .dropdown-menu {
     left: 59px;
 }
 
-.wrapper-collapse .transit::after {
+#flight-detail .transit::after {
     content: "";
     position: absolute;
     border-left: 1.5px dashed #dee2ee;
@@ -988,14 +1014,14 @@ form .passenger-dropdown-container .dropdown-menu {
     left: 59px;
 }
 
-.wrapper-collapse .transit .text-transit {
+#flight-detail .transit .text-transit {
     font-size: 14px;
     color: #58627a;
     text-align: center;
 }
 
-.wrapper-collapse .transit .text-transit label {
-    font-family: OpenSans-SemiBold;
+#flight-detail .transit .text-transit label {
+    font-family: "OpenSans-SemiBold";
 }
 
 /* detail harga penerbangan */
@@ -1021,17 +1047,42 @@ form .passenger-dropdown-container .dropdown-menu {
 }
 
 #price-detail .price-details .col-price-total {
-    font-family: OpenSans-SemiBold;
+    font-family: "OpenSans-SemiBold";
     color: #0064d2;
 }
 
 .tooltip {
-    font-family: OpenSans-SemiBold;
+    font-family: "OpenSans-SemiBold";
     font-size: 14px;
 }
 
 .tooltip.show {
     opacity: 1;
+}
+
+.wrapper-result .no-flight-available .text-no-flight-available {
+    font-size: 18px;
+    font-family: "OpenSans-SemiBold";
+    color: #35405a;
+}
+
+.wrapper-result .no-flight-available .text-no-flight-available-desc {
+    font-size: 14px;
+    color: #8a93a7;
+}
+
+.wrapper-result .no-flight-available .btn-change .btn.btn-orange {
+    border-radius: 24px;
+    font-size: 16px;
+    font-family: "OpenSans-SemiBold";
+    text-transform: uppercase;
+    padding: 12px 17px;
+    box-shadow: none;
+}
+
+.btn.btn-orange:hover {
+    color: #fff;
+    background: #fdac2b;
 }
 
 /* || Footer */
@@ -1057,7 +1108,7 @@ footer.footer-group .footer-content .container .footer-list {
 footer.footer-group .footer-content .container .footer-list .footer-item-title {
     margin-bottom: 29px;
     font-size: 16px;
-    font-family: OpenSans-SemiBold;
+    font-family: "OpenSans-SemiBold";
     text-transform: uppercase;
 }
 
@@ -1162,6 +1213,10 @@ footer.footer-group hr {
         padding: 0px;
     }
 
+    .preview-flight .preview-flight-content .choose-flight {
+        padding: 21px 21px 21px 0;
+    }
+
     .preview-flight .preview-flight-content .choose-flight .text-choose {
         font-size: 16px;
     }
@@ -1176,6 +1231,33 @@ footer.footer-group hr {
 
     .text-passengers .jumlah-penumpang {
         order: 2;
+    }
+
+    .wrapper-form .btn.btn-orange {
+        width: 60%;
+    }
+
+    .wrapper-form
+        .row
+        > div[class*="col"]
+        > .row
+        div[class*="col"]
+        .form-group {
+        border-bottom: 1px solid #dee2ee;
+    }
+
+    .preview-flight
+        .preview-flight-content
+        .content
+        .border-left-ticket::before {
+        content: "";
+    }
+
+    .preview-flight
+        .preview-flight-content
+        .content
+        .border-left-ticket::after {
+        content: "";
     }
 
     .feature .container .feature-box .list:nth-child(2),
@@ -1270,6 +1352,27 @@ footer.footer-group hr {
         order: 2;
     }
 
+    .wrapper-form
+        .row
+        > div[class*="col"]
+        > .row
+        div[class*="col"]
+        .form-group {
+        border-bottom: none;
+    }
+
+    .wrapper-form
+        .row
+        > div[class*="col"]
+        > .row
+        div[class*="col"]
+        .form-group {
+        border-right: 1px solid #dee2ee;
+    }
+
+    .wrapper-form .btn.btn-orange {
+        width: 109px;
+    }
     /* TripMate Advantages Section */
     .tripmate-advantages .container .row h3.title {
         line-height: 40px;

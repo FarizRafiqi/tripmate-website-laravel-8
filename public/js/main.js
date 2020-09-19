@@ -2,12 +2,12 @@
 $(".home-page form")
     .children()
     .on("click", function () {
-        $(".home-page-widget-overlay").addClass("show");
+        $(".overlay").addClass("show");
     });
 
-$(".home-page-widget-overlay").on("click", function () {
-    $(".home-page-widget-overlay").removeClass("show");
-    $("div.dropdown-menu").removeClass("display");
+$(".overlay").on("click", function () {
+    $(".overlay").removeClass("show");
+    $("div.dropdown-menu").removeClass("show");
 });
 // -----PESAWAT-----
 //Input Tanggal Penerbangan
@@ -811,6 +811,10 @@ $("a[id*='price-detail-btn']").on("click", function () {
     $(this).toggleClass("active");
 });
 
+$(".preview-flight .btn-ubah-pencarian").on("click", function () {
+    $(".wrapper-change-search").removeClass("d-none");
+    // $(".overlay").addClass("show");
+});
 // let lastID = $("a[id*='flight-detail-btn-']").last().attr("id");
 // let splitID = lastID.split("-");
 

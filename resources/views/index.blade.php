@@ -4,7 +4,7 @@
 
 @section('content')
 	<div class="home-page">
-		<div class="home-page-widget-overlay"></div>
+		<div class="overlay"></div>
 		<!-- Banner -->
 		<div class="banner bg-gradation-blue">
 			<div class="home-slider">

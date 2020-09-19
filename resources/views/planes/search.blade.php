@@ -6,111 +6,117 @@
   <div class="flight">
     <!-- Pratinjau Penerbangan -->
     <div class="preview-flight">
-      <div class="container">
-        <div class="row preview-flight-content">
-          <div class="col-xl-10 col-lg-9 col-md-9 col-12">
-            <div class="choose-flight row align-items-center pl-lg-0 pl-2">
-              <div class="left-side col-auto mr-4 pr-0 d-lg-inline-block d-md-none d-none">
-                <img src="{{ url('img/icons/ic_flight_depart.png') }}" alt="" width="32px" height="32px">
-              </div>
-              <div class="right-side col-auto p-lg-0 pl-3">
-                <div class="text-choose">Pilih Penerbangan Pergi</div>
-                <div class="list d-flex align-items-center">
-                  <div class="text-airport mr-1 d-lg-inline-block d-md-inline-block d-none">Soekarno Hatta</div>
-                  <div class="text-airport-code">(CGK)</div>
-                  <i class="fa fa-long-arrow-alt-right mx-2"></i>
-  
-                  <div class="text-airport mr-1 d-lg-inline-block d-md-inline-block d-none">Ngurah Rai</div>
-                  <div class="text-airport-code">(DPS)</div>
-  
-                  <div class="dot-circle d-lg-inline-block d-md-inline-block mx-lg-3 mx-md-3 mx-3"></div>
-                  
-                  <div class="text-depart-date">Jum, 10 Sep</div>
-  
-                  <div class="dot-circle d-lg-inline-block d-md-inline-block mx-3"></div>
-  
-                  <div class="text-passengers d-flex">
-                    <span class="jumlah-penumpang">1</span>
-                    <i class="fa fa-user d-lg-none d-md-none d-inline-block mt-lg-0 mt-md-0 mt-1 mr-1"></i>
-                    <span class="d-lg-inline-block d-md-inline-block d-none ml-1">Penumpang</span>
+      <div class="overlay"></div>
+      <div class="container-fluid bg-white">
+        <div class="container px-0 position-relative">
+          <div class="row preview-flight-content">
+            <div class="col-xl-10 col-lg-9 col-md-8 col-12">
+              <div class="choose-flight row align-items-center pl-lg-0">
+                <div class="left-side col-auto mr-4 pr-0 d-lg-inline-block d-md-none d-none">
+                  <img src="{{ url('img/icons/ic_flight_depart.png') }}" alt="" width="32px" height="32px">
+                </div>
+                <div class="right-side col-auto p-lg-0 pl-3">
+                  <div class="text-choose">Pilih Penerbangan Pergi</div>
+                  <div class="list d-flex align-items-center">
+                    <div class="text-airport mr-1 d-lg-inline-block d-md-none d-none">Soekarno Hatta</div>
+                    <div class="text-airport-code">(CGK)</div>
+                    <i class="fa fa-long-arrow-alt-right mx-2"></i>
+    
+                    <div class="text-airport mr-1 d-lg-inline-block d-md-none d-none">Ngurah Rai</div>
+                    <div class="text-airport-code">(DPS)</div>
+    
+                    <div class="dot-circle d-lg-inline-block d-md-inline-block mx-lg-3 mx-md-3 mx-3"></div>
+                    
+                    <div class="text-depart-date">Jum, 10 Sep</div>
+    
+                    <div class="dot-circle d-lg-inline-block d-md-inline-block mx-3"></div>
+    
+                    <div class="text-passengers d-flex">
+                      <span class="jumlah-penumpang">1</span>
+                      <i class="fa fa-user d-lg-none d-md-none d-inline-block mt-lg-0 mt-md-0 mt-1 mr-1"></i>
+                      <span class="d-lg-inline-block d-md-inline-block d-none ml-1">Penumpang</span>
+                    </div>
+    
+                    <div class="dot-circle d-lg-inline-block d-md-inline-block mx-3"></div>
+    
+                    <div class="text-cabin-class">Ekonomi</div>
                   </div>
-  
-                  <div class="dot-circle d-lg-inline-block d-md-inline-block mx-3"></div>
-  
-                  <div class="text-cabin-class">Ekonomi</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-4 col-12 border-left mb-lg-0 mb-md-0 mb-3 d-flex align-items-center justify-content-lg-end justify-content-md-end justify-content-center">
+              <div class="content">
+                <div class="border-left-ticket"></div>
+                <div class="btn btn-light btn-ubah-pencarian">
+                  Ubah Pencarian
                 </div>
               </div>
             </div>
           </div>
-          <div class="col-xl-2 col-lg-3 col-md-3 px-xl-0 border-left d-flex align-items-center justify-content-end">
-            <div class="content">
-              <div class="border-left-ticket"></div>
-              <div class="btn btn-light btn-ubah-pencarian mb-lg-0 mb-md-0 mb-4">Ubah Pencarian</div>
-            </div>
-          </div>
-        </div>
-        <!-- Form Ubah Penerbangan -->
-        <div class="wrapper-change-search d-none position-relative">
-          <div class="wrapper-form">
-            <form>
-              <div class="row">
-                <div class="col-lg-10 col-9">
-                  <div class="row">
-                    <div class="col-lg-3 col-6 border-right">
-                      <div class="form-group">
-                        <span><i class="fa fa-plane-departure"></i></span>
-                        <label for="inputBandaraAsal">Dari</label>
-                        <input type="text" name="" id="inputBandaraAsal" class="form-control" autocomplete="off">
-                      </div>
-                    </div>
-                    <div class="col-lg-3 col-6 border-right">
-                      <div class="form-group">
-                        <span><i class="fa fa-plane-arrival"></i></span>
-                        <label for="inputBandaraTujuan">Ke</label>
-                        <input type="text" name="" id="inputBandaraTujuan" class="form-control" autocomplete="off">
-                      </div>
-                    </div>
-                    <div class="col-lg-3 col-6 border-right">
-                      <div class="form-group">
-                        <span class="fa-stack position-absolute">
-                          <i class="far fa-calendar-alt fa-stack-1x"></i>
-                          <i class="fa fa-arrow-right fa-stack-2x"></i>
-                        </span>
-                        <label for="inputTanggalBerangkat">Berangkat</label>
-                        <input type="text" name="" id="inputTanggalBerangkat" class="form-control" autocomplete="off">
-                      </div>
-                    </div>
-                    <div class="col-lg-3 col-6 border-right">
-                      <div class="form-group">
-                        <span class="fa-stack position-absolute">
-                          <i class="far fa-calendar-alt fa-stack-1x"></i>
-                          <i class="fa fa-arrow-left fa-stack-2x"></i>
-                        </span>
-                        <div class="custom-control custom-checkbox mb-2">
-                          <input type="checkbox" class="custom-control-input" id="checkboxTanggalPulang">
-                          <label class="custom-control-label" for="checkboxTanggalPulang">Pulang</label>
+
+          <!-- Form Ubah Penerbangan -->
+          <div class="wrapper-change-search d-none">
+            <div class="wrapper-form bg-white">
+              <form>
+                <div class="row">
+                  <div class="col-lg-10 col-md-10 col-12">
+                    <div class="row">
+                      <div class="col-lg-3 col-md-3 col-6">
+                        <div class="form-group">
+                          <span><i class="fa fa-plane-departure"></i></span>
+                          <label for="inputBandaraAsal">Dari</label>
+                          <input type="text" name="" id="inputBandaraAsal" class="form-control" autocomplete="off">
                         </div>
-                        <input type="text" name="" id="inputTanggalPulang" class="form-control" autocomplete="off">
+                      </div>
+                      <div class="col-lg-3 col-md-3 col-6">
+                        <div class="form-group">
+                          <span><i class="fa fa-plane-arrival"></i></span>
+                          <label for="inputBandaraTujuan">Ke</label>
+                          <input type="text" name="" id="inputBandaraTujuan" class="form-control" autocomplete="off">
+                        </div>
+                      </div>
+                      <div class="col-lg-3 col-md-3 col-6">
+                        <div class="form-group">
+                          <span class="fa-stack position-absolute">
+                            <i class="far fa-calendar-alt fa-stack-1x"></i>
+                            <i class="fa fa-arrow-right fa-stack-2x"></i>
+                          </span>
+                          <label for="inputTanggalBerangkat">Berangkat</label>
+                          <input type="text" name="" id="inputTanggalBerangkat" class="form-control" autocomplete="off">
+                        </div>
+                      </div>
+                      <div class="col-lg-3 col-md-3 col-6">
+                        <div class="form-group">
+                          <span class="fa-stack position-absolute">
+                            <i class="far fa-calendar-alt fa-stack-1x"></i>
+                            <i class="fa fa-arrow-left fa-stack-2x"></i>
+                          </span>
+                          <div class="custom-control custom-checkbox mb-2">
+                            <input type="checkbox" class="custom-control-input" id="checkboxTanggalPulang">
+                            <label class="custom-control-label" for="checkboxTanggalPulang">Pulang</label>
+                          </div>
+                          <input type="text" name="" id="inputTanggalPulang" class="form-control" autocomplete="off">
+                        </div>
                       </div>
                     </div>
                   </div>
+                  <!-- Button Cari Penerbangan -->
+                  <div class="col-lg-2 col-md-2 col-12 d-flex align-items-lg-center align-items-md-center align-items-center justify-content-lg-end justify-content-md-end justify-content-center mt-lg-0 mt-md-0 mt-3">
+                    <div class="btn btn-orange">CARI</div>
+                  </div>
                 </div>
-                <div class="col-lg-2 col-3 px-xl-0 d-flex align-items-center justify-content-end">
-                  <div class="btn btn-primary">CARI PENERBANGAN</div>
-                </div>
-              </div>
-            </form>
-  
+              </form>
+            </div>
           </div>
         </div>
       </div>
     </div>
     
-    <div class="wrapper-search-result" id="wrapperPencarianPenerbangan">
+    <div class="wrapper-search-result position-relative" id="wrapperPencarianPenerbangan">
       <div class="container">
         <div class="row">
            <!-- Filter -->
-          <div class="col-lg-4 col-md-4 d-lg-inline-block d-md-inline-block d-none col-filter">
+          <div class="col-lg-4 col-md-4 d-lg-inline-block d-md-inline-block d-none px-xl-0 pr-0 col-filter">
             <div class="filter">
               <div class="filter-header row mb-3">
                 <div class="col-6 text-filter">
@@ -234,10 +240,11 @@
             </div>
           </div>
   
-          <!-- List Penerbangan -->
-          <div class="col-lg-8 col-md-8 px-xl-0 pl-lg-0 col-result">
+          <!-- Hasil Pencarian -->
+          <div class="col-lg-8 col-md-8 pr-xl-0 col-result">
             <div class="wrapper-result">
-              <div class="wrapper-flight-list bg-white border">
+              <!-- List Penerbangan -->
+              <div class="wrapper-flight-list bg-white">
                 <div class="row">
                   <div class="col-12">
                       <span class="maskapai-penerbangan">Lion Air</span>
@@ -445,15 +452,18 @@
               </div>
 
               <!-- Empty States jika tidak ada penerbangan yang tersedia -->
-              <div class="no-flight-available">
-                <img src="{{ url('img/empty-state-no-flight-available.png') }}" class="img-fluid" alt="illustration">
-                <div class="text-no-flight-available">Penerbangan tidak tersedia</div>
-                <div class="text-no-flight-available-desc">Tip: Ubah pencarian dengan tanggal atau kelas yang berbeda</div>
-                <div class="btn-change">
-                  <button class="btn">
+              <div class="no-flight-available bg-white py-5 px-5">
+                <div>
+                  <img src="{{ url('img/empty-state-no-flight-available-edit.png') }}" class="img-fluid" alt="illustration">
+                </div>
+                <div class="text-no-flight-available text-center">Penerbangan tidak tersedia</div>
+                <div class="text-no-flight-available-desc mt-3 text-center">Tip: Ubah pencarian dengan tanggal atau kelas kabin yang berbeda</div>
+                <div class="btn-change mt-4 text-center">
+                  <button class="btn btn-orange">
                     Ubah Penerbangan
                   </button>
                 </div>
+
               </div>
             </div>
           </div>
