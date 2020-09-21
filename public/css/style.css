@@ -49,6 +49,10 @@ select {
     box-shadow: none;
 }
 
+.form-control:focus {
+    box-shadow: none;
+}
+
 .nav-tabs .nav-link:focus {
     border: none;
 }
@@ -820,6 +824,12 @@ form .dropdown-toggle::after,
 .wrapper-search-result .col-filter .collapse-label a.active .fa-chevron-down {
     transform: rotate(180deg);
 }
+
+#filterAccordion .card .card-body input[type="checkbox"].form-control {
+    width: 24px;
+    height: 24px;
+}
+
 /* List Penerbangan */
 #wrapperPencarianPenerbangan {
     margin-top: 21px;

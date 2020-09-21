@@ -150,18 +150,28 @@
                       </div>
                       <div id="section1Content" class="collapse in">
                         <div class="card-body">
-                          <div class="form-group custom-control custom-checkbox">
-                            <input type="checkbox" name="" class="custom-control-input" id="direct">
-                            <label class="custom-control-label" for="direct">Langsung</label>
+                          <!-- Horizontal Form -->
+                          <div class="form-group row align-items-center">
+                            <label for="direct" class="col-sm-10 col-form-label">
+                              Langsung
+                            </label>
+                            <div class="col-sm-2">
+                              <input type="checkbox" class="form-control m-auto" id="direct">
+                            </div>
+                            <label for="stop" class="col-sm-10 col-form-label">
+                              1 Transit
+                            </label>
+                            <div class="col-sm-2">
+                              <input type="checkbox" class="form-control m-auto" id="stop">
+                            </div>
+                            <label for="stops" class="col-sm-10 col-form-label">
+                              2+ Transit
+                            </label>
+                            <div class="col-sm-2">
+                              <input type="checkbox" class="form-control m-auto" id="stops">
+                            </div>
                           </div>
-                          <div class="form-group custom-control custom-checkbox">
-                            <input type="checkbox" name="" class="custom-control-input" id="stop">
-                            <label class="custom-control-label" for="stop">1 Transit</label>
-                          </div>
-                          <div class="form-group custom-control custom-checkbox">
-                            <input type="checkbox" name="" class="custom-control-input" id="stops">
-                            <label class="custom-control-label" for="stops">2+ Transit</label>
-                          </div>
+                          <!-- End of Horizontal Form -->
                         </div>
                       </div>
                     </div>
@@ -206,41 +216,63 @@
                       </div>
                       <div id="section3Content" class="collapse in">
                         <div class="card-body">
+                          <!-- Horizontal Form -->
                           <div class="title">Berangkat</div>
-                          <div class="form-group custom-control custom-checkbox">
-                            <input type="checkbox" name="" class="custom-control-input" id="departure_dawn">
-                            <label class="custom-control-label" for="departure_dawn">00:00 - 06:00</label>
-                          </div>
-                          <div class="form-group custom-control custom-checkbox">
-                            <input type="checkbox" name="" class="custom-control-input" id="departure_morning">
-                            <label class="custom-control-label" for="departure_morning">06:00 - 12:00</label>
-                          </div>
-                          <div class="form-group custom-control custom-checkbox">
-                            <input type="checkbox" name="" class="custom-control-input" id="departure_afternoon">
-                            <label class="custom-control-label" for="departure_afternoon">12:00 - 18:00</label>
-                          </div>
-                          <div class="form-group custom-control custom-checkbox">
-                            <input type="checkbox" name="" class="custom-control-input" id="departure_evening">
-                            <label class="custom-control-label" for="departure_evening">18:00 - 24:00</label>
+                          <div class="form-group row align-items-center">
+                            <label for="departure_dawn" class="col-sm-10 col-form-label">
+                              00:00 - 06:00
+                            </label>
+                            <div class="col-sm-2">
+                              <input type="checkbox" class="form-control m-auto" id="departure_dawn">
+                            </div>
+                            <label for="departure_morning" class="col-sm-10 col-form-label">
+                              00:00 - 06:00
+                            </label>
+                            <div class="col-sm-2">
+                              <input type="checkbox" class="form-control m-auto" id="departure_morning">
+                            </div>
+                            <label for="departure_afternoon" class="col-sm-10 col-form-label">
+                              12:00 - 18:00
+                            </label>
+                            <div class="col-sm-2">
+                              <input type="checkbox" class="form-control m-auto" id="departure_afternoon">
+                            </div>
+                            <label for="departure_evening" class="col-sm-10 col-form-label">
+                              18:00 - 24:00
+                            </label>
+                            <div class="col-sm-2">
+                              <input type="checkbox" class="form-control m-auto" id="departure_evening">
+                            </div>
                           </div>
 
                           <div class="title">Tiba</div>
-                          <div class="form-group custom-control custom-checkbox">
-                            <input type="checkbox" name="" class="custom-control-input" id="arrival_dawn">
-                            <label class="custom-control-label" for="arrival_dawn">00:00 - 06:00</label>
+                          <div class="form-group row align-items-center">
+                            <label for="arrival_dawn" class="col-sm-10 col-form-label">
+                              00:00 - 06:00
+                            </label>
+                            <div class="col-sm-2">
+                              <input type="checkbox" class="form-control m-auto" id="arrival_dawn">
+                            </div>
+                            <label for="arrival_morning" class="col-sm-10 col-form-label">
+                              00:00 - 06:00
+                            </label>
+                            <div class="col-sm-2">
+                              <input type="checkbox" class="form-control m-auto" id="arrival_morning">
+                            </div>
+                            <label for="arrival_afternoon" class="col-sm-10 col-form-label">
+                              12:00 - 18:00
+                            </label>
+                            <div class="col-sm-2">
+                              <input type="checkbox" class="form-control m-auto" id="arrival_afternoon">
+                            </div>
+                            <label for="arrival_evening" class="col-sm-10 col-form-label">
+                              18:00 - 24:00
+                            </label>
+                            <div class="col-sm-2">
+                              <input type="checkbox" class="form-control m-auto" id="arrival_evening">
+                            </div>
                           </div>
-                          <div class="form-group custom-control custom-checkbox">
-                            <input type="checkbox" name="" class="custom-control-input" id="arrival_morning">
-                            <label class="custom-control-label" for="arrival_morning">06:00 - 12:00</label>
-                          </div>
-                          <div class="form-group custom-control custom-checkbox">
-                            <input type="checkbox" name="" class="custom-control-input" id="arrival_afternoon">
-                            <label class="custom-control-label" for="arrival_afternoon">12:00 - 18:00</label>
-                          </div>
-                          <div class="form-group custom-control custom-checkbox">
-                            <input type="checkbox" name="" class="custom-control-input" id="arrival_evening">
-                            <label class="custom-control-label" for="arrival_evening">18:00 - 24:00</label>
-                          </div>
+                          <!-- End of Horizontal Form -->
                         </div>
                       </div>
                     </div>
@@ -260,24 +292,34 @@
                       </div>
                       <div id="section4Content" class="collapse in">
                         <div class="card-body">
-                          <div class="custom-control custom-checkbox">
-                            <div class="logo-airline-wrapped">
-                              <img src="{{ url('img/logo_partners/Citilink.png') }}" class="img-fluid" alt="" width="53px" height="30px">
+                          <div class="form-group row align-items-center">
+                            <label for="QGcheckbox" class="col-sm-10 col-form-label">
+                              <div class="row align-items-center">
+                                <div class="col-4 text-center pr-0">
+                                  <img src="{{ url('img/logo_partners/Citilink.png') }}" class="img-fluid" alt="" width="53px" height="30px">
+                                </div>
+                                <div class="col-8 new-label pl-0">
+                                  <div class="label-1">Citilink Indonesia</div>
+                                  <div class="label-2">dari IDR 676.000</div>
+                                </div>
+                              </div>
+                            </label>
+                            <div class="col-sm-2">
+                              <input type="checkbox" class="form-control" id="QGcheckbox">
                             </div>
-                            <div class="checkbox-wrapper">
-                              <input type="checkbox" name="" class="custom-control-input" id="QGcheckbox">
-                              <label class="custom-control-label" for="QGcheckbox">Citilink</label>
-                              <div class="price-from">Example</div>
-                            </div>
-                          </div>
-                          <div class="custom-control custom-checkbox">
-                            <div class="logo-airline-wrapped">
-                              <img src="{{ url('img/logo_partners/Garuda.png') }}" class="img-fluid" alt="" width="53px" height="30px">
-                            </div>
-                            <div class="checkbox-wrapper">
-                              <input type="checkbox" name="" class="custom-control-input" id="GAcheckbox">
-                              <label class="custom-control-label" for="GAcheckbox">Garuda Indonesia</label>
-                              <div class="price-from">Example</div>
+                            <label for="GAcheckbox" class="col-sm-10 col-form-label">
+                              <div class="row align-items-center">
+                                <div class="col-4 text-center pr-0">
+                                  <img src="{{ url('img/logo_partners/Garuda.png') }}" class="img-fluid" alt="" width="53px" height="30px">
+                                </div>
+                                <div class="new-label-wrapper col-8 pl-0  ">
+                                  <div class="new-label-1">Garuda Indonesia</div>
+                                  <div class="new-label-2">dari IDR 1.278.000</div>
+                                </div>
+                              </div>
+                            </label>
+                            <div class="col-sm-2">
+                              <input type="checkbox" class="form-control" id="GAcheckbox">
                             </div>
                           </div>
                         </div>
@@ -299,7 +341,24 @@
                       </div>
                       <div id="section5Content" class="collapse in">
                         <div class="card-body">
-                          Section 5 content
+                          <!-- Horizontal Form -->
+                          <div class="form-group row align-items-center">
+                            <label for="baggageMultilabel" class="col-sm-10 col-form-label new-label">
+                              <div class="new-label-1">Bagasi</div>
+                              <div class="new-label-2">2 Penerbangan</div>
+                            </label>
+                            <div class="col-sm-2">
+                              <input type="checkbox" class="form-control" id="baggageMultilabel">
+                            </div>
+                            <label for="mealMultilabel" class="col-sm-10 col-form-label new-label">
+                              <div class="label-1">Makanan</div>
+                              <div class="label-2">1 Penerbangan</div>
+                            </label>
+                            <div class="col-sm-2">
+                              <input type="checkbox" class="form-control" id="mealMultilabel">
+                            </div>
+                          </div>
+                          <!-- Horizontal Form -->
                         </div>
                       </div>
                     </div>
@@ -319,7 +378,14 @@
                       </div>
                       <div id="section6Content" class="collapse in">
                         <div class="card-body">
-                          Section 6 content
+                          <div class="form-group row align-items-center">
+                            <label for="DPSC" class="col-sm-10 col-form-label">
+                              Denpasar-Bali
+                            </label>
+                            <div class="col-sm-2">
+                              <input type="checkbox" class="form-control" id="DPSC">
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -339,7 +405,12 @@
                       </div>
                       <div id="section7Content" class="collapse in">
                         <div class="card-body">
-                          Section 7 content
+                          <label for="rangeTripDuration" class="title">Total: </label>
+                          <input type="range" class="custom-range" min="0" max="13" id="rangeTripDuration">
+                          <div class="text-hour d-flex align-items-center justify-content-between">
+                            <span>0j</span>
+                            <span>13j</span>
+                          </div>
                         </div>
                       </div>
                     </div>
