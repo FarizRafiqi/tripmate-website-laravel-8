@@ -138,9 +138,10 @@
               <div class="filter-body card">
                 <div class="card-body">
                   <div id="filterAccordion">
+                    <!-- Transit Filter -->
                     <div class="card">
                       <div class="card-header p-0" id="section1Header">
-                        <div class="collapse-label mt-1 mb-3">
+                        <div class="collapse-label">
                           <a data-toggle="collapse" data-parent="#filterAccordion" href="#section1Content" class="  text-decoration-none d-flex justify-content-between align-items-center">
                             <span>Transit</span>
                             <i class="fa fa-chevron-down"></i>
@@ -149,13 +150,29 @@
                       </div>
                       <div id="section1Content" class="collapse in">
                         <div class="card-body">
-                          Section 1 content
+                          <div class="form-group custom-control custom-checkbox">
+                            <input type="checkbox" name="" class="custom-control-input" id="direct">
+                            <label class="custom-control-label" for="direct">Langsung</label>
+                          </div>
+                          <div class="form-group custom-control custom-checkbox">
+                            <input type="checkbox" name="" class="custom-control-input" id="stop">
+                            <label class="custom-control-label" for="stop">1 Transit</label>
+                          </div>
+                          <div class="form-group custom-control custom-checkbox">
+                            <input type="checkbox" name="" class="custom-control-input" id="stops">
+                            <label class="custom-control-label" for="stops">2+ Transit</label>
+                          </div>
                         </div>
                       </div>
                     </div>
+                    <!-- End of Transit Filter -->
+
+                    <hr class="mb-2 mt-3">
+                    
+                    <!-- Transit Duration Filter -->
                     <div class="card">
                       <div class="card-header p-0" id="section2Header">
-                        <div class="collapse-label my-3">
+                        <div class="collapse-label">
                           <a data-toggle="collapse" data-parent="#filterAccordion" href="#section2Content" class="  text-decoration-none d-flex justify-content-between align-items-center">
                             <span>Durasi Transit</span>
                             <i class="fa fa-chevron-down"></i>
@@ -164,13 +181,23 @@
                       </div>
                       <div id="section2Content" class="collapse in">
                         <div class="card-body">
-                          Section 2 content
+                          <label for="customRange2" class="title">Durasi per transit: </label>
+                          <input type="range" class="custom-range" min="0" max="13" id="customRange2">
+                          <div class="text-hour d-flex align-items-center justify-content-between">
+                            <span>0j</span>
+                            <span>13j</span>
+                          </div>
                         </div>
                       </div>
                     </div>
+                    <!-- End of Transit Duration Filter -->
+
+                    <hr class="mb-2 mt-3">
+
+                    <!-- FLight Time Filter -->
                     <div class="card">
                       <div class="card-header p-0" id="section3Header">
-                        <div class="collapse-label my-3">
+                        <div class="collapse-label">
                           <a data-toggle="collapse" data-parent="#filterAccordion" href="#section3Content" class="  text-decoration-none d-flex justify-content-between align-items-center">
                             <span>Waktu</span>
                             <i class="fa fa-chevron-down"></i>
@@ -179,13 +206,52 @@
                       </div>
                       <div id="section3Content" class="collapse in">
                         <div class="card-body">
-                          Section 3 content
+                          <div class="title">Berangkat</div>
+                          <div class="form-group custom-control custom-checkbox">
+                            <input type="checkbox" name="" class="custom-control-input" id="departure_dawn">
+                            <label class="custom-control-label" for="departure_dawn">00:00 - 06:00</label>
+                          </div>
+                          <div class="form-group custom-control custom-checkbox">
+                            <input type="checkbox" name="" class="custom-control-input" id="departure_morning">
+                            <label class="custom-control-label" for="departure_morning">06:00 - 12:00</label>
+                          </div>
+                          <div class="form-group custom-control custom-checkbox">
+                            <input type="checkbox" name="" class="custom-control-input" id="departure_afternoon">
+                            <label class="custom-control-label" for="departure_afternoon">12:00 - 18:00</label>
+                          </div>
+                          <div class="form-group custom-control custom-checkbox">
+                            <input type="checkbox" name="" class="custom-control-input" id="departure_evening">
+                            <label class="custom-control-label" for="departure_evening">18:00 - 24:00</label>
+                          </div>
+
+                          <div class="title">Tiba</div>
+                          <div class="form-group custom-control custom-checkbox">
+                            <input type="checkbox" name="" class="custom-control-input" id="arrival_dawn">
+                            <label class="custom-control-label" for="arrival_dawn">00:00 - 06:00</label>
+                          </div>
+                          <div class="form-group custom-control custom-checkbox">
+                            <input type="checkbox" name="" class="custom-control-input" id="arrival_morning">
+                            <label class="custom-control-label" for="arrival_morning">06:00 - 12:00</label>
+                          </div>
+                          <div class="form-group custom-control custom-checkbox">
+                            <input type="checkbox" name="" class="custom-control-input" id="arrival_afternoon">
+                            <label class="custom-control-label" for="arrival_afternoon">12:00 - 18:00</label>
+                          </div>
+                          <div class="form-group custom-control custom-checkbox">
+                            <input type="checkbox" name="" class="custom-control-input" id="arrival_evening">
+                            <label class="custom-control-label" for="arrival_evening">18:00 - 24:00</label>
+                          </div>
                         </div>
                       </div>
                     </div>
+                    <!-- End of FLight Time Filter -->
+
+                    <hr class="mb-2 mt-3">
+
+                    <!-- Airlines Filter -->
                     <div class="card">
                       <div class="card-header p-0" id="section4Header">
-                        <div class="collapse-label my-3">
+                        <div class="collapse-label">
                           <a data-toggle="collapse" data-parent="#filterAccordion" href="#section4Content" class="  text-decoration-none d-flex justify-content-between align-items-center">
                             <span>Maskapai</span>
                             <i class="fa fa-chevron-down"></i>
@@ -194,13 +260,37 @@
                       </div>
                       <div id="section4Content" class="collapse in">
                         <div class="card-body">
-                          Section 4 content
+                          <div class="custom-control custom-checkbox">
+                            <div class="logo-airline-wrapped">
+                              <img src="{{ url('img/logo_partners/Citilink.png') }}" class="img-fluid" alt="" width="53px" height="30px">
+                            </div>
+                            <div class="checkbox-wrapper">
+                              <input type="checkbox" name="" class="custom-control-input" id="QGcheckbox">
+                              <label class="custom-control-label" for="QGcheckbox">Citilink</label>
+                              <div class="price-from">Example</div>
+                            </div>
+                          </div>
+                          <div class="custom-control custom-checkbox">
+                            <div class="logo-airline-wrapped">
+                              <img src="{{ url('img/logo_partners/Garuda.png') }}" class="img-fluid" alt="" width="53px" height="30px">
+                            </div>
+                            <div class="checkbox-wrapper">
+                              <input type="checkbox" name="" class="custom-control-input" id="GAcheckbox">
+                              <label class="custom-control-label" for="GAcheckbox">Garuda Indonesia</label>
+                              <div class="price-from">Example</div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
+                    <!-- End of Airlines Filter -->
+
+                    <hr class="mb-2 mt-3">
+
+                    <!-- Facilities Filter -->
                     <div class="card">
                       <div class="card-header p-0" id="section5Header">
-                        <div class="collapse-label my-3">
+                        <div class="collapse-label">
                           <a data-toggle="collapse" data-parent="#filterAccordion" href="#section5Content" class="  text-decoration-none d-flex justify-content-between align-items-center">
                             <span>Fasilitas</span>
                             <i class="fa fa-chevron-down"></i>
@@ -213,9 +303,14 @@
                         </div>
                       </div>
                     </div>
+                    <!-- End of Facilities Filter -->
+
+                    <hr class="mb-2 mt-3">
+
+                    <!-- Transit Airport Filter -->
                     <div class="card">
                       <div class="card-header p-0" id="section6Header">
-                        <div class="collapse-label my-3">
+                        <div class="collapse-label">
                           <a data-toggle="collapse" data-parent="#filterAccordion" href="#section6Content" class="  text-decoration-none d-flex justify-content-between align-items-center">
                             <span>Bandara Transit</span>
                             <i class="fa fa-chevron-down"></i>
@@ -228,9 +323,14 @@
                         </div>
                       </div>
                     </div>
-                    <div class="card">
+                    <!-- End of Transit Airport Filter -->
+
+                    <hr class="mb-2 mt-3">
+
+                    <!-- Flight Duration Filter -->
+                    <div class="card mb-2">
                       <div class="card-header p-0" id="section7Header">
-                        <div class="collapse-label my-3">
+                        <div class="collapse-label">
                           <a data-toggle="collapse" data-parent="#filterAccordion" href="#section7Content" class="  text-decoration-none d-flex justify-content-between align-items-center">
                             <span>Durasi Perjalanan</span>
                             <i class="fa fa-chevron-down"></i>
@@ -243,6 +343,7 @@
                         </div>
                       </div>
                     </div>
+                    <!-- End of Flight Duration Filter -->
                   </div>
                 </div>
               </div>
@@ -256,29 +357,32 @@
 
               <!-- Flight Ticket List -->
               <div class="wrapper-flight-list bg-white">
-                <div class="row">
-                  <div class="col-12">
+                <div class="row position-relative">
+                  <!-- Nama Maskapai -->
+                  <div class="col-md-12 col-9 px-lg-3 pt-lg-0">
                       <span class="maskapai-penerbangan">Lion Air</span>
                   </div>
 
                   <!-- Left Side of Card -->
-                  <div class="col-lg-7 col-md-8 left">
-                    <div class="row align-items-center">
+                  <div class="col-lg-7 col-md-12 col-sm-8 col-12 left">
+                    <div class="row align-items-lg-center align-items-md-center">
 
-                      <div class="col-xl-3 col-lg-3 col-md-3 pr-0">
-                        <div class="logo-airline text-xl-center text-lg-center text-md-center">
+                      <!-- Airline Logo -->
+                      <div class="col-xl-3 col-lg-3 col-md-2 col-12 my-2 pr-0">
+                        <div class="logo-airline text-xl-center text-lg-center">
                           <img src="{{ url('img/logo_partners/Lion.png') }}" alt="AIRLINE_ICON">
                         </div>
                       </div>
+                       <!-- End of Airline Logo -->
 
                       <!-- Flight Timeline -->
-                      <div class="col-xl-6 col-lg-5 col-md-5 pl-0">
-                        <div class="row row-cols-3 align-items-center">
-                          <div class="departure-time col-auto">
+                      <div class="col-xl-6 col-lg-5 col-md-7 col-8 pl-lg-0 mt-lg-0 mt-md-2 flight-timeline">
+                        <div class="row align-items-center">
+                          <div class="departure-time col-lg-auto col-md-auto col-auto">
                             <div class="text-time">21:50</div>
                             <div class="text-code">DPS</div>
                           </div>
-                          <div class="flight-icon col-auto">
+                          <div class="flight-icon col-lg-auto col-md-2 col-2 text-center">
                             <img src="{{ url('img/icons/ic_pesawat_tampak_atas_abu.png') }}" width="16px" height="16px" alt="ICON-pesawat">
                           </div>
                           <!-- <div class="flight-duration text-center">
@@ -288,30 +392,29 @@
                             </div>
                             <div class="text-total-time">1 Transit</div>
                           </div> -->
-                          <div class="arrival-time col-auto">
-                            <div class="text-time mr-xl-0 mr-lg-0 mr-md-0 mr-3">21:51</div>
+                          <div class="arrival-time col-lg-auto col-md-auto col-auto">
+                            <div class="text-time mr-lg-0">21:51</div>
                             <div class="text-code">DPS</div>
                           </div>
                         </div>
                       </div>
                        <!-- End Flight Timeline -->
 
-                      <div class="col-xl-3 col-lg-4 col-md-4 pr-0">
+                      <div class="col-xl-3 col-lg-3 col-md-3 col-4 mt-lg-0 mt-md-2 pr-0">
                         <div class="flight-duration">
                           <div class="text-total-time">0j 1m</div>
                           <div class="flight-type">Langsung</div>
                         </div>
                       </div>
-
                     </div>
                   </div>
                   <!-- End of Left Side of Card -->
 
                   <!-- Right Side -->
-                  <div class="col-lg-5 col-md-4 pl-0 right">
-                    <div class="row">
+                  <div class="col-lg-5 col-md-12 col-sm-4 col-12 mt-md-0 mt-2 pl-0 right">
+                    <div class="row align-items-lg-start align-items-sm-center h-100">
                       <!-- Facilities List -->
-                      <div class="col-lg-4 col-4 d-lg-inline-block d-md-none d-none px-0">
+                      <div class="col-lg-4 d-lg-inline-block d-none px-0">
                         <div class="baggage-list text-center">
                           <span class="facilities-icon">
                             <img src="{{ url('img/icons/fasilitas/ic_bagasi.png') }}" alt="ICON-baggage" width="20px" height="20px" data-toggle="tooltip" data-placement="bottom" title="Bagasi 5kg">
@@ -325,7 +428,7 @@
                         </div>
                       </div>
                       <!-- End of Facilities List -->
-                      <div class="col-lg-8 col-md-12 col-8 pl-0">
+                      <div class="col-lg-8 col-md-12 col-12 pt-lg-0 pt-md-2 pt-4 pl-0">
                         <div class="text-price text-right">
                           IDR 25.500.000
                           <label class="text-pax">/org</label>
@@ -336,19 +439,20 @@
                   <!-- End of Right Side -->
 
                   <!-- Detail Buttons -->
-                  <div class="col-9 mt-4">
-                    <p class="btn-details align-middle">
+                  <div class="col-lg-9 col-md-8 col-12 mt-3">
+                    <!-- <span class="d-lg-none d-inline-block" id="btn-detail-responsive"><a href="#navTabDetails" data-toggle="collapse"><i class="fa fa-chevron-down"></i></a></span> -->
+                    <p class="btn-details">
                       <a href="#flight-detail" class="text-decoration-none" id="flight-detail-btn-1" data-toggle="collapse">Detail Penerbangan</a>
                       <a href="#price-detail" class="text-decoration-none ml-4" id="price-detail-btn-1" data-toggle="collapse">Detail Harga</a>
                     </p>
                   </div>
                   <!-- End of Detail Buttons -->
 
-                  <div class="col-3 mt-3 btn-book-now text-right">
+                  <div class="col-lg-3 col-md-4 mt-2 d-md-inline-block d-none btn-book-now text-right">
                     <a href="#" class="btn bg-gradation-blue text-white">PILIH</a>
                   </div>
                 </div>
-
+                
                 <!-- Flight Detail -->
                 <div class="wrapper-collapse collapse" id="flight-detail" data-parent=".wrapper-flight-list">
                   <hr>
@@ -358,12 +462,12 @@
                       <div class="text-date-fd">15 Sep</div>
                     </div>
   
-                    <div class="col-lg-8 col-md-6 text-left">
-                      <div class="text-airport">Soekarno Hatta</div>
+                    <div class="col-lg-8 col-md-6 col-sm-6 col-9 text-left">
+                      <div class="text-airport text-truncate">Soekarno Hatta</div>
                       <div class="text-airport-terminal"></div>
                     </div>
   
-                    <div class="col-lg-2 col-md-3 text-right">
+                    <div class="col-lg-2 col-md-3 col-sm-3 col-12 text-right">
                       <i class="far fa-clock"></i>
                       <span class="text-total-time">
                         0j 1m
@@ -394,7 +498,7 @@
                                   </div>
                                   <hr class="d-none">
                                   <div class="details-info-content">
-                                    <div class="baggage-list row row-cols-3 align-items-center">
+                                    <div class="baggage-list row row-cols-lg-3 row-cols-sm-2 align-items-center">
                                       <div class="facilities-icon col pl-0 mb-3">
                                         <img src="{{ url('img/icons/fasilitas/ic_bagasi.png') }}" alt="ICON-baggage" width="20px" height="20px">
                                         <span class="text-facilities ml-1">
@@ -418,8 +522,8 @@
                       <div class="text-date-fd">15 Sep</div>
                     </div>
   
-                    <div class="col-lg-8 col-md-6 text-left">
-                      <div class="text-airport">Soekarno Hatta</div>
+                    <div class="col-lg-8 col-md-6 col-6 text-left">
+                      <div class="text-airport text-truncate">Soekarno Hatta</div>
                       <div class="text-airport-terminal"></div>
                     </div>
                   </div>
@@ -484,7 +588,7 @@
                   </div>
                 </div>
                 <!-- End of Price Detail -->
-
+                
               </div>
               <!-- End of Flight Ticket List -->
 

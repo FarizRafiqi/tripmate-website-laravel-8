@@ -8,24 +8,24 @@ $(".home-page form")
 $(".overlay").on("click", function () {
     $(".overlay").removeClass("show");
     $("div.dropdown-menu").removeClass("show");
+    $(".wrapper-change-search").addClass("d-none");
 });
 // -----PESAWAT-----
 //Input Tanggal Penerbangan
 const returnCheckbox = $("#returnCheckbox");
-const inputTanggalPulang = $("#inputTanggalPulangContainer");
-inputTanggalPulang.addClass("d-none");
+// const inputTanggalPulang = $("#inputTanggalPulangContainer");
+// inputTanggalPulang.addClass("d-none");
+$("#input-tanggal-pulang").attr("disabled", true);
 
 returnCheckbox.on("click", function isChecked() {
     // Jika tidak di ceklis maka sembunyikan input tanggal pulangnya
     if (!returnCheckbox.is(":checked")) {
-        returnCheckbox.prop("checked", false);
-        inputTanggalPulang.addClass("d-none");
-        $("#roundtrip").prop("checked", false);
+        $("#input-tanggal-pulang").prop("disabled", true);
         $("#oneway").prop("checked", true);
+        $("#roundtrip").prop("checked", false);
         // jika di ceklis, munculkan input tanggal pulangnya
     } else {
-        returnCheckbox.prop("checked", true);
-        inputTanggalPulang.removeClass("d-none");
+        $("#input-tanggal-pulang").prop("disabled", false);
         $("#oneway").prop("checked", false);
         $("#roundtrip").prop("checked", true);
         $("#input-tanggal-pulang").datepicker("show");
@@ -35,16 +35,14 @@ returnCheckbox.on("click", function isChecked() {
 // Ketika radio button Sekali Jalan ditekan, nonaktifkan datepicker tanggal pulang
 $("#oneway").on("click", function (e) {
     returnCheckbox.prop("checked", false);
-    inputTanggalPulang.addClass("d-none");
-    e.stopPropagation();
+    $("#input-tanggal-pulang").prop("disabled", true);
 });
 
 // Ketika radio button Pulang-Pergi ditekan, aktifkan datepicker tanggal pulang
 $("#roundtrip").on("click", function (e) {
     returnCheckbox.prop("checked", true);
-    inputTanggalPulang.removeClass("d-none");
+    $("#input-tanggal-pulang").prop("disabled", false);
     $("#inputTanggalPulang").datepicker("show");
-    e.stopPropagation();
 });
 
 // INPUT BANDARA ASAL
@@ -169,14 +167,14 @@ inputBandaraTujuan.on("click", function (e) {
             $.each(bandara, function (key, val) {
                 dropdownMenu2.append(
                     `
-                    <div class="dropdown-item d-flex">
-                        <div class="dropdown-option-logo mr-3"><i class="fa fa-city"></i></div>
-                        <div class="dropdown-option-content">
-                        <div class="airport-city-location">${val.lokasi}</div>
-                        <div class="airport-city-name">${val.nama}</div>
-                        </div>
-                        <div class="dropdown-option-code ml-auto text-center">${val.kode}</div>
-                  </div>`
+								<div class="dropdown-item d-flex">
+										<div class="dropdown-option-logo mr-3"><i class="fa fa-city"></i></div>
+										<div class="dropdown-option-content">
+										<div class="airport-city-location">${val.lokasi}</div>
+										<div class="airport-city-name">${val.nama}</div>
+										</div>
+										<div class="dropdown-option-code ml-auto text-center">${val.kode}</div>
+							</div>`
                 );
             });
 
@@ -507,11 +505,6 @@ $(".passenger-dropdown-container.dropdown .dropdown-toggle").html(
     $(".dropdown-menu .dropdown-item input").val() + " Penumpang"
 );
 
-$(".passenger-dropdown-container i.fa.fa-times").on("click", function () {
-    console.log(this);
-    $(".passenger-dropdown-container.dropdown");
-});
-
 // Tombol Silang
 $(".dropdown i.fa.fa-times").each(function () {
     $(this).on("click", function () {
@@ -626,14 +619,14 @@ inputStasiunTujuan.on("click", function () {
             $.each(stasiun, function (key, val) {
                 dropdownMenuStasiunTujuan.append(
                     `
-                    <div class="dropdown-item d-flex">
-                        <div class="dropdown-option-logo mr-3"><i class="fa fa-city"></i></div>
-                        <div class="dropdown-option-content">
-                        <div class="station-location">${val.lokasi}</div>
-                        <div class="station-name">${val.nama}</div>
-                        </div>
-                        <div class="dropdown-option-code ml-auto text-center">${val.kode}</div>
-                  </div>`
+								<div class="dropdown-item d-flex">
+										<div class="dropdown-option-logo mr-3"><i class="fa fa-city"></i></div>
+										<div class="dropdown-option-content">
+										<div class="station-location">${val.lokasi}</div>
+										<div class="station-name">${val.nama}</div>
+										</div>
+										<div class="dropdown-option-code ml-auto text-center">${val.kode}</div>
+							</div>`
                 );
             });
 
@@ -643,7 +636,7 @@ inputStasiunTujuan.on("click", function () {
                     .find(".dropdown-option-code")
                     .text();
                 inputStasiunTujuan.val(namastasiun + " (" + kodestasiun + ")");
-                dropdownMenuStasiunTujuan.removeClass("display");
+                dropdownMenuStasiunTujuan.removeClass("show");
             });
         },
     });
@@ -782,9 +775,13 @@ $(".preview-flight .right-side .list .text-airport").each(function (i, e) {
 // Untuk mengaktifkan tooltip pada list fasilitas penerbangan
 $("[data-toggle='tooltip']").tooltip();
 
-$(".filter-box .collapse.in").on("show.bs.collapse", function () {
-    $("i.fa.fa-chevron-down").addClass(".fa-chevron-up");
-});
+$(".wrapper-search-result .collapse-label a[data-toggle='collapse']").on(
+    "click",
+    function (e) {
+        console.log($(this));
+        $(this).toggleClass("active");
+    }
+);
 
 $("a[id*='flight-detail-btn']").on("click", function () {
     if ($("a[id*='price-detail-btn']").hasClass("active")) {
@@ -804,8 +801,49 @@ $("a[id*='price-detail-btn']").on("click", function () {
 
 $(".preview-flight .btn-ubah-pencarian").on("click", function () {
     $(".wrapper-change-search").removeClass("d-none");
-    // $(".overlay").addClass("show");
+    $(".overlay").addClass("show");
 });
+
+$(".nav-tabs .nav-item .nav-link").each(function (i, e) {
+    $(e).on("click", function () {
+        if ($(e).parent().siblings().children().hasClass("active")) {
+            $(e).parent().siblings().children().removeClass("active");
+        }
+        $(e).toggleClass("active");
+        if (!$(e).hasClass("active")) {
+            $(".nav-tabs").css({ borderBottom: "none" });
+        } else {
+            $(".nav-tabs").css({ borderBottom: "1px solid #dee2ee" });
+        }
+    });
+});
+
+// Untuk menutup Navigasi Tab Detail Penerbangan secara otomatis ketika sudah tidak dipakai
+// function closeTabDetail() {
+//     $("#navTabDetails").removeClass("show");
+//     $(".wrapper-collapse").each(function (i, e) {
+//         $(e).removeClass("show");
+//     });
+
+//     $(".btn-details a").removeClass("active");
+// }
+
+// function screen_resize() {
+//     var w = parseInt(window.innerWidth);
+
+//     if (w > 0 && w <= 992) {
+//         closeTabDetail();
+//     }
+// }
+// if window resize call responsive function
+// $(window).resize(function (e) {
+//     screen_resize();
+// });
+// call responsive function on default :)
+// $(document).ready(function (e) {
+//     screen_resize();
+// });
+
 // let lastID = $("a[id*='flight-detail-btn-']").last().attr("id");
 // let splitID = lastID.split("-");
 

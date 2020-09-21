@@ -1,7 +1,7 @@
 <!-- Header -->
 <div class="bg-gradation-blue" id="header-container">
-  <div class="container p-xl-0">
-    <nav class="navbar navbar-expand-lg navbar-light m-auto p-lg-0 p-md-0 px-0">
+  <div class="container px-xl-0">
+    <nav class="navbar navbar-expand-lg navbar-light m-auto p-0">
       <a class="navbar-brand" href="{{ url('/') }}"><img src="{{url('img/logo_trip_mate.png')}}" alt="Logo TripMate" class="img-fluid logo" ></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>

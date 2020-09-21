@@ -45,6 +45,13 @@ select {
     background: #367ffa;
 }
 
+.custom-checkbox .custom-control-input:focus ~ .custom-control-label::before {
+    box-shadow: none;
+}
+
+.nav-tabs .nav-link:focus {
+    border: none;
+}
 /* || Icons */
 [class*=" tm-"],
 [class^="tm"] {
@@ -164,6 +171,7 @@ i.fa.fa-city {
 .logo {
     width: 238px;
     height: 78px;
+    margin-left: -10px;
 }
 
 #header-container .container .navbar .navbar-toggler {
@@ -194,7 +202,8 @@ i.fa.fa-city {
     box-shadow: 0 2px 8px 0 rgba(53, 64, 90, 0.2);
 }
 
-/* || Product Widget */
+/* || Form Pencarian Penerbangan dan Kereta Api */
+
 .card.product-widget,
 .card.train-form,
 .card.flight-form,
@@ -231,7 +240,6 @@ i.fa.fa-city {
     display: none;
 } */
 
-/* || Form Pencarian Penerbangan dan Kereta Api */
 .home-page .home-train .card.train-form,
 .home-page .home-flight .card.flight-form {
     margin-bottom: 80px;
@@ -262,9 +270,8 @@ form .row .passenger-dropdown-container .dropdown-toggle {
 }
 
 /* Untuk mereset icon caret bootstrap */
-form .passenger-dropdown-container .dropdown-toggle::after,
+form .dropdown-toggle::after,
 .tm.tm-caret {
-    /* display: none; */
     position: absolute;
     top: 10px;
     right: 20px;
@@ -280,7 +287,7 @@ form .passenger-dropdown-container .dropdown-toggle::after,
     transform: rotate(-225deg);
 }
 
-form .passenger-dropdown-container .dropdown-menu {
+.passenger-dropdown-container .dropdown-menu {
     width: 260px;
 }
 
@@ -292,11 +299,7 @@ form .passenger-dropdown-container .dropdown-menu {
     padding: 16px;
 }
 
-.passenger-dropdown-container
-    .dropdown-menu
-    .dropdown-item
-    .input-group
-    > input[type="text"] {
+.passenger-dropdown-container .dropdown-item .input-group > input[type="text"] {
     pointer-events: none;
 }
 
@@ -435,10 +438,7 @@ form .passenger-dropdown-container .dropdown-menu {
 }
 
 .dropdown.boxairport .dropdown-menu > .dropdown-item .dropdown-option-code,
-.dropdown.stasiun-list-box
-    .dropdown-menu
-    > .dropdown-item
-    .dropdown-option-code {
+.dropdown.stasiun-list-box .dropdown-item .dropdown-option-code {
     font-size: 12px;
     font-weight: 300;
     background-color: #eff1f7;
@@ -447,6 +447,31 @@ form .passenger-dropdown-container .dropdown-menu {
     height: 24px;
     line-height: 24px;
     border-radius: 4px;
+}
+
+.reverse-button-container {
+    right: -22px;
+}
+
+.reverse-button-container span {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    cursor: pointer;
+    top: 40%;
+    right: 46%;
+    border: 1px solid #367ffa;
+    border-radius: 50%;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.reverse-button-container span .fas.fa-exchange-alt {
+    font-size: 30px;
+    color: #367ffa;
 }
 
 /* || Feature Section*/
@@ -511,9 +536,6 @@ form .passenger-dropdown-container .dropdown-menu {
     margin-top: 24px;
 }
 
-/* .book-cheap .col-description.row .col-lg-4 {
-    margin-right: 16px;
-} */
 /* || TripMate Partners Section */
 .partner-product-name {
     font-size: 16px;
@@ -550,15 +572,15 @@ form .passenger-dropdown-container .dropdown-menu {
 .tripmate-partners #partner-flight .partner-product-list img {
     width: 100px;
     height: 100px;
+}
+
+.tripmate-partners #partner-flight .partner-product-list img,
+.tripmate-partners #partner-train .partner-product-list img {
     filter: grayscale();
 }
 
 .tripmate-partners #partner-train .partner-product-name {
     color: #fd9e0a;
-}
-
-.tripmate-partners #partner-train .partner-product-list img {
-    filter: grayscale();
 }
 
 .tripmate-partners #partner-train .partner-product-list {
@@ -585,7 +607,7 @@ form .passenger-dropdown-container .dropdown-menu {
     margin-bottom: 40px;
 }
 
-/* || Home Popular Planes */
+/* || Home Popular && Favorit Trains */
 
 .home-popular .list-popular.row a,
 .content-link .list-popular.row a {
@@ -598,18 +620,18 @@ form .passenger-dropdown-container .dropdown-menu {
     padding: 0px 90px;
 }
 
-/* || Preview Flight */
+/* || Halaman Pencarian */
 
 .flight {
     background: #f5f6fa;
 }
 
-.preview-flight .right-side [class^="text-"] {
-    font-family: "OpenSans-SemiBold";
-}
-
 .preview-flight {
     background: #fff;
+}
+
+.preview-flight .right-side [class^="text-"] {
+    font-family: "OpenSans-SemiBold";
 }
 
 .preview-flight .preview-flight-content .choose-flight {
@@ -672,11 +694,7 @@ form .passenger-dropdown-container .dropdown-menu {
     z-index: 1100;
 }
 
-/* || Form Ubah Pencarian */
-
-/* .wrapper-change-search {
-    max-width: 100%;
-} */
+/* Form Ubah Pencarian */
 
 .wrapper-change-search i[class*="fa"] {
     color: #367ffa;
@@ -701,13 +719,6 @@ form .passenger-dropdown-container .dropdown-menu {
 
 .wrapper-form .form-group input[id*="inputBandara"] {
     padding-left: 36px;
-}
-
-.form-group
-    .custom-checkbox
-    .custom-control-input:focus
-    ~ .custom-control-label::before {
-    box-shadow: none;
 }
 
 .wrapper-form .form-group input[id*="inputTanggal"] {
@@ -754,12 +765,13 @@ form .passenger-dropdown-container .dropdown-menu {
     height: 48px;
 }
 
-.wrapper-change-search .form-group .form-control:disabled {
+.form-group .form-control:disabled {
     background: none;
     color: #c6cbda;
 }
 
-/* || List Filter */
+/* Filter Pencarian */
+
 .wrapper-search-result .col-filter .filter-header #btnReset,
 .wrapper-search-result .card-header .collapse-label {
     font-size: 16px;
@@ -777,6 +789,7 @@ form .passenger-dropdown-container .dropdown-menu {
 
 .wrapper-search-result .col-filter .filter-body .card-body .card-header {
     background: #fff;
+    border: none;
 }
 
 .wrapper-search-result .col-filter .filter-body .card-body .card {
@@ -784,7 +797,15 @@ form .passenger-dropdown-container .dropdown-menu {
 }
 
 .wrapper-search-result .col-filter .filter-body .card-body {
-    padding: 16px 16px 0 16px;
+    padding: 8px;
+}
+
+.wrapper-search-result .col-filter .filter-body #filterAccordion .card-body {
+    padding: 10px 10px 0;
+}
+
+.wrapper-search-result .col-filter .collapse-label {
+    padding: 8px 8px 0;
 }
 
 .wrapper-search-result .col-filter .collapse-label .fa-chevron-down {
@@ -796,7 +817,10 @@ form .passenger-dropdown-container .dropdown-menu {
     color: #35405a;
 }
 
-/* || List Penerbangan */
+.wrapper-search-result .col-filter .collapse-label a.active .fa-chevron-down {
+    transform: rotate(180deg);
+}
+/* List Penerbangan */
 #wrapperPencarianPenerbangan {
     margin-top: 21px;
 }
@@ -881,6 +905,10 @@ form .passenger-dropdown-container .dropdown-menu {
     color: #0064d2;
 }
 
+.wrapper-result .wrapper-flight-list .btn-details a:hover {
+    color: #4588cf;
+}
+
 .wrapper-result .wrapper-flight-list .btn-details a.active {
     padding-bottom: 23px;
     border-bottom: 1px solid #367ffa;
@@ -933,22 +961,20 @@ form .passenger-dropdown-container .dropdown-menu {
     width: 100%;
 }
 
-#flight-detail .row .th-detail::before {
+#flight-detail .row .th-detail::before,
+#flight-detail .row .th-detail::after {
     content: "";
     position: absolute;
     width: 1.5px;
-    height: 32px;
     background: #dee2ee;
+}
+
+#flight-detail .row .th-detail::before {
     top: -32px;
     left: 1px;
 }
 
 #flight-detail .row .th-detail::after {
-    content: "";
-    position: absolute;
-    width: 1.5px;
-    height: 32px;
-    background: #dee2ee;
     bottom: -10px;
     left: 0.5px;
 }
@@ -1133,35 +1159,11 @@ footer .footer-group hr {
     display: none;
 } */
 
-.reverse-button-container {
-    right: -22px;
-}
-
-.reverse-button-container span {
-    width: 50px;
-    height: 50px;
-    position: absolute;
-    cursor: pointer;
-    top: 40%;
-    right: 46%;
-    border: 1px solid #367ffa;
-    border-radius: 50%;
-    background: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-
-.reverse-button-container span .fas.fa-exchange-alt {
-    font-size: 30px;
-    color: #367ffa;
-}
-
 /* || Responsive Layouts */
 
 /* Extra Small Device (Potraits Phones, less than 576px) */
 @media (min-width: 0px) {
+    /* Header  */
     #header-container .container .navbar {
         height: 100%;
     }
@@ -1175,6 +1177,7 @@ footer .footer-group hr {
         height: 300px;
     }
 
+    /* Form */
     .product-widget {
         margin-top: 20px;
     }
@@ -1204,6 +1207,7 @@ footer .footer-group hr {
         text-align-last: center;
     }
 
+    /* TripMate Advantages Section */
     .tripmate-advantages .container .row h3.title {
         line-height: normal;
         margin: 40px 0;
@@ -1214,6 +1218,7 @@ footer .footer-group hr {
         padding: 0px;
     }
 
+    /* Halaman Pencarian Responsive */
     .preview-flight .preview-flight-content .choose-flight {
         padding: 21px 21px 21px 0;
     }
@@ -1261,6 +1266,16 @@ footer .footer-group hr {
         content: "";
     }
 
+    .wrapper-result .wrapper-flight-list .btn-details {
+        width: 100%;
+    }
+
+    .wrapper-result .wrapper-flight-list > .row > [class*="col"]:first-child {
+        position: absolute;
+        top: 16px;
+        left: 50px;
+    }
+
     .feature .container .feature-box .list:nth-child(2),
     .feature .container .feature-box .list:nth-last-child(1) {
         padding: 0;
@@ -1271,6 +1286,48 @@ footer .footer-group hr {
         font-size: 16px;
     }
 
+    .wrapper-result .wrapper-flight-list .right .text-price {
+        font-size: 18px;
+    }
+
+    #btn-detail-responsive {
+        position: absolute;
+        top: -220px;
+        right: 16px;
+        font-size: 20px;
+    }
+
+    .wrapper-result .nav-tabs .nav-link {
+        padding: 0;
+        margin-right: 20px;
+        color: #0064d2;
+    }
+
+    .wrapper-result .nav-tabs .nav-link:hover {
+        color: #4588cf;
+        border: none;
+    }
+
+    .wrapper-result .nav-tabs .nav-item .nav-link.active {
+        background: none;
+        border: none;
+        padding-bottom: 23px;
+        border-bottom: 1px solid #367ffa;
+    }
+
+    .wrapper-result .wrapper-flight-list .left .text-time {
+        margin-right: 8px;
+    }
+
+    .wrapper-result .wrapper-flight-list .left .flight-icon {
+        padding: 0;
+    }
+
+    #flight-detail .row .th-detail::before {
+        height: 56px;
+        top: -56px;
+    }
+
     footer.footer-group .footer-content .container .row .contact-us {
         display: flex;
         justify-content: space-around;
@@ -1279,18 +1336,38 @@ footer .footer-group hr {
 
 /* Small Devices (landscape phones, 576px and up) */
 @media (min-width: 576px) {
-    /* Header */
+    /* Header*/
     #header-container .container .navbar {
         height: 100%;
     }
 
-    /* Product Widget dan Form*/
+    /* Form */
     .product-widget form .illustration-container {
         display: none;
     }
 
     .dropdown.boxairport .dropdown-menu {
         width: 100%;
+    }
+
+    /* Halaman Pencarian */
+    #flight-detail .row .th-detail::before,
+    #flight-detail .row .th-detail::after {
+        content: "";
+        position: absolute;
+        width: 1.5px;
+        height: 32px;
+        background: #dee2ee;
+    }
+
+    #flight-detail .row .th-detail::before {
+        top: -32px;
+        left: 1px;
+    }
+
+    #flight-detail .row .th-detail::after {
+        bottom: -10px;
+        left: 0.5px;
     }
 
     /* TripMate Advantages Section */
@@ -1307,6 +1384,7 @@ footer .footer-group hr {
 
 /* Medium Device (tablets, 768px and up) */
 @media (min-width: 768px) {
+    /* Header */
     #header-container .container .navbar {
         height: 100%;
     }
@@ -1315,7 +1393,8 @@ footer .footer-group hr {
         text-align: left;
         padding: 0px 94px;
     }
-    /* Product Widget */
+
+    /* Form */
     .product-widget form .illustration-container {
         display: none;
     }
@@ -1337,20 +1416,25 @@ footer .footer-group hr {
         text-align-last: left;
     }
 
+    .dropdown.boxairport .dropdown-menu {
+        width: 690px;
+    }
+
+    /* Halaman Pencarian */
+    .preview-flight .text-passengers .jumlah-penumpang {
+        order: 1;
+    }
+
+    .preview-flight .text-passengers span:nth-child(3) {
+        order: 2;
+    }
+
     .preview-flight .preview-flight-content .choose-flight .text-choose {
         font-size: 20px;
     }
 
     .preview-flight .preview-flight-content .choose-flight .list {
         font-size: 14px;
-    }
-
-    .text-passengers .jumlah-penumpang {
-        order: 1;
-    }
-
-    .text-passengers span:nth-child(3) {
-        order: 2;
     }
 
     .wrapper-form
@@ -1360,14 +1444,6 @@ footer .footer-group hr {
         div[class*="col"]
         .form-group {
         border-bottom: none;
-    }
-
-    .wrapper-form
-        .row
-        > div[class*="col"]
-        > .row
-        div[class*="col"]
-        .form-group {
         border-right: 1px solid #dee2ee;
     }
 
@@ -1375,9 +1451,48 @@ footer .footer-group hr {
         width: 109px;
     }
 
-    .wrapper-result .wrapper-flight-list .left .flight-icon {
-        padding: 0;
+    .wrapper-result .wrapper-flight-list .btn-details {
+        margin-left: 27%;
     }
+
+    .wrapper-result .wrapper-flight-list > .row > [class*="col"]:first-child {
+        position: relative;
+        top: 0;
+        left: 0;
+    }
+    /* .wrapper-result .wrapper-flight-list .left .flight-icon {
+        transform: rotate(90deg);
+    } */
+
+    /* .wrapper-result .wrapper-flight-list .left .departure-time::before,
+    .wrapper-result .wrapper-flight-list .left .arrival-time::before {
+        content: "";
+        display: inline-block;
+        position: absolute;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #dee2ee;
+        left: 15px;
+    }
+
+    .wrapper-result .wrapper-flight-list .left .departure-time::before {
+        top: 28px;
+    }
+
+    .wrapper-result .wrapper-flight-list .left .arrival-time::before {
+        bottom: 28px;
+    }
+
+    .wrapper-result .wrapper-flight-list .left .flight-timeline::before {
+        content: "";
+        display: inline-block;
+        height: 50px;
+        position: absolute;
+        top: 30px;
+        left: 17px;
+        border-left: 2px dashed #dee2ee;
+    } */
 
     /* TripMate Advantages Section */
     .tripmate-advantages .container .row h3.title {
@@ -1388,19 +1503,32 @@ footer .footer-group hr {
     .tripmate-advantages .container .row p {
         margin-bottom: 80px;
     }
+}
 
-    .dropdown.boxairport .dropdown-menu {
-        width: 690px;
+@media (min-width: 0px) and (max-width: 992px) {
+    .wrapper-result .wrapper-flight-list .left .text-time,
+    .wrapper-result .wrapper-flight-list .left .text-total-time {
+        font-size: 18px;
     }
 }
 
 /*Large devices (desktops, 992px and up)*/
 @media (min-width: 992px) {
+    /* Header */
+    #header-container {
+        height: 96px;
+    }
+
+    #header-container .container {
+        height: 100%;
+    }
+
     #header-container .navbar-nav .nav-item .nav-link:hover {
         background-position: 22% 100%;
         background-size: 50% 1px;
     }
 
+    /* Form */
     .product-widget form .illustration-container {
         display: inline-block;
     }
@@ -1409,22 +1537,32 @@ footer .footer-group hr {
         top: 36%;
     }
 
+    /* TripMate Advantages */
     .tripmate-advantages .container .row h3.title {
         line-height: 40px;
     }
 
-    .wrapper-result .wrapper-flight-list .left .flight-icon {
-        padding: 0 15px;
-    }
-
-    .wrapper-result .wrapper-flight-list .left .flight-icon {
+    /* Halaman Pencarian */
+    /* .wrapper-result .wrapper-flight-list .left .flight-icon {
         padding: 0;
-    }
+        transform: rotate(0deg);
+    } */
 
     .wrapper-result .wrapper-flight-list .btn-details {
         margin-left: 17%;
     }
 
+    .wrapper-result .wrapper-flight-list .left .text-time {
+        margin-right: 0;
+    }
+
+    .wrapper-result .wrapper-flight-list .left .departure-time::before,
+    .wrapper-result .wrapper-flight-list .left .arrival-time::before,
+    .wrapper-result .wrapper-flight-list .left .flight-timeline::before {
+        display: none;
+    }
+
+    /* Footer */
     footer.footer-group .footer-content .container .row .contact-us {
         display: inline-block;
     }
@@ -1436,21 +1574,18 @@ footer .footer-group hr {
         transform: rotate(0deg);
     }
 
-    .wrapper-result .wrapper-flight-list .left .text-time {
-        font-size: 20px;
-    }
-
-    .wrapper-result .wrapper-flight-list .left .text-total-time {
+    .wrapper-result .wrapper-flight-list .left .text-time,
+    .wrapper-result .wrapper-flight-list .left .text-total-time,
+    .wrapper-result .wrapper-flight-list .right .text-price {
         font-size: 20px;
     }
 
     .wrapper-result .wrapper-flight-list .left .flight-icon {
-        padding: 0 15px 0 15px;
+        padding: 0 15px;
     }
 
     .wrapper-result .wrapper-flight-list .btn-details {
         margin-left: 96px;
-        width: 60%;
         font-size: 14px;
     }
 }
