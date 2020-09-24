@@ -18,3 +18,16 @@ Route::get("/", "PagesController@home");
 Route::get('/kereta-api', 'KeretaApiController@index');
 Route::get('/pesawat', 'PesawatController@index');
 Route::get('/pesawat/search', 'PesawatController@search');
+Route::view("/register", "web.frontend.auth.register");
+Route::view("/login", "web.frontend.auth.login");
+
+Route::view("/coba", "named-route");
+
+Route::get('/user/{id}/profile', function($id) {
+  return view("profile",['absen' => $id]);
+})->name("profile");
+// Route::prefix('admin')
+//       ->namespace('Admin')
+//       ->group(function(){
+//           Route::get('/', "DashboardController@index")
+// });

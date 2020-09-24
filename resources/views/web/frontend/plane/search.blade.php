@@ -4,6 +4,7 @@
 
 @push('stylesheets')
   <link rel="stylesheet" href="{{ url('plugin/bootstrap-datepicker-master/dist/css/bootstrap-datepicker.css') }}">
+  <link rel="stylesheet" href="{{ url('plugin/noUiSlider-master/distribute/nouislider.css') }}">
 @endpush
 
 @section('content')
@@ -52,65 +53,74 @@
             <div class="col-xl-2 col-lg-3 col-md-4 col-12 border-left mb-lg-0 mb-md-0 mb-3 d-flex align-items-center justify-content-lg-end justify-content-md-end justify-content-center">
               <div class="content">
                 <div class="border-left-ticket"></div>
-                <div class="btn btn-light btn-ubah-pencarian">
+                <button class="btn btn-light btn-ubah-pencarian" data-toggle="modal" data-target="#changeSearchModal">
                   Ubah Pencarian
-                </div>
+                </button>
               </div>
             </div>
           </div>
 
           <!-- Change Flight Form -->
-          <div class="wrapper-change-search d-none">
-            <div class="wrapper-form bg-white">
-              <form>
-                <div class="row">
-                  <div class="col-lg-10 col-md-10 col-12">
-                    <div class="row">
-                      <div class="col-lg-3 col-md-3 col-6">
-                        <div class="form-group">
-                          <span><i class="fa fa-plane-departure"></i></span>
-                          <label for="inputBandaraAsal">Dari</label>
-                          <input type="text" name="" id="inputBandaraAsal" class="form-control" autocomplete="off">
-                        </div>
-                      </div>
-                      <div class="col-lg-3 col-md-3 col-6">
-                        <div class="form-group">
-                          <span><i class="fa fa-plane-arrival"></i></span>
-                          <label for="inputBandaraTujuan">Ke</label>
-                          <input type="text" name="" id="inputBandaraTujuan" class="form-control" autocomplete="off">
-                        </div>
-                      </div>
-                      <div class="col-lg-3 col-md-3 col-6">
-                        <div class="form-group">
-                          <span class="fa-stack position-absolute">
-                            <i class="far fa-calendar-alt fa-stack-1x"></i>
-                            <i class="fa fa-arrow-right fa-stack-2x"></i>
-                          </span>
-                          <label for="inputTanggalBerangkat">Berangkat</label>
-                          <input type="text" name="" id="inputTanggalBerangkat" class="form-control" autocomplete="off">
-                        </div>
-                      </div>
-                      <div class="col-lg-3 col-md-3 col-6">
-                        <div class="form-group">
-                          <span class="fa-stack position-absolute">
-                            <i class="far fa-calendar-alt fa-stack-1x"></i>
-                            <i class="fa fa-arrow-left fa-stack-2x"></i>
-                          </span>
-                          <div class="custom-control custom-checkbox mb-2">
-                            <input type="checkbox" class="custom-control-input" id="checkboxTanggalPulang">
-                            <label class="custom-control-label" for="checkboxTanggalPulang">Pulang</label>
+          <!-- Modal -->
+          <div class="modal fade" id="changeSearchModal">
+            <div class="modal-dialog modal-xl m-0">
+              <div class="modal-content py-3">
+                <div class="modal-body">
+                  <div class="wrapper-change-search container-fluid">
+                    <div class="wrapper-form container px-0">
+                      <form>
+                        <div class="row">
+                          <div class="col-lg-10 col-md-10 col-12">
+                            <div class="row no-gutters">
+                              <div class="col-lg-3 col-md-3 col-6 px-2">
+                                <div class="form-group">
+                                  <span><i class="fa fa-plane-departure"></i></span>
+                                  <label for="inputBandaraAsal">Dari</label>
+                                  <input type="text" name="" id="inputBandaraAsal" class="form-control" autocomplete="off">
+                                </div>
+                              </div>
+                              <div class="col-lg-3 col-md-3 col-6 px-2">
+                                <div class="form-group">
+                                  <span><i class="fa fa-plane-arrival"></i></span>
+                                  <label for="inputBandaraTujuan">Ke</label>
+                                  <input type="text" name="" id="inputBandaraTujuan" class="form-control" autocomplete="off">
+                                </div>
+                              </div>
+                              <div class="col-lg-3 col-md-3 col-6 px-2">
+                                <div class="form-group">
+                                  <span class="fa-stack position-absolute">
+                                    <i class="far fa-calendar-alt fa-stack-1x"></i>
+                                    <i class="fa fa-arrow-right fa-stack-2x"></i>
+                                  </span>
+                                  <label for="inputTanggalBerangkat">Berangkat</label>
+                                  <input type="text" name="" id="inputTanggalBerangkat" class="form-control" autocomplete="off">
+                                </div>
+                              </div>
+                              <div class="col-lg-3 col-md-3 col-6 px-2">
+                                <div class="form-group">
+                                  <span class="fa-stack position-absolute">
+                                    <i class="far fa-calendar-alt fa-stack-1x"></i>
+                                    <i class="fa fa-arrow-left fa-stack-2x"></i>
+                                  </span>
+                                  <div class="custom-control custom-checkbox mb-2">
+                                    <input type="checkbox" class="custom-control-input" id="checkboxTanggalPulang">
+                                    <label class="custom-control-label" for="checkboxTanggalPulang">Pulang</label>
+                                  </div>
+                                  <input type="text" name="" id="inputTanggalPulang" class="form-control" autocomplete="off">
+                                </div>
+                              </div>
+                            </div>
                           </div>
-                          <input type="text" name="" id="inputTanggalPulang" class="form-control" autocomplete="off">
+                          <!-- Button Cari Penerbangan -->
+                          <div class="col-lg-2 col-md-2 col-12 d-flex align-items-lg-center align-items-md-center align-items-center justify-content-lg-end justify-content-md-end justify-content-center mt-lg-0 mt-md-0 mt-3">
+                            <div class="btn btn-orange">CARI</div>
+                          </div>
                         </div>
-                      </div>
+                      </form>
                     </div>
                   </div>
-                  <!-- Button Cari Penerbangan -->
-                  <div class="col-lg-2 col-md-2 col-12 d-flex align-items-lg-center align-items-md-center align-items-center justify-content-lg-end justify-content-md-end justify-content-center mt-lg-0 mt-md-0 mt-3">
-                    <div class="btn btn-orange">CARI</div>
-                  </div>
                 </div>
-              </form>
+              </div>
             </div>
           </div>
           <!-- End of Change Flight Form -->
@@ -131,7 +141,7 @@
                 <div class="col-6 text-filter">
                   Filter
                 </div>
-                <div class="col-6 text-right" id="btnReset">
+                <div class="col-6 text-right pt-1" id="btnReset">
                   RESET
                 </div>
               </div>
@@ -177,7 +187,7 @@
                     </div>
                     <!-- End of Transit Filter -->
 
-                    <hr class="mb-2 mt-3">
+                    <hr class="mb-2 mt-3 mx-2">
                     
                     <!-- Transit Duration Filter -->
                     <div class="card">
@@ -191,9 +201,12 @@
                       </div>
                       <div id="section2Content" class="collapse in">
                         <div class="card-body">
-                          <label for="customRange2" class="title">Durasi per transit: </label>
-                          <input type="range" class="custom-range" min="0" max="13" id="customRange2">
-                          <div class="text-hour d-flex align-items-center justify-content-between">
+                          <label for="customRange2" class="text-duration">
+                            Durasi per transit:
+                            <span class="text-hour"></span>
+                          </label>
+                          <div id="slider1"></div>
+                          <div class="text-min-max d-flex align-items-center justify-content-between mt-2">
                             <span>0j</span>
                             <span>13j</span>
                           </div>
@@ -202,7 +215,7 @@
                     </div>
                     <!-- End of Transit Duration Filter -->
 
-                    <hr class="mb-2 mt-3">
+                    <hr class="mb-2 mt-3 mx-2">
 
                     <!-- FLight Time Filter -->
                     <div class="card">
@@ -278,7 +291,7 @@
                     </div>
                     <!-- End of FLight Time Filter -->
 
-                    <hr class="mb-2 mt-3">
+                    <hr class="mb-2 mt-3 mx-2">
 
                     <!-- Airlines Filter -->
                     <div class="card">
@@ -295,10 +308,12 @@
                           <div class="form-group row align-items-center">
                             <label for="QGcheckbox" class="col-sm-10 col-form-label">
                               <div class="row align-items-center">
-                                <div class="col-4 text-center pr-0">
-                                  <img src="{{ url('img/logo_partners/Citilink.png') }}" class="img-fluid" alt="" width="53px" height="30px">
+                                <div class="col-3 text-center pr-0">
+                                  <div class="logo-airline-wrapped border">
+                                    <img src="{{ url('img/logo_partners/Citilink.png') }}" class="img-fluid" alt="">
+                                  </div>
                                 </div>
-                                <div class="col-8 new-label pl-0">
+                                <div class="col-9 new-label">
                                   <div class="label-1">Citilink Indonesia</div>
                                   <div class="label-2">dari IDR 676.000</div>
                                 </div>
@@ -309,12 +324,14 @@
                             </div>
                             <label for="GAcheckbox" class="col-sm-10 col-form-label">
                               <div class="row align-items-center">
-                                <div class="col-4 text-center pr-0">
-                                  <img src="{{ url('img/logo_partners/Garuda.png') }}" class="img-fluid" alt="" width="53px" height="30px">
+                                <div class="col-3 text-center pr-0">
+                                  <div class="logo-airline-wrapped border">
+                                    <img src="{{ url('img/logo_partners/Garuda.png') }}" class="img-fluid" alt="">
+                                  </div>
                                 </div>
-                                <div class="new-label-wrapper col-8 pl-0  ">
-                                  <div class="new-label-1">Garuda Indonesia</div>
-                                  <div class="new-label-2">dari IDR 1.278.000</div>
+                                <div class="new-label col-9">
+                                  <div class="label-1">Garuda Indonesia</div>
+                                  <div class="label-2">dari IDR 1.278.000</div>
                                 </div>
                               </div>
                             </label>
@@ -327,7 +344,7 @@
                     </div>
                     <!-- End of Airlines Filter -->
 
-                    <hr class="mb-2 mt-3">
+                    <hr class="mb-2 mt-3 mx-2">
 
                     <!-- Facilities Filter -->
                     <div class="card">
@@ -344,8 +361,8 @@
                           <!-- Horizontal Form -->
                           <div class="form-group row align-items-center">
                             <label for="baggageMultilabel" class="col-sm-10 col-form-label new-label">
-                              <div class="new-label-1">Bagasi</div>
-                              <div class="new-label-2">2 Penerbangan</div>
+                              <div class="label-1">Bagasi</div>
+                              <div class="label-2">2 Penerbangan</div>
                             </label>
                             <div class="col-sm-2">
                               <input type="checkbox" class="form-control" id="baggageMultilabel">
@@ -364,7 +381,7 @@
                     </div>
                     <!-- End of Facilities Filter -->
 
-                    <hr class="mb-2 mt-3">
+                    <hr class="mb-2 mt-3 mx-2">
 
                     <!-- Transit Airport Filter -->
                     <div class="card">
@@ -391,7 +408,7 @@
                     </div>
                     <!-- End of Transit Airport Filter -->
 
-                    <hr class="mb-2 mt-3">
+                    <hr class="mb-2 mt-3 mx-2">
 
                     <!-- Flight Duration Filter -->
                     <div class="card mb-2">
@@ -405,9 +422,11 @@
                       </div>
                       <div id="section7Content" class="collapse in">
                         <div class="card-body">
-                          <label for="rangeTripDuration" class="title">Total: </label>
-                          <input type="range" class="custom-range" min="0" max="13" id="rangeTripDuration">
-                          <div class="text-hour d-flex align-items-center justify-content-between">
+                          <label for="rangeTripDuration" class="text-duration">Total: 
+                            <span class="text-hour"></span>
+                          </label>
+                          <div id="slider2"></div>
+                          <div class="text-min-max d-flex align-items-center justify-content-between mt-2">
                             <span>0j</span>
                             <span>13j</span>
                           </div>
@@ -486,15 +505,16 @@
                     <div class="row align-items-lg-start align-items-sm-center h-100">
                       <!-- Facilities List -->
                       <div class="col-lg-4 d-lg-inline-block d-none px-0">
-                        <div class="baggage-list text-center">
-                          <span class="facilities-icon">
-                            <img src="{{ url('img/icons/fasilitas/ic_bagasi.png') }}" alt="ICON-baggage" width="20px" height="20px" data-toggle="tooltip" data-placement="bottom" title="Bagasi 5kg">
+                        <div class="baggage-list text-center" data-toggle="tooltip" data-placement="bottom"
+                        data-html="true" title="<div>Bagasi 5 kg</div><div>Makanan</div>">
+                          <span class="facilities-icon px-1">
+                            <i class="fas fa-suitcase"></i>
                           </span>
-                          <span class="facilities-icon">
-                            <img src="{{ url('img/icons/fasilitas/ic_bagasi.png') }}" alt="ICON-baggage" width="20px" height="20px" data-toggle="tooltip" data-placement="bottom" title="Bagasi 5kg">
+                          <span class="facilities-icon px-1">
+                            <i class="fas fa-photo-video"></i>
                           </span>
-                          <span class="facilities-icon">
-                            <img src="{{ url('img/icons/fasilitas/ic_bagasi.png') }}" alt="ICON-baggage" width="20px" height="20px" data-toggle="tooltip" data-placement="bottom" title="Bagasi 5kg">
+                          <span class="facilities-icon px-0">
+                            <i class="fas fa-utensils"></i>
                           </span>
                         </div>
                       </div>
@@ -510,7 +530,7 @@
                   <!-- End of Right Side -->
 
                   <!-- Detail Buttons -->
-                  <div class="col-lg-9 col-md-8 col-12 mt-3">
+                  <div class="col-lg-9 col-md-8 col-8 mt-3">
                     <!-- <span class="d-lg-none d-inline-block" id="btn-detail-responsive"><a href="#navTabDetails" data-toggle="collapse"><i class="fa fa-chevron-down"></i></a></span> -->
                     <p class="btn-details">
                       <a href="#flight-detail" class="text-decoration-none" id="flight-detail-btn-1" data-toggle="collapse">Detail Penerbangan</a>
@@ -519,7 +539,7 @@
                   </div>
                   <!-- End of Detail Buttons -->
 
-                  <div class="col-lg-3 col-md-4 mt-2 d-md-inline-block d-none btn-book-now text-right">
+                  <div class="col-lg-3 col-md-4 col-4 mt-2 btn-book-now text-right">
                     <a href="#" class="btn bg-gradation-blue text-white">PILIH</a>
                   </div>
                 </div>
@@ -568,16 +588,51 @@
                                     <div class="header-title cabin-class">Ekonomi</div>
                                   </div>
                                   <hr class="d-none">
-                                  <div class="details-info-content">
-                                    <div class="baggage-list row row-cols-lg-3 row-cols-sm-2 align-items-center">
+                                  <div class="details-info-body">
+                                    <div class="row row-cols-lg-3 row-cols-sm-2 align-items-center baggage-list">
                                       <div class="facilities-icon col pl-0 mb-3">
-                                        <img src="{{ url('img/icons/fasilitas/ic_bagasi.png') }}" alt="ICON-baggage" width="20px" height="20px">
+                                        <i class="fas fa-suitcase"></i>
                                         <span class="text-facilities ml-1">
                                           Bagasi 20Kg
                                         </span>
                                       </div>
                                     </div>
-                                    
+                                    <div class="row mt-5">
+                                      <div class="col-12 mb-3">
+                                        <div class="row">
+                                          <div class="col-6">
+                                            <div class="text-title">Model</div>
+                                            <div class="text-value">Boeing 737-800</div>
+                                          </div>
+                                          <div class="col-6">
+                                            <div class="text-title">Denah Kursi</div>
+                                            <div class="text-value">2-2</div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-12">
+                                        <div class="row">
+                                          <div class="col-6">
+                                            <div class="text-title">Kursi</div>
+                                            <div class="text-value">Ekonomi</div>
+                                          </div>
+                                          <div class="col-6">
+                                            <div class="seat seat-pitch">
+                                              <img src="" alt="">
+                                              <div></div>
+                                            </div>
+                                            <div class="seat seat-width">
+                                              <img src="" alt="">
+                                              <div></div>
+                                            </div>
+                                            <div class="seat seat-tilt">
+                                              <img src="" alt="">
+                                              <div></div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
@@ -671,7 +726,7 @@
                 <div class="text-no-flight-available text-center">Penerbangan tidak tersedia</div>
                 <div class="text-no-flight-available-desc mt-3 text-center">Tip: Ubah pencarian dengan tanggal atau kelas kabin yang berbeda</div>
                 <div class="btn-change mt-4 text-center">
-                  <button class="btn btn-orange">
+                  <button class="btn btn-orange" data-toggle="modal" data-target="#changeSearchModal">
                     Ubah Penerbangan
                   </button>
                 </div>
@@ -693,4 +748,52 @@
   <script src="{{ url('plugin/moment-js/moment-js.js') }}"></script>
   <script src="{{ url('plugin/bootstrap-datepicker-master/dist/js/bootstrap-datepicker.min.js') }}"></script>
   <script src="{{ url('plugin/bootstrap-datepicker-master/dist/locales/bootstrap-datepicker.id.min.js') }}"></script>
+  <!-- JS for Custom Range Input -->
+  <script src="{{ url('plugin/noUiSlider-master/distribute/nouislider.js') }}"></script>
+  <script src="{{ url('plugin/wnumb-master/wNumb.min.js') }}"></script>
+  <script>
+    const slider1 = document.getElementById("slider1");
+    const slider2 = document.getElementById("slider2");
+    noUiSlider.create(slider1, {
+        start: [0, 13],
+        connect: true,
+        step: 1,
+        range: {
+            min: 0,
+            max: 13,
+        },
+        format: wNumb({
+            decimals: 0,
+            suffix: " j",
+        }),
+    });
+    
+    noUiSlider.create(slider2, {
+        start: [0, 13],
+        connect: true,
+        step: 1,
+        range: {
+            min: 0,
+            max: 13,
+        },
+        format: wNumb({
+            decimals: 0,
+            suffix: " j",
+        }),
+    });
+    
+    // Ubah durasi per transit ketika nilai input range di update
+    slider1.noUiSlider.on("update", function (values, handle) {
+        $("#section2Content .text-duration .text-hour").html(
+            values[0] + " - " + values[1]
+        );
+    });
+
+    // Ubah total durasi perjalanan ketika input range di update
+    slider2.noUiSlider.on("update", function (values, handle) {
+        $("#section7Content .text-duration .text-hour").html(
+            values[0] + " - " + values[1]
+        );
+    });
+  </script>
 @endpush

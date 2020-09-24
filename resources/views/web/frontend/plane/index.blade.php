@@ -4,6 +4,7 @@
 
 @push('stylesheets')
   <link rel="stylesheet" href="{{ url('plugin/bootstrap-datepicker-master/dist/css/bootstrap-datepicker.css') }}">
+  <!-- <link rel="stylesheet" href="{{ url('plugin/jquery-ui-1.12.1/jquery-ui.min.css') }}"> -->
 @endpush
 
 @section("content")
@@ -95,11 +96,12 @@
 
 									<!-- Flight Date Inputs -->
 									<div class="col-lg-6 col-md-6 col-sm-12 mb-3 form-group" id="containerTanggalBerangkat">
-											<label for="#input-tanggal-berangkat">Tanggal Berangkat</label>
-											<div class="input-group product-search-input-container date">
-													<img src="{{ url('img/icons/ic_kalender.png') }}" class="tm tm-kalender">
-													<input type="text" class="form-control product-search-input" name="dDate" id="input-tanggal-berangkat" value="<?= strftime("%a, %d %b %Y"); ?>" autocomplete="off">
-											</div>
+										<label for="#input-tanggal-berangkat">Tanggal Berangkat</label>
+										<div class="input-group product-search-input-container date">
+												<img src="{{ url('img/icons/ic_kalender.png') }}" class="tm tm-kalender">
+												<input type="text" class="form-control product-search-input" name="dDate" id="input-tanggal-berangkat" value="<?= strftime("%a, %d %b %Y"); ?>" autocomplete="off">
+										</div>
+										<div id="datepicker"></div>
 									</div>
 									
 									<div class="col-lg-6 col-md-6 col-sm-12 mb-3 form-group" id="containerTanggalPulang">
@@ -335,6 +337,7 @@
 @push('scripts')
   <script src="{{ url('plugin/bootstrap-input-spinner/src/bootstrap-input-spinner.js') }}"></script>
   <script src="{{ url('plugin/moment-js/moment-js.js') }}"></script>
+  <!-- <script src="{{ url('plugin/jquery-ui-1.12.1/jquery-ui.min.js') }}"></script> -->
   <script src="{{ url('plugin/bootstrap-datepicker-master/dist/js/bootstrap-datepicker.min.js') }}"></script>
 	<script src="{{ url('plugin/bootstrap-datepicker-master/dist/locales/bootstrap-datepicker.id.min.js') }}"></script>
 	<script>

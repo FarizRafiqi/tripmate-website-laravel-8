@@ -91,7 +91,7 @@
 										<label for="#input-tanggal-berangkat">Tanggal Berangkat</label>
 										<div class="input-group product-search-input-container date">
                       <img src="{{ url('img/icons/ic_kalender.png') }}" class="tm tm-kalender">
-                      <input type="text" class="form-control product-search-input" id="input-tanggal-berangkat" value="<?= strftime("%a, %d %b %Y"); ?>">
+                      <input type="text" class="form-control product-search-input" id="input-tanggal-berangkat" value="<?= strftime("%a, %d %b %Y"); ?>" autocomplete="off">
 										</div>
 									</div>
 									<div class="col-lg-6 col-md-6 col-sm-12 mb-3 form-group">
@@ -101,7 +101,7 @@
 										</div>
 										<div class="input-group product-search-input-container date" id="inputTanggalPulangContainer">
                       <img src="{{ url('img/icons/ic_kalender.png') }}" class="tm tm-kalender">
-                      <input type="text" class="form-control product-search-input" id="input-tanggal-pulang">
+                      <input type="text" class="form-control product-search-input" id="input-tanggal-pulang" autocomplete="off">
 										</div>
 									</div>
 									<!-- Input Jumlah Penumpang -->
@@ -151,12 +151,12 @@
 								</div>
 							
 							</div>
-							<div class="col-lg-6 d-lg-inline-block d-none illustration-container">
+							<div class="col-lg-6 d-lg-inline-block d-none px-0 illustration-container">
 								<div class="row row-cols-1">
-									<img src="{{ url('img/icons/subway-illustration.svg') }}" alt="ilustrasi kereta api" height="340px">
+									<!-- <img src="{{ url('img/train-booking-illustration-3.png') }}" class="col" alt="ilustrasi kereta api" height="340px"> -->
+									<video src="{{ url('img/Train2.mp4') }}" class="col px-0" width="100%" height="340px" autoplay loop></video>
 								</div>
 							</div>
-						
 						</div>
 					</form>
 				</div>

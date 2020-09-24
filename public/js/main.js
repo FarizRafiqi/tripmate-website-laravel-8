@@ -702,6 +702,7 @@ $("#input-tanggal-berangkat").datepicker({
     language: "id",
     autoclose: true,
     title: "Pilih tanggal berangkat",
+    daysOfWeekHighlighted: [0],
 });
 
 $("#input-tanggal-pulang").datepicker({
@@ -717,12 +718,15 @@ $("#input-tanggal-pulang").datepicker({
     language: "id",
     autoclose: true,
     title: "Pilih tanggal pulang",
+    daysOfWeekHighlighted: [0],
 });
 
 $("#input-tanggal-pulang").datepicker(
     "setDate",
     moment().locale("id").add(1, "d").format("ddd, D MMM YYYY")
 );
+
+let harilibur = [];
 
 // Untuk halaman pencarian
 $("#inputTanggalBerangkat").datepicker({
@@ -738,6 +742,7 @@ $("#inputTanggalBerangkat").datepicker({
     language: "id",
     autoclose: true,
     title: "Pilih tanggal berangkat",
+    daysOfWeekHighlighted: [0],
 });
 
 $("#inputTanggalPulang").datepicker({
@@ -753,6 +758,7 @@ $("#inputTanggalPulang").datepicker({
     language: "id",
     autoclose: true,
     title: "Pilih tanggal pulang",
+    daysOfWeekHighlighted: [0],
 });
 
 // Cek apakah checkbox di ceklis
@@ -778,7 +784,6 @@ $("[data-toggle='tooltip']").tooltip();
 $(".wrapper-search-result .collapse-label a[data-toggle='collapse']").on(
     "click",
     function (e) {
-        console.log($(this));
         $(this).toggleClass("active");
     }
 );
@@ -799,9 +804,9 @@ $("a[id*='price-detail-btn']").on("click", function () {
     $(this).toggleClass("active");
 });
 
-$(".preview-flight .btn-ubah-pencarian").on("click", function () {
-    $(".wrapper-change-search").removeClass("d-none");
-    $(".overlay").addClass("show");
+$("#changeSearchModal").on("show.bs.modal", function () {
+    $(".modal-body").css("padding", "0px");
+    $(".modal-body").css("margin", "0px");
 });
 
 $(".nav-tabs .nav-item .nav-link").each(function (i, e) {

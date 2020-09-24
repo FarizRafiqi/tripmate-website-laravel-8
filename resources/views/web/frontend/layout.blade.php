@@ -6,12 +6,13 @@
   <title>@yield('title')</title>
   <!-- Bootstrap CSS -->
   <link href="{{ url('css/app.css') }}" rel="stylesheet" />
+  <!-- Custom Styles -->
+  @stack('stylesheets')
   <!-- Main Styles -->
   <link href="{{ url('css/style.css') }}" rel="stylesheet" />
   <!-- Font Awesome -->
   <script src="https://kit.fontawesome.com/b769966f19.js" crossorigin="anonymous"></script>
-  <!-- Custom Styles -->
-  @stack('stylesheets')
+  
 </head>
 <body>
   <header>
@@ -20,9 +21,9 @@
   <main>
     @yield('content')
   </main>
-  <footer>
-    @include('web.frontend.layouts.footer')
-  </footer>
+
+  <!-- Footer -->
+  @include('web.frontend.layouts.footer')
 
   <!-- Jquery -->
   <script src="{{ url('plugin/jquery/jquery.min.js') }}"></script>
