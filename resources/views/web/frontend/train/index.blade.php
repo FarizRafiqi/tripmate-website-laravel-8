@@ -48,7 +48,7 @@
 
 				<!-- Train Form -->
 				<div class="card train-form p-4" id="formTrain">
-					<form action="" method="POST">
+					<form action="kereta-api/search">
 						<div class="row">
 							<div class="col-lg-6 col-md-12 col-sm-12">
 								<div class="row">
@@ -168,7 +168,7 @@
 					<div class="col-description row">
 						<div class="col-lg-4 col-12 pr-0">
 							<div class="d-flex">
-								<img src="{{ url('img/icons/ic_reschedule.png') }}" alt="Smart Reschedule">
+								<img src="{{ url('img/icons/ic_seat.png') }}" alt="Pilih Kursi Bebas">
 								<div class="text-bookcheap-title">
 									Pilih Kursi Sesuai Keinginan
 								</div>
@@ -179,7 +179,7 @@
 						</div>
 						<div class="col-lg-4 col-12 mt-lg-0 mt-4 pr-0">
 							<div class="d-flex">
-								<img src="{{ url('img/icons/ic_refund.png') }}" alt="Smart Refund">
+								<img src="{{ url('img/icons/ic_refund.png') }}" alt="Reservasi H-90">
 								<div class="text-bookcheap-title">
 									Reservasi H-90
 								</div>
@@ -190,7 +190,7 @@
 						</div>
 						<div class="col-lg-4 col-12 mt-lg-0 mt-4">
 							<div class="d-flex">
-								<img src="{{ url('img/icons/ic_reschedule.png') }}" alt="Smart Reschedule">
+								<img src="{{ url('img/icons/ic_gadget.png') }}" alt="Tidak Perlu Mengantri">
 								<div class="text-bookcheap-title">
 									Tidak Perlu Mengantri
 								</div>

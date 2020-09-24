@@ -8,6 +8,7 @@
 }
 
 /* Base */
+
 body {
     font-family: "OpenSans-Regular";
     scroll-behavior: smooth;
@@ -662,40 +663,41 @@ form .dropdown-toggle::after,
 
 /* || Halaman Pencarian */
 
-.flight {
+.flight,
+.train {
     background: #f5f6fa;
 }
 
-.preview-flight {
-    background: #fff;
-}
-
-.preview-flight .right-side [class^="text-"] {
+.preview-flight .right-side [class^="text-"],
+.preview-train .right-side [class^="text-"] {
     font-family: "OpenSans-SemiBold";
 }
 
-.preview-flight .preview-flight-content .choose-flight {
+.preview-flight .preview-flight-content .choose-flight,
+.preview-train .preview-train-content .choose-train {
     padding: 21px;
 }
 
-.preview-flight .preview-flight-content .choose-flight .text-choose {
+.text-choose {
     color: #35405a;
     font-size: 20px;
 }
 
-.preview-flight .preview-flight-content .choose-flight .list {
+.preview-flight-content .choose-flight .list,
+.preview-train-content .choose-train .list {
     color: #58627a;
     font-size: 14px;
 }
 
-.preview-flight .preview-flight-content .choose-flight .dot-circle {
+.dot-circle {
     width: 4px;
     height: 4px;
     border-radius: 50%;
     background: #8a93a7;
 }
 
-.preview-flight .preview-flight-content button.btn-ubah-pencarian {
+.preview-flight .preview-flight-content .btn-ubah-pencarian,
+.preview-train .preview-train-content .btn-ubah-pencarian {
     background: #f7f7f7;
     text-transform: uppercase;
     color: #367ffa;
@@ -706,7 +708,8 @@ form .dropdown-toggle::after,
     outline: none;
 }
 
-.preview-flight .preview-flight-content .content .border-left-ticket::before {
+.preview-flight-content .content .border-left-ticket::before,
+.preview-train-content .content .border-left-ticket::before {
     position: absolute;
     content: "";
     border-top: 11px solid rgba(0, 0, 0, 0);
@@ -716,7 +719,8 @@ form .dropdown-toggle::after,
     left: -1px;
 }
 
-.preview-flight .preview-flight-content .content .border-left-ticket::after {
+.preview-flight-content .content .border-left-ticket::after,
+.preview-train-content .content .border-left-ticket::after {
     position: absolute;
     content: "";
     border-top: 10px solid rgba(0, 0, 0, 0);
@@ -726,7 +730,8 @@ form .dropdown-toggle::after,
     left: -1px;
 }
 
-.preview-flight .modal.fade .modal-dialog {
+.preview-flight .modal.fade .modal-dialog,
+.preview-train .modal.fade .modal-dialog {
     transition: all 0.3s ease-out;
     transform: none;
 }
@@ -765,7 +770,8 @@ form .dropdown-toggle::after,
     padding-left: 36px;
 }
 
-.wrapper-form .form-group input[id*="inputTanggal"] {
+.wrapper-form .form-group input[id*="inputTanggal"],
+.wrapper-form .form-group input[id*="inputStasiun"] {
     padding-left: 30px;
 }
 
@@ -781,7 +787,8 @@ form .dropdown-toggle::after,
 }
 
 .wrapper-form .form-group .fa.fa-plane-departure,
-.wrapper-form .form-group .fa.fa-plane-arrival {
+.wrapper-form .form-group .fa.fa-plane-arrival,
+.wrapper-form .form-group .fa.fa-train {
     position: absolute;
     top: 40px;
     left: 8px;
@@ -816,55 +823,55 @@ form .dropdown-toggle::after,
 
 /* Filter Pencarian */
 
-.wrapper-search-result .col-filter .filter .filter-header .text-filter {
+.col-filter .filter .filter-header .text-filter {
     font-size: 18px;
     font-family: "OpenSans-SemiBold";
 }
 
-.wrapper-search-result .col-filter .filter-header #btnReset {
+.col-filter .filter-header #btnReset {
     font-size: 14px;
     color: #367ffa;
     cursor: pointer;
     font-family: "OpenSans-SemiBold";
 }
 
-.wrapper-search-result .col-filter .filter-body.card {
+.col-filter .filter-body.card {
     border: none;
 }
 
-.wrapper-search-result .col-filter .filter-body .card-body .card-header {
+.col-filter .filter-body .card-body .card-header {
     background: #fff;
     border: none;
 }
 
-.wrapper-search-result .col-filter .filter-body .card-body .card {
+.col-filter .filter-body .card-body .card {
     border: none;
 }
 
-.wrapper-search-result .col-filter .filter-body .card-body {
+.col-filter .filter-body .card-body {
     padding: 8px;
 }
 
-.wrapper-search-result .col-filter .filter-body #filterAccordion .card-body {
+.col-filter .filter-body #filterAccordion .card-body {
     padding: 10px 10px 0;
 }
 
-.wrapper-search-result .col-filter .collapse-label {
+.col-filter .collapse-label {
     font-size: 16px;
     font-family: "OpenSans-SemiBold";
     padding: 8px 8px 0;
 }
 
-.wrapper-search-result .col-filter .collapse-label .fa-chevron-down {
+.col-filter .collapse-label .fa-chevron-down {
     color: #367ffa;
     font-size: 24px;
 }
 
-.wrapper-search-result .card-header .collapse-label a {
+.card-header .collapse-label a {
     color: #35405a;
 }
 
-.wrapper-search-result .col-filter .collapse-label a.active .fa-chevron-down {
+.col-filter .collapse-label a.active .fa-chevron-down {
     transform: rotate(180deg);
 }
 
@@ -948,12 +955,13 @@ form .dropdown-toggle::after,
 .noUi-connect {
     background: #0064d2;
 }
-/* List Penerbangan */
-#wrapperPencarianPenerbangan {
+/* List Penerbangan dan Kereta Api */
+.wrapper-search-result {
     margin-top: 21px;
 }
 
-.wrapper-search-result .wrapper-result .wrapper-flight-list {
+.wrapper-result .wrapper-flight-list,
+.wrapper-result .wrapper-train-list {
     padding: 16px 24px;
     margin-bottom: 8px;
     color: #35405a;
@@ -973,12 +981,12 @@ form .dropdown-toggle::after,
     max-height: 100%;
 }
 
-.wrapper-result .wrapper-flight-list .left .text-time {
+.wrapper-flight-list .left .text-time {
     font-size: 20px;
     font-family: "OpenSans-SemiBold";
 }
 
-.wrapper-result .wrapper-flight-list .left .text-code {
+.wrapper-flight-list .left .text-code {
     font-size: 14px;
 }
 
@@ -1263,9 +1271,8 @@ form .dropdown-toggle::after,
     background: #f8fafc;
 }
 
-.signup-wrapper,
-.login-wrapper {
-    min-height: 65vh;
+.signup-wrapper {
+    min-height: 100vh;
 }
 
 .card.card-signup {
@@ -1351,6 +1358,10 @@ input.floating-input:focus ~ .floating-label::before {
 /* || Footer */
 
 footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
     padding: 32px 0;
     font-size: 14px;
     color: #58627a;
@@ -1469,15 +1480,17 @@ footer {
     }
 
     /* Halaman Pencarian Responsive */
-    .preview-flight .preview-flight-content .choose-flight {
+    .preview-flight .preview-flight-content .choose-flight,
+    .preview-train .preview-train-content .choose-train {
         padding: 21px 21px 21px 0;
     }
 
-    .preview-flight .preview-flight-content .choose-flight .text-choose {
+    .text-choose {
         font-size: 16px;
     }
 
-    .preview-flight .preview-flight-content .choose-flight .list {
+    .preview-flight-content .choose-flight .list,
+    .preview-train-content .choose-train .list {
         font-size: 12px;
     }
 
@@ -1502,17 +1515,10 @@ footer {
         border-bottom: 1px solid #dee2ee;
     }
 
-    .preview-flight
-        .preview-flight-content
-        .content
-        .border-left-ticket::before {
-        content: "";
-    }
-
-    .preview-flight
-        .preview-flight-content
-        .content
-        .border-left-ticket::after {
+    .preview-flight-content .content .border-left-ticket::before,
+    .preview-train-content .content .border-left-ticket::before,
+    .preview-flight-content .content .border-left-ticket::after,
+    .preview-train-content .content .border-left-ticket::after {
         content: "";
     }
 
@@ -1531,7 +1537,7 @@ footer {
         padding: 0;
     }
 
-    .wrapper-result .wrapper-flight-list .right .text-price {
+    .wrapper-flight-list .right .text-price {
         font-size: 18px;
     }
 
@@ -1675,19 +1681,20 @@ footer {
     }
 
     /* Halaman Pencarian */
-    .preview-flight .text-passengers .jumlah-penumpang {
+    .text-passengers .jumlah-penumpang {
         order: 1;
     }
 
-    .preview-flight .text-passengers span:nth-child(3) {
+    .text-passengers span:nth-child(3) {
         order: 2;
     }
 
-    .preview-flight .preview-flight-content .choose-flight .text-choose {
+    .text-choose {
         font-size: 20px;
     }
 
-    .preview-flight .preview-flight-content .choose-flight .list {
+    .preview-flight-content .choose-flight .list,
+    .preview-train-content .choose-train .list {
         font-size: 14px;
     }
 
@@ -1809,21 +1816,21 @@ footer {
     } */
 
     .wrapper-result .wrapper-flight-list .btn-details {
-        margin-left: 17%;
+        margin-left: 17.5%;
     }
 
     .wrapper-result .wrapper-flight-list .left .text-time {
         margin-right: 0;
     }
 
-    .wrapper-result .wrapper-flight-list .left .departure-time::before,
-    .wrapper-result .wrapper-flight-list .left .arrival-time::before,
-    .wrapper-result .wrapper-flight-list .left .flight-timeline::before {
+    .wrapper-flight-list .left .departure-time::before,
+    .wrapper-flight-list .left .arrival-time::before,
+    .wrapper-flight-list .left .flight-timeline::before {
         display: none;
     }
 
-    .wrapper-result .wrapper-flight-list .left .text-time,
-    .wrapper-result .wrapper-flight-list .left .text-total-time {
+    .wrapper-flight-list .left .text-time,
+    .wrapper-flight-list .left .text-total-time {
         font-size: 16px;
     }
 
@@ -1839,17 +1846,17 @@ footer {
         transform: rotate(0deg);
     }
 
-    .wrapper-result .wrapper-flight-list .left .text-time,
-    .wrapper-result .wrapper-flight-list .left .text-total-time,
-    .wrapper-result .wrapper-flight-list .right .text-price {
+    .wrapper-flight-list .left .text-time,
+    .wrapper-flight-list .left .text-total-time,
+    .wrapper-flight-list .right .text-price {
         font-size: 20px;
     }
 
-    .wrapper-result .wrapper-flight-list .left .flight-icon {
+    .wrapper-flight-list .left .flight-icon {
         padding: 0 15px;
     }
 
-    .wrapper-result .wrapper-flight-list .btn-details {
+    .wrapper-flight-list .btn-details {
         margin-left: 96px;
         font-size: 14px;
     }

@@ -15,11 +15,12 @@ use Illuminate\Support\Facades\Route;
 
 setlocale(LC_ALL, "id-ID", "id_ID");
 Route::get("/", "PagesController@home");
-Route::get('/kereta-api', 'KeretaApiController@index');
-Route::get('/pesawat', 'PesawatController@index');
-Route::get('/pesawat/search', 'PesawatController@search');
 Route::view("/register", "web.frontend.auth.register");
 Route::view("/login", "web.frontend.auth.login");
+Route::get('/kereta-api', 'KeretaApiController@index');
+Route::get('/kereta-api/search', 'KeretaApiController@search');
+Route::get('/pesawat', 'PesawatController@index');
+Route::get('/pesawat/search', 'PesawatController@search');
 
 Route::view("/coba", "named-route");
 

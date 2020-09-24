@@ -81,4 +81,8 @@ class KeretaApiController extends Controller
     {
         //
     }
+
+    public function search() {
+        return view("web.frontend.train.search");
+    }
 }

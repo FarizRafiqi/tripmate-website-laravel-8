@@ -48,7 +48,7 @@
 			<div class="container">
 				<!-- Flight Form -->
 				<div class="card flight-form p-4" id="flightForm">
-					<form action="pesawat/search">
+					<form action="pesawat/search" method="POST">
 						<div class="row">
 							<div class="col-lg-6 col-md-12 col-sm-12">
 								<div class="row">

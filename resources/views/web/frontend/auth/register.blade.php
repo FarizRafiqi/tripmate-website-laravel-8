@@ -7,7 +7,7 @@
     <div class="container mt-4">
       <div class="row mx-n4 align-items-center justify-content-center">
         <div class="d-none d-lg-inline-block col-lg-7 col-xl-8 pl-md-0 text-md-center text-xl-left ">
-          <img src="{{ url('img/travel-illustration.png') }}" class="img-fluid ml-xl-n3" width="80%" height="80%">
+          <img src="{{ url('img/tripmate-illustration.png') }}" class="img-fluid ml-xl-n3" width="80%" height="80%">
         </div>
         <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4 pl-lg-0">
           <div class="card card-signup">

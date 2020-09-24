@@ -10,7 +10,7 @@
 @section('content')
   <div class="flight">
     <!-- Preview Flight -->
-    <div class="preview-flight">
+    <div class="preview-flight bg-white">
       <div class="overlay"></div>
       <div class="container-fluid bg-white">
         <div class="container px-0 position-relative">
