@@ -18,16 +18,16 @@
             <div class="col-xl-10 col-lg-9 col-md-8 col-12">
               <div class="choose-train row align-items-center pl-lg-0">
                 <div class="left-side col-auto mr-4 pr-0 d-lg-inline-block d-md-none d-none">
-                  <img src="{{ url('img/icons/ic_flight_depart.png') }}" alt="" width="32px" height="32px">
+                  <img src="{{ url('img/icons/ic_facing_right_train_circle.png') }}" alt="" width="32px" height="32px">
                 </div>
                 <div class="right-side col-auto p-lg-0 pl-3">
                   <div class="text-choose">Pilih Kereta Pergi</div>
                   <div class="list d-flex align-items-center">
-                    <div class="text-station mr-1">Bandung</div>
+                    <div class="text-station mr-1 d-md-inline-block d-none">Bandung</div>
                     <div class="text-station-code">(ALL)</div>
                     <i class="fa fa-long-arrow-alt-right mx-2"></i>
     
-                    <div class="text-station mr-1">Jakarta</div>
+                    <div class="text-station mr-1 d-md-inline-block d-none">Jakarta</div>
                     <div class="text-station-code">(ALL)</div>
     
                     <div class="dot-circle mx-lg-3 mx-md-3 mx-3"></div>
@@ -126,8 +126,9 @@
     <div class="wrapper-search-result position-relative">
       <div class="container">
         <div class="row">
+          
            <!-- Filter -->
-          <div class="col-lg-4 col-md-4 d-lg-inline-block d-md-inline-block d-none px-xl-0 pr-0 col-filter">
+          <div class="col-lg-4 col-md-4 col d-md-inline-block px-xl-0 pr-md-0 mb-5 col-filter">
             <div class="filter">
               <div class="filter-header row mb-3">
                 <div class="col-6 text-filter">
@@ -154,22 +155,22 @@
                         <div class="card-body">
                           <!-- Horizontal Form -->
                           <div class="form-group row align-items-center">
-                            <label for="ekonomi" class="col-sm-10 col-form-label">
+                            <label for="ekonomi" class="col-10 col-form-label">
                               Ekonomi
                             </label>
-                            <div class="col-sm-2">
+                            <div class="col-2">
                               <input type="checkbox" class="form-control m-auto" id="ekonomi">
                             </div>
-                            <label for="bisnis" class="col-sm-10 col-form-label">
+                            <label for="bisnis" class="col-10 col-form-label">
                               Bisnis
                             </label>
-                            <div class="col-sm-2">
+                            <div class="col-2">
                               <input type="checkbox" class="form-control m-auto" id="bisnis">
                             </div>
-                            <label for="eksekutif" class="col-sm-10 col-form-label">
+                            <label for="eksekutif" class="col-10 col-form-label">
                               Eksekutif
                             </label>
-                            <div class="col-sm-2">
+                            <div class="col-2">
                               <input type="checkbox" class="form-control m-auto" id="eksekutif">
                             </div>
                           </div>
@@ -195,28 +196,28 @@
                         <div class="card-body">
                           <!-- Horizontal Form -->
                           <div class="form-group row align-items-center">
-                            <label for="departure_dawn" class="col-sm-10 col-form-label">
+                            <label for="departure_dawn" class="col-10 col-form-label">
                               00:00 - 06:00
                             </label>
-                            <div class="col-sm-2">
+                            <div class="col-2">
                               <input type="checkbox" class="form-control m-auto" id="departure_dawn">
                             </div>
-                            <label for="departure_morning" class="col-sm-10 col-form-label">
+                            <label for="departure_morning" class="col-10 col-form-label">
                               00:00 - 06:00
                             </label>
-                            <div class="col-sm-2">
+                            <div class="col-2">
                               <input type="checkbox" class="form-control m-auto" id="departure_morning">
                             </div>
-                            <label for="departure_afternoon" class="col-sm-10 col-form-label">
+                            <label for="departure_afternoon" class="col-10 col-form-label">
                               12:00 - 18:00
                             </label>
-                            <div class="col-sm-2">
+                            <div class="col-2">
                               <input type="checkbox" class="form-control m-auto" id="departure_afternoon">
                             </div>
-                            <label for="departure_evening" class="col-sm-10 col-form-label">
+                            <label for="departure_evening" class="col-10 col-form-label">
                               18:00 - 24:00
                             </label>
-                            <div class="col-sm-2">
+                            <div class="col-2">
                               <input type="checkbox" class="form-control m-auto" id="departure_evening">
                             </div>
                           </div>
@@ -242,10 +243,10 @@
                         <div class="card-body">
                           <!-- Horizontal Form -->
                           <div class="form-group row align-items-center">
-                            <label for="serayu32" class="col-sm-10 col-form-label">
+                            <label for="serayu32" class="col-10 col-form-label">
                               Serayu
                             </label>
-                            <div class="col-sm-2">
+                            <div class="col-2">
                               <input type="checkbox" class="form-control m-auto" id="serayu32">
                             </div>
                           </div>
@@ -269,34 +270,32 @@
               <div class="wrapper-train-list bg-white">
                 <div class="row position-relative">
                   <!-- Train Name and Trip Class -->
-                  <div class="col-4 left">
+                  <div class="col-12 col-lg-4 col-train-desc">
                     <span class="nama-kereta">Serayu 325</span>
                     <div class="kelas-kereta">Ekonomi</div>
                   </div>
                   <!-- End of Train Name and Trip Class-->
 
                   <!-- Middle of Card -->
-                  <div class="col-5 middle">
+                  <div class="col-6 col-md-8 col-lg-5 col-time-desc">
                     <!-- Train Trip Timeline -->
                     <div class="train-timeline">
                       <div class="row align-items-center">
-                        <div class="departure-time col-lg-auto col-md-auto col-auto">
+                        <div class="departure-time d-lg-inline-block d-flex align-items-center col-lg-auto col-12">
                           <div class="text-time">21:50</div>
-                          <div class="text-code">CMI</div>
+                          <div class="text-code pl-lg-0 pl-2">CMI</div>
                         </div>
-                        <div class="flight-icon col-lg-auto col-md-2 col-2 text-center">
-                          <img src="{{ url('img/icons/ic_pesawat_tampak_atas_abu.png') }}" width="16px" height="16px" alt="ICON-kereta">
+                        <div class="trip-duration col-lg-auto col-12 pl-lg-0 pl-5 text-lg-center">
+                          <div class="text-total-time">0j 30m</div>
+                          <hr class="my-1 d-lg-block d-none">
+                          <div class="text-total-time">Langsung</div>
                         </div>
-                        <div class="flight-duration text-center">
-                          <div class="text-total-time">12j 0m</div>
-                          <div class="timeline">
-                            <hr class="hr-line">
-                          </div>
-                          <div class="text-total-time">1 Transit</div>
+                        <div class="train-icon col-lg-auto col-2 d-lg-inline-block pl-0 d-none text-center">
+                          <img src="{{ url('img/icons/ic_facing_right_gray_train.png') }}" width="26px" height="26px" alt="ICON-kereta">
                         </div>
-                        <div class="arrival-time col-lg-auto col-md-auto col-auto">
+                        <div class="arrival-time d-lg-inline-block d-flex align-items-center col-lg-auto col-12 px-lg-0">
                           <div class="text-time mr-lg-0">21:51</div>
-                          <div class="text-code">JNG</div>
+                          <div class="text-code pl-lg-0 pl-2">JNG</div>
                         </div>
                       </div>
                     </div>
@@ -305,7 +304,7 @@
                   <!-- End of Middle Card -->
 
                   <!-- Right Side -->
-                  <div class="col-3 right">
+                  <div class="col-6 col-md-4 col-lg-3 right d-lg-inline-block d-flex align-items-end justify-content-end pb-lg-0 pb-2 col-price-desc">
                     <div class="text-price text-right">
                       IDR 63.000
                     </div>
@@ -316,12 +315,12 @@
                   <div class="col-12">
                     <div class="row">
                       <!-- Detail Buttons -->
-                      <div class="btn-details col-5 offset-4">
+                      <div class="btn-details col-12 col-sm-7 col-md-9 col-lg-5 offset-lg-4 mt-lg-3 mt-2 order-2 order-sm-1">
                         <a href="#train-detail" class="text-decoration-none" id="train-detail-btn-1" data-toggle="collapse">Detail Perjalanan</a>
                         <a href="#price-detail" class="text-decoration-none ml-4" id="price-detail-btn-1" data-toggle="collapse">Detail Harga</a>
                       </div>
                       <!-- End of Detail Buttons -->
-                      <div class="btn-book-now col-3 text-right">
+                      <div class="btn-book-now col-12 col-sm-5 col-md-3 text-right order-1 order-sm-2">
                         <a href="#" class="btn bg-gradation-blue text-white">PILIH</a>
                       </div>
                     </div>
@@ -330,7 +329,7 @@
                 </div>
                 
                 <!-- Train Detail -->
-                <div class="wrapper-collapse collapse" id="train-detail" data-parent=".wrapper-train-list">
+                <div class="wrapper-collapse collapse mt-4" id="train-detail" data-parent=".wrapper-train-list">
                   <hr>
                   <div class="row pt-3">
                     <div class="col-auto">
@@ -339,7 +338,7 @@
                     </div>
   
                     <div class="col-lg-8 col-md-6 col-sm-6 col-9 text-left">
-                      <div class="text-airport text-truncate">Soekarno Hatta</div>
+                      <div class="text-airport text-truncate">Bandung</div>
                       <div class="text-airport-terminal"></div>
                     </div>
   
@@ -354,70 +353,14 @@
                     <table>
                       <tbody>
                         <tr>
-                          <th class="col-flight-detail-1 text-date-fd col">0j 1m</th>
+                          <th class="col-train-detail-1 text-date-fd col">0j 1m</th>
                           <th class="th-detail position-relative">
-                            <div class="col-flight-detail-2">
-                              <div class="box-flight-detail">
+                            <div class="col-train-detail-2">
+                              <div class="box-train-detail">
                                 <div class="detail-info-wrapper">
-                                  <div class="details-info-header d-flex align-items-center">
-                                    <div class="logo-airline d-flex justify-content-center align-items-center mr-2">
-                                      <img src="{{ url('img/logo_partners/Lion.png') }}" alt="AIRLINE_ICON" class="img-fluid">
-                                    </div>
-  
-                                    <div class="header-title">
-                                      JT-369
-                                    </div>
-  
-                                    <div class="line"></div>
-  
-                                    <div class="header-title cabin-class">Ekonomi</div>
-                                  </div>
-                                  <hr class="d-none">
                                   <div class="details-info-body">
-                                    <div class="row row-cols-lg-3 row-cols-sm-2 align-items-center baggage-list">
-                                      <div class="facilities-icon col pl-0 mb-3">
-                                        <i class="fas fa-suitcase"></i>
-                                        <span class="text-facilities ml-1">
-                                          Bagasi 20Kg
-                                        </span>
-                                      </div>
-                                    </div>
-                                    <div class="row mt-5">
-                                      <div class="col-12 mb-3">
-                                        <div class="row">
-                                          <div class="col-6">
-                                            <div class="text-title">Model</div>
-                                            <div class="text-value">Boeing 737-800</div>
-                                          </div>
-                                          <div class="col-6">
-                                            <div class="text-title">Denah Kursi</div>
-                                            <div class="text-value">2-2</div>
-                                          </div>
-                                        </div>
-                                      </div>
-                                      <div class="col-12">
-                                        <div class="row">
-                                          <div class="col-6">
-                                            <div class="text-title">Kursi</div>
-                                            <div class="text-value">Ekonomi</div>
-                                          </div>
-                                          <div class="col-6">
-                                            <div class="seat seat-pitch">
-                                              <img src="" alt="">
-                                              <div></div>
-                                            </div>
-                                            <div class="seat seat-width">
-                                              <img src="" alt="">
-                                              <div></div>
-                                            </div>
-                                            <div class="seat seat-tilt">
-                                              <img src="" alt="">
-                                              <div></div>
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
+                                    <div class="nama-kereta">Serayu 325</div>
+                                    <div class="kelas-kereta">Ekonomi</div>
                                   </div>
                                 </div>
                               </div>
@@ -434,27 +377,27 @@
                     </div>
   
                     <div class="col-lg-8 col-md-6 col-6 text-left">
-                      <div class="text-airport text-truncate">Soekarno Hatta</div>
+                      <div class="text-airport text-truncate">Jatinegara</div>
                       <div class="text-airport-terminal"></div>
                     </div>
                   </div>
 
-                  <!-- Flight Transit -->
-                  <div class="transit">
+                  <!-- Train Transit -->
+                  <!-- <div class="transit">
                     <div class="row">
                       <div class="text-transit col">
                         <label>0j 1m</label>
                         Transit di Lombok (LOP)
                       </div>
                     </div>
-                  </div>
-                  <!-- End of Flight Transit -->
+                  </div> -->
+                  <!-- End of Train Transit -->
 
                 </div>
                 <!-- End of Train Detail -->
 
                 <!-- Price Detail -->
-                <div class="wrapper-collapse collapse" id="price-detail" data-parent=".wrapper-train-list">
+                <div class="wrapper-collapse collapse mt-4" id="price-detail" data-parent=".wrapper-train-list">
                   <hr>
                   <div class="wrapper-detail price-details pt-3">
                     <div class="row">
@@ -462,6 +405,7 @@
                         <div class="text-subtitle">Tarif</div>
                       </div>
                       <div class="col-12">
+                        <div class="train-name">Serayu - Ekonomi</div>
                         <div class="row">
                           <div class="col-6 col-passenger">
                             <ul class="pl-3"> 
@@ -469,22 +413,34 @@
                             </ul>
                           </div>
                           <div class="col-6 col-price text-right">
-                            IDR 25.500.000
+                            IDR 63.000
                           </div>
                         </div>
                       </div>
                       <div class="col-12">
-                        <div class="text-subtitle">Pajak dan biaya lainnya</div>
+                        <div class="text-subtitle">Biaya lainnya</div>
                       </div>
                       <div class="col-12">
                         <div class="row">
                           <div class="col-6 col-tax">
-                            <ul class="pl-3"> 
+                            <ul class="pl-3 mb-0"> 
                               <li>Pajak</li>
                             </ul>
                           </div>
-                          <div class="col-6 text-free text-right">
+                          <div class="col-6 text-free text-right mb-0">
                             Termasuk
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-12">
+                        <div class="row">
+                          <div class="col-6 col-tax">
+                            <ul class="pl-3 mb-0"> 
+                              <li>Biaya Layanan Penumpang</li>
+                            </ul>
+                          </div>
+                          <div class="col-6 text-free text-right mb-0">
+                            GRATIS
                           </div>
                         </div>
                       </div>
@@ -492,7 +448,7 @@
                         <hr class="mt-2 mb-3">
                         <div class="row">
                           <div class="col-6 text-total">Total</div>
-                          <div class="col-6 col-price-total text-right">IDR 25.500.000</div>
+                          <div class="col-6 col-price-total text-right">IDR 63.000</div>
                         </div>
                       </div>
                     </div>
@@ -504,15 +460,16 @@
               <!-- End of Train Ticket List -->
 
               <!-- Empty States No Train Available -->
-              <div class="no-flight-available bg-white py-5 px-5">
-                <div>
+              <div class="no-train-available bg-white py-5 px-5">
+                <!-- <div>
                   <img src="{{ url('img/empty-state-no-flight-available-edit.png') }}" class="img-fluid" alt="illustration">
-                </div>
-                <div class="text-no-flight-available text-center">Penerbangan tidak tersedia</div>
-                <div class="text-no-flight-available-desc mt-3 text-center">Tip: Ubah pencarian dengan tanggal atau kelas kabin yang berbeda</div>
+                </div> -->
+                <div class="text-no-train-available text-center">Kereta ini belum tersedia</div>
+                <div class="text-no-train-available-desc mt-3 text-center">Ubah pencarian dengan asal dan tujuan atau tanggal yang berbeda.</div>
+
                 <div class="btn-change mt-4 text-center">
                   <button class="btn btn-orange" data-toggle="modal" data-target="#changeSearchModal">
-                    Ubah Penerbangan
+                    Ubah Pencarian
                   </button>
                 </div>
 

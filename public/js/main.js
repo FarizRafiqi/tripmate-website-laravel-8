@@ -788,18 +788,8 @@ $(".wrapper-search-result .collapse-label a[data-toggle='collapse']").on(
     }
 );
 
-$("a[id*='flight-detail-btn']").on("click", function () {
-    if ($("a[id*='price-detail-btn']").hasClass("active")) {
-        $("a[id*='price-detail-btn']").removeClass("active");
-    }
-
-    $(this).toggleClass("active");
-});
-
-$("a[id*='price-detail-btn']").on("click", function () {
-    if ($("a[id*='flight-detail-btn']").hasClass("active")) {
-        $("a[id*='flight-detail-btn']").removeClass("active");
-    }
+$(".btn-details a").on("click", function () {
+    $(this).siblings().removeClass("active");
 
     $(this).toggleClass("active");
 });

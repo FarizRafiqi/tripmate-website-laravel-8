@@ -981,12 +981,12 @@ form .dropdown-toggle::after,
     max-height: 100%;
 }
 
-.wrapper-flight-list .left .text-time {
+.text-time {
     font-size: 20px;
     font-family: "OpenSans-SemiBold";
 }
 
-.wrapper-flight-list .left .text-code {
+.text-code {
     font-size: 14px;
 }
 
@@ -1010,21 +1010,21 @@ form .dropdown-toggle::after,
     color: #58627a;
 } */
 
-.wrapper-result .wrapper-flight-list .left .text-total-time {
+.wrapper-result .left .text-total-time {
     font-size: 20px;
 }
 
-.wrapper-result .wrapper-flight-list .right .baggage-list {
+.wrapper-result .right .baggage-list {
     margin-top: 5px;
 }
 
-.wrapper-result .wrapper-flight-list .right .text-price {
+.wrapper-result .right .text-price {
     font-size: 20px;
     font-family: "OpenSans-SemiBold";
     color: #fd9e0a;
 }
 
-.wrapper-result .wrapper-flight-list .right .text-pax {
+.wrapper-result .right .text-pax {
     font-size: 12px;
     color: #8a93a7;
     font-family: "OpenSans-Regular";
@@ -1032,26 +1032,28 @@ form .dropdown-toggle::after,
 
 /* Detail Penerbangan */
 
-.wrapper-result .wrapper-flight-list .btn-details {
-    width: 60%;
+.wrapper-result .btn-details {
     font-size: 14px;
 }
 
-.wrapper-result .wrapper-flight-list .btn-details a {
+.wrapper-result .btn-details a {
     color: #0064d2;
 }
 
-.wrapper-result .wrapper-flight-list .btn-details a:hover {
+.wrapper-result .btn-details a:hover {
     color: #4588cf;
 }
 
-.wrapper-result .wrapper-flight-list .btn-details a.active {
-    padding-bottom: 23px;
+.wrapper-result .btn-details a.active {
     border-bottom: 1px solid #367ffa;
     font-family: "OpenSans-SemiBold";
 }
 
-.wrapper-result .wrapper-flight-list .btn-book-now .btn {
+.wrapper-result .wrapper-flight-list .btn-details {
+    width: 60%;
+}
+
+.wrapper-result .btn-book-now .btn {
     text-transform: uppercase;
     border-radius: 24px;
     min-width: 100px;
@@ -1060,44 +1062,6 @@ form .dropdown-toggle::after,
     border: none;
     outline: none;
     box-shadow: none;
-}
-
-.wrapper-result .wrapper-flight-list .baggage-list i[class*="fa"] {
-    margin-top: 5px;
-    font-size: 20px;
-    color: #35405a;
-}
-
-.wrapper-result .wrapper-flight-list .wrapper-collapse hr {
-    margin: 5px 0 0 0;
-}
-
-.wrapper-collapse .row .text-airport,
-.wrapper-collapse .row .text-time-fd,
-.wrapper-collapse .row .text-date-fd {
-    font-size: 14px;
-    font-family: "OpenSans-Regular";
-    font-weight: 400;
-    color: #35405a;
-}
-
-.wrapper-collapse .row .text-airport {
-    padding-left: 9px;
-}
-
-.wrapper-collapse .row .text-airport::before {
-    content: "";
-    position: absolute;
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: #dee2ee;
-    top: 6px;
-    left: -3px;
-}
-
-.wrapper-collapse .row .text-time-fd {
-    font-family: "OpenSans-SemiBold";
 }
 
 .wrapper-collapse .row table {
@@ -1122,11 +1086,45 @@ form .dropdown-toggle::after,
     left: 0.5px;
 }
 
-.wrapper-collapse .row .col-flight-detail-1 {
+.wrapper-result .baggage-list i[class*="fa"] {
+    margin-top: 5px;
+    font-size: 20px;
+    color: #35405a;
+}
+
+.wrapper-collapse .row .text-airport,
+.wrapper-collapse .row .text-time-fd,
+.wrapper-collapse .row .text-date-fd {
+    font-size: 14px;
+    color: #35405a;
+}
+
+.wrapper-collapse .row .text-airport {
+    padding-left: 9px;
+}
+
+.wrapper-collapse .row .text-airport::before {
+    content: "";
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #dee2ee;
+    top: 6px;
+    left: -3px;
+}
+
+.wrapper-collapse .row .text-time-fd {
+    font-family: "OpenSans-SemiBold";
+}
+
+.wrapper-collapse .row .col-flight-detail-1,
+.wrapper-collapse .row .col-train-detail-1 {
     width: 73px;
 }
 
-.wrapper-collapse .row .box-flight-detail {
+.wrapper-collapse .row .box-flight-detail,
+.wrapper-collapse .row .box-train-detail {
     padding: 32px 0;
     border-left: 1.4px solid #dee2ee;
 }
@@ -1190,12 +1188,18 @@ form .dropdown-toggle::after,
     text-align: center;
 }
 
-.wrapper-collapse .transit .text-transit label {
+.wrapper-collapse .transit .text-transit label,
+.wrapper-collapse .box-flight-detail .details-info-body .text-value {
     font-family: "OpenSans-SemiBold";
 }
 
-.wrapper-collapse .box-flight-detail .details-info-body .text-value {
+.wrapper-result .nama-kereta {
     font-family: "OpenSans-SemiBold";
+    font-size: 16px;
+}
+
+.wrapper-result .kelas-kereta {
+    font-size: 14px;
 }
 
 /* detail harga penerbangan */
@@ -1234,18 +1238,20 @@ form .dropdown-toggle::after,
     opacity: 1;
 }
 
-.wrapper-result .no-flight-available .text-no-flight-available {
+.wrapper-result .no-flight-available .text-no-flight-available,
+.wrapper-result .no-train-available .text-no-train-available {
     font-size: 18px;
     font-family: "OpenSans-SemiBold";
     color: #35405a;
 }
 
-.wrapper-result .no-flight-available .text-no-flight-available-desc {
+.wrapper-result .no-flight-available .text-no-flight-available-desc,
+.wrapper-result .no-train-available .text-no-train-available-desc {
     font-size: 14px;
     color: #8a93a7;
 }
 
-.wrapper-result .no-flight-available .btn-change .btn.btn-orange {
+.btn-change .btn.btn-orange {
     border-radius: 24px;
     font-size: 16px;
     font-family: "OpenSans-SemiBold";
@@ -1254,7 +1260,7 @@ form .dropdown-toggle::after,
     box-shadow: none;
 }
 
-.btn.btn-orange:hover {
+.btn-change .btn.btn-orange:hover {
     color: #fff;
     background: #fdac2b;
 }
@@ -1566,12 +1572,50 @@ footer {
         border-bottom: 1px solid #367ffa;
     }
 
-    .wrapper-result .wrapper-flight-list .left .text-time {
+    .wrapper-result .btn-details a.active {
+        padding-bottom: 23px;
+    }
+
+    .wrapper-flight-list .text-time {
         margin-right: 8px;
     }
 
     .wrapper-result .wrapper-flight-list .left .flight-icon {
         padding: 0;
+    }
+
+    .wrapper-train-list .train-timeline .trip-duration::before {
+        content: "";
+        display: inline-block;
+        border-left: 2px dashed #c6cbda;
+        height: 100%;
+        position: absolute;
+        left: 20px;
+    }
+
+    .wrapper-train-list .departure-time::after {
+        content: "";
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #8a93a7;
+        position: absolute;
+        top: 25px;
+        left: 17px;
+        z-index: 1;
+    }
+    .wrapper-train-list .arrival-time::after {
+        content: "";
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #8a93a7;
+        position: absolute;
+        bottom: 25px;
+        left: 17px;
+        z-index: 1;
     }
 
     .wrapper-collapse .row .th-detail::before {
@@ -1582,6 +1626,10 @@ footer {
     .wrapper-collapse .row .th-detail::after {
         height: 32px;
         bottom: -10px;
+    }
+
+    .wrapper-result .wrapper-collapse hr {
+        margin: -2px 0 0 0;
     }
 
     footer.footer-group .footer-content .container .row .contact-us {
@@ -1721,6 +1769,11 @@ footer {
         top: 0;
         left: 0;
     }
+
+    .wrapper-result .wrapper-collapse hr {
+        margin: -10px 0 0 0;
+    }
+
     /* .wrapper-result .wrapper-flight-list .left .flight-icon {
         transform: rotate(90deg);
     } */
@@ -1767,9 +1820,9 @@ footer {
 }
 
 @media (min-width: 0px) and (max-width: 992px) {
-    .wrapper-result .wrapper-flight-list .left .text-time,
+    .text-time,
     .wrapper-result .wrapper-flight-list .left .text-total-time,
-    .wrapper-result .wrapper-flight-list .left .text-code {
+    .text-code {
         font-size: 18px;
     }
 }
@@ -1832,6 +1885,21 @@ footer {
     .wrapper-flight-list .left .text-time,
     .wrapper-flight-list .left .text-total-time {
         font-size: 16px;
+    }
+
+    .wrapper-train-list .train-timeline .trip-duration::before,
+    .wrapper-train-list .departure-time::after,
+    .wrapper-train-list .arrival-time::after {
+        content: "";
+        display: none;
+    }
+
+    .wrapper-result .wrapper-collapse hr {
+        margin: 5px 0 0 0;
+    }
+
+    .wrapper-result .btn-details a.active {
+        padding-bottom: 25px;
     }
 
     /* Footer */
