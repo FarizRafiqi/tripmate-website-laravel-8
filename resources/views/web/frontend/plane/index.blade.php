@@ -115,7 +115,6 @@
 											</div>
 									</div>
                   <!-- End Flight Date Inputs -->
-
 									<!-- Passenger Amount Inputs -->
 									<div class="col-lg-6 col-md-6 form-group passenger-dropdown-container dropdown">
 										<label>Penumpang</label>
@@ -124,44 +123,41 @@
 											</button>
 											<div class="dropdown-menu shadow">
 												<div class="dropdown-header">
-														Penumpang
-														<i class="fa fa-times"></i>
+													Penumpang
+													<i class="fa fa-times"></i>
 												</div>
 												<div class="dropdown-item pb-0">
-														<div class="row">
-																<div class="col-5 passenger-type">
-																		<label for="adultPassenger">Dewasa</label>
-																</div>
-																<div class="col-7">
-																		<input type="number" name="adult" min="1" max="7" id="adultPassenger" value="1">
-																</div>
+													<div class="row">
+														<div class="col-5 passenger-type">
+															<label for="adultPassenger">Dewasa</label>
 														</div>
-												</div>
-												<div class="dropdown-divider"></div>
-												<div class="dropdown-item pb-0">
-														<div class="row">
-																<div class="col-5 passenger-type">
-																		<label for="childPassenger">Anak</label>
-																</div>
-																<div class="col-7">
-																		<input type="number" name="child" id="childPassenger" min="0"
-																		max="6" value="0">
-																</div>
+														<div class="col-7">
+															<input type="number" name="adult" min="1" max="7" id="adultPassenger" value="1">
 														</div>
+													</div>
 												</div>
 												<div class="dropdown-divider"></div>
 												<div class="dropdown-item pb-0">
-														<div class="row">
-																<div class="col-5 passenger-type">
-																		<label for="infantPassenger">Bayi</label>
-																</div>
-																<div class="col-7">
-																		<input type="number" name="infant" id="infantPassenger"
-																		min="0"
-																		max="4"
-																		value="0">
-																</div>
+													<div class="row">
+														<div class="col-5 passenger-type">
+															<label for="childPassenger">Anak</label>
 														</div>
+														<div class="col-7">
+															<input type="number" name="child" id="childPassenger" min="0"
+															max="6" value="0">
+														</div>
+													</div>
+												</div>
+												<div class="dropdown-divider"></div>
+												<div class="dropdown-item pb-0">
+													<div class="row">
+														<div class="col-5 passenger-type">
+																<label for="infantPassenger">Bayi</label>
+														</div>
+														<div class="col-7">
+																<input type="number" name="infant" id="infantPassenger" min="0" max="4" value="0">
+														</div>
+													</div>
 												</div>
 											</div>
 										</div>
@@ -345,6 +341,7 @@
 		let config = {
 				incrementButton: "<i class='fa fa-plus'></i>",
 				decrementButton: "<i class='fa fa-minus'></i>",
+				buttonsOnly: true,
 		};
 
 		$("input[type='number']").inputSpinner(config);

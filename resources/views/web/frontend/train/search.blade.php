@@ -263,7 +263,7 @@
           <!-- End of Filter -->
 
           <!-- Available Train List -->
-          <div class="col-lg-8 col-md-8 pr-xl-0 col-result">
+          <div class="col-lg-8 col-md-8 pr-xl-0 mb-5 col-result">
             <div class="wrapper-result">
 
               <!-- Train Ticket List -->

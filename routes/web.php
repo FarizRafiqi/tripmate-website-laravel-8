@@ -18,15 +18,10 @@ Route::get("/", "PagesController@home");
 Route::view("/register", "web.frontend.auth.register");
 Route::view("/login", "web.frontend.auth.login");
 Route::get('/kereta-api', 'KeretaApiController@index');
-Route::get('/kereta-api/search', 'KeretaApiController@search');
+Route::post('/kereta-api/search', 'KeretaApiController@search');
 Route::get('/pesawat', 'PesawatController@index');
-Route::get('/pesawat/search', 'PesawatController@search');
+Route::post('/pesawat/search', 'PesawatController@search');
 
-Route::view("/coba", "named-route");
-
-Route::get('/user/{id}/profile', function($id) {
-  return view("profile",['absen' => $id]);
-})->name("profile");
 // Route::prefix('admin')
 //       ->namespace('Admin')
 //       ->group(function(){

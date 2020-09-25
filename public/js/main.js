@@ -61,38 +61,46 @@ inputBandaraAsal.on("click", function (e) {
 
     dropdownMenu1.addClass("show");
     $(".home-page-widget-overlay").addClass("show");
-    $(".boxairport .dropdown-menu > .dropdown-item").remove();
-    $.ajax({
-        url: "js/bandara.json",
-        method: "get",
-        dataType: "json",
-        success: function (data) {
-            let bandara = data.bandara;
-            $.each(bandara, function (key, val) {
-                dropdownMenu1.append(
-                    `
-                    <div class="dropdown-item d-flex">
-                        <div class="dropdown-option-logo mr-3"><i class="fa fa-city"></i></div>
-                        <div class="dropdown-option-content">
-                            <div class="airport-city-location">${val.lokasi}</div>
-                            <div class="airport-city-name">${val.nama}</div>
-                        </div>
-                        <div class="dropdown-option-code ml-auto text-center">${val.kode}</div>
-                    </div>`
-                );
-            });
-
-            $(".boxairport .dropdown-item").on("click", function (e) {
-                const namabandara = $(this).find(".airport-city-name").text();
-                const kodebandara = $(this)
-                    .find(".dropdown-option-code")
-                    .text();
-                inputBandaraAsal.attr("value", kodebandara);
-                inputBandaraAsal.val(namabandara + " (" + kodebandara + ")");
-                inputBandaraTujuan.trigger("click");
-            });
-        },
+    $(".boxairport .dropdown-item").on("click", function (e) {
+        const namabandara = $(this).find(".airport-city-name").text();
+        const kodebandara = $(this).find(".dropdown-option-code").text();
+        inputBandaraAsal.attr("value", kodebandara);
+        inputBandaraAsal.val(namabandara + " (" + kodebandara + ")");
+        // inputBandaraTujuan.trigger("click");
+        dropdownMenu1.removeClass("show");
     });
+    // $(".boxairport .dropdown-menu > .dropdown-item").remove();
+    // $.ajax({
+    //     url: "js/bandara.json",
+    //     method: "get",
+    //     dataType: "json",
+    //     success: function (data) {
+    //         let bandara = data.bandara;
+    //         $.each(bandara, function (key, val) {
+    //             dropdownMenu1.append(
+    //                 `
+    //                 <div class="dropdown-item d-flex">
+    //                     <div class="dropdown-option-logo mr-3"><i class="fa fa-city"></i></div>
+    //                     <div class="dropdown-option-content">
+    //                         <div class="airport-city-location">${val.lokasi}</div>
+    //                         <div class="airport-city-name">${val.nama}</div>
+    //                     </div>
+    //                     <div class="dropdown-option-code ml-auto text-center">${val.kode}</div>
+    //                 </div>`
+    //             );
+    //         });
+
+    //         $(".boxairport .dropdown-item").on("click", function (e) {
+    //             const namabandara = $(this).find(".airport-city-name").text();
+    //             const kodebandara = $(this)
+    //                 .find(".dropdown-option-code")
+    //                 .text();
+    //             inputBandaraAsal.attr("value", kodebandara);
+    //             inputBandaraAsal.val(namabandara + " (" + kodebandara + ")");
+    //             inputBandaraTujuan.trigger("click");
+    //         });
+    //     },
+    // });
 });
 
 // live Search Bandara Asal
@@ -324,22 +332,16 @@ $(".passenger-dropdown-container .dropdown-menu").on("click", function (e) {
     e.preventDefault();
 });
 
-$(".passenger-dropdown-container .dropdown-toggle").click(function () {
-    const btnDecrementAdultPassenger = $(
-        ".passenger-dropdown-container .dropdown-item input#adultPassenger"
-    )
+$(".passenger-dropdown-container .dropdown-toggle").click(function (e) {
+    const btnDecrementAdultPassenger = $("input#adultPassenger")
         .next()
         .find(".input-group-prepend .btn-decrement");
 
-    const btnDecrementChildPassenger = $(
-        ".passenger-dropdown-container .dropdown-item input#childPassenger"
-    )
+    const btnDecrementChildPassenger = $("input#childPassenger")
         .next()
         .find(".input-group-prepend .btn-decrement");
 
-    const btnDecrementInfantPassenger = $(
-        ".passenger-dropdown-container .dropdown-item input#infantPassenger"
-    )
+    const btnDecrementInfantPassenger = $("input#infantPassenger")
         .next()
         .find(".input-group-prepend .btn-decrement");
 
@@ -365,26 +367,20 @@ $(".passenger-dropdown-container .dropdown-toggle").click(function () {
     // Fungsi untuk mengatur jumlah penumpang
     $(".passenger-dropdown-container .dropdown-menu .dropdown-item input").on(
         "change",
-        function () {
+        function (e) {
             let total = 0;
             let adultPassenger = parseInt($("#adultPassenger").val());
             let childPassenger = parseInt($("#childPassenger").val());
             let infantPassenger = parseInt($("#infantPassenger").val());
 
-            const btnIncrementAdultPassenger = $(
-                ".passenger-dropdown-container .dropdown-item input#adultPassenger"
-            )
+            const btnIncrementAdultPassenger = $("input#adultPassenger")
                 .next()
                 .find(".input-group-append .btn-increment");
 
-            const btnIncrementChildPassenger = $(
-                ".passenger-dropdown-container .dropdown-item input#childPassenger"
-            )
+            const btnIncrementChildPassenger = $("input#childPassenger")
                 .next()
                 .find(".input-group-append .btn-increment");
-            const btnIncrementInfantPassenger = $(
-                ".passenger-dropdown-container .dropdown-item input#infantPassenger"
-            )
+            const btnIncrementInfantPassenger = $("input#infantPassenger")
                 .next()
                 .find(".input-group-append .btn-increment");
 
@@ -725,8 +721,6 @@ $("#input-tanggal-pulang").datepicker(
     "setDate",
     moment().locale("id").add(1, "d").format("ddd, D MMM YYYY")
 );
-
-let harilibur = [];
 
 // Untuk halaman pencarian
 $("#inputTanggalBerangkat").datepicker({
