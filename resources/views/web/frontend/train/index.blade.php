@@ -106,7 +106,7 @@
 									</div>
 									<!-- Input Jumlah Penumpang -->
 									<div class="col-lg-6 col-md-6 form-group passenger-dropdown-container dropdown">
-										<label>Penumpang</label>
+										<label class="text-lg-left text-center">Penumpang</label>
 										<div class="input-group">
 											<div class="dropdown-toggle form-control product-search-input text-lg-left text-md-left" id="dropdownMenuButton" data-toggle="dropdown">
 											</div>
@@ -179,7 +179,7 @@
 						</div>
 						<div class="col-lg-4 col-12 mt-lg-0 mt-4 pr-0">
 							<div class="d-flex">
-								<img src="{{ url('img/icons/ic_refund.png') }}" alt="Reservasi H-90">
+								<img src="{{ url('img/icons/ic_calender_bg_gradation.png') }}" alt="Reservasi H-90">
 								<div class="text-bookcheap-title">
 									Reservasi H-90
 								</div>

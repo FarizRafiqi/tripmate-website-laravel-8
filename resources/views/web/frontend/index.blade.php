@@ -46,12 +46,12 @@
 		<!-- Main Content -->
 		<div class="container">
 			<!-- Product Form -->
-			<div class="card product-widget p-3" id="productWidget">
-				<form action="/pesawat/search" method="POST">
-					<div class="row p-4">
+			<div class="card product-widget p-4" id="productWidget">
+				<form action="pesawat/search/">
+					<div class="row">
 
 						<!-- Left Side -->
-						<div class="col-lg-6 col-md-12 col-sm-12 p-0">
+						<div class="col-lg-6 col-md-12 col-sm-12">
 							<!-- Product List -->
 							<div class="product-list row justify-content-lg-between justify-content-md-between justify-content-between">
 								<div class="col-6">
@@ -85,7 +85,12 @@
                   <label for="input-bandara-asal">Dari</label>
                   <div class="input-group product-search-input-container">
                       <img src="{{ url('img/icons/ic_pesawat_takeoff.png') }}" class="tm tm-pesawat-takeoff">
-                      <input type="text" name="berangkat" class="form-control product-search-input" id="input-bandara-asal" autocomplete="off" placeholder="Mau ke mana?" required>
+											<input type="text" name="bandara_asal" class="form-control product-search-input @error('bandara_asal') is-invalid @enderror" id="input-bandara-asal" autocomplete="off" placeholder="Mau ke mana?" value="{{old('bandara_asal')}}">
+											@error('bandara_asal')
+											<div class="invalid-feedback">
+												{{ $message }}
+											</div>
+											@enderror
                   </div>
                   <div class="dropdown boxairport" id="boxAirport">
                     <div class="dropdown-menu shadow">
@@ -93,14 +98,14 @@
                         Pilih kota atau bandara
                         <i class="fa fa-times"></i>
 											</div>
-											@foreach($airports as $airport)
+											@foreach($bandara as $b)
 												<div class="dropdown-item d-flex">
 													<div class="dropdown-option-logo mr-3"><i class="fa fa-city"></i></div>
 													<div class="dropdown-option-content">
 															<div class="airport-city-location">Jakarta</div>
-															<div class="airport-city-name">{{ $airport->nama }}</div>
+															<div class="airport-city-name">{{ $b->nama }}</div>
 													</div>
-													<div class="dropdown-option-code ml-auto text-center">{{ $airport->id }}</div>
+													<div class="dropdown-option-code ml-auto text-center">{{ $b->kode_iata }}</div>
 												</div>
 											@endforeach
                     </div>
@@ -115,14 +120,29 @@
                   <label for="input-bandara-tujuan">Ke</label>
                   <div class="input-group product-search-input-container">
                     <img src="{{ url('img/icons/ic_pesawat_landing.png') }}" class="tm tm-pesawat-landing">
-                    <input type="text" name="kedatangan" class="form-control product-search-input" id="input-bandara-tujuan" autocomplete="off" placeholder="Mau ke mana?" required>
+										<input type="text" name="bandara_tujuan" class="form-control product-search-input @error('bandara_tujuan') is-invalid @enderror" id="input-bandara-tujuan" autocomplete="off" placeholder="Mau ke mana?" value="{{old('bandara_asal')}}">
+										@error('bandara_tujuan')
+											<div class="invalid-feedback">
+												{{ $message }}
+											</div>
+										@enderror
                   </div>
                   <div class="dropdown boxairport" id="boxAirport2">
                     <div class="dropdown-menu shadow">
                       <div class="dropdown-header">
                         Pilih kota atau bandara
                         <i class="fa fa-times"></i>
-                      </div>
+											</div>
+											@foreach($bandara as $b)
+												<div class="dropdown-item d-flex">
+													<div class="dropdown-option-logo mr-3"><i class="fa fa-city"></i></div>
+													<div class="dropdown-option-content">
+															<div class="airport-city-location">Jakarta</div>
+															<div class="airport-city-name">{{ $b->nama }}</div>
+													</div>
+													<div class="dropdown-option-code ml-auto text-center">{{ $b->kode_iata }}</div>
+												</div>
+											@endforeach
                     </div>
                   </div>
 								</div>
@@ -133,8 +153,14 @@
                   <label for="#input-tanggal-berangkat">Tanggal Berangkat</label>
                   <div class="input-group product-search-input-container date">
                     <img src="{{ url('img/icons/ic_kalender.png') }}" class="tm tm-kalender">
-                    <input type="text" name="tanggal_berangkat" class="form-control product-search-input" id="input-tanggal-berangkat"
-                    value="<?= strftime("%a, %d %b %Y"); ?>">
+                    <input type="text" name="tanggal_berangkat" class="form-control product-search-input @error('tanggal_berangkat') is-invalid @enderror" id="input-tanggal-berangkat"
+										value="">
+										<!-- <?= strftime("%a, %d %b %Y"); ?> -->
+										@error('tanggal_berangkat')
+											<div class="invalid-feedback">
+												{{ $message }}
+											</div>
+										@enderror
                   </div>
 								</div>
 								
@@ -145,7 +171,10 @@
                   </div>
                   <div class="input-group product-search-input-container date" id="inputTanggalPulangContainer">
                     <img src="{{ url('img/icons/ic_kalender.png') }}" class="tm tm-kalender">
-                    <input type="text" name="tanggal_pulang" class="form-control product-search-input" id="input-tanggal-pulang">
+										<input type="text" name="tanggal_pulang" class="form-control product-search-input @error('tanggal_pulang') is-invalid @enderror" id="input-tanggal-pulang">
+										@error('tanggal_pulang')
+											<div class="invalid-feedback">{{$message}}</div>
+										@enderror
                   </div>
 								</div>
 								<!-- End of Flight Date Inputs -->
@@ -205,7 +234,10 @@
 									<div class="input-group text-center">
                     <i class="tm tm-caret"></i>
                     <select class="form-control product-search-input" name="kelas" id="selectBoxKelasKabin">
-                      <option value="">Ekonomi</option>
+                      <option value="ekonomi">Ekonomi</option>
+                      <option value="Premium Ekonomi">Premium Ekonomi</option>
+                      <option value="Bisnis">Bisnis</option>
+                      <option value="First">First</option>
                     </select>
 									</div>
 								</div>

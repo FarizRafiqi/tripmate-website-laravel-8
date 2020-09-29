@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\BandaraModel;
 
 class PesawatController extends Controller
 {
@@ -43,7 +44,7 @@ class PesawatController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
         //
     }
@@ -80,9 +81,5 @@ class PesawatController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function search(){
-        return view("web.frontend.plane.search");
     }
 }

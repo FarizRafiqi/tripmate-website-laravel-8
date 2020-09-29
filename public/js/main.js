@@ -61,7 +61,7 @@ inputBandaraAsal.on("click", function (e) {
 
     dropdownMenu1.addClass("show");
     $(".home-page-widget-overlay").addClass("show");
-    $(".boxairport .dropdown-item").on("click", function (e) {
+    $("#boxAirport .dropdown-item").on("click", function (e) {
         const namabandara = $(this).find(".airport-city-name").text();
         const kodebandara = $(this).find(".dropdown-option-code").text();
         inputBandaraAsal.attr("value", kodebandara);
@@ -104,54 +104,54 @@ inputBandaraAsal.on("click", function (e) {
 });
 
 // live Search Bandara Asal
-inputBandaraAsal.on("input", function (e) {
-    $(".boxairport .dropdown-menu > .dropdown-item").remove();
-    let value = inputBandaraAsal.val().trim();
-    let expression = new RegExp(value, "i");
+// inputBandaraAsal.on("input", function (e) {
+//     $(".boxairport .dropdown-menu > .dropdown-item").remove();
+//     let value = inputBandaraAsal.val().trim();
+//     let expression = new RegExp(value, "i");
 
-    $.ajax({
-        url: "js/bandara.json",
-        method: "get",
-        dataType: "json",
-        success: function (data) {
-            let bandara = data.bandara;
-            $.each(bandara, function (key, val) {
-                if (
-                    val.nama.search(expression) != -1 ||
-                    val.lokasi.search(expression) != -1
-                ) {
-                    dropdownMenu1.append(
-                        `
-                        <div class="dropdown-item d-flex">
-                            <div class="dropdown-option-logo mr-3"><i class="fa fa-city"></i></div>
-                            <div class="dropdown-option-content">
-                                <div class="airport-city-location">${val.lokasi}</div>
-                                <div class="airport-city-name">${val.nama}</div>
-                            </div>
-                            <div class="dropdown-option-code ml-auto text-center">${val.kode}</div>
-                        </div>`
-                    );
-                }
-            });
+//     $.ajax({
+//         url: "js/bandara.json",
+//         method: "get",
+//         dataType: "json",
+//         success: function (data) {
+//             let bandara = data.bandara;
+//             $.each(bandara, function (key, val) {
+//                 if (
+//                     val.nama.search(expression) != -1 ||
+//                     val.lokasi.search(expression) != -1
+//                 ) {
+//                     dropdownMenu1.append(
+//                         `
+//                         <div class="dropdown-item d-flex">
+//                             <div class="dropdown-option-logo mr-3"><i class="fa fa-city"></i></div>
+//                             <div class="dropdown-option-content">
+//                                 <div class="airport-city-location">${val.lokasi}</div>
+//                                 <div class="airport-city-name">${val.nama}</div>
+//                             </div>
+//                             <div class="dropdown-option-code ml-auto text-center">${val.kode}</div>
+//                         </div>`
+//                     );
+//                 }
+//             });
 
-            $(".boxairport .dropdown-item").on("click", function (e) {
-                const namabandara = $(this).find(".airport-city-name").text();
-                const kodebandara = $(this)
-                    .find(".dropdown-option-code")
-                    .text();
-                inputBandaraAsal.attr("value", kodebandara);
-                inputBandaraAsal.val(namabandara + " (" + kodebandara + ")");
-                dropdownMenu1.removeClass("display");
-                dropdownMenu2.addClass("display");
+//             $(".boxairport .dropdown-item").on("click", function (e) {
+//                 const namabandara = $(this).find(".airport-city-name").text();
+//                 const kodebandara = $(this)
+//                     .find(".dropdown-option-code")
+//                     .text();
+//                 inputBandaraAsal.attr("value", kodebandara);
+//                 inputBandaraAsal.val(namabandara + " (" + kodebandara + ")");
+//                 dropdownMenu1.removeClass("display");
+//                 dropdownMenu2.addClass("display");
 
-                inputBandaraTujuan.on("click", function () {
-                    dropdownMenu2.addClass("display");
-                });
-                inputBandaraTujuan.trigger("click");
-            });
-        },
-    });
-});
+//                 inputBandaraTujuan.on("click", function () {
+//                     dropdownMenu2.addClass("display");
+//                 });
+//                 inputBandaraTujuan.trigger("click");
+//             });
+//         },
+//     });
+// });
 
 // INPUT BANDARA TUJUAN
 
@@ -165,84 +165,90 @@ inputBandaraTujuan.on("click", function (e) {
     // munculkan
     dropdownMenu2.addClass("show");
     $(".home-page-widget-overlay").addClass("show");
-    $(".boxairport .dropdown-menu > .dropdown-item").remove();
-    $.ajax({
-        url: "js/bandara.json",
-        method: "get",
-        dataType: "json",
-        success: function (data) {
-            let bandara = data.bandara;
-            $.each(bandara, function (key, val) {
-                dropdownMenu2.append(
-                    `
-								<div class="dropdown-item d-flex">
-										<div class="dropdown-option-logo mr-3"><i class="fa fa-city"></i></div>
-										<div class="dropdown-option-content">
-										<div class="airport-city-location">${val.lokasi}</div>
-										<div class="airport-city-name">${val.nama}</div>
-										</div>
-										<div class="dropdown-option-code ml-auto text-center">${val.kode}</div>
-							</div>`
-                );
-            });
-
-            $(".boxairport .dropdown-item").on("click", function (e) {
-                const namabandara = $(this).find(".airport-city-name").text();
-                const kodebandara = $(this)
-                    .find(".dropdown-option-code")
-                    .text();
-                inputBandaraTujuan.attr("value", kodebandara);
-                inputBandaraTujuan.val(namabandara + " (" + kodebandara + ")");
-                dropdownMenu2.removeClass("show");
-            });
-        },
+    $("#boxAirport2 .dropdown-item").on("click", function (e) {
+        const namabandara = $(this).find(".airport-city-name").text();
+        const kodebandara = $(this).find(".dropdown-option-code").text();
+        inputBandaraTujuan.attr("value", kodebandara);
+        inputBandaraTujuan.val(namabandara + " (" + kodebandara + ")");
+        dropdownMenu2.removeClass("show");
     });
+    // $.ajax({
+    //     url: "js/bandara.json",
+    //     method: "get",
+    //     dataType: "json",
+    //     success: function (data) {
+    //         let bandara = data.bandara;
+    //         $.each(bandara, function (key, val) {
+    //             dropdownMenu2.append(
+    //                 `
+    // 							<div class="dropdown-item d-flex">
+    // 									<div class="dropdown-option-logo mr-3"><i class="fa fa-city"></i></div>
+    // 									<div class="dropdown-option-content">
+    // 									<div class="airport-city-location">${val.lokasi}</div>
+    // 									<div class="airport-city-name">${val.nama}</div>
+    // 									</div>
+    // 									<div class="dropdown-option-code ml-auto text-center">${val.kode}</div>
+    // 						</div>`
+    //             );
+    //         });
+
+    //         $(".boxairport .dropdown-item").on("click", function (e) {
+    //             const namabandara = $(this).find(".airport-city-name").text();
+    //             const kodebandara = $(this)
+    //                 .find(".dropdown-option-code")
+    //                 .text();
+    //             inputBandaraTujuan.attr("value", kodebandara);
+    //             inputBandaraTujuan.val(namabandara + " (" + kodebandara + ")");
+    //             dropdownMenu2.removeClass("show");
+    //         });
+    //     },
+    // });
 });
 
 // Live Search Bandara Tujuan
-inputBandaraTujuan.on("input", function (e) {
-    $(".boxairport .dropdown-menu > .dropdown-item").remove();
-    let value = inputBandaraTujuan.val().trim();
-    let expression = new RegExp(value, "i");
+// inputBandaraTujuan.on("input", function (e) {
+//     $(".boxairport .dropdown-menu > .dropdown-item").remove();
+//     let value = inputBandaraTujuan.val().trim();
+//     let expression = new RegExp(value, "i");
 
-    $.ajax({
-        url: "js/bandara.json",
-        method: "get",
-        dataType: "json",
-        success: function (data) {
-            let bandara = data.bandara;
-            $.each(bandara, function (key, val) {
-                if (
-                    val.nama.search(expression) != -1 ||
-                    val.lokasi.search(expression) != -1
-                ) {
-                    dropdownMenu2.append(
-                        `
-                        <div class="dropdown-item d-flex">
-                            <div class="dropdown-option-logo mr-3"><i class="fa fa-city"></i></div>
-                            <div class="dropdown-option-content">
-                            <div class="airport-city-location">${val.lokasi}</div>
-                            <div class="airport-city-name">${val.nama}</div>
-                            </div>
-                            <div class="dropdown-option-code ml-auto text-center">${val.kode}</div>
-                      </div>`
-                    );
-                }
-            });
+//     $.ajax({
+//         url: "js/bandara.json",
+//         method: "get",
+//         dataType: "json",
+//         success: function (data) {
+//             let bandara = data.bandara;
+//             $.each(bandara, function (key, val) {
+//                 if (
+//                     val.nama.search(expression) != -1 ||
+//                     val.lokasi.search(expression) != -1
+//                 ) {
+//                     dropdownMenu2.append(
+//                         `
+//                         <div class="dropdown-item d-flex">
+//                             <div class="dropdown-option-logo mr-3"><i class="fa fa-city"></i></div>
+//                             <div class="dropdown-option-content">
+//                             <div class="airport-city-location">${val.lokasi}</div>
+//                             <div class="airport-city-name">${val.nama}</div>
+//                             </div>
+//                             <div class="dropdown-option-code ml-auto text-center">${val.kode}</div>
+//                       </div>`
+//                     );
+//                 }
+//             });
 
-            $(".boxairport .dropdown-item").on("click", function (e) {
-                const namabandara = $(this).find(".airport-city-name").text();
-                const kodebandara = $(this)
-                    .find(".dropdown-option-code")
-                    .text();
-                inputBandaraTujuan.attr("value", kodebandara);
-                inputBandaraTujuan.val(namabandara + " (" + kodebandara + ")");
-                dropdownMenu2.removeClass("display");
-                e.stopPropagation();
-            });
-        },
-    });
-});
+//             $(".boxairport .dropdown-item").on("click", function (e) {
+//                 const namabandara = $(this).find(".airport-city-name").text();
+//                 const kodebandara = $(this)
+//                     .find(".dropdown-option-code")
+//                     .text();
+//                 inputBandaraTujuan.attr("value", kodebandara);
+//                 inputBandaraTujuan.val(namabandara + " (" + kodebandara + ")");
+//                 dropdownMenu2.removeClass("display");
+//                 e.stopPropagation();
+//             });
+//         },
+//     });
+// });
 
 // Tukar bandara, bandara pergi untuk pulang, bandara pulang untuk pergi
 let i = 0;
@@ -695,7 +701,6 @@ $("#input-tanggal-berangkat").datepicker({
         leftArrow: "<i class='fa fa-chevron-left'></i>",
         rightArrow: "<i class='fa fa-chevron-right'></i>",
     },
-    language: "id",
     autoclose: true,
     title: "Pilih tanggal berangkat",
     daysOfWeekHighlighted: [0],
@@ -711,12 +716,15 @@ $("#input-tanggal-pulang").datepicker({
         leftArrow: "<i class='fa fa-chevron-left'></i>",
         rightArrow: "<i class='fa fa-chevron-right'></i>",
     },
-    language: "id",
     autoclose: true,
     title: "Pilih tanggal pulang",
     daysOfWeekHighlighted: [0],
 });
 
+$("#input-tanggal-berangkat").datepicker(
+    "setDate",
+    moment().locale("id").format("ddd, D MMM YYYY")
+);
 $("#input-tanggal-pulang").datepicker(
     "setDate",
     moment().locale("id").add(1, "d").format("ddd, D MMM YYYY")

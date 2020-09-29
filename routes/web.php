@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\App;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,15 +13,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-setlocale(LC_ALL, "id-ID", "id_ID");
-Route::get("/", "PagesController@home");
+Route::get("/", "PagesController@index");
+Route::get('/pesawat/search', 'PagesController@search');
+
 Route::view("/register", "web.frontend.auth.register");
 Route::view("/login", "web.frontend.auth.login");
-Route::get('/kereta-api', 'KeretaApiController@index');
-Route::post('/kereta-api/search', 'KeretaApiController@search');
-Route::get('/pesawat', 'PesawatController@index');
-Route::post('/pesawat/search', 'PesawatController@search');
 
+Route::get('/kereta-api', 'KeretaApiController@index');
+Route::post('/kereta-api/search', 'KeretaApiController@show');
+
+Route::get('/pesawat', 'PesawatController@index');
+// Route::get('/cobalokalisasi', function(){
+//   $tanggal = Carbon\Carbon::now()->format('d, F Y');
+//   return $tanggal;
+// });
 // Route::prefix('admin')
 //       ->namespace('Admin')
 //       ->group(function(){

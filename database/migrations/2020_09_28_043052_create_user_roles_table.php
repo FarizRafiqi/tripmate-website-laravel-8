@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAirlinesTable extends Migration
+class CreateUserRolesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateAirlinesTable extends Migration
      */
     public function up()
     {
-        Schema::create('airlines', function (Blueprint $table) {
-            $table->char("id", 2)->primary();
-            $table->string("logo",128);
-            $table->string("nama", 128);
-            $table->integer("id_kota")->unique();
-            $table->text("alamat");
+        Schema::create('user_roles', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('role', 128);
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ class CreateAirlinesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('airlines');
+        Schema::dropIfExists('user_roles');
     }
 }

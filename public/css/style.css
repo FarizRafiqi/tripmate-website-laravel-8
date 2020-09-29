@@ -610,16 +610,6 @@ form .dropdown-toggle::after,
     margin-top: 70px;
 }
 
-.tripmate-partners #partner-flight .partner-product-list img {
-    width: 100px;
-    height: 100px;
-}
-
-.tripmate-partners #partner-flight .partner-product-list img,
-.tripmate-partners #partner-train .partner-product-list img {
-    filter: grayscale();
-}
-
 .tripmate-partners #partner-train .partner-product-name {
     color: #fd9e0a;
 }
@@ -1632,6 +1622,16 @@ footer {
         margin: -2px 0 0 0;
     }
 
+    .tripmate-partners #partner-flight .partner-product-list img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .tripmate-partners #partner-train .partner-product-list img {
+        width: 50px;
+        height: 30px;
+    }
+
     footer.footer-group .footer-content .container .row .contact-us {
         display: flex;
         justify-content: space-around;
@@ -1771,7 +1771,7 @@ footer {
     }
 
     .wrapper-result .wrapper-collapse hr {
-        margin: -10px 0 0 0;
+        margin: 8px 0 0 0;
     }
 
     /* .wrapper-result .wrapper-flight-list .left .flight-icon {
@@ -1816,6 +1816,16 @@ footer {
 
     .tripmate-advantages .container .row p {
         margin-bottom: 80px;
+    }
+
+    .tripmate-partners #partner-flight .partner-product-list img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .tripmate-partners #partner-train .partner-product-list img {
+        width: 111px;
+        height: 62px;
     }
 }
 
