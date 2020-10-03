@@ -461,9 +461,9 @@
 
               <!-- Empty States No Train Available -->
               <div class="no-train-available bg-white py-5 px-5">
-                <!-- <div>
-                  <img src="{{ url('img/empty-state-no-flight-available-edit.png') }}" class="img-fluid" alt="illustration">
-                </div> -->
+                <div>
+                  <img src="{{ url('img/empty-state-train.png') }}" class="img-fluid" alt="illustration">
+                </div>
                 <div class="text-no-train-available text-center">Kereta ini belum tersedia</div>
                 <div class="text-no-train-available-desc mt-3 text-center">Ubah pencarian dengan asal dan tujuan atau tanggal yang berbeda.</div>
 

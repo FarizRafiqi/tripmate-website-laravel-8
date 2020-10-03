@@ -234,7 +234,7 @@
 									<div class="input-group text-center">
                     <i class="tm tm-caret"></i>
                     <select class="form-control product-search-input" name="kelas" id="selectBoxKelasKabin">
-                      <option value="ekonomi">Ekonomi</option>
+                      <option value="Ekonomi">Ekonomi</option>
                       <option value="Premium Ekonomi">Premium Ekonomi</option>
                       <option value="Bisnis">Bisnis</option>
                       <option value="First">First</option>

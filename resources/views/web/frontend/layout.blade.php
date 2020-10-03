@@ -12,7 +12,7 @@
   <link href="{{ url('css/style.css') }}" rel="stylesheet" />
   <!-- Font Awesome -->
   <script src="https://kit.fontawesome.com/b769966f19.js" crossorigin="anonymous"></script>
-  
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
   <header>

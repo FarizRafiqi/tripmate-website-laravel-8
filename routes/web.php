@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\App;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,7 +13,6 @@ use Illuminate\Support\Facades\App;
 */
 
 Route::get("/", "PagesController@index");
-Route::get('/pesawat/search', 'PagesController@search');
 
 Route::view("/register", "web.frontend.auth.register");
 Route::view("/login", "web.frontend.auth.login");
@@ -23,6 +21,8 @@ Route::get('/kereta-api', 'KeretaApiController@index');
 Route::post('/kereta-api/search', 'KeretaApiController@show');
 
 Route::get('/pesawat', 'PesawatController@index');
+Route::get('/pesawat/search', 'PagesController@search');
+Route::post('/pesawat/search/ubah', 'PagesController@changeSearch');
 // Route::get('/cobalokalisasi', function(){
 //   $tanggal = Carbon\Carbon::now()->format('d, F Y');
 //   return $tanggal;

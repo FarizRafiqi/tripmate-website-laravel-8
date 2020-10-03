@@ -229,7 +229,8 @@ i.fa.fa-city {
     font-size: 14px;
 }
 
-#header-container .navbar-nav .nav-item .nav-link:hover {
+#header-container .navbar-nav .nav-item .nav-link:hover,
+#header-container .navbar-nav .nav-item .nav-link.active {
     background: linear-gradient(#ffffff, #ffffff);
     background-repeat: no-repeat;
 }
@@ -725,6 +726,7 @@ form .dropdown-toggle::after,
     transition: all 0.3s ease-out;
     transform: none;
 }
+
 /* .preview-flight .wrapper-change-search {
     position: absolute;
     top: 13.5%;
@@ -756,19 +758,26 @@ form .dropdown-toggle::after,
     padding: 20px 15px 22px;
 }
 
-.wrapper-form .form-group input[id*="inputBandara"] {
+.wrapper-form .box-flightform-airport .form-control {
     padding-left: 36px;
+    cursor: pointer;
 }
 
-.wrapper-form .form-group input[id*="inputTanggal"],
+.wrapper-form .box-flightform-passenger .form-control,
 .wrapper-form .form-group input[id*="inputStasiun"] {
-    padding-left: 30px;
+    padding-left: 26px;
+    cursor: pointer;
 }
 
 .wrapper-form .form-group .form-control:focus {
     border: none;
     outline: 0;
     box-shadow: none;
+}
+
+.wrapper-form .form-group .form-control[readonly] {
+    background-color: transparent;
+    cursor: pointer;
 }
 
 .wrapper-form .form-group label {
@@ -780,12 +789,18 @@ form .dropdown-toggle::after,
 .wrapper-form .form-group .fa.fa-plane-arrival,
 .wrapper-form .form-group .fa.fa-train {
     position: absolute;
-    top: 40px;
-    left: 8px;
+    top: 60px;
+}
+
+.wrapper-form .form-group .fa.fa-user-alt {
+    position: absolute;
+    top: 62px;
+    left: 15px;
+    font-size: 18px;
 }
 
 .wrapper-form .form-group .far.fa-calendar-alt {
-    top: 35px;
+    top: 36px;
     left: -9px;
 }
 
@@ -795,6 +810,15 @@ form .dropdown-toggle::after,
     left: -3px;
     font-size: 12px;
     color: #fd9e0a;
+}
+
+.wrapper-form .form-group .fa.fa-chevron-down {
+    position: absolute;
+    transition: all 0.2s linear;
+}
+
+.wrapper-form .form-group .fa.fa-chevron-down.active {
+    transform: rotate(180deg);
 }
 
 .wrapper-form .btn.btn-orange {
@@ -811,6 +835,83 @@ form .dropdown-toggle::after,
     color: #c6cbda;
 }
 
+.wrapper-form .dropdown-passenger-cabin .dropdown-menu {
+    font-size: 16px;
+    transition: all 0.3s ease-in 0s;
+    width: 477px;
+    user-select: none;
+    padding: 0;
+    box-shadow: 0 2px 8px 0 rgba(53, 64, 90, 0.2);
+    border: none;
+}
+
+.dropdown-passenger-cabin .close {
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    font-size: 2.25rem;
+    opacity: 1;
+    color: #8a93a7;
+    cursor: pointer;
+}
+
+.dropdown-passenger-cabin .passenger-cabin-title {
+    font-size: 16px;
+    color: #58627a;
+    border-bottom: 2px solid #dee2ee;
+}
+
+.dropdown-passenger-cabin .passenger-cabin-title .passenger-cabin-container {
+    padding: 16px;
+}
+
+.dropdown-passenger-cabin
+    .passenger-cabin-title
+    .passenger-cabin-container
+    + .passenger-cabin-container,
+.dropdown-passenger-cabin
+    .passenger-cabin-content-container
+    .passenger-cabin-content-list:nth-child(2) {
+    border-left: 2px solid #dee2ee;
+}
+
+.dropdown-passenger-cabin
+    .passenger-cabin-content-container
+    .passenger-cabin-content-list {
+    padding: 0px 16px;
+}
+
+.passenger-cabin-content-container
+    .passenger-cabin-content-list
+    .passenger-cabin-item-list {
+    height: 56px;
+    cursor: pointer;
+}
+
+.passenger-cabin-content-list
+    .passenger-cabin-item-list
+    input[type="number"]
+    + .input-group
+    .form-control {
+    pointer-events: none;
+}
+
+.passenger-cabin-content-list .passenger-cabin-item-list label,
+.passenger-cabin-content-list .cabin-class {
+    font-family: "OpenSans-SemiBold";
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+    text-decoration: none;
+    background-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
 /* Filter Pencarian */
 
 .col-filter .filter .filter-header .text-filter {
@@ -865,41 +966,41 @@ form .dropdown-toggle::after,
     transform: rotate(180deg);
 }
 
-#filterAccordion .card .card-body input[type="checkbox"].form-control {
+.filter input[type="checkbox"].form-control {
     width: 24px;
     height: 24px;
 }
 
-#filterAccordion .card .card-body {
+.filter-category .card .card-body {
     font-size: 16px;
     color: #8a93a7;
 }
 
-#filterAccordion .card .card-body .title {
+.filter-category .card .card-body .title {
     color: #35405a;
 }
 
-#filterAccordion .card .card-body .form-group .logo-airline-wrapped {
+.filter-category .form-group .logo-airline-wrapped {
     background: #fff;
     width: 53px;
     height: 30px;
     padding: 5px;
 }
 
-#filterAccordion .card .card-body .form-group .logo-airline-wrapped img {
+.card-body .form-group .logo-airline-wrapped img {
     vertical-align: baseline;
 }
 
-#filterAccordion .card .card-body .form-group .new-label .label-1 {
+.card-body .form-group .new-label .label-1 {
     color: #35405a;
 }
 
-#filterAccordion .card .card-body .text-duration .text-hour {
+.card-body .text-duration .text-hour {
     font-size: 14px;
     font-family: "OpenSans-SemiBold";
 }
 
-#filterAccordion .card .card-body .text-min-max {
+.card-body .text-min-max {
     font-size: 14px;
 }
 
@@ -953,11 +1054,12 @@ form .dropdown-toggle::after,
 .wrapper-result .wrapper-flight-list,
 .wrapper-result .wrapper-train-list {
     padding: 16px 24px;
-    margin-bottom: 8px;
     color: #35405a;
+    min-height: 170px;
 }
 
-.wrapper-result .wrapper-flight-list .maskapai-penerbangan {
+.wrapper-result .wrapper-flight-list .maskapai-penerbangan,
+.wrapper-result .left .flight-type {
     font-size: 14px;
 }
 
@@ -980,6 +1082,11 @@ form .dropdown-toggle::after,
     font-size: 14px;
 }
 
+.text-plus-day {
+    border-radius: 24px;
+    position: absolute;
+    right: -14px;
+}
 /* 
     .wrapper-result
     .wrapper-flight-list
@@ -1101,7 +1208,7 @@ form .dropdown-toggle::after,
     border-radius: 50%;
     background: #dee2ee;
     top: 6px;
-    left: -3px;
+    left: -2px;
 }
 
 .wrapper-collapse .row .text-time-fd {
@@ -1413,19 +1520,18 @@ footer {
 
 /* Extra Small Device (Potraits Phones, less than 576px) */
 @media (min-width: 0px) {
-    .modal-xl {
-        max-width: 100%;
-    }
-
     #changeSearchModal {
-        top: 88px;
+        top: 62%;
+        left: 50%;
+        transform: translate(-50%, -50%);
     }
     /* Header  */
     #header-container .container .navbar {
         height: 100%;
     }
 
-    #header-container .navbar-nav .nav-item .nav-link:hover {
+    #header-container .navbar-nav .nav-item .nav-link:hover,
+    #header-container .navbar-nav .nav-item .nav-link.active {
         background-position: 0% 100%;
         background-size: 7% 1px;
     }
@@ -1498,17 +1604,12 @@ footer {
         order: 2;
     }
 
+    /* .wrapper-form {
+        padding: 30px 200px;
+    } */
+
     .wrapper-form .btn.btn-orange {
         width: 60%;
-    }
-
-    .wrapper-form
-        .row
-        > div[class*="col"]
-        > .row
-        div[class*="col"]
-        .form-group {
-        border-bottom: 1px solid #dee2ee;
     }
 
     .preview-flight-content .content .border-left-ticket::before,
@@ -1518,11 +1619,35 @@ footer {
         content: "";
     }
 
+    .wrapper-form .form-group {
+        border-bottom: 1px solid #dee2ee;
+    }
+
+    .wrapper-form .form-group .fa.fa-plane-departure,
+    .wrapper-form .form-group .fa.fa-plane-arrival,
+    .wrapper-form .form-group .fa.fa-train {
+        top: 40px;
+    }
+
+    .wrapper-form .form-group .fa.fa-user-alt {
+        top: 40px;
+        left: 0;
+    }
+
+    .wrapper-form .form-group .fa.fa-chevron-down {
+        top: 40px;
+        right: 0;
+    }
+
+    .wrapper-form .dropdown-passenger-cabin .dropdown-menu {
+        left: -15px;
+    }
+
     .wrapper-result .wrapper-flight-list .btn-details {
         width: 100%;
     }
 
-    .wrapper-result .wrapper-flight-list > .row > [class*="col"]:first-child {
+    .wrapper-result .wrapper-flight-list > .row > .col-airline {
         position: absolute;
         top: 16px;
         left: 50px;
@@ -1535,13 +1660,6 @@ footer {
 
     .wrapper-flight-list .right .text-price {
         font-size: 18px;
-    }
-
-    #btn-detail-responsive {
-        position: absolute;
-        top: -220px;
-        right: 16px;
-        font-size: 20px;
     }
 
     .wrapper-result .nav-tabs .nav-link {
@@ -1619,7 +1737,7 @@ footer {
     }
 
     .wrapper-result .wrapper-collapse hr {
-        margin: -2px 0 0 0;
+        margin: -17px 0 0 0;
     }
 
     .tripmate-partners #partner-flight .partner-product-list img {
@@ -1674,6 +1792,10 @@ footer {
         left: 0.5px;
     }
 
+    .wrapper-result .wrapper-collapse hr {
+        margin: 14px 0 0 0;
+    }
+
     /* TripMate Advantages Section */
     .tripmate-advantages .container .row p {
         margin-bottom: 40px;
@@ -1688,10 +1810,6 @@ footer {
 
 /* Medium Device (tablets, 768px and up) */
 @media (min-width: 768px) {
-    .modal-xl {
-        width: 100%;
-        max-width: 992px;
-    }
     /* Header */
     #header-container .container .navbar {
         height: 100%;
@@ -1708,7 +1826,7 @@ footer {
     }
 
     .home-page .reverse-button-container span {
-        top: 36%;
+        top: 38px;
         right: 0;
         transform: rotate(0deg);
     }
@@ -1746,16 +1864,6 @@ footer {
         font-size: 14px;
     }
 
-    .wrapper-form
-        .row
-        > div[class*="col"]
-        > .row
-        div[class*="col"]
-        .form-group {
-        border-bottom: none;
-        border-right: 1px solid #dee2ee;
-    }
-
     .wrapper-form .btn.btn-orange {
         width: 109px;
     }
@@ -1771,7 +1879,7 @@ footer {
     }
 
     .wrapper-result .wrapper-collapse hr {
-        margin: 8px 0 0 0;
+        margin: 15px 0 0 0;
     }
 
     /* .wrapper-result .wrapper-flight-list .left .flight-icon {
@@ -1839,6 +1947,12 @@ footer {
 
 /*Large devices (desktops, 992px and up)*/
 @media (min-width: 992px) {
+    #changeSearchModal {
+        top: 88px;
+        left: 0;
+        transform: none;
+    }
+
     .modal-xl {
         width: 100%;
         max-width: 1180px;
@@ -1853,7 +1967,8 @@ footer {
         height: 100%;
     }
 
-    #header-container .navbar-nav .nav-item .nav-link:hover {
+    #header-container .navbar-nav .nav-item .nav-link:hover,
+    #header-container .navbar-nav .nav-item .nav-link.active {
         background-position: 22% 100%;
         background-size: 50% 1px;
     }
@@ -1877,6 +1992,15 @@ footer {
         padding: 0;
         transform: rotate(0deg);
     } */
+
+    .preview-flight .box-flightform-airport {
+        padding: 20px 0 22px 15px;
+    }
+
+    .preview-flight .box-flightform-passenger {
+        width: 220px;
+        padding: 20px 0 22px 15px;
+    }
 
     .wrapper-result .wrapper-flight-list .btn-details {
         margin-left: 17.5%;
@@ -1905,13 +2029,47 @@ footer {
     }
 
     .wrapper-result .wrapper-collapse hr {
-        margin: 5px 0 0 0;
+        margin: 17px 0 0 0;
     }
 
     .wrapper-result .btn-details a.active {
         padding-bottom: 25px;
     }
 
+    .wrapper-form .form-group .fa.fa-plane-departure,
+    .wrapper-form .form-group .fa.fa-plane-arrival,
+    .wrapper-form .form-group .fa.fa-train {
+        top: 60px;
+        left: 16px;
+    }
+
+    .wrapper-form .form-group .fa.fa-user-alt {
+        top: 62px;
+        left: 12px;
+    }
+
+    .wrapper-form .form-group .fa.fa-chevron-down {
+        top: 62px;
+        right: 12px;
+    }
+
+    .wrapper-form .form-group {
+        border-bottom: none;
+    }
+
+    .wrapper-form .box-flightform-airport {
+        border-right: 1px solid #dee2ee;
+    }
+
+    ._separator {
+        position: absolute;
+        top: 58%;
+        border-top: 1px solid #dee2ee;
+    }
+
+    .wrapper-form .dropdown-passenger-cabin .dropdown-menu {
+        left: -256px;
+    }
     /* Footer */
     footer.footer-group .footer-content .container .row .contact-us {
         display: inline-block;
@@ -1941,5 +2099,26 @@ footer {
 
     .modal-xl {
         max-width: 104%;
+    }
+
+    .preview-flight .box-flightform-airport {
+        width: 210px;
+        padding: 20px 0 22px 23px;
+    }
+
+    .preview-flight .box-flightform-passenger {
+        width: 263.3333333px;
+        padding: 20px 0 22px 15px;
+    }
+
+    .wrapper-form .form-group .fa.fa-plane-departure,
+    .wrapper-form .form-group .fa.fa-plane-arrival,
+    .wrapper-form .form-group .fa.fa-train {
+        top: 60px;
+        left: 23px;
+    }
+
+    .wrapper-form .form-group .fa.fa-chevron-down {
+        right: 16px;
     }
 }

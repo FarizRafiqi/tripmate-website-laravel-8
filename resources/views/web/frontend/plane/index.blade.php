@@ -48,7 +48,7 @@
 			<div class="container">
 				<!-- Flight Form -->
 				<div class="card flight-form p-4" id="flightForm">
-					<form action="pesawat/search" method="POST">
+					<form action="/pesawat/search">
 						<div class="row">
 							<div class="col-lg-6 col-md-12 col-sm-12">
 								<div class="row">
@@ -58,7 +58,7 @@
 										<label for="input-bandara-asal">Dari</label>
 										<div class="input-group product-search-input-container">
 											<img src="{{ url('img/icons/ic_pesawat_takeoff.png') }}" class="tm tm-pesawat-takeoff">
-											<input type="text" class="form-control product-search-input" name="departure" id="input-bandara-asal" placeholder="Mau ke mana?" autocomplete="off">
+											<input type="text" class="form-control product-search-input" name="bandara_asal" id="input-bandara-asal" placeholder="Mau ke mana?" autocomplete="off">
 										</div>
 										<div class="dropdown boxairport" id="boxAirport">
 											<div class="dropdown-menu shadow">
@@ -78,7 +78,7 @@
 										<label for="input-bandara-tujuan">Ke</label>
 										<div class="input-group product-search-input-container">
 											<img src="{{ url('img/icons/ic_pesawat_landing.png') }}" class="tm tm-pesawat-landing">
-											<input type="text" class="form-control product-search-input" name="arrival" id="input-bandara-tujuan" placeholder="Mau ke mana?" autocomplete="off">
+											<input type="text" class="form-control product-search-input" name="bandara_tujuan" id="input-bandara-tujuan" placeholder="Mau ke mana?" autocomplete="off">
 										</div>
 
 										<div class="dropdown boxairport" id="boxAirport2">
@@ -99,7 +99,7 @@
 										<label for="#input-tanggal-berangkat">Tanggal Berangkat</label>
 										<div class="input-group product-search-input-container date">
 												<img src="{{ url('img/icons/ic_kalender.png') }}" class="tm tm-kalender">
-												<input type="text" class="form-control product-search-input" name="dDate" id="input-tanggal-berangkat" value="<?= strftime("%a, %d %b %Y"); ?>" autocomplete="off">
+												<input type="text" class="form-control product-search-input" name="tanggal_berangkat" id="input-tanggal-berangkat" value="<?= strftime("%a, %d %b %Y"); ?>" autocomplete="off">
 										</div>
 										<div id="datepicker"></div>
 									</div>
@@ -111,7 +111,7 @@
 											</div>
 											<div class="input-group product-search-input-container date" id="inputTanggalPulangContainer">
 													<img src="{{ url('img/icons/ic_kalender.png') }}" class="tm tm-kalender">
-													<input type="text" class="form-control product-search-input" name="aDate" id="input-tanggal-pulang">
+													<input type="text" class="form-control product-search-input" name="tanggal_pulang" id="input-tanggal-pulang">
 											</div>
 									</div>
                   <!-- End Flight Date Inputs -->
@@ -132,7 +132,7 @@
 															<label for="adultPassenger">Dewasa</label>
 														</div>
 														<div class="col-7">
-															<input type="number" name="adult" min="1" max="7" id="adultPassenger" value="1">
+															<input type="number" name="dewasa" min="1" max="7" id="adultPassenger" value="1">
 														</div>
 													</div>
 												</div>
@@ -143,7 +143,7 @@
 															<label for="childPassenger">Anak</label>
 														</div>
 														<div class="col-7">
-															<input type="number" name="child" id="childPassenger" min="0"
+															<input type="number" name="anak" id="childPassenger" min="0"
 															max="6" value="0">
 														</div>
 													</div>
@@ -155,7 +155,7 @@
 																<label for="infantPassenger">Bayi</label>
 														</div>
 														<div class="col-7">
-																<input type="number" name="infant" id="infantPassenger" min="0" max="4" value="0">
+																<input type="number" name="bayi" id="infantPassenger" min="0" max="4" value="0">
 														</div>
 													</div>
 												</div>
@@ -169,7 +169,7 @@
 										<label for="selectBoxKelasKabin">Kelas Kabin</label>
 										<div class="input-group">
 											<i class="tm tm-caret"></i>
-											<select class="form-control product-search-input" name="class" id="selectBoxKelasKabin">
+											<select class="form-control product-search-input" name="kelas" id="selectBoxKelasKabin">
 													<option>Ekonomi</option>
 											</select>
 										</div>

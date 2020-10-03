@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use \Illuminate\Support\Carbon;
 use App\Models\Airport;
 use App\Models\Flight;
+use App\Models\Plane;
+use DateTime;
+use Illuminate\Support\Facades\Validator;
 
 class PagesController extends Controller
 {
@@ -87,17 +90,17 @@ class PagesController extends Controller
     }
 
     public function search(Request $request) {
-				// Ambil nama bandara dan kode dari inputan
+        // Ambil nama bandara dan kode dari inputan
         $bandaraasal = rtrim(preg_replace("/\([^)]+\)/","",$request->bandara_asal), " ");
-				$bandaratujuan = rtrim(preg_replace("/\([^)]+\)/","",$request->bandara_tujuan), " ");
-				
-				preg_match('#\((.*?)\)#', $request->bandara_asal, $kode_bandara_asal);
-				preg_match('#\((.*?)\)#', $request->bandara_tujuan, $kode_bandara_tujuan);
-				
-				if(!empty($kode_bandara_asal) && !empty($kode_bandara_tujuan)){
-					$kode_bandara_asal = $kode_bandara_asal[1];
-					$kode_bandara_tujuan = $kode_bandara_tujuan[1];
-				}
+        $bandaratujuan = rtrim(preg_replace("/\([^)]+\)/","",$request->bandara_tujuan), " ");
+        
+        preg_match('#\((.*?)\)#', $request->bandara_asal, $kode_bandara_asal);
+        preg_match('#\((.*?)\)#', $request->bandara_tujuan, $kode_bandara_tujuan);
+        
+        if(!empty($kode_bandara_asal) && !empty($kode_bandara_tujuan)){
+            $kode_bandara_asal = $kode_bandara_asal[1];
+            $kode_bandara_tujuan = $kode_bandara_tujuan[1];
+        }
 
         // validasi input halaman homepage
         $request->validate([
@@ -117,25 +120,38 @@ class PagesController extends Controller
                 'tanggal_berangkat.required' => ':attribute tidak boleh kosong',
                 'tanggal_berangkat.date' => ':attribute tidak valid'
             ]
-				);
+			);
 
-				// jumlahkan semua penumpang yang dipesan, lalu kirim ke view search
-				$totalpenumpang = $request->dewasa + $request->anak + $request->bayi; 
+        // jumlahkan semua penumpang yang dipesan, lalu kirim ke view search
+        $totalpenumpang = $request->dewasa + $request->anak + $request->bayi; 
 
-				// $data akan menampung data hasil inner join antara tabel flights dan airports berdasarkan request user
-        $result = Flight::select('flights.*', 'ba.kode_iata AS kode_bandara_asal', 'ba.nama AS bandara_asal', 'bt.kode_iata AS kode_bandara_tujuan', 'bt.nama AS bandara_tujuan')
-											->join('airports AS ba', 'flights.id_bandara_asal', '=', 'ba.id')
-											->join('airports AS bt', 'flights.id_bandara_tujuan', '=', 'bt.id')
-											->where('ba.nama', 'like', '%'.$bandaraasal.'%')
-											->where('bt.nama', 'like', '%'.$bandaratujuan.'%')
-											->whereDate('flights.waktu_berangkat', Carbon::create($request->tanggal_berangkat))
-											->get();
+        // $penerbangan akan menampung data hasil inner join antara tabel flights dan airports berdasarkan request user
+        $penerbangan = Flight::select('flights.*', 'ba.kode_iata AS kode_bandara_asal', 'ba.nama AS bandara_asal', 'bt.kode_iata AS kode_bandara_tujuan', 'bt.nama AS bandara_tujuan')
+        ->join('airports AS ba', 'flights.id_bandara_asal', '=', 'ba.id')
+        ->join('airports AS bt', 'flights.id_bandara_tujuan', '=', 'bt.id')
+        ->where('ba.nama', 'like', '%'.$bandaraasal.'%')
+        ->where('bt.nama', 'like', '%'.$bandaratujuan.'%')
+        ->whereDate('flights.waktu_berangkat', Carbon::create($request->tanggal_berangkat))
+        ->get();
 
-				// ubah format tanggal supaya menyesuaikan dengan di tabel flights
-				$wb = Carbon::create($result[0]->waktu_berangkat);
-				$wt = Carbon::create($result[0]->waktu_tiba);
-				$durasipenerbangan = $wt->diffAsCarbonInterval($wb);
-				
-				return view("web.frontend.plane.search", compact('result', 'request', 'totalpenumpang', 'kode_bandara_asal', 'kode_bandara_tujuan', 'durasipenerbangan'));
+        $wb = $wb = $durasipenerbangan = $pesawatpenerbangan = [];
+        if(!empty($penerbangan)){
+            foreach($penerbangan as $key=>$value){
+                /* ambil waktu penerbangannya kemudian hitung selisihnya, 
+                   sehingga akan mendapatkan durasi penerbangannya */
+                $wb[] = new DateTime($value->waktu_berangkat);
+                $wt[] = new DateTime($value->waktu_tiba);
+                $durasipenerbangan[] = $wb[$key]->diff($wt[$key]);
+
+                // dapatkan detail pesawat penerbangan tertentu
+                $pesawatpenerbangan[] = Plane::join('airlines', 'planes.id_maskapai', '=', 'airlines.id')->where('planes.id', $value->id_pesawat)->get();
+            }
+        }
+
+        return view("web.frontend.plane.search", compact('penerbangan', 'request', 'totalpenumpang', 'kode_bandara_asal', 'kode_bandara_tujuan', 'durasipenerbangan', 'pesawatpenerbangan'));
+    }
+
+    public function changeSearch(Request $request) {
+        return response()->json($request->all());
     }
 }

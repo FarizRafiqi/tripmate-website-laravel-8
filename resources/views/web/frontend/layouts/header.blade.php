@@ -9,12 +9,12 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav product-list header-left">
           <li class="nav-item">
-            <a class="nav-link text-light" href="{{ url('/pesawat') }}">
+            <a class="nav-link text-light {{ active(['pesawat/*', 'pesawat*']) }}" href="{{ url('/pesawat') }}">
               Pesawat <span class="sr-only">(current)</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-light" href="{{ url('/kereta-api') }}">Kereta Api</a>
+            <a class="nav-link text-light {{ active(['kereta-api*', 'kereta-api/*']) }}" href="{{ url('/kereta-api') }}">Kereta Api</a>
           </li>
           <li class="nav-item">
             <a class="nav-link text-light" href="#">Bantuan</a>

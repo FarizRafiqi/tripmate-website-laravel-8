@@ -14,6 +14,7 @@ $(".overlay").on("click", function () {
 //Input Tanggal Penerbangan
 const returnCheckbox = $("#returnCheckbox");
 // const inputTanggalPulang = $("#inputTanggalPulangContainer");
+
 // inputTanggalPulang.addClass("d-none");
 $("#input-tanggal-pulang").attr("disabled", true);
 
@@ -320,16 +321,6 @@ $("#switch-btn").on("click", function () {
 $("#selectBoxKelasKabin").on("click", function () {
     $(".tm.tm-caret").toggleClass("active");
 });
-
-// $(document).click(function (event) {
-//     let $target = $(event.target);
-//     if (
-//         !$target.closest(".passenger-dropdown-container").length &&
-//         $(".passenger-dropdown-container").is(":visible")
-//     ) {
-//         $(".passenger-dropdown-container").removeClass("active");
-//     }
-// });
 
 // Select Box Passenger
 
@@ -721,16 +712,26 @@ $("#input-tanggal-pulang").datepicker({
     daysOfWeekHighlighted: [0],
 });
 
+// Set/atur tanggal berangkat dan pulang secara default
 $("#input-tanggal-berangkat").datepicker(
     "setDate",
-    moment().locale("id").format("ddd, D MMM YYYY")
+    moment().format("ddd, D MMM YYYY")
 );
 $("#input-tanggal-pulang").datepicker(
     "setDate",
-    moment().locale("id").add(1, "d").format("ddd, D MMM YYYY")
+    moment().add(1, "d").format("ddd, D MMM YYYY")
 );
 
-// Untuk halaman pencarian
+/**
+ * Halaman Pencarian
+ */
+
+// untuk membatasi jumlah karakter pada teks airport sehingga tidak terlalu panjang
+$(".preview-flight .right-side .list .text-airport").each(function (i, e) {
+    $(e).text($(e).text().trim().substr(0, 8) + "...");
+});
+
+// inisialisasi datepicker
 $("#inputTanggalBerangkat").datepicker({
     startDate: new Date(),
     orientation: "bottom auto",
@@ -741,7 +742,6 @@ $("#inputTanggalBerangkat").datepicker({
         leftArrow: "<i class='fa fa-chevron-left'></i>",
         rightArrow: "<i class='fa fa-chevron-right'></i>",
     },
-    language: "id",
     autoclose: true,
     title: "Pilih tanggal berangkat",
     daysOfWeekHighlighted: [0],
@@ -757,32 +757,33 @@ $("#inputTanggalPulang").datepicker({
         leftArrow: "<i class='fa fa-chevron-left'></i>",
         rightArrow: "<i class='fa fa-chevron-right'></i>",
     },
-    language: "id",
     autoclose: true,
     title: "Pilih tanggal pulang",
     daysOfWeekHighlighted: [0],
 });
 
-// Cek apakah checkbox di ceklis
+// Disabled input tanggal pulang
+if (!$("#inputTanggalPulang").val()) {
+    $("#inputTanggalPulang").prop("disabled", true);
+    $(".returndate-icon").css("opacity", 0.5);
+}
+
 $("#checkboxTanggalPulang").on("click", function () {
     // jika checkbox tidak di ceklis maka nonaktifkan inputnya
     if (!$(this).is(":checked")) {
         $("#inputTanggalPulang").prop("disabled", true);
+        $(".returndate-icon").css("opacity", 0.5);
         // jika di ceklis maka aktifkan kembali inputnya
     } else {
         $("#inputTanggalPulang").prop("disabled", false);
+        $(".returndate-icon").css("opacity", 1);
     }
-});
-
-// Halaman Pencarian
-// untuk membatasi jumlah karakter pada teks airport sehingga tidak terlalu panjang
-$(".preview-flight .right-side .list .text-airport").each(function (i, e) {
-    $(e).text($(e).text().trim().substr(0, 8) + "...");
 });
 
 // Untuk mengaktifkan tooltip pada list fasilitas penerbangan
 $("[data-toggle='tooltip']").tooltip();
 
+// Untuk merotasikan icon chevron down ketika accordion filter dibuka/klik
 $(".wrapper-search-result .collapse-label a[data-toggle='collapse']").on(
     "click",
     function (e) {
@@ -790,30 +791,93 @@ $(".wrapper-search-result .collapse-label a[data-toggle='collapse']").on(
     }
 );
 
+/**
+ *  Untuk mengaktifkan kelas aktif pada tombol detail penerbangan
+ *  dan harga, sehingga muncul border bottom
+ */
 $(".btn-details a").on("click", function () {
     $(this).siblings().removeClass("active");
-
     $(this).toggleClass("active");
 });
 
-$("#changeSearchModal").on("show.bs.modal", function () {
-    $(".modal-body").css("padding", "0px");
-    $(".modal-body").css("margin", "0px");
+$("#changeSearchModal").on("show.bs.modal", () => {});
+
+/**
+ * Tutup dropdown penumpang & kelas kabin apabila
+ * diklik diluar dari dropdown tersebut
+ */
+$(document).on("click", (e) => {
+    let $trigger = $(".dropdown-passenger-cabin");
+    if ($trigger !== e.target && !$trigger.has(e.target).length) {
+        $(".dropdown-passenger-cabin .dropdown-menu").removeClass("show");
+        $(".fa.fa-chevron-down").removeClass("active");
+    }
 });
 
-$(".nav-tabs .nav-item .nav-link").each(function (i, e) {
-    $(e).on("click", function () {
-        if ($(e).parent().siblings().children().hasClass("active")) {
-            $(e).parent().siblings().children().removeClass("active");
-        }
-        $(e).toggleClass("active");
-        if (!$(e).hasClass("active")) {
-            $(".nav-tabs").css({ borderBottom: "none" });
-        } else {
-            $(".nav-tabs").css({ borderBottom: "1px solid #dee2ee" });
-        }
-    });
+/**
+ * Saat input penumpang dan kelas kabin diklik,
+ * munculkan dropdown dan tambahkan kelas aktif pada icon chevron
+ */
+$("#inputPassengerCabin").on("click", (e) => {
+    e.stopPropagation();
+    $(".dropdown-passenger-cabin .dropdown-menu").toggleClass("show");
+    $(".fa.fa-chevron-down").addClass("active");
 });
+
+$(".dropdown-passenger-cabin .close").on("click", () => {
+    $(".dropdown-passenger-cabin .dropdown-menu").removeClass("show");
+    $(".fa.fa-chevron-down").removeClass("active");
+});
+
+// Select Box Kelas Kabin
+function hitungTotalPenumpang() {
+    let adult = parseInt($("#adultPassenger").val());
+    let child = parseInt($("#childPassenger").val());
+    let infant = parseInt($("#infantPassenger").val());
+    total = adult + child + infant;
+    return total;
+}
+
+$(".passenger-cabin-item-list.cabin-class").on("click", function (e) {
+    e.stopPropagation();
+
+    let total = hitungTotalPenumpang();
+    // hilangkan semua ceklis yang terpilih, lalu beri ceklis pada element yang diklik
+    $(".cabin-class").removeClass("selected");
+    $(".cabin-selected").remove();
+    $(this).append(
+        $(`<span class="cabin-selected"><i class="fa fa-check"></i></span>`)
+    );
+    $(this).addClass("selected");
+    $("#inputPassengerCabin").val(
+        total + " Penumpang," + $.trim($(this).text())
+    );
+});
+
+$("input[type='number']").on("change", function () {
+    let total = hitungTotalPenumpang();
+
+    $("#inputPassengerCabin").val(
+        total + " Penumpang," + $.trim($(".cabin-class.selected").text())
+    );
+});
+
+/**
+ * Cek apakah list kelas kabin memiliki selected class,
+ * jika iya maka centang/ceklis kelas tersebut
+ */
+if ($(".cabin-class").hasClass("selected")) {
+    $(".cabin-class.selected").append(
+        $(`<span class="cabin-selected"><i class="fa fa-check"></i></span>`)
+    );
+}
+
+// $(window).on("load", () => {
+//     $("body")
+//         .prepend(`<div class="spinner-border text-primary position-absolute" style="top: 50%; left: 50%; z-index: 1100;">
+//     <span class="sr-only">Loading...</span>
+//   </div>`);
+// });
 
 // Untuk menutup Navigasi Tab Detail Penerbangan secara otomatis ketika sudah tidak dipakai
 // function closeTabDetail() {
