@@ -4,6 +4,7 @@
 @section('title', 'tripmate - Teman Liburanmu')
 
 @push('stylesheets')
+	<link rel="stylesheet" href="{{ url('plugin/select2/dist/css/select2.css') }}">
   <link rel="stylesheet" href="{{ url('plugin/bootstrap-datepicker-master/dist/css/bootstrap-datepicker.css') }}">
 @endpush
 
@@ -83,7 +84,7 @@
 								<!-- Airport Inputs -->
 								<div class="col-lg-6 col-md-6 col-sm-12 col-12 mb-3 form-group mt-2" id="containerInputBandara1">
                   <label for="input-bandara-asal">Dari</label>
-                  <div class="input-group product-search-input-container">
+                  <!-- <div class="input-group product-search-input-container">
                       <img src="{{ url('img/icons/ic_pesawat_takeoff.png') }}" class="tm tm-pesawat-takeoff">
 											<input type="text" name="bandara_asal" class="form-control product-search-input @error('bandara_asal') is-invalid @enderror" id="input-bandara-asal" autocomplete="off" placeholder="Mau ke mana?" value="{{old('bandara_asal')}}">
 											@error('bandara_asal')
@@ -91,8 +92,8 @@
 												{{ $message }}
 											</div>
 											@enderror
-                  </div>
-                  <div class="dropdown boxairport" id="boxAirport">
+									</div> -->
+                  <!-- <div class="dropdown boxairport" id="boxAirport">
                     <div class="dropdown-menu shadow">
                       <div class="dropdown-header">
                         Pilih kota atau bandara
@@ -109,7 +110,22 @@
 												</div>
 											@endforeach
                     </div>
-                  </div>
+									</div> -->
+									<input type="hidden" name="nama_bandara_asal" value="">
+									<div class="input-group product-search-input-container">
+										<img src="{{ url('img/icons/ic_pesawat_takeoff.png') }}" class="tm tm-pesawat-takeoff">
+										<select name="bandara_asal" id="selectBoxBandaraAsal" class="form-control product-search-input @error('bandara_asal') is-invalid @enderror" data-placeholder="Mau ke mana?">
+											<option value=""></option>
+											@foreach($bandara as $b)
+												<option value="{{$b->kode_iata}}">{{$b->nama}}</option>
+											@endforeach
+										</select>
+										@error('bandara_asal')
+											<div class="invalid-feedback">
+												{{ $message }}
+											</div>
+										@enderror
+									</div>
                 </div>
                 
 								<div class="reverse-button-container position-relative">
@@ -118,16 +134,16 @@
                 
 								<div class="col-lg-6 col-md-6 col-sm-12 col-12 mb-3 mt-2 form-group" id="containerInputBandara2">
                   <label for="input-bandara-tujuan">Ke</label>
-                  <div class="input-group product-search-input-container">
+                  <!-- <div class="input-group product-search-input-container">
                     <img src="{{ url('img/icons/ic_pesawat_landing.png') }}" class="tm tm-pesawat-landing">
-										<input type="text" name="bandara_tujuan" class="form-control product-search-input @error('bandara_tujuan') is-invalid @enderror" id="input-bandara-tujuan" autocomplete="off" placeholder="Mau ke mana?" value="{{old('bandara_asal')}}">
+										<input type="text" name="bandara_tujuan" class="form-control product-search-input @error('bandara_tujuan') is-invalid @enderror" id="input-bandara-tujuan" autocomplete="off" placeholder="Mau ke mana?" value="{{old('bandara_tujuan')}}">
 										@error('bandara_tujuan')
 											<div class="invalid-feedback">
 												{{ $message }}
 											</div>
 										@enderror
-                  </div>
-                  <div class="dropdown boxairport" id="boxAirport2">
+                  </div> -->
+                  <!-- <div class="dropdown boxairport" id="boxAirport2">
                     <div class="dropdown-menu shadow">
                       <div class="dropdown-header">
                         Pilih kota atau bandara
@@ -144,7 +160,22 @@
 												</div>
 											@endforeach
                     </div>
-                  </div>
+									</div> -->
+									<input type="hidden" name="nama_bandara_tujuan" value="">
+									<div class="input-group product-search-input-container">
+										<img src="{{ url('img/icons/ic_pesawat_landing.png') }}" class="tm tm-pesawat-takeoff">
+										<select name="bandara_tujuan" id="selectBoxBandaraTujuan" class="form-control product-search-input @error('bandara_tujuan') is-invalid @enderror" data-placeholder="Mau ke mana?">
+											<option value=""></option>
+											@foreach($bandara as $b)
+												<option value="{{$b->kode_iata}}">{{$b->nama}}</option>
+											@endforeach
+										</select>
+										@error('bandara_tujuan')
+											<div class="invalid-feedback">
+												{{ $message }}
+											</div>
+										@enderror
+									</div>
 								</div>
 								<!-- End of Airport Inputs -->
 
@@ -418,6 +449,7 @@
   <script src="{{ url('plugin/moment-js/moment-js.js') }}"></script>
   <script src="{{ url('plugin/bootstrap-datepicker-master/dist/js/bootstrap-datepicker.min.js') }}"></script>
 	<script src="{{ url('plugin/bootstrap-datepicker-master/dist/locales/bootstrap-datepicker.id.min.js') }}"></script>
+	<script src="{{ url('plugin/select2/dist/js/select2.min.js') }}"></script>
 	<script>
 		// Plugin Input Spinner
 		let config = {
@@ -426,5 +458,36 @@
 		};
 
 		$("input[type='number']").inputSpinner(config);
+
+		function formatBandara (bandara) {
+			if (!bandara.id) {
+				return bandara.text;
+			}
+			let $bandara = $(
+				`<i class="fa fa-city mr-2"></i><span>${bandara.text} </span><span class="dropdown-option-code ml-auto text-center">${bandara.id}</span>`
+			);
+			return $bandara;
+		};
+
+		$("#selectBoxBandaraAsal").select2({
+			dropdownParent: $("#containerInputBandara1"),
+			templateResult: formatBandara
+		});
+
+		$("#selectBoxBandaraTujuan").select2({
+			dropdownParent: $("#containerInputBandara2"),
+			templateResult: formatBandara
+		});
+
+		$('#selectBoxBandaraAsal').on('select2:select', function (e) {
+			let data = e.params.data;
+			$("input[name='nama_bandara_asal']").val(data.text);
+			$("#select2-selectBoxBandaraAsal-container").append(' ('+data.id+')');
+		});
+		$('#selectBoxBandaraTujuan').on('select2:select', function (e) {
+			let data = e.params.data;
+			$("input[name='nama_bandara_tujuan']").val(data.text);
+			$("#select2-selectBoxBandaraTujuan-container").append(' ('+data.id+')');
+		});
 	</script>
 @endpush

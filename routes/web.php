@@ -21,14 +21,26 @@ Route::get('/kereta-api', 'KeretaApiController@index');
 Route::post('/kereta-api/search', 'KeretaApiController@show');
 
 Route::get('/pesawat', 'PesawatController@index');
-Route::get('/pesawat/search', 'PagesController@search');
-Route::post('/pesawat/search/ubah', 'PagesController@changeSearch');
-// Route::get('/cobalokalisasi', function(){
-//   $tanggal = Carbon\Carbon::now()->format('d, F Y');
-//   return $tanggal;
-// });
-// Route::prefix('admin')
-//       ->namespace('Admin')
-//       ->group(function(){
-//           Route::get('/', "DashboardController@index")
-// });
+Route::get('/pesawat/search/', 'PagesController@search')->name("cari_penerbangan");
+Route::get('/pesawat/search/ubah', 'PagesController@changeSearch');
+
+Route::post('/checkout/{id}', 'CheckoutController@process')
+      ->name('checkout_process')
+      ->middleware(['auth', 'verified']);
+
+Route::get('/checkout/{id}', 'CheckoutController@index')
+      ->name('checkout')
+      ->middleware(['auth', 'verified']);
+Route::get('/checkout/confirm/{id}', "CheckoutController@success")
+      ->name("checkout_success")
+      ->middleware(["auth", "verified"]);
+      
+Route::prefix('admin')
+      ->namespace('Admin')
+      ->group(function(){
+          Route::get('/', "DashboardController@index");
+      });
+
+Route::get("/coba", function(){
+  return view("web.frontend.transaction.checkout");
+});

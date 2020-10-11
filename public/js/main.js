@@ -47,211 +47,15 @@ $("#roundtrip").on("click", function (e) {
 });
 
 // INPUT BANDARA ASAL
-const inputBandaraAsal = $("#input-bandara-asal");
-const inputBandaraTujuan = $("#input-bandara-tujuan");
+const selectBoxBandaraAsal = $("#selectBoxBandaraAsal");
+const selectBoxBandaraTujuan = $("#selectBoxBandaraTujuan");
 const dropdownMenu1 = $("#boxAirport .dropdown-menu");
 const dropdownMenu2 = $("#boxAirport2 .dropdown-menu");
 // const dropdownItem1 = $("#boxAirport .dropdown-menu > .dropdown-item");
 // const dropdownItem2 = $("#boxAirport2 .dropdown-menu > .dropdown-item");
 
-// Untuk menampilkan semua list bandara asal
-inputBandaraAsal.on("click", function (e) {
-    if (dropdownMenu2.hasClass("show")) {
-        dropdownMenu2.removeClass("show");
-    }
-
-    dropdownMenu1.addClass("show");
-    $(".home-page-widget-overlay").addClass("show");
-    $("#boxAirport .dropdown-item").on("click", function (e) {
-        const namabandara = $(this).find(".airport-city-name").text();
-        const kodebandara = $(this).find(".dropdown-option-code").text();
-        inputBandaraAsal.attr("value", kodebandara);
-        inputBandaraAsal.val(namabandara + " (" + kodebandara + ")");
-        // inputBandaraTujuan.trigger("click");
-        dropdownMenu1.removeClass("show");
-    });
-    // $(".boxairport .dropdown-menu > .dropdown-item").remove();
-    // $.ajax({
-    //     url: "js/bandara.json",
-    //     method: "get",
-    //     dataType: "json",
-    //     success: function (data) {
-    //         let bandara = data.bandara;
-    //         $.each(bandara, function (key, val) {
-    //             dropdownMenu1.append(
-    //                 `
-    //                 <div class="dropdown-item d-flex">
-    //                     <div class="dropdown-option-logo mr-3"><i class="fa fa-city"></i></div>
-    //                     <div class="dropdown-option-content">
-    //                         <div class="airport-city-location">${val.lokasi}</div>
-    //                         <div class="airport-city-name">${val.nama}</div>
-    //                     </div>
-    //                     <div class="dropdown-option-code ml-auto text-center">${val.kode}</div>
-    //                 </div>`
-    //             );
-    //         });
-
-    //         $(".boxairport .dropdown-item").on("click", function (e) {
-    //             const namabandara = $(this).find(".airport-city-name").text();
-    //             const kodebandara = $(this)
-    //                 .find(".dropdown-option-code")
-    //                 .text();
-    //             inputBandaraAsal.attr("value", kodebandara);
-    //             inputBandaraAsal.val(namabandara + " (" + kodebandara + ")");
-    //             inputBandaraTujuan.trigger("click");
-    //         });
-    //     },
-    // });
-});
-
-// live Search Bandara Asal
-// inputBandaraAsal.on("input", function (e) {
-//     $(".boxairport .dropdown-menu > .dropdown-item").remove();
-//     let value = inputBandaraAsal.val().trim();
-//     let expression = new RegExp(value, "i");
-
-//     $.ajax({
-//         url: "js/bandara.json",
-//         method: "get",
-//         dataType: "json",
-//         success: function (data) {
-//             let bandara = data.bandara;
-//             $.each(bandara, function (key, val) {
-//                 if (
-//                     val.nama.search(expression) != -1 ||
-//                     val.lokasi.search(expression) != -1
-//                 ) {
-//                     dropdownMenu1.append(
-//                         `
-//                         <div class="dropdown-item d-flex">
-//                             <div class="dropdown-option-logo mr-3"><i class="fa fa-city"></i></div>
-//                             <div class="dropdown-option-content">
-//                                 <div class="airport-city-location">${val.lokasi}</div>
-//                                 <div class="airport-city-name">${val.nama}</div>
-//                             </div>
-//                             <div class="dropdown-option-code ml-auto text-center">${val.kode}</div>
-//                         </div>`
-//                     );
-//                 }
-//             });
-
-//             $(".boxairport .dropdown-item").on("click", function (e) {
-//                 const namabandara = $(this).find(".airport-city-name").text();
-//                 const kodebandara = $(this)
-//                     .find(".dropdown-option-code")
-//                     .text();
-//                 inputBandaraAsal.attr("value", kodebandara);
-//                 inputBandaraAsal.val(namabandara + " (" + kodebandara + ")");
-//                 dropdownMenu1.removeClass("display");
-//                 dropdownMenu2.addClass("display");
-
-//                 inputBandaraTujuan.on("click", function () {
-//                     dropdownMenu2.addClass("display");
-//                 });
-//                 inputBandaraTujuan.trigger("click");
-//             });
-//         },
-//     });
-// });
-
-// INPUT BANDARA TUJUAN
-
-// Untuk menampilkan semua list bandara Tujuan
-inputBandaraTujuan.on("click", function (e) {
-    // Jika dropdown input bandara asal muncul/tampil, maka tutup
-    if (dropdownMenu1.hasClass("show")) {
-        dropdownMenu1.removeClass("show");
-    }
-
-    // munculkan
-    dropdownMenu2.addClass("show");
-    $(".home-page-widget-overlay").addClass("show");
-    $("#boxAirport2 .dropdown-item").on("click", function (e) {
-        const namabandara = $(this).find(".airport-city-name").text();
-        const kodebandara = $(this).find(".dropdown-option-code").text();
-        inputBandaraTujuan.attr("value", kodebandara);
-        inputBandaraTujuan.val(namabandara + " (" + kodebandara + ")");
-        dropdownMenu2.removeClass("show");
-    });
-    // $.ajax({
-    //     url: "js/bandara.json",
-    //     method: "get",
-    //     dataType: "json",
-    //     success: function (data) {
-    //         let bandara = data.bandara;
-    //         $.each(bandara, function (key, val) {
-    //             dropdownMenu2.append(
-    //                 `
-    // 							<div class="dropdown-item d-flex">
-    // 									<div class="dropdown-option-logo mr-3"><i class="fa fa-city"></i></div>
-    // 									<div class="dropdown-option-content">
-    // 									<div class="airport-city-location">${val.lokasi}</div>
-    // 									<div class="airport-city-name">${val.nama}</div>
-    // 									</div>
-    // 									<div class="dropdown-option-code ml-auto text-center">${val.kode}</div>
-    // 						</div>`
-    //             );
-    //         });
-
-    //         $(".boxairport .dropdown-item").on("click", function (e) {
-    //             const namabandara = $(this).find(".airport-city-name").text();
-    //             const kodebandara = $(this)
-    //                 .find(".dropdown-option-code")
-    //                 .text();
-    //             inputBandaraTujuan.attr("value", kodebandara);
-    //             inputBandaraTujuan.val(namabandara + " (" + kodebandara + ")");
-    //             dropdownMenu2.removeClass("show");
-    //         });
-    //     },
-    // });
-});
-
-// Live Search Bandara Tujuan
-// inputBandaraTujuan.on("input", function (e) {
-//     $(".boxairport .dropdown-menu > .dropdown-item").remove();
-//     let value = inputBandaraTujuan.val().trim();
-//     let expression = new RegExp(value, "i");
-
-//     $.ajax({
-//         url: "js/bandara.json",
-//         method: "get",
-//         dataType: "json",
-//         success: function (data) {
-//             let bandara = data.bandara;
-//             $.each(bandara, function (key, val) {
-//                 if (
-//                     val.nama.search(expression) != -1 ||
-//                     val.lokasi.search(expression) != -1
-//                 ) {
-//                     dropdownMenu2.append(
-//                         `
-//                         <div class="dropdown-item d-flex">
-//                             <div class="dropdown-option-logo mr-3"><i class="fa fa-city"></i></div>
-//                             <div class="dropdown-option-content">
-//                             <div class="airport-city-location">${val.lokasi}</div>
-//                             <div class="airport-city-name">${val.nama}</div>
-//                             </div>
-//                             <div class="dropdown-option-code ml-auto text-center">${val.kode}</div>
-//                       </div>`
-//                     );
-//                 }
-//             });
-
-//             $(".boxairport .dropdown-item").on("click", function (e) {
-//                 const namabandara = $(this).find(".airport-city-name").text();
-//                 const kodebandara = $(this)
-//                     .find(".dropdown-option-code")
-//                     .text();
-//                 inputBandaraTujuan.attr("value", kodebandara);
-//                 inputBandaraTujuan.val(namabandara + " (" + kodebandara + ")");
-//                 dropdownMenu2.removeClass("display");
-//                 e.stopPropagation();
-//             });
-//         },
-//     });
-// });
-
 // Tukar bandara, bandara pergi untuk pulang, bandara pulang untuk pergi
+
 let i = 0;
 $("#switch-btn").on("click", function () {
     if (i == 0) {
@@ -260,60 +64,12 @@ $("#switch-btn").on("click", function () {
             transform: "rotate(180deg)",
         });
         i++;
-        // cek apakah element input bandara ada, jika ada ambil nilainya
-        if (inputBandaraAsal.length && inputBandaraTujuan.length) {
-            if (
-                inputBandaraAsal.val().length != 0 &&
-                inputBandaraTujuan.val().length != 0
-            ) {
-                const bandaraTujuan = inputBandaraTujuan.val();
-                const bandaraAsal = inputBandaraAsal.val();
-                // balik nilainya
-                inputBandaraAsal.val(bandaraTujuan);
-                inputBandaraTujuan.val(bandaraAsal);
-            }
-            // Jika tidak ada elemen input bandara, berarti user sedang di halaman kereta api
-        } else {
-            if (
-                $("#input-stasiun-asal").val().length != 0 &&
-                $("#input-stasiun-tujuan").val().length != 0
-            ) {
-                const stasiunAsal = $("#input-stasiun-asal").val();
-                const stasiunTujuan = $("#input-stasiun-tujuan").val();
-                // balik nilainya
-                $("#input-stasiun-asal").val(stasiunTujuan);
-                $("#input-stasiun-tujuan").val(stasiunAsal);
-            }
-        }
     } else if (i == 1) {
         $(this).css({
             transition: "transform .2s ease-in",
             transform: "rotate(0deg)",
         });
-
         i = 0;
-        if (inputBandaraAsal.length && inputBandaraTujuan.length) {
-            if (
-                inputBandaraAsal.val().length != 0 &&
-                inputBandaraTujuan.val().length != 0
-            ) {
-                const bandaraTujuan = inputBandaraTujuan.val();
-                const bandaraAsal = inputBandaraAsal.val();
-                inputBandaraAsal.val(bandaraTujuan);
-                inputBandaraTujuan.val(bandaraAsal);
-            }
-        } else {
-            if (
-                $("#input-stasiun-asal").val().length != 0 &&
-                $("#input-stasiun-tujuan").val().length != 0
-            ) {
-                const stasiunAsal = $("#input-stasiun-asal").val();
-                const stasiunTujuan = $("#input-stasiun-tujuan").val();
-
-                $("#input-stasiun-asal").val(stasiunTujuan);
-                $("#input-stasiun-tujuan").val(stasiunAsal);
-            }
-        }
     }
 });
 
@@ -773,10 +529,12 @@ $("#checkboxTanggalPulang").on("click", function () {
     if (!$(this).is(":checked")) {
         $("#inputTanggalPulang").prop("disabled", true);
         $(".returndate-icon").css("opacity", 0.5);
+        $(this).val("oneway");
         // jika di ceklis maka aktifkan kembali inputnya
     } else {
         $("#inputTanggalPulang").prop("disabled", false);
         $(".returndate-icon").css("opacity", 1);
+        $(this).val("roundtrip");
     }
 });
 
@@ -850,7 +608,7 @@ $(".passenger-cabin-item-list.cabin-class").on("click", function (e) {
     );
     $(this).addClass("selected");
     $("#inputPassengerCabin").val(
-        total + " Penumpang," + $.trim($(this).text())
+        total + " Penumpang, " + $.trim($(this).text().ucwords())
     );
 });
 
@@ -858,7 +616,7 @@ $("input[type='number']").on("change", function () {
     let total = hitungTotalPenumpang();
 
     $("#inputPassengerCabin").val(
-        total + " Penumpang," + $.trim($(".cabin-class.selected").text())
+        total + " Penumpang, " + $.trim($(".cabin-class.selected").text())
     );
 });
 
@@ -911,3 +669,11 @@ if ($(".cabin-class").hasClass("selected")) {
 // // ID baru
 // let newID = Number(splitID[3]) + 1;
 // $("a[id*='flight-detail-btn-']").last().attr("id", newID);
+String.prototype.ucwords = function () {
+    str = this.toLowerCase();
+    return str.replace(/(^([a-zA-Z\p{M}]))|([ -][a-zA-Z\p{M}])/g, function (
+        $1
+    ) {
+        return $1.toUpperCase();
+    });
+};

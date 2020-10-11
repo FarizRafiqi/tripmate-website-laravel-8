@@ -33,6 +33,10 @@ img {
     color: #fff;
 }
 
+.bg-orange {
+    background-color: #fd9e0a;
+}
+
 .container,
 hr {
     max-width: 1180px;
@@ -287,7 +291,8 @@ i.fa.fa-city {
     margin-bottom: 80px;
 }
 
-.form-group .input-group .product-search-input {
+.input-group .form-control.product-search-input,
+.home-page .select2-container .select2-selection--single {
     width: 100%;
     height: 50px;
     border: 1px solid #367ffa;
@@ -297,14 +302,78 @@ i.fa.fa-city {
     color: #35405a;
 }
 
+/* Kustomisasi select2 */
+.home-page .select2-selection--single .select2-selection__rendered {
+    padding-top: 10px;
+}
+
+.flight .select2-container--default .select2-selection--single {
+    border: none;
+}
+
+.select2-container--default
+    .select2-selection--single
+    .select2-selection__arrow {
+    top: 13px;
+    width: 30px;
+    height: 30px;
+}
+
+.select2-container--default
+    .select2-selection--single
+    .select2-selection__arrow
+    b {
+    display: none;
+}
+
+.select2-container--default.select2-container--open
+    .select2-selection--single
+    .select2-selection__arrow
+    b {
+    border-color: transparent transparent #367ffa #367ffa;
+    border-width: unset;
+}
+
+.select2-results__option {
+    display: flex;
+    align-items: center;
+}
+
+.select2-dropdown {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+    border: none;
+}
+
+.select2-container--default
+    .select2-results__option--highlighted.select2-results__option--selectable {
+    background-color: #f2f8ff;
+    color: #58627a;
+}
+.box-flightform-airport .select2.select2-container {
+    padding: 6px 0 0 28px;
+    width: 100% !important;
+}
+
+.box-flightform-airport .select2-container--default .select2-selection--single {
+    font-family: "OpenSans-SemiBold";
+    font-size: 16px;
+    color: #35405a;
+    border: none;
+}
+
 #input-bandara-asal,
 #input-bandara-tujuan,
 #input-tanggal-berangkat,
 #input-tanggal-pulang,
 #input-stasiun-asal,
-#input-stasiun-tujuan {
+#input-stasiun-tujuan,
+.home-page
+    .select2-container
+    .select2-selection--single
+    .select2-selection__rendered {
     padding-left: 55px;
 }
+
 /* Custom Select Box Passenger */
 
 form .row .passenger-dropdown-container .dropdown-toggle {
@@ -479,8 +548,7 @@ form .dropdown-toggle::after,
     color: #fd9e0a;
 }
 
-.dropdown.boxairport .dropdown-menu > .dropdown-item .dropdown-option-code,
-.dropdown.stasiun-list-box .dropdown-item .dropdown-option-code {
+.dropdown-option-code {
     font-size: 12px;
     font-weight: 300;
     background-color: #eff1f7;
@@ -759,8 +827,9 @@ form .dropdown-toggle::after,
 }
 
 .wrapper-form .box-flightform-airport .form-control {
-    padding-left: 36px;
+    margin-left: 22px;
     cursor: pointer;
+    width: 88%;
 }
 
 .wrapper-form .box-flightform-passenger .form-control,
@@ -1208,7 +1277,7 @@ form .dropdown-toggle::after,
     border-radius: 50%;
     background: #dee2ee;
     top: 6px;
-    left: -2px;
+    left: -1px;
 }
 
 .wrapper-collapse .row .text-time-fd {
@@ -1842,10 +1911,6 @@ footer {
         text-align-last: left;
     }
 
-    .dropdown.boxairport .dropdown-menu {
-        width: 690px;
-    }
-
     /* Halaman Pencarian */
     .text-passengers .jumlah-penumpang {
         order: 1;
@@ -1982,6 +2047,13 @@ footer {
         top: 36%;
     }
 
+    .dropdown.boxairport .dropdown-menu {
+        width: 690px;
+    }
+
+    .select2-dropdown {
+        width: 500px !important;
+    }
     /* TripMate Advantages */
     .tripmate-advantages .container .row h3.title {
         line-height: 40px;
@@ -2063,7 +2135,7 @@ footer {
 
     ._separator {
         position: absolute;
-        top: 58%;
+        top: 56%;
         border-top: 1px solid #dee2ee;
     }
 
