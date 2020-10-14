@@ -1,0 +1,207 @@
+@font-face {
+    font-family: "OpenSans-Regular";
+    src: url("../fonts/Open_Sans/OpenSans-Regular.ttf");
+}
+@font-face {
+    font-family: "OpenSans-SemiBold";
+    src: url("../fonts/Open_Sans/OpenSans-SemiBold.ttf");
+}
+
+button.btn-cta {
+    border-radius: 24px;
+    background: #367ffa;
+    color: #fff;
+}
+
+button.btn-cta:hover {
+    color: #fff;
+    background: #5390fa;
+}
+
+.navbar .navbar-brand img {
+    width: 238px;
+    height: 78px;
+}
+
+.booking-steps {
+    margin-left: 20%;
+}
+
+.booking-steps .nav-item {
+    color: #8a93a7;
+    font-size: 16px;
+    font-family: "OpenSans-SemiBold";
+}
+
+.booking-steps .nav-item.active {
+    color: #35405a;
+}
+
+main {
+    margin-top: 48px;
+    min-height: 100vh;
+}
+
+footer {
+    background: #35405a;
+    text-align: center;
+    color: #fff;
+    font-size: 16px;
+    font-family: "OpenSans-SemiBold";
+    padding: 29px 0;
+}
+
+.float-lable {
+    top: -10px;
+    left: 30px;
+    background: #fff;
+}
+
+.bg-gray {
+    background: #dee2ee;
+}
+
+.switch-box {
+    min-height: 50px;
+    font-size: 14px;
+}
+
+.switch-box .text-passenger {
+    font-family: "OpenSans-SemiBold";
+}
+
+.btn-fasilitas-ekstra,
+.modal-fasilitas-ekstra .text-subtotal > span {
+    color: #367ffa;
+    font-family: "OpenSans-SemiBold";
+}
+
+.modal-fasilitas-ekstra .modal-footer {
+    font-size: 16px;
+}
+
+.modal-fasilitas-ekstra {
+    font-size: 16px;
+}
+
+.modal .close {
+    font-size: 40px;
+}
+
+i.fa.fa-long-arrow-right {
+    font-size: 16px;
+}
+
+.col-detail-penerbangan {
+    font-size: 14px;
+}
+
+.col-detail-penerbangan .text-penerbangan,
+.col-detail-penerbangan .total-payments {
+    font-family: "OpenSans-SemiBold";
+}
+
+.col-detail-penerbangan .total-payments {
+    font-size: 16px;
+}
+
+.modal-detail-penerbangan {
+    font-size: 16px;
+}
+
+.modal-detail-penerbangan .hr-line {
+    max-width: 80px;
+}
+
+.modal-detail-penerbangan .col-fasilitas-penerbangan {
+    background: #f2f8ff;
+}
+
+.modal-detail-penerbangan .col-fasilitas-penerbangan i[class*="fa "],
+.modal-detail-penerbangan .col-fasilitas-penerbangan i[class*="fas "],
+.modal-detail-penerbangan .col-fasilitas-penerbangan i[class*="far "] {
+    font-size: 18px;
+}
+
+.modal-detail-harga .modal-dialog {
+    max-width: 450px;
+}
+
+.modal-detail-harga .modal-header {
+    border-bottom: none;
+}
+
+.modal-detail-harga .modal-header .title {
+    font-family: "OpenSans-SemiBold";
+    font-size: 20px;
+}
+
+.modal-detail-harga .modal-body .badge {
+    padding: 6px;
+    font-family: "OpenSans-Regular";
+    min-width: 60px;
+    background-color: #f2f8ff;
+    font-size: 14px;
+    color: #367ffa;
+}
+
+.modal-detail-harga .modal-body .text-departure-flight,
+.modal-detail-harga .modal-body .text-arrival-flight {
+    font-family: "OpenSans-SemiBold";
+    font-size: 16px;
+}
+
+.col-fasilitas-penerbangan .list-group .list-group-item {
+    border: none;
+    background-color: transparent;
+}
+
+.dot-circle {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #8a93a7;
+}
+
+#border-left-ticket::before,
+#border-left-ticket::before {
+    position: absolute;
+    content: "";
+    border-top: 11px solid rgba(0, 0, 0, 0);
+    border-bottom: 11px solid rgba(0, 0, 0, 0);
+    border-left: 11px solid #dee2ee;
+    top: 0;
+    left: 100px;
+}
+
+@media (min-width: 0px) {
+    .modal-fasilitas-ekstra {
+        font-size: 14px;
+    }
+
+    .card h4 {
+        font-size: 18px;
+    }
+
+    .card i[class*="fa "],
+    .card i[class*="far "],
+    .card i[class*="fas "] {
+        font-size: 24px;
+    }
+}
+
+@media (min-width: 768px) {
+    .switch-box {
+        font-size: 16px;
+    }
+
+    .card h4 {
+        font-size: 18px;
+    }
+
+    .card i[class*="fa "],
+    .card i[class*="far "],
+    .card i[class*="fas "] {
+        font-size: 30px;
+    }
+}
