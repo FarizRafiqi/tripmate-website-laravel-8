@@ -239,7 +239,7 @@ i.fa.fa-city {
     background-repeat: no-repeat;
 }
 
-#header-container .navbar #navbarNav .header-right #btn-register {
+#header-container .navbar #navbarNav .header-right .btn-register {
     width: 70px;
     margin: 3px 0px 0px 0px;
     padding: 4px 12px;
@@ -334,7 +334,7 @@ i.fa.fa-city {
     border-width: unset;
 }
 
-.select2-results__option {
+.select2-results__options--nested .select2-results__option {
     display: flex;
     align-items: center;
 }
@@ -1922,6 +1922,7 @@ footer {
 
     .text-choose {
         font-size: 20px;
+        font-family: "OpenSans-SemiBold";
     }
 
     .preview-flight-content .choose-flight .list,

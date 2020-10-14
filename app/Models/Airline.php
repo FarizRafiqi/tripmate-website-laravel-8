@@ -9,8 +9,8 @@ class Airline extends Model
 {
     use HasFactory;
 
-    public function pesawat()
+    public function city()
     {
-        return $this->hasMany("App\Models\Plane", "id_maskapai");
+        return $this->belongsTo("App\Models\City", "id_kota");
     }
 }

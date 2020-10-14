@@ -17,37 +17,69 @@
         <div class="container px-0 position-relative">
           
           <div class="row preview-flight-content">
-            <div class="col-xl-10 col-lg-9 col-md-8 col-12">
-              <div class="choose-flight row align-items-center pl-lg-0">
-                <div class="left-side col-auto mr-4 pr-0 d-lg-inline-block d-md-none d-none">
-                  <img src="{{ url('img/icons/ic_flight_depart.png') }}" alt="" width="32px" height="32px">
+            @if(\Route::current()->getName() != 'next_flight_search')
+              <div class="col-xl-10 col-lg-9 col-md-8 col-12">
+                <div class="choose-flight row align-items-center pl-lg-0">
+                  <div class="left-side col-auto mr-4 pr-0 d-lg-inline-block d-md-none d-none">
+                    <img src="{{ url('img/icons/ic_flight_depart.png') }}" alt="" width="32px" height="32px">
+                  </div>
+                  <div class="right-side col-auto p-lg-0 pl-3">
+                    <div class="text-choose">Pilih Penerbangan Pergi</div>
+                    
+                    <div class="list d-flex align-items-center">
+                      <div class="text-airport mr-1 d-lg-inline-block d-md-none d-none">{{$request["nama_bandara_asal"]}}</div>
+                      <div class="text-airport-code">({{$request["bandara_asal"]}})</div>
+                      @if($request["trip"] == 'roundtrip')
+                        <i class="fa fa-exchange-alt mx-2"></i>
+                      @else
+                        <i class="fa fa-long-arrow-alt-right mx-2"></i>
+                      @endif
+      
+                      <div class="text-airport mr-1 d-lg-inline-block d-md-none d-none">{{$request["nama_bandara_tujuan"]}}</div>
+                      <div class="text-airport-code">({{$request["bandara_tujuan"]}})</div>
+      
+                      <div class="dot-circle d-lg-inline-block d-md-inline-block mx-lg-3 mx-md-3 mx-3"></div>
+                      
+                      <div class="text-depart-date">{{$request["tanggal_berangkat"]}}</div>
+      
+                      <div class="dot-circle d-lg-inline-block d-md-inline-block mx-3"></div>
+      
+                      <div class="text-passengers d-flex">
+                        <span class="jumlah-penumpang">{{$request["dewasa"]+$request["anak"]+$request["bayi"]}}</span>
+                        <i class="fa fa-user d-lg-none d-md-none d-inline-block mt-lg-0 mt-md-0 mt-1 mr-1"></i>
+                        <span class="d-lg-inline-block d-md-inline-block d-none ml-1">Penumpang</span>
+                      </div>
+      
+                      <div class="dot-circle d-lg-inline-block d-md-inline-block mx-3"></div>
+      
+                      <div class="text-cabin-class">{{ucwords($request["kelas"])}}</div>
+                    </div>
+                  </div>
                 </div>
-                <div class="right-side col-auto p-lg-0 pl-3">
-                  <div class="text-choose">Pilih Penerbangan Pergi</div>
-                  
+              </div>
+              <div class="col-xl-2 col-lg-3 col-md-4 col-12 border-left mb-lg-0 mb-md-0 mb-3 d-flex align-items-center justify-content-lg-end justify-content-md-end justify-content-center">
+                <div class="content">
+                  <div class="border-left-ticket"></div>
+                  <button class="btn btn-light btn-ubah-pencarian" data-toggle="modal" data-target="#changeSearchModal">
+                    Ubah Pencarian
+                  </button>
+                </div>
+              </div>
+            @else
+              <div class="col-xl-4 col-lg-4 col-12 d-none d-lg-inline-block">
+                <div class="choose-flight px-0">
+                  <div class="text-choose">Penerbangan Pergi</div>
                   <div class="list d-flex align-items-center">
-                    <div class="text-airport mr-1 d-lg-inline-block d-md-none d-none">{{$request["nama_bandara_asal"]}}</div>
-                    <div class="text-airport-code">({{$request["bandara_asal"]}})</div>
-                    @if($request["trip"] == 'roundtrip')
-                      <i class="fa fa-exchange-alt mx-2"></i>
-                    @else
-                      <i class="fa fa-long-arrow-alt-right mx-2"></i>
-                    @endif
-    
-                    <div class="text-airport mr-1 d-lg-inline-block d-md-none d-none">{{$request["nama_bandara_tujuan"]}}</div>
-                    <div class="text-airport-code">({{$request["bandara_tujuan"]}})</div>
-    
+
+                    <div class="text-airport-code">{{$request["bandara_asal"]}}</div>
+                    
+                    <i class="fa fa-long-arrow-alt-right mx-2"></i>
+
+                    <div class="text-airport-code">{{$request["bandara_tujuan"]}}</div>
+  
                     <div class="dot-circle d-lg-inline-block d-md-inline-block mx-lg-3 mx-md-3 mx-3"></div>
                     
-                    <div class="text-depart-date">{{$request["tanggal_berangkat"]}}</div>
-    
-                    <div class="dot-circle d-lg-inline-block d-md-inline-block mx-3"></div>
-    
-                    <div class="text-passengers d-flex">
-                      <span class="jumlah-penumpang">{{$request["dewasa"]+$request["anak"]+$request["bayi"]}}</span>
-                      <i class="fa fa-user d-lg-none d-md-none d-inline-block mt-lg-0 mt-md-0 mt-1 mr-1"></i>
-                      <span class="d-lg-inline-block d-md-inline-block d-none ml-1">Penumpang</span>
-                    </div>
+                    <div class="text-depart-date">{{date('D, d M y', strtotime($request["tanggal_berangkat"]))}}</div>
     
                     <div class="dot-circle d-lg-inline-block d-md-inline-block mx-3"></div>
     
@@ -55,15 +87,42 @@
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="col-xl-2 col-lg-3 col-md-4 col-12 border-left mb-lg-0 mb-md-0 mb-3 d-flex align-items-center justify-content-lg-end justify-content-md-end justify-content-center">
-              <div class="content">
-                <div class="border-left-ticket"></div>
-                <button class="btn btn-light btn-ubah-pencarian" data-toggle="modal" data-target="#changeSearchModal">
-                  Ubah Pencarian
-                </button>
+              <div class="col-xl-8 col-lg-8 col-12 border-left mb-lg-0 mb-md-0 mb-3 p-3">
+                <div class="row justify-content-lg-start justify-content-md-end justify-content-center align-items-center" style="height:100%;">
+                  <div class="col-1 pr-0 d-lg-inline-block d-md-none d-none">
+                    <img src="{{ url('img/icons/ic_flight_depart.png') }}" alt="" width="32px" height="32px">
+                  </div>
+                  <div class="col-lg-8 col-7">
+                    <div class="text-choose">Pilih Penerbangan Pulang</div>
+                    <div class="list d-flex align-items-center">
+                      <div class="text-airport mr-1 d-lg-inline-block d-md-none d-none">{{$request["nama_bandara_tujuan"]}}</div>
+                      <div class="text-airport-code">({{$request["bandara_tujuan"]}})</div>
+                      
+                      <i class="fa fa-long-arrow-alt-right mx-2"></i>
+      
+                      <div class="text-airport mr-1 d-lg-inline-block d-md-none d-none">
+                        {{$request["nama_bandara_asal"]}}
+                      </div>
+                      <div class="text-airport-code">({{$request["bandara_asal"]}})</div>
+  
+                      <div class="dot-circle d-lg-inline-block d-md-inline-block mx-lg-3 mx-md-3 mx-3"></div>
+                      
+                      <div class="text-depart-date">{{date('D, d M y', strtotime($request["tanggal_pulang"]))}}</div>
+      
+                      <div class="dot-circle d-lg-inline-block d-md-inline-block mx-3"></div>
+      
+                      <div class="text-cabin-class">{{ucwords($request["kelas"])}}</div>
+                    </div>
+                  </div>
+                  <div class="content col-lg-3 col-5">
+                    <!-- <div class="border-left-ticket" id="border-left-ticket"></div> -->
+                    <button class="btn btn-light btn-ubah-pencarian" data-toggle="modal" data-target="#changeSearchModal">
+                      Ubah Pencarian
+                    </button>
+                  </div>
+                </div>
               </div>
-            </div>
+            @endif
           </div>
 
           <!-- Change Flight Form -->
@@ -74,7 +133,7 @@
                 <div class="modal-body p-lg-0 p-4 m-0">
                   <div class="wrapper-change-search container-fluid p-0">
                     <div class="wrapper-form container px-lg-0">
-                      <form action="/pesawat/search/ubah">
+                      <form action="/pesawat/search/edit">
                         <div class="row">
                           <div class="col-lg-12 col-md-12 col-12 px-0 px-lg-3 px-xl-0">
                             <div class="row no-gutters">
@@ -84,9 +143,12 @@
                                   <span><i class="fa fa-plane-departure"></i></span>
                                   <label for="inputBandaraAsal">Dari</label><br>
                                   <select name="bandara_asal" id="selectBoxBandara1" class="form-control @error('bandara_asal') is-invalid @enderror text-truncate">
-                                    @foreach($airports as $airport)
-                                      <option value="{{$airport->kode_iata}}" {{ ($airport->kode_iata == $request["bandara_asal"]) ? 'selected' : '' }} >{{$airport->nama}}</option>
-                                      <!--  -->
+                                    @foreach($cities as $city)
+                                      <optgroup label="{{$city->nama}}">
+                                        @foreach($city->airports as $airport)
+                                          <option value="{{$airport->kode_iata}}" {{ old('bandara_asal') == $airport->kode_iata ? 'selected' : '' }} {{ ($airport->kode_iata == $request['bandara_asal']) ? 'selected' : '' }}>{{$airport->nama}}</option>
+                                        @endforeach
+                                      </optgroup>
                                     @endforeach
                                   </select>
                                   @error('bandara_asal')
@@ -100,8 +162,12 @@
                                   <span><i class="fa fa-plane-arrival"></i></span>
                                   <label for="inputBandaraTujuan">Ke</label>
                                   <select name="bandara_tujuan" id="selectBoxBandara2" class="form-control @error('bandara_tujuan') is-invalid @enderror text-truncate">
-                                    @foreach($airports as $airport)
-                                      <option value="{{$airport->kode_iata}}" {{ old('bandara_tujuan') == $airport->kode_iata ? 'selected' : '' }} {{ ($airport->kode_iata == $request['bandara_tujuan']) ? 'selected' : '' }}>{{$airport->nama}}</option>
+                                    @foreach($cities as $city)
+                                      <optgroup label="{{$city->nama}}">
+                                        @foreach($city->airports as $airport)
+                                          <option value="{{$airport->kode_iata}}" {{ old('bandara_tujuan') == $airport->kode_iata ? 'selected' : '' }} {{ ($airport->kode_iata == $request['bandara_tujuan']) ? 'selected' : '' }}>{{$airport->nama}}</option>
+                                        @endforeach
+                                      </optgroup>
                                     @endforeach
                                   </select>
                                   @error('bandara_tujuan')
@@ -622,7 +688,6 @@
                         </div>
                       </div>
                       <!-- End of Left Side of Card -->
-
                       <!-- Right Side -->
                       <div class="col-lg-5 col-md-12 col-sm-4 col-12 mt-md-0 mt-2 pl-0 right">
                         <div class="row align-items-lg-start align-items-sm-center h-100">
@@ -657,11 +722,58 @@
                           </p>
                         </form>
                       </div>
+                      
                       <!-- End of Detail Buttons -->
+                      @if($request['trip'] == 'oneway')
+                        <div class="col-lg-3 col-md-4 col-4 mt-2 btn-book-now text-right">
 
+                          <a href="{{ route('checkout',[
+                            'departure_flight_id'   => $flight->id,
+                            'adult'                 => $request['dewasa'],
+                            'child'                 => $request['anak'],
+                            'infant'                => $request['bayi'],
+                            'cabinclass'            => $flight->kelas
+                            ]) 
+                          }}" 
+                          class="btn bg-gradation-blue text-white">PILIH</a>
+
+                        </div>
+                      @elseif($request['trip'] == false)
                       <div class="col-lg-3 col-md-4 col-4 mt-2 btn-book-now text-right">
-                        <a href="{{route('checkout_process', $flight->id)}}" class="btn bg-gradation-blue text-white">PILIH</a>
+
+                        <a href="{{ route('checkout',[
+                          'departure_flight_id'   => $request['id_penerbangan'],
+                          'adult'                 => $request['dewasa'],
+                          'child'                 => $request['anak'],
+                          'infant'                => $request['bayi'],
+                          'cabinclass'            => $flight->kelas,
+                          'arrival_flight_id'     => $flight->id
+                          ]) 
+                        }}" 
+                        class="btn bg-gradation-blue text-white">PILIH</a>
+
                       </div>
+                      @else
+                        <div class="col-lg-3 col-md-4 col-4 mt-2 btn-book-now text-right">
+                          <a href="
+                          {{ route('next_flight_search', 
+                            [
+                              'id_penerbangan'      => $flight->id,
+                              'bandara_asal'        => $request['bandara_asal'],
+                              'bandara_tujuan'      => $request['bandara_tujuan'],
+                              'nama_bandara_asal'   => $request['nama_bandara_asal'],
+                              'nama_bandara_tujuan' => $request['nama_bandara_tujuan'],
+                              'dewasa'              => $request['dewasa'],
+                              'anak'                => $request['anak'],
+                              'bayi'                => $request['bayi'],
+                              'tanggal_berangkat'   => $request['tanggal_berangkat'],
+                              'tanggal_pulang'      => $request['tanggal_pulang'],
+                              'trip'                => false,
+                              'kelas'               => $request['kelas'],
+                            ]
+                          ) }}" class="btn bg-gradation-blue text-white">PILIH</a>
+                        </div>
+                      @endif
                     </div>
                     <!-- Flight Detail -->
                     <div class="wrapper-collapse collapse" id="flight-detail-{{$loop->iteration}}" data-parent="#flight-{{$loop->iteration}}">
@@ -697,7 +809,7 @@
                                     <div class="detail-info-wrapper">
                                       <div class="details-info-header d-flex align-items-center">
                                         <div class="logo-airline d-flex justify-content-center align-items-center mr-2">
-                                          <img src="{{ url('img/logo_partners/Lion.png') }}" alt="AIRLINE_ICON" class="img-fluid">
+                                          <img src="{{ asset('img/logo_partners/'.$flight->plane->airline->logo)}}" alt="AIRLINE_ICON" class="img-fluid">
                                         </div>
       
                                         <div class="header-title">
@@ -780,14 +892,14 @@
                       </div>
 
                       <!-- Flight Transit -->
-                      <div class="transit">
+                      <!-- <div class="transit">
                         <div class="row">
                           <div class="text-transit col">
                             <label>0j 1m</label>
                             Transit di Lombok (LOP)
                           </div>
                         </div>
-                      </div>
+                      </div> -->
                       <!-- End of Flight Transit -->
 
                     </div>
@@ -860,6 +972,16 @@
                 </div>
                 <!-- End of Empty States No Flight Available -->
               @endif
+
+              @guest
+                <div class="card bg-warning p-3 mt-3">
+                  <div class="card-title">
+                    <h5>Login & nikmati banyak benefit</h5>
+                  </div>
+                  <p>Pesan lebih cepat</p>
+                  <a href="{{ url('/login') }}" class="btn btn-primary" style="width: 150px; border-radius: 24px;">Login</a>
+                </div>
+              @endguest
             </div>
           </div>
           <!-- End of Available Flight List -->

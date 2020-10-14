@@ -3,6 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="{{asset('img/icon_tripmate.png')}}"  type="image/icon">
+  <!-- CSRF Token -->
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+
   <title>@yield('title')</title>
   <!-- Bootstrap CSS -->
   <link href="{{ url('css/app.css') }}" rel="stylesheet" />

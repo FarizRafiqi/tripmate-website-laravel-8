@@ -9,6 +9,7 @@ class Plane extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
     /**
      * Dapatkan maskapai yang memiliki pesawat tersebut
      */

@@ -483,7 +483,7 @@ $("#input-tanggal-pulang").datepicker(
  */
 
 // untuk membatasi jumlah karakter pada teks airport sehingga tidak terlalu panjang
-$(".preview-flight .right-side .list .text-airport").each(function (i, e) {
+$(".preview-flight .text-airport").each(function (i, e) {
     $(e).text($(e).text().trim().substr(0, 8) + "...");
 });
 

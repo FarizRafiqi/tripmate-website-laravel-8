@@ -99,14 +99,14 @@
                         Pilih kota atau bandara
                         <i class="fa fa-times"></i>
 											</div>
-											@foreach($bandara as $b)
+											@foreach($cities as $city)
 												<div class="dropdown-item d-flex">
 													<div class="dropdown-option-logo mr-3"><i class="fa fa-city"></i></div>
 													<div class="dropdown-option-content">
 															<div class="airport-city-location">Jakarta</div>
-															<div class="airport-city-name">{{ $b->nama }}</div>
+															<div class="airport-city-name">{{ $city->nama }}</div>
 													</div>
-													<div class="dropdown-option-code ml-auto text-center">{{ $b->kode_iata }}</div>
+													<div class="dropdown-option-code ml-auto text-center">{{ $city->kode_iata }}</div>
 												</div>
 											@endforeach
                     </div>
@@ -114,10 +114,14 @@
 									<input type="hidden" name="nama_bandara_asal" value="">
 									<div class="input-group product-search-input-container">
 										<img src="{{ url('img/icons/ic_pesawat_takeoff.png') }}" class="tm tm-pesawat-takeoff">
-										<select name="bandara_asal" id="selectBoxBandaraAsal" class="form-control product-search-input @error('bandara_asal') is-invalid @enderror" data-placeholder="Mau ke mana?">
+										<select name="bandara_asal" id="selectBoxKotaAsal" class="form-control product-search-input @error('bandara_asal') is-invalid @enderror" data-placeholder="Mau ke mana?">
 											<option value=""></option>
-											@foreach($bandara as $b)
-												<option value="{{$b->kode_iata}}">{{$b->nama}}</option>
+											@foreach($cities as $city)
+												<optgroup label="{{$city->nama}}">
+													@foreach($city->airports as $airport)
+														<option value="{{$airport->kode_iata}}">{{$airport->nama}}</option>
+													@endforeach
+												</optgroup>
 											@endforeach
 										</select>
 										@error('bandara_asal')
@@ -149,14 +153,14 @@
                         Pilih kota atau bandara
                         <i class="fa fa-times"></i>
 											</div>
-											@foreach($bandara as $b)
+											@foreach($cities as $city)
 												<div class="dropdown-item d-flex">
 													<div class="dropdown-option-logo mr-3"><i class="fa fa-city"></i></div>
 													<div class="dropdown-option-content">
 															<div class="airport-city-location">Jakarta</div>
-															<div class="airport-city-name">{{ $b->nama }}</div>
+															<div class="airport-city-name">{{ $city->nama }}</div>
 													</div>
-													<div class="dropdown-option-code ml-auto text-center">{{ $b->kode_iata }}</div>
+													<div class="dropdown-option-code ml-auto text-center">{{ $city->kode_iata }}</div>
 												</div>
 											@endforeach
                     </div>
@@ -164,10 +168,14 @@
 									<input type="hidden" name="nama_bandara_tujuan" value="">
 									<div class="input-group product-search-input-container">
 										<img src="{{ url('img/icons/ic_pesawat_landing.png') }}" class="tm tm-pesawat-takeoff">
-										<select name="bandara_tujuan" id="selectBoxBandaraTujuan" class="form-control product-search-input @error('bandara_tujuan') is-invalid @enderror" data-placeholder="Mau ke mana?">
+										<select name="bandara_tujuan" id="selectBoxKotaTujuan" class="form-control product-search-input @error('bandara_tujuan') is-invalid @enderror" data-placeholder="Mau ke mana?">
 											<option value=""></option>
-											@foreach($bandara as $b)
-												<option value="{{$b->kode_iata}}">{{$b->nama}}</option>
+											@foreach($cities as $city)
+												<optgroup label="{{$city->nama}}">
+													@foreach($city->airports as $airport)
+														<option value="{{$airport->kode_iata}}">{{$airport->nama}}</option>
+													@endforeach
+												</optgroup>
 											@endforeach
 										</select>
 										@error('bandara_tujuan')
@@ -463,31 +471,31 @@
 			if (!bandara.id) {
 				return bandara.text;
 			}
-			let $bandara = $(
+			let $cities = $(
 				`<i class="fa fa-city mr-2"></i><span>${bandara.text} </span><span class="dropdown-option-code ml-auto text-center">${bandara.id}</span>`
 			);
-			return $bandara;
+			return $cities;
 		};
 
-		$("#selectBoxBandaraAsal").select2({
+		$("#selectBoxKotaAsal").select2({
 			dropdownParent: $("#containerInputBandara1"),
 			templateResult: formatBandara
 		});
 
-		$("#selectBoxBandaraTujuan").select2({
+		$("#selectBoxKotaTujuan").select2({
 			dropdownParent: $("#containerInputBandara2"),
 			templateResult: formatBandara
 		});
 
-		$('#selectBoxBandaraAsal').on('select2:select', function (e) {
+		$('#selectBoxKotaAsal').on('select2:select', function (e) {
 			let data = e.params.data;
 			$("input[name='nama_bandara_asal']").val(data.text);
-			$("#select2-selectBoxBandaraAsal-container").append(' ('+data.id+')');
+			$("#select2-selectBoxKotaAsal-container").append(' ('+data.id+')');
 		});
-		$('#selectBoxBandaraTujuan').on('select2:select', function (e) {
+		$('#selectBoxKotaTujuan').on('select2:select', function (e) {
 			let data = e.params.data;
 			$("input[name='nama_bandara_tujuan']").val(data.text);
-			$("#select2-selectBoxBandaraTujuan-container").append(' ('+data.id+')');
+			$("#select2-selectBoxKotaTujuan-container").append(' ('+data.id+')');
 		});
 	</script>
 @endpush

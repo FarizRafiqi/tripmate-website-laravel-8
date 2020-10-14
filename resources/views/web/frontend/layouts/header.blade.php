@@ -24,12 +24,27 @@
           <li class="nav-item">
             <a class="nav-link text-light" href="#">Cek Order <span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link text-light" href="{{ url('/login') }}">Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="btn btn-light ml-lg-2" href="{{ url('/register') }}" id="btn-register">Daftar</a>
-          </li>
+
+          @guest
+            <li class="nav-item">
+              <a class="nav-link text-light" href="{{ url('/login') }}">Login</a>
+            </li>
+            @if (Route::has('register'))
+              <li class="nav-item">
+                <a class="btn btn-light btn-register ml-lg-2" href="{{ url('/register') }}" id="btn-register">Daftar</a>
+              </li>
+            @endif
+          @else
+            <li class="nav-item">
+                <a class="btn btn-light btn-register ml-lg-2" href="{{ route('logout') }}" 
+                  onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit()">Logout
+                </a>
+                <form action="{{ route('logout') }}" method="POST" id="logout-form">
+                  @csrf
+                </form>
+            </li>
+          @endguest
         </ul>
       </div>
     </nav>

@@ -16,29 +16,41 @@
               <div class="text-welcome my-4">
                 Selamat datang kembali, silakan login untuk melanjutkan
               </div>
-              <form method="POST" action="/login">
+              <form method="POST" action="{{ route('login') }}">
                 @csrf
                 <!-- Email Input-->
                 <div class="form-group mb-0">
-                  <input type="email" class="form-control floating-input" id="email" placeholder="Email">
+                  <input type="email" class="form-control floating-input @error('email') is-invalid @enderror" id="email" placeholder="Email" value="{{ old('email') }}" autofocus>
                   <small id="emailHelp" class="form-text text-muted mt-0">We'll never share your email with anyone else.</small>
                   <label for="email" class="floating-label" data-content="Email">
                     <span class="hidden-visually">Email</span>
                   </label>
+                  @error('email')
+                      <span class="invalid-feedback" role="alert">
+                          <strong>{{ $message }}</strong>
+                      </span>
+                  @enderror
                 </div>
                 <!-- End of Email Input -->
 
                 <!-- Password Input -->
                 <div class="form-group mb-0">
-                  <input type="password" class="form-control floating-input" id="password" placeholder="Kata sandi">
+                  <input type="password" class="form-control floating-input @error('password') is-invalid @enderror" id="password" placeholder="Kata sandi">
                   <label for="password" class="floating-label" data-content="Kata sandi">
                     <span class="hidden-visually">Kata sandi</span>
                   </label>
+                  @error('password')
+                      <span class="invalid-feedback" role="alert">
+                          <strong>{{ $message }}</strong>
+                      </span>
+                  @enderror
                 </div>
                 <!-- End of Password Input -->
-                <div class="form-group text-right">
-                  <a href="#" class="text-decoration-none">Lupa Password?</a>
-                </div>
+                @if (Route::has('password.request'))
+                  <div class="form-group text-right">
+                    <a href="{{ route('password.request') }}" class="text-decoration-none">Lupa Password?</a>
+                  </div>
+                @endif
                 <!-- Submit Button -->
                 <div class="form-row px-1 mb-4">
                   <button type="submit" class="btn btn-orange col" id="btnRegister">Login</button>
