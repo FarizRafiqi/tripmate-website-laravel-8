@@ -31,7 +31,7 @@
                 <tr class="text-center">
                   <td>{{$plane->id}}</td>
                   <td>{{$plane->id_maskapai}}</td>
-                  <td><img src="{{Storage::url($plane->gambar)}}" alt="" width="150px" class="img-thumbnail img-fluid"></td>
+                  <td><img src="{{Storage::url($plane->gambar)}}" alt="" width="150px" class="img-fluid"></td>
                   <td>{{$plane->model}}</td>
                   <td>{{$plane->jumlah_kursi}}</td>
                   <td>

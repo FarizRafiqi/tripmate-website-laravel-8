@@ -38,8 +38,8 @@ class PagesController extends Controller
                     ->get();
         
         $airports = Airport::all();
-
-        return view("web.frontend.plane.search", compact("flights", "airports", "request"));
+        $cities = City::with('airports')->get();
+        return view("web.frontend.plane.search", compact("flights", "airports", "request", "cities"));
     }
 
     public function changeSearch(FlightSearch $request) {

@@ -11,7 +11,7 @@
    
    <div class="card shadow">
      <div class="card-body">
-       <div class="container" style="max-width:600px;">
+       <div class="container p-0 p-lg-2" style="max-width:600px;">
          <form action="{{ route('plane.store') }}" method="POST" class="form-row justify-content-center" enctype="multipart/form-data">
            @csrf
            <div class="form-group col-12">

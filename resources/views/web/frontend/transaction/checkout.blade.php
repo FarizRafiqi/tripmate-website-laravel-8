@@ -219,7 +219,7 @@
             <button class="btn mb-4 btn-cta" data-toggle="modal" data-target="#modalOrderConfirmation" id="btnLanjutKePembayaran" type="submit">LANJUT KE PEMBAYARAN</button>
           </div>
         </div>
-        <div class="col-lg-4 order-lg-2 order-1 col-detail-penerbangan mb-lg-0 mb-4 pl-0">
+        <div class="col-lg-4 order-lg-2 order-1 col-detail-penerbangan mb-lg-0 mb-4 pl-lg-0">
           <div class="card">
             <div class="card-body">
               <h4 class="card-title">Penerbangan</h4>
@@ -227,7 +227,7 @@
                 <div class="bandara-penerbangan d-flex align-items-center">
                   <span>{{$departureflight->plane->airline->city->nama}}</span>
                   <i class="fa fa-long-arrow-right mx-2"style="font-size:20px;"></i> 
-                  <span>{{$arrivalflight->plane->airline->city->nama}}</span>
+                  <span>{{$departureflight->plane->airline->city->nama}}</span>
                 </div>
                 <div class="d-flex mb-2 my-2">
                   <span class="text-penerbangan d-flex align-items-center">
