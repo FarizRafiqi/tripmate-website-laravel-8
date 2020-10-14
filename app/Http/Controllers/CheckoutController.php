@@ -55,7 +55,7 @@ class CheckoutController extends Controller
             // Jumlahkan keseluruhan harganya
             $subtotal1 = $pricedetails['departure_flight']['adult_price']+$pricedetails['departure_flight']['child_price']+$pricedetails['departure_flight']['infant_price'];
 
-            $subtotal2 = +$pricedetails['arrival_flight']['adult_price']+$pricedetails['arrival_flight']['child_price']+$pricedetails['arrival_flight']['infant_price'];
+            $subtotal2 = $pricedetails['arrival_flight']['adult_price']+$pricedetails['arrival_flight']['child_price']+$pricedetails['arrival_flight']['infant_price'];
 
             $totalprice = $subtotal1 + $subtotal2;
 
