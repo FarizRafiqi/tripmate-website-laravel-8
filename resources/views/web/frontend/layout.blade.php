@@ -10,7 +10,6 @@
   <title>@yield('title')</title>
   <!-- Bootstrap CSS -->
   <link href="{{ asset('/css/app.css') }}" rel="stylesheet" />
-  
   <!-- Custom Styles -->
   @stack('stylesheets')
   <!-- Main Styles -->
