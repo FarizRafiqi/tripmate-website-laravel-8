@@ -9,12 +9,12 @@
 
   <title>@yield('title')</title>
   <!-- Bootstrap CSS -->
-  <link href="{{ asset('public/css/app.css') }}" rel="stylesheet" />
+  <link href="{{ asset('/public/css/app.css') }}" rel="stylesheet" />
   
   <!-- Custom Styles -->
   @stack('stylesheets')
   <!-- Main Styles -->
-  <link href="{{ url('css/style.css') }}" rel="stylesheet" />
+  <link href="{{ url('/public/css/style.css') }}" rel="stylesheet" />
   <!-- Font Awesome -->
   <script src="https://kit.fontawesome.com/b769966f19.js" crossorigin="anonymous"></script>
   <meta name="csrf-token" content="{{ csrf_token() }}">
