@@ -4,10 +4,13 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * Modul ini digunakan untuk menangani request di halaman checkout
+ */
 class CheckoutRequest extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
+     * Menentukan jika user diizinkan untuk membuat request ini.
      *
      * @return bool
      */
@@ -17,7 +20,7 @@ class CheckoutRequest extends FormRequest
     }
 
     /**
-     * Get the validation rules that apply to the request.
+     * Dapatkan aturan validasi yang akan diterapkan ke request.
      *
      * @return array
      */
@@ -56,14 +59,17 @@ class CheckoutRequest extends FormRequest
         return $rules;
     }
 
+    /**
+     * Method ini digunakan untuk menampilkan pesan error, jika aturan validasi tidak terpenuhi
+     * 
+     * @return array
+     */
     public function messages()
     {
         $message = [];
         $i=1;
 
-        /**
-         * Buat pesan custom untuk setiap input
-         */
+        //Buat pesan error custom untuk setiap input
         foreach ($this->request->get('title_penumpang') as $key => $value) {
             $message['title_penumpang.'.$key.'.required'] = 'Title tidak boleh kosong';
             $message['title_penumpang.'.$key.'.string'] = 'Title harus berupa abjad';

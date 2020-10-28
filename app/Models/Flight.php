@@ -6,6 +6,28 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Modul ini digunakan untuk mendapatkan model Flight dan juga relasi dari model ini.
+ * 
+ * Model ini memiliki relasi dengan model detail, facility, airport, dan plane.
+ * Relasi antara model flight dengan model detail adalah one to many,
+ * artinya suatu penerbangan bisa memiliki banyak detail penerbangan.
+ * 
+ * Relasi antara model flight dengan facility adalah many to many.
+ * Artinya suatu penerbangan bisa memiliki banyak fasilitas, dan
+ * suatu fasilitas bisa dimiliki oleh banyak penerbangan.
+ * Oleh karena itu kehadiran tabel pivot diperlukan 
+ * 
+ * Hasil relasi many to many antara model flight dengan facility
+ * adalah tabel flightdetails.
+ * 
+ * Kemudian, relasi antara model flight dengan airport adalah
+ * one to one. Artinya suatu penerbangan hanya bisa menggunakan
+ * 1 bandara, baik itu bandara asal maupun bandara tujuan
+ * 
+ * @author Aulia El-Ihza Fariz Rafiqi
+ * @version 1.0
+ */
 class Flight extends Model
 {
     use HasFactory;

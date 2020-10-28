@@ -10,7 +10,7 @@
           <img src="{{ url('img/tripmate-illustration.png') }}" class="img-fluid ml-xl-n3" width="80%" height="80%">
         </div>
         <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4 pl-lg-0">
-          <div class="card card-signup">
+          <div class="card card-login">
             <div class="card-body p-0">
               <h4 class="card-title text-center">Login</h4>
               <div class="text-welcome my-4">
@@ -21,7 +21,7 @@
                 <!-- Email Input-->
                 <div class="form-group mb-0">
                   <input type="email" class="form-control floating-input @error('email') is-invalid @enderror" id="email" placeholder="Email" name="email" value="{{ old('email') }}" autofocus>
-                  <small id="emailHelp" class="form-text text-muted mt-0">We'll never share your email with anyone else.</small>
+                  
                   <label for="email" class="floating-label" data-content="Email">
                     <span class="hidden-visually">Email</span>
                   </label>

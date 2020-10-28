@@ -10,6 +10,7 @@
     "require": {
         "php": "^7.3",
         "azishapidin/indoregion": "^2.2",
+        "binarytorch/larecipe": "^2.4",
         "doctrine/dbal": "^2.11",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",

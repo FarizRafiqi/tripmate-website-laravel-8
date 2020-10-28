@@ -3,12 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\BandaraModel;
 
+/**
+ * Modul ini digunakan untuk menampilkan halaman pesawat
+ * @author Aulia El-Ihza Fariz Rafiqi
+ * @version 1.0
+ */
 class PlaneController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Menampilkan halaman pesawat
      *
      * @return \Illuminate\Http\Response
      */

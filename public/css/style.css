@@ -1447,7 +1447,8 @@ form .dropdown-toggle::after,
     min-height: 100vh;
 }
 
-.card.card-signup {
+.card.card-signup,
+.card.card-login {
     box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.1);
     padding: 22px 32px;
     border: none;
@@ -1459,7 +1460,8 @@ form .dropdown-toggle::after,
     color: #35405a;
 }
 
-.card-signup .form-group .form-control::placeholder {
+.card-signup .form-group .form-control::placeholder,
+.card-login .form-group .form-control::placeholder {
     color: rgba(0, 0, 0, 0);
 }
 
@@ -1492,8 +1494,8 @@ input.floating-input:placeholder-shown ~ .floating-label::before {
     transform: translate3d(0, -1.2rem, 0) scale3d(1, 1, 1);
 }
 
-#email.floating-input:placeholder-shown ~ .floating-label::before {
-    transform: translate3d(0, -2.3rem, 0) scale3d(1, 1, 1);
+.card-login #email.floating-input:placeholder-shown ~ .floating-label::before {
+    transform: translate3d(0, -1.3rem, 0) scale3d(1, 1, 1);
 }
 
 .floating-label::before,
@@ -1501,12 +1503,20 @@ input.floating-input:focus ~ .floating-label::before {
     transform: translate3d(0, -2.2rem, 0) scale3d(0.82, 0.82, 1);
 }
 
-#email.floating-input:focus ~ .floating-label::before {
-    transform: translate3d(0, -3.3rem, 0) scale3d(0.82, 0.82, 1);
+.card-login #email.floating-input:focus ~ .floating-label::before {
+    transform: translate3d(0, -2.3rem, 0) scale3d(0.82, 0.82, 1);
 }
 
 input.floating-input:focus ~ .floating-label::before {
     color: #367ffa;
+}
+
+.card-signup #email.floating-input:placeholder-shown ~ .floating-label::before {
+    transform: translate3d(0, -1.3rem, 0) scale3d(1, 1, 1);
+}
+
+.card-signup #email.floating-input:focus ~ .floating-label::before {
+    transform: translate3d(0, -2.3rem, 0) scale3d(0.82, 0.82, 1);
 }
 
 .hidden-visually {
@@ -1862,7 +1872,7 @@ footer {
     }
 
     .wrapper-result .wrapper-collapse hr {
-        margin: 14px 0 0 0;
+        margin: 8px 0 0 0;
     }
 
     /* TripMate Advantages Section */
@@ -1945,7 +1955,7 @@ footer {
     }
 
     .wrapper-result .wrapper-collapse hr {
-        margin: 15px 0 0 0;
+        margin: 9px 0 0 0;
     }
 
     /* .wrapper-result .wrapper-flight-list .left .flight-icon {
@@ -2102,7 +2112,7 @@ footer {
     }
 
     .wrapper-result .wrapper-collapse hr {
-        margin: 17px 0 0 0;
+        margin: 10px 0 0 0;
     }
 
     .wrapper-result .btn-details a.active {

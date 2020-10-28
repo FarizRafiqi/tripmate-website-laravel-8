@@ -5,10 +5,13 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use \Illuminate\Support\Carbon;
 
+/**
+ * Modul ini digunakan untuk menangani request form pencarian penerbangan
+ */
 class FlightSearch extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
+     * Menentukan jika user diizinkan untuk membuat request ini.
      *
      * @return bool
      */
@@ -18,7 +21,7 @@ class FlightSearch extends FormRequest
     }
 
     /**
-     * Get the validation rules that apply to the request.
+     *  Dapatkan aturan validasi yang akan diterapkan ke request.
      *
      * @return array
      */
@@ -44,7 +47,7 @@ class FlightSearch extends FormRequest
         	'tanggal_berangkat.required' 	    => ':attribute tidak boleh kosong',
         	'tanggal_berangkat.date'     	    => ':attribute tidak valid',
         	'tanggal_berangkat.after_or_equal'  => ':attribute tidak boleh kurang dari hari ini',
-        	'tanggal_pulang.different'	 	    => ':attribute berangkat dan pulang harus berbeda',
+        	'tanggal_pulang.different'	 	    => 'Tanggal berangkat dan pulang harus berbeda',
         	'dewasa.required'					=> 'Penumpang :attribute tidak boleh kosong',
         	'dewasa.max'						=> 'Penumpang :attribute maksimum 7',
         	'dewasa.min'						=> 'Penumpang :attribute minimal 1',

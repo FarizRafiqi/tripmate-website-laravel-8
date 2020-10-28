@@ -7,12 +7,19 @@ use Illuminate\Http\Request;
 use App\Http\Requests\Admin\PlaneRequest;
 use App\Models\Airline;
 use App\Models\Plane;
-use Illuminate\Support\Str;
 
+/**
+ * Modul ini digunakan untuk menambah, mengubah, menghapus,
+ * dan menampilkan data pesawat
+ * 
+ * @author Aulia El-Ihza Fariz Rafiqi
+ * @version 1.0
+ * @date 18/10/2020
+ */
 class PlaneController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Menampilkan data-data pesawat
      *
      * @return \Illuminate\Http\Response
      */
@@ -24,7 +31,7 @@ class PlaneController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Menampilkan form tambah pesawat
      *
      * @return \Illuminate\Http\Response
      */
@@ -35,7 +42,7 @@ class PlaneController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Menyimpan data pesawat ke dalam database.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -46,13 +53,14 @@ class PlaneController extends Controller
         $data['gambar'] = $request->file('gambar')->store(
             'assets/plane', 'public'
         );
+        
         Plane::create($data);
 
         return redirect()->route('plane.index');
     }
 
     /**
-     * Display the specified resource.
+     * Menampilkan detail pesawat tertentu
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -63,7 +71,7 @@ class PlaneController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Menampilkan form ubah data pesawat
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -75,7 +83,7 @@ class PlaneController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Mengupdate/memperbarui data pesawat tertentu.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -87,7 +95,7 @@ class PlaneController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Menghapus data pesawat tertentu.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

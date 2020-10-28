@@ -4,10 +4,13 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * Modul ini digunakan untuk menangani request form pesawat di halaman admin
+ */
 class PlaneRequest extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
+     * Menentukan jika user diizinkan untuk membuat request ini.
      *
      * @return bool
      */
@@ -17,7 +20,7 @@ class PlaneRequest extends FormRequest
     }
 
     /**
-     * Get the validation rules that apply to the request.
+     * Dapatkan aturan validasi yang akan diterapkan ke request.
      *
      * @return array
      */

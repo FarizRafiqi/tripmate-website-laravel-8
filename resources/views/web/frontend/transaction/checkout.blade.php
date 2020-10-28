@@ -90,7 +90,7 @@
                     </select>
                   </div>
 
-                  <div class="form-group col-lg-12">
+                  <div class="form-group col-lg-12 mb-0">
                     <input type="text" name="nama_penumpang[]" class="form-control @error('nama_penumpang.'.$loop) is-invalid @enderror" autocomplete="off" id="inputPenumpang{{$i}}" placeholder="Nama Lengkap">
                     <small class="text-muted">Isi sesuai KTP/Paspor/SIM (tanpa tanda baca dan gelar)</small>
                   </div>
@@ -225,9 +225,9 @@
               <h4 class="card-title">Penerbangan</h4>
               <div class="penerbangan-berangkat">
                 <div class="bandara-penerbangan d-flex align-items-center">
-                  <span>{{$departureflight->plane->airline->city->nama}}</span>
+                  <span>{{$departureflight->fromAirport->city->nama}}</span>
                   <i class="fa fa-long-arrow-right mx-2"style="font-size:20px;"></i> 
-                  <span>{{$departureflight->plane->airline->city->nama}}</span>
+                  <span>{{$departureflight->toAirport->city->nama}}</span>
                 </div>
                 <div class="d-flex mb-2 my-2">
                   <span class="text-penerbangan d-flex align-items-center">
@@ -251,9 +251,9 @@
               @if(!empty($arrivalflight))
                 <div class="penerbangan-pulang">
                   <div class="bandara-penerbangan d-flex align-items-center">
-                    <span>{{$arrivalflight->fromAirport->nama}}</span>
+                    <span>{{$arrivalflight->fromAirport->city->nama}}</span>
                     <i class="fa fa-long-arrow-right mx-2"style="font-size:20px;"></i> 
-                    <span>{{$arrivalflight->toAirport->nama}}</span>
+                    <span>{{$arrivalflight->toAirport->city->nama}}</span>
                   </div>
                   <div class="d-flex mb-2 my-2">
                     <span class="text-penerbangan d-flex align-items-center">
@@ -467,9 +467,9 @@
           <div class="modal-body px-0 pb-0 pt-3">
             <div class="badge badge-gray">Pergi</div>
             <div class="text-departure-flight my-3">
-              {{$departureflight->fromAirport->nama}}
+              {{$departureflight->fromAirport->city->nama}}
               <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
-              {{$departureflight->toAirport->nama}}
+              {{$departureflight->toAirport->city->nama}}
             </div>
             <div class="text-tarif">Tarif</div>
             <ul class="passenger-list pl-3">
@@ -477,7 +477,7 @@
                 <li class="passenger-item">
                   <div class="d-flex">
                     <span>Dewasa (x{{$request->adult}})</span> 
-                    <span class="ml-auto">IDR </span>
+                    <span class="ml-auto">IDR {{$pricedetails['departure_flight']['adult_price']}}</span>
                   </div>
                 </li>
               @endif
@@ -502,9 +502,9 @@
             @if(!empty($arrivalflight))
               <div class="badge badge-gray">Pulang</div>
               <div class="text-arrival-flight my-3">
-                {{$arrivalflight->fromAirport->nama}}
+                {{$arrivalflight->fromAirport->city->nama}}
                 <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
-                {{$arrivalflight->toAirport->nama}}
+                {{$arrivalflight->toAirport->city->nama}}
               </div>
               <div class="text-tarif">Tarif</div>
               <ul class="passenger-list pl-3">
@@ -512,7 +512,7 @@
                   <li class="passenger-item">
                     <div class="d-flex">
                       <span>Dewasa (x{{$request->adult}})</span> 
-                      <span class="ml-auto">IDR </span>
+                      <span class="ml-auto">IDR</span>
                     </div>
                   </li>
                 @endif
@@ -520,7 +520,7 @@
                   <li class="passenger-item">
                     <div class="d-flex">
                       <span>Anak (x{{$request->child}})</span> 
-                      <span class="ml-auto">IDR </span>
+                      <span class="ml-auto">IDR</span>
                     </div>
                   </li>
                 @endif
@@ -589,17 +589,23 @@
       data:{id:idpenerbangan, _token: $('meta[name="_token"]').attr('content')},
       dataType: 'json',
       success: function(data) {
-        let penerbangan = data.flight;
-        let pesawat = penerbangan.plane;
-        let maskapai = pesawat.airline;
-        let fasilitas = penerbangan.facilities;
-        let waktuberangkat = new Date(penerbangan.waktu_berangkat);
-        let waktupulang = new Date(penerbangan.waktu_tiba);
+        const penerbangan = data.flight;
+        const pesawat = penerbangan.plane;
+        const maskapai = pesawat.airline;
+        const fasilitas = penerbangan.facilities;
+        const waktuberangkat = penerbangan.waktu_berangkat;
+        const waktupulang = penerbangan.waktu_tiba;
+        const departureTimeElement = $("#modalDetailPenerbangan .departure-time .text-time .text-hour");
+        const arrivalTimeElement = $("#modalDetailPenerbangan .arrival-time .text-time .text-hour");
+        const departureDateElement = $("#modalDetailPenerbangan .departure-time .text-time .text-date");
+        const arrivalDateElement = $("#modalDetailPenerbangan .arrival-time .text-time .text-date");
 
         $("#modalDetailPenerbangan .nama-maskapai").html(maskapai.nama);
         $("#modalDetailPenerbangan .logo-airline img").attr('src', `{{asset('img/logo_partners/${maskapai.logo}')}}`);
-        $("#modalDetailPenerbangan .departure-time .text-time .text-hour").html(moment(waktuberangkat).format("hh:mm"));
-        $("#modalDetailPenerbangan .arrival-time .text-time .text-hour").html(moment(waktupulang).format("hh:mm"));
+        departureTimeElement.html(moment(waktuberangkat).format("HH:mm"));
+        arrivalTimeElement.html(moment(waktupulang).format("HH:mm"));
+        departureDateElement.html(moment(waktuberangkat).format("D MMM"));
+        arrivalDateElement.html(moment(waktupulang).format("D MMM"));
       }
     });
 

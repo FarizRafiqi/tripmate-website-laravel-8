@@ -183,6 +183,11 @@
 												{{ $message }}
 											</div>
 										@enderror
+										@if(session('error_message'))
+											<small class="text-danger">
+												{{ session('error_message') }}
+											</small>
+										@endif
 									</div>
 								</div>
 								<!-- End of Airport Inputs -->

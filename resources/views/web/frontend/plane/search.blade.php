@@ -24,18 +24,22 @@
                     <img src="{{ url('img/icons/ic_flight_depart.png') }}" alt="" width="32px" height="32px">
                   </div>
                   <div class="right-side col-auto p-lg-0 pl-3">
-                    <div class="text-choose">Pilih Penerbangan Pergi</div>
+                    <div class="text-choose d-lg-inline-block d-none">Pilih Penerbangan Pergi</div>
                     
                     <div class="list d-flex align-items-center">
-                      <div class="text-airport mr-1 d-lg-inline-block d-md-none d-none">{{$request["nama_bandara_asal"]}}</div>
+                      <div class="text-airport mr-1 d-lg-inline-block d-md-none d-none">
+                        {{$airports->firstWhere('kode_iata', $request['bandara_asal'])->nama}}
+                      </div>
                       <div class="text-airport-code">({{$request["bandara_asal"]}})</div>
                       @if($request["trip"] == 'roundtrip')
                         <i class="fa fa-exchange-alt mx-2"></i>
                       @else
                         <i class="fa fa-long-arrow-alt-right mx-2"></i>
                       @endif
-      
-                      <div class="text-airport mr-1 d-lg-inline-block d-md-none d-none">{{$request["nama_bandara_tujuan"]}}</div>
+
+                      <div class="text-airport mr-1 d-lg-inline-block d-md-none d-none">
+                        {{$airports->firstWhere('kode_iata', $request['bandara_tujuan'])->nama}}
+                      </div>
                       <div class="text-airport-code">({{$request["bandara_tujuan"]}})</div>
       
                       <div class="dot-circle d-lg-inline-block d-md-inline-block mx-lg-3 mx-md-3 mx-3"></div>
@@ -66,11 +70,10 @@
                 </div>
               </div>
             @else
-              <div class="col-xl-4 col-lg-4 col-12 d-none d-lg-inline-block">
+              <div class="col-xl-3 col-lg-4 col-12 d-none d-lg-inline-block">
                 <div class="choose-flight px-0">
                   <div class="text-choose">Penerbangan Pergi</div>
                   <div class="list d-flex align-items-center">
-
                     <div class="text-airport-code">{{$request["bandara_asal"]}}</div>
                     
                     <i class="fa fa-long-arrow-alt-right mx-2"></i>
@@ -80,28 +83,25 @@
                     <div class="dot-circle d-lg-inline-block d-md-inline-block mx-lg-3 mx-md-3 mx-3"></div>
                     
                     <div class="text-depart-date">{{date('D, d M y', strtotime($request["tanggal_berangkat"]))}}</div>
-    
-                    <div class="dot-circle d-lg-inline-block d-md-inline-block mx-3"></div>
-    
-                    <div class="text-cabin-class">{{ucwords($request["kelas"])}}</div>
                   </div>
                 </div>
               </div>
-              <div class="col-xl-8 col-lg-8 col-12 border-left mb-lg-0 mb-md-0 mb-3 p-3">
-                <div class="row justify-content-lg-start justify-content-md-end justify-content-center align-items-center" style="height:100%;">
+              <div class="col-xl-9 col-lg-8 col-12 border-left mb-lg-0 mb-md-0 mb-3 p-3">
+                <div class="row justify-content-lg-between justify-content-md-end justify-content-center align-items-center" style="height:100%;">
                   <div class="col-1 pr-0 d-lg-inline-block d-md-none d-none">
                     <img src="{{ url('img/icons/ic_flight_depart.png') }}" alt="" width="32px" height="32px">
                   </div>
                   <div class="col-lg-8 col-7">
                     <div class="text-choose">Pilih Penerbangan Pulang</div>
                     <div class="list d-flex align-items-center">
-                      <div class="text-airport mr-1 d-lg-inline-block d-md-none d-none">{{$request["nama_bandara_tujuan"]}}</div>
+                      <div class="text-airport mr-1 d-lg-inline-block d-md-none d-none">
+                        {{$airports->firstWhere('kode_iata', $request['bandara_tujuan'])->nama}}</div>
                       <div class="text-airport-code">({{$request["bandara_tujuan"]}})</div>
                       
                       <i class="fa fa-long-arrow-alt-right mx-2"></i>
       
                       <div class="text-airport mr-1 d-lg-inline-block d-md-none d-none">
-                        {{$request["nama_bandara_asal"]}}
+                        {{$airports->firstWhere('kode_iata', $request['bandara_asal'])->nama}}
                       </div>
                       <div class="text-airport-code">({{$request["bandara_asal"]}})</div>
   
@@ -116,9 +116,11 @@
                   </div>
                   <div class="content col-lg-3 col-5">
                     <!-- <div class="border-left-ticket" id="border-left-ticket"></div> -->
-                    <button class="btn btn-light btn-ubah-pencarian" data-toggle="modal" data-target="#changeSearchModal">
-                      Ubah Pencarian
-                    </button>
+                    <div class="d-flex">
+                      <button class="btn btn-light btn-ubah-pencarian ml-auto" data-toggle="modal" data-target="#changeSearchModal">
+                        Ubah Pencarian
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -138,7 +140,6 @@
                           <div class="col-lg-12 col-md-12 col-12 px-0 px-lg-3 px-xl-0">
                             <div class="row no-gutters">
                               <div class="col-xl-auto col-lg-2 col-12 px-lg-0">
-                                <input type="hidden" name="nama_bandara_asal" value="{{$request['nama_bandara_asal']}}">
                                 <div class="form-group box-flightform-airport mb-lg-0 mb-3" id="containerBandaraAsal">
                                   <span><i class="fa fa-plane-departure"></i></span>
                                   <label for="inputBandaraAsal">Dari</label><br>
@@ -157,7 +158,6 @@
                                 </div>
                               </div>
                               <div class="col-xl-auto col-lg-2 col-12 px-lg-0">
-                                <input type="hidden" name="nama_bandara_tujuan" value="{{$request['nama_bandara_tujuan']}}">
                                 <div class="form-group box-flightform-airport mb-lg-0 mb-3" id="containerBandaraTujuan">
                                   <span><i class="fa fa-plane-arrival"></i></span>
                                   <label for="inputBandaraTujuan">Ke</label>
@@ -723,57 +723,37 @@
                         </form>
                       </div>
                       
+                      
                       <!-- End of Detail Buttons -->
-                      @if($request['trip'] == 'oneway')
-                        <div class="col-lg-3 col-md-4 col-4 mt-2 btn-book-now text-right">
+                      <div class="col-lg-3 col-md-4 col-4 btn btn-book-now text-right">
+                        @if($request['trip'] == 'oneway')
+                          <form action="{{route('checkout_process', $flight->id)}}" method="POST">
+                            @csrf
+                            <button class="btn bg-gradation-blue text-white" type="submit">PILIH</button>
+                          </form>
+                        @elseif($request['trip'] == 'roundtrip')
+                          <form action="{{ route('next_flight_search') }}">
+                            <input type="hidden" name="bandara_asal" value="{{$request['bandara_asal']}}">
+                            <input type="hidden" name="bandara_tujuan" value="{{$request['bandara_tujuan']}}">
+                            <input type="hidden" name="fid" value="{{$flight->id}}">
+                            <input type="hidden" name="dewasa" value="{{$request['dewasa']}}">
+                            <input type="hidden" name="anak" value="{{$request['anak']}}">
+                            <input type="hidden" name="bayi" value="{{$request['bayi']}}">
+                            <input type="hidden" name="tanggal_berangkat" value="{{$request['tanggal_berangkat']}}">
+                            <input type="hidden" name="tanggal_pulang" value="{{$request['tanggal_pulang']}}">
+                            <input type="hidden" name="kelas" value="{{$request['kelas']}}">
+                            
+                            <button class="btn bg-gradation-blue text-white" type="submit">PILIH</button>
+                          </form>
+                        @endif
 
-                          <a href="{{ route('checkout',[
-                            'departure_flight_id'   => $flight->id,
-                            'adult'                 => $request['dewasa'],
-                            'child'                 => $request['anak'],
-                            'infant'                => $request['bayi'],
-                            'cabinclass'            => $flight->kelas
-                            ]) 
-                          }}" 
-                          class="btn bg-gradation-blue text-white">PILIH</a>
-
-                        </div>
-                      @elseif($request['trip'] == false)
-                      <div class="col-lg-3 col-md-4 col-4 mt-2 btn-book-now text-right">
-
-                        <a href="{{ route('checkout',[
-                          'departure_flight_id'   => $request['id_penerbangan'],
-                          'adult'                 => $request['dewasa'],
-                          'child'                 => $request['anak'],
-                          'infant'                => $request['bayi'],
-                          'cabinclass'            => $flight->kelas,
-                          'arrival_flight_id'     => $flight->id
-                          ]) 
-                        }}" 
-                        class="btn bg-gradation-blue text-white">PILIH</a>
-
+                        @if(!empty($request->fid))
+                          <form action="{{ route('checkout_process', ['departureid' => $request->fid, 'arrivalid'=> $flight->id, 'adult' => $request['dewasa'], 'child' => $request['anak'], 'infant' => $request['bayi']]) }}" method="POST">
+                            @csrf
+                            <button class="btn bg-gradation-blue text-white" type="submit">PILIH</button>
+                          </form>
+                        @endif
                       </div>
-                      @else
-                        <div class="col-lg-3 col-md-4 col-4 mt-2 btn-book-now text-right">
-                          <a href="
-                          {{ route('next_flight_search', 
-                            [
-                              'id_penerbangan'      => $flight->id,
-                              'bandara_asal'        => $request['bandara_asal'],
-                              'bandara_tujuan'      => $request['bandara_tujuan'],
-                              'nama_bandara_asal'   => $request['nama_bandara_asal'],
-                              'nama_bandara_tujuan' => $request['nama_bandara_tujuan'],
-                              'dewasa'              => $request['dewasa'],
-                              'anak'                => $request['anak'],
-                              'bayi'                => $request['bayi'],
-                              'tanggal_berangkat'   => $request['tanggal_berangkat'],
-                              'tanggal_pulang'      => $request['tanggal_pulang'],
-                              'trip'                => false,
-                              'kelas'               => $request['kelas'],
-                            ]
-                          ) }}" class="btn bg-gradation-blue text-white">PILIH</a>
-                        </div>
-                      @endif
                     </div>
                     <!-- Flight Detail -->
                     <div class="wrapper-collapse collapse" id="flight-detail-{{$loop->iteration}}" data-parent="#flight-{{$loop->iteration}}">
@@ -917,14 +897,44 @@
                             <div class="row">
                               <div class="col-6 col-passenger">
                                 <ul class="pl-3"> 
-                                  <li>Dewasa (x1)</li>
+                                  <li>Dewasa (x{{$request['dewasa']}})</li>
                                 </ul>
                               </div>
                               <div class="col-6 col-price text-right">
-                                IDR {{number_format($flight->details->first()->harga, 0, ",", ".")}}
+                                IDR {{number_format($flight->details->first()->harga*$request['dewasa'], 0, ",", ".")}}
                               </div>
                             </div>
                           </div>
+
+                          @if(!empty($request['anak']))
+                            <div class="col-12">
+                              <div class="row">
+                                <div class="col-6 col-passenger">
+                                  <ul class="pl-3"> 
+                                    <li>Anak (x{{$request['anak']}})</li>
+                                  </ul>
+                                </div>
+                                <div class="col-6 col-price text-right">
+                                  IDR {{number_format($flight->details->first()->harga-($flight->details->first()->harga*$request['anak'])*10/100, 0, ",", ".")}}
+                                </div>
+                              </div>
+                            </div>
+                          @endif
+
+                          @if(!empty($request['bayi']))
+                            <div class="col-12">
+                              <div class="row">
+                                <div class="col-6 col-passenger">
+                                  <ul class="pl-3"> 
+                                    <li>Bayi (x{{$request['bayi']}})</li>
+                                  </ul>
+                                </div>
+                                <div class="col-6 col-price text-right">
+                                  IDR {{number_format($flight->details->first()->harga-($flight->details->first()->harga*$request['bayi'])*15/100, 0, ",", ".")}}
+                                </div>
+                              </div>
+                            </div>
+                          @endif
                           <div class="col-12">
                             <div class="text-subtitle">Pajak dan biaya lainnya</div>
                           </div>
@@ -944,7 +954,22 @@
                             <hr class="mt-2 mb-3">
                             <div class="row">
                               <div class="col-6 text-total">Total</div>
-                              <div class="col-6 col-price-total text-right">IDR Rp {{number_format($flight->details->first()->harga, 0, ",", ".")}}</div>
+                              <div class="col-6 col-price-total text-right">IDR
+                                <?php 
+                                $hargatiketdewasa = $flight->details->first()->harga*$request['dewasa'];
+                                $hargatiketanak = $hargatiketbayi = $total = 0;
+                                  if(!empty($request['anak'])){
+                                    $hargatiketanak = $flight->details->first()->harga-($flight->details->first()->harga*$request['anak'])*10/100;
+                                  }
+
+                                  if(!empty($request['bayi'])){
+                                    $hargatiketbayi = $flight->details->first()->harga-($flight->details->first()->harga*$request['bayi'])*15/100;
+                                  }
+
+                                  $total = $hargatiketdewasa+$hargatiketanak+$hargatiketbayi;
+                                ?> 
+                                {{number_format($total, 0, ",", ".")}}
+                              </div>
                             </div>
                           </div>
                         </div>
