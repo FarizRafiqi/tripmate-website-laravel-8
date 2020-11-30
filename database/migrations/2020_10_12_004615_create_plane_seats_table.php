@@ -15,13 +15,13 @@ class CreatePlaneSeatsTable extends Migration
     {
         Schema::create('plane_seats', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('id_pesawat')->index();
-            $table->enum('kelas', ['ekonomi', 'premium ekonomi', 'bisnis', 'first']);
-            $table->integer('baris');
-            $table->char('kolom', 1);
-            $table->decimal('jarak_kursi',4,0)->nullable(); //jarak kursi dengan kursi di depannya dalam satuan cm
+            $table->unsignedInteger('plane_id')->index();
+            $table->enum('class', ['ekonomi', 'premium ekonomi', 'bisnis', 'first']);
+            $table->integer('row');
+            $table->char('column', 1);
+            $table->decimal('seat_pitch',4,0)->nullable(); //jarak kursi dengan kursi di depannya dalam satuan cm
             $table->enum('status', ['tersedia', 'dikonfirmasi']);
-            $table->foreign('id_pesawat')->references('id')->on('planes')->cascadeOnUpdate();
+            $table->foreign('plane_id')->references('id')->on('planes')->cascadeOnUpdate();
         });
     }
 

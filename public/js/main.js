@@ -18,6 +18,11 @@ const returnCheckbox = $("#returnCheckbox");
 // inputTanggalPulang.addClass("d-none");
 $("#input-tanggal-pulang").attr("disabled", true);
 
+// Jika tidak di ceklis maka sembunyikan input tanggal pulangnya
+if (returnCheckbox.is(":checked")) {
+    $("#input-tanggal-pulang").prop("disabled", false);
+}
+
 returnCheckbox.on("click", function isChecked() {
     // Jika tidak di ceklis maka sembunyikan input tanggal pulangnya
     if (!returnCheckbox.is(":checked")) {
@@ -483,9 +488,9 @@ $("#input-tanggal-pulang").datepicker(
  */
 
 // untuk membatasi jumlah karakter pada teks airport sehingga tidak terlalu panjang
-$(".preview-flight .text-airport").each(function (i, e) {
-    $(e).text($(e).text().trim().substr(0, 8) + "...");
-});
+// $(".preview-flight .text-airport").each(function (i, e) {
+//     $(e).text($(e).text().trim().substr(0, 8) + "...");
+// });
 
 // inisialisasi datepicker
 $("#inputTanggalBerangkat").datepicker({
@@ -529,12 +534,12 @@ $("#checkboxTanggalPulang").on("click", function () {
     if (!$(this).is(":checked")) {
         $("#inputTanggalPulang").prop("disabled", true);
         $(".returndate-icon").css("opacity", 0.5);
-        $(this).val("oneway");
+        // $(this).val("oneway");
         // jika di ceklis maka aktifkan kembali inputnya
     } else {
         $("#inputTanggalPulang").prop("disabled", false);
         $(".returndate-icon").css("opacity", 1);
-        $(this).val("roundtrip");
+        // $(this).val("roundtrip");
     }
 });
 
@@ -671,9 +676,10 @@ if ($(".cabin-class").hasClass("selected")) {
 // $("a[id*='flight-detail-btn-']").last().attr("id", newID);
 String.prototype.ucwords = function () {
     str = this.toLowerCase();
-    return str.replace(/(^([a-zA-Z\p{M}]))|([ -][a-zA-Z\p{M}])/g, function (
-        $1
-    ) {
-        return $1.toUpperCase();
-    });
+    return str.replace(
+        /(^([a-zA-Z\p{M}]))|([ -][a-zA-Z\p{M}])/g,
+        function ($1) {
+            return $1.toUpperCase();
+        }
+    );
 };

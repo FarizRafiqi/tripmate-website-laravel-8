@@ -12,6 +12,14 @@ class EncryptCookies extends Middleware
      * @var array
      */
     protected $except = [
-        //
+        'trip',
+        'infant',
+        'child',
+        'adult', 
+        'destination',
+        'origin',
+        'departure_date',
+        'arrival_date',
+        'class'
     ];
 }

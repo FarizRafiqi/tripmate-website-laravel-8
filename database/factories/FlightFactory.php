@@ -28,20 +28,13 @@ class FlightFactory extends Factory
     {
         return [
             'id' => Str::random(2).'-'.rand(0,9999),
-            'id_pesawat' => function(array $attributes){
-                return Plane::find($attributes['id'])->id;
-            },
-            'id_bandara_asal' => function(array $attributes){
-                return Airport::find($attributes['id'])->id;
-            },
-            'id_bandara_tujuan' => function(array $attributes){
-                return Airport::find($attributes['id'])->id;
-            },
-            'durasi' => null,
-            'waktu_berangkat' => Carbon::now(),
-            'waktu_tiba' => Carbon::now()->add(rand(0, 23), 'hours')->add(rand(0,60), 'minutes'),
-            'kecepatan_rata_rata' => rand(400, 600),
-            'jarak_perjalanan' => rand(300, 600)
+            'plane_id' => Plane::factory(),
+            'origin_airport_id' => Airport::factory(),
+            'arrival_airport_id' => Airport::factory(),
+            'departure_time' => now(),
+            'arrival_time' => now()->add(rand(0, 23), 'hours')->add(rand(0,60), 'minutes'),
+            'velocity_avg' => rand(400, 600),
+            'trip_distance' => rand(300, 600)
         ];
     }
 }

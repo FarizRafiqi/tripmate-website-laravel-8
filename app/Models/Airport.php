@@ -24,7 +24,7 @@ class Airport extends Model
      */
     public function flightFrom()
     {
-        return $this->hasOne("App\Models\Flight", "id_bandara_asal");
+        return $this->hasOne("App\Models\Flight", "departure_airport_id");
     }
 
     /**
@@ -32,7 +32,7 @@ class Airport extends Model
      */
     public function flightTo()
     {
-        return $this->hasOne("App\Models\Flight", "id_bandara_tujuan");
+        return $this->hasOne("App\Models\Flight", "arrival_airport_id");
     }
 
     /**
@@ -40,6 +40,6 @@ class Airport extends Model
      */
     public function city()
     {
-        return $this->belongsTo("App\Models\City", 'id_kota');
+        return $this->belongsTo("App\Models\City");
     }
 }

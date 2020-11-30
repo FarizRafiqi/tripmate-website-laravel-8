@@ -15,12 +15,12 @@ class CreatePlanesTable extends Migration
     {
         Schema::create('planes', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer("id_maskapai")->unsigned();
-            $table->string("gambar");
+            $table->integer("airline_id")->unsigned();
+            $table->string("image")->default('default.png');
             $table->string("model");
-            $table->integer("jumlah_kursi");
-            $table->text("deskripsi")->nullable();
-            $table->foreign("id_maskapai")->references("id")->on("airlines")->cascadeOnUpdate();
+            $table->integer("total_seat");
+            $table->text("description")->nullable();
+            $table->foreign("airline_id")->references("id")->on("airlines")->cascadeOnUpdate();
             $table->timestamps();
         });
     }

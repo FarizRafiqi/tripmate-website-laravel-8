@@ -5,10 +5,10 @@
 @section('content')
   <div class="container">
 
-    <form action="{{route('checkout_process', $departureflight->id)}}" method="POST">
-      @csrf
-      <div class="row">
-        <div class="col-lg-8 order-lg-1 order-2 col-form-pemesanan">
+    <div class="row">
+      <div class="col-lg-8 order-lg-1 order-2 col-form-pemesanan">
+        <form action="{{route()}}" method="POST">
+          @csrf
           <!-- Detail Pemesan -->
           <div class="card" id="detailPemesan">
             <div class="card-body p-4">
@@ -62,126 +62,132 @@
           <!-- Detail Penumpang -->
           <?php $loop=0; ?>
 
-          <!-- Input untuk penumpang dewasa -->
-          @for($i=1;$i <= $request->adult;$i++)
-            <div class="card my-4" id="detailPenumpangDewasa{{$i}}">
-              <div class="card-body p-4">
-                <div class="form-row">
-                  <div class="col-12 mb-4">
-                    <span><i class="far fa-user"></i></span>
-                    <label class="mb-4 pl-3"><h4>Detail Penumpang</h4></label>
-                    <div class="switch-box bg-gray p-2 mx-0 row align-items-center rounded">
-                      <div class="text-passenger col-12 col-md-6">Penumpang {{$i}}: Dewasa</div>
+            <!-- Input untuk penumpang dewasa -->
+            @if(!empty($passenger['adult']) && isset($passenger['adult']))
+              @for($i=1;$i <= $passenger['adult'];$i++)
+                <div class="card my-4" id="detailPenumpangDewasa{{$i}}">
+                  <div class="card-body p-4">
+                    <div class="form-row">
+                      <div class="col-12 mb-4">
+                        <span><i class="far fa-user"></i></span>
+                        <label class="mb-4 pl-3"><h4>Detail Penumpang</h4></label>
+                        <div class="switch-box bg-gray p-2 mx-0 row align-items-center rounded">
+                          <div class="text-passenger col-12 col-md-6">Penumpang {{$i}}: Dewasa</div>
 
-                      @if($i==1)
-                        <label class="px-md-0 m-md-0 text-md-right col-sm-9 col-md-4" for="customSwitch">Sama dengan pemesan</label>
-                        <div class="custom-control custom-switch col-sm-3 col-md-2 pl-md-0 text-right">
-                          <input type="checkbox" class="custom-control-input" id="customSwitch">
-                          <label class="custom-control-label" for="customSwitch"></label>
+                          @if($i==1)
+                            <label class="px-md-0 m-md-0 text-md-right col-sm-9 col-md-4" for="customSwitch">Sama dengan pemesan</label>
+                            <div class="custom-control custom-switch col-sm-3 col-md-2 pl-md-0 text-right">
+                              <input type="checkbox" class="custom-control-input" id="customSwitch">
+                              <label class="custom-control-label" for="customSwitch"></label>
+                            </div>
+                          @endif
                         </div>
-                      @endif
+                      </div>
+                      <div class="form-group col-lg-3 mb-4">
+                        <select class="form-control" name="title_penumpang[]" id="titlePenumpang{{$i}}">
+                          <option value="tuan">Tuan</option>
+                          <option value="nyonya">Nyonya</option>
+                          <option value="nona">Nona</option>
+                        </select>
+                      </div>
+
+                      <div class="form-group col-lg-12 mb-0">
+                        <input type="text" name="nama_penumpang[]" class="form-control @error('nama_penumpang.'.$loop) is-invalid @enderror" autocomplete="off" id="inputPenumpang{{$i}}" placeholder="Nama Lengkap">
+                        <small class="text-muted">Isi sesuai KTP/Paspor/SIM (tanpa tanda baca dan gelar)</small>
+                      </div>
+
+                      @error('nama_penumpang.'.$loop++)
+                        <div class="text-danger ml-1">{{$message}}</div>
+                      @enderror
                     </div>
                   </div>
-                  <div class="form-group col-lg-3 mb-4">
-                    <select class="form-control" name="title_penumpang[]" id="titlePenumpang{{$i}}">
-                      <option value="tuan">Tuan</option>
-                      <option value="nyonya">Nyonya</option>
-                      <option value="nona">Nona</option>
-                    </select>
-                  </div>
-
-                  <div class="form-group col-lg-12 mb-0">
-                    <input type="text" name="nama_penumpang[]" class="form-control @error('nama_penumpang.'.$loop) is-invalid @enderror" autocomplete="off" id="inputPenumpang{{$i}}" placeholder="Nama Lengkap">
-                    <small class="text-muted">Isi sesuai KTP/Paspor/SIM (tanpa tanda baca dan gelar)</small>
-                  </div>
-
-                  @error('nama_penumpang.'.$loop++)
-                    <div class="text-danger ml-1">{{$message}}</div>
-                  @enderror
                 </div>
-              </div>
-            </div>
-          @endfor
+              @endfor
+            @endif
 
-           <!-- Input untuk penumpang anak -->
-          @for($a=1; $a <= $request->child; $a++)
-            <div class="card my-4" id="detailPenumpangAnak">
-              <div class="card-body p-4">
-                <div class="form-row">
-                  <div class="col-12 mb-4">
-                    <span><i class="far fa-user"></i></span>
-                    <label for="" class="mb-4 pl-3"><h4>Detail Penumpang</h4></label>
-                    <div class="switch-box bg-gray p-2 mx-0 row align-items-center rounded">
-                      <div class="text-passenger col-12 col-md-6">Penumpang {{$i++}}: Anak</div>
+            <!-- Input untuk penumpang anak -->
+            @if(!empty($passenger['child']) && isset($passenger['child']))
+              @for($a=1; $a <= $passenger['child']; $a++)
+                <div class="card my-4" id="detailPenumpangAnak">
+                  <div class="card-body p-4">
+                    <div class="form-row">
+                      <div class="col-12 mb-4">
+                        <span><i class="far fa-user"></i></span>
+                        <label for="" class="mb-4 pl-3"><h4>Detail Penumpang</h4></label>
+                        <div class="switch-box bg-gray p-2 mx-0 row align-items-center rounded">
+                          <div class="text-passenger col-12 col-md-6">Penumpang {{$i++}}: Anak</div>
+                        </div>
+                      </div>
+                      <div class="form-group col-lg-3 mb-4">
+                        <select class="form-control" name="title_penumpang[]">
+                          <option value="tuan">Tuan</option>
+                          <option value="nyonya">Nyonya</option>
+                          <option value="nona">Nona</option>
+                        </select>
+                      </div>
+
+                      <div class="form-group col-lg-12 mb-2">
+                        <input type="text" name="nama_penumpang[]" class="form-control @error('nama_penumpang.*') is-invalid @enderror" autocomplete="off" placeholder="Nama Lengkap">
+                        <small class="text-muted">Isi sesuai KTP/Paspor/SIM (tanpa tanda baca dan gelar)</small>
+                      </div>
+                    
+                      @error('nama_penumpang.'.$loop++)
+                        <div class="text-danger ml-1 mb-3">{{$message}}</div>
+                      @enderror
+                      
+                      <div class="form-group col-lg-12 mb-0">
+                        <input type="date" name="tanggal_lahir[]" class="form-control @error('tanggal_lahir.*') is-invalid @enderror" autocomplete="off" placeholder="Tanggal Lahir">
+                        <small class="text-muted">Penumpang Anak (2-11 tahun)</small>
+                      </div>
+
+                      @error('tanggal_lahir.')
+                        <div class="text-danger ml-1 mb-3">{{$message}}</div>
+                      @enderror
                     </div>
                   </div>
-                  <div class="form-group col-lg-3 mb-4">
-                    <select class="form-control" name="title_penumpang[]">
-                      <option value="tuan">Tuan</option>
-                      <option value="nyonya">Nyonya</option>
-                      <option value="nona">Nona</option>
-                    </select>
-                  </div>
-
-                  <div class="form-group col-lg-12 mb-2">
-                    <input type="text" name="nama_penumpang[]" class="form-control @error('nama_penumpang.*') is-invalid @enderror" autocomplete="off" placeholder="Nama Lengkap">
-                    <small class="text-muted">Isi sesuai KTP/Paspor/SIM (tanpa tanda baca dan gelar)</small>
-                  </div>
-                 
-                  @error('nama_penumpang.'.$loop++)
-                    <div class="text-danger ml-1 mb-3">{{$message}}</div>
-                  @enderror
-                  
-                  <div class="form-group col-lg-12 mb-0">
-                    <input type="date" name="tanggal_lahir[]" class="form-control @error('tanggal_lahir.*') is-invalid @enderror" autocomplete="off" placeholder="Tanggal Lahir">
-                    <small class="text-muted">Penumpang Anak (2-11 tahun)</small>
-                  </div>
-
-                  @error('tanggal_lahir.')
-                    <div class="text-danger ml-1 mb-3">{{$message}}</div>
-                  @enderror
                 </div>
-              </div>
-            </div>
-          @endfor
-
-           <!-- Input untuk penumpang bayi -->
-          @for($b=0; $b < $request->infant; $b++)
-            <div class="card my-4" id="detailPenumpangBayi{{$a}}">
-              <div class="card-body p-4">
-                <div class="form-row">
-                  <div class="col-12 mb-4">
-                    <span><i class="far fa-user"></i></span>
-                    <label for="" class="mb-4 pl-3"><h4>Detail Penumpang</h4></label>
-                    <div class="switch-box bg-gray p-2 mx-0 row align-items-center rounded">
-                      <div class="text-passenger col-12 col-md-6">Penumpang {{$i++}}: Bayi</div>
-                    </div>
-                  </div>
-                  <div class="form-group col-lg-3 mb-4">
-                    <select class="form-control" name="title_penumpang[]">
-                      <option value="tuan">Tuan</option>
-                      <option value="nyonya">Nyonya</option>
-                      <option value="nona">Nona</option>
-                    </select>
-                  </div>
+              @endfor
+            @endif
           
-                  <div class="form-group col-lg-12">
-                    <input type="text" name="nama_penumpang[]" class="form-control @error('nama_penumpang.*') is-invalid @enderror" autocomplete="off" placeholder="Nama Lengkap">
-                    <small class="text-muted">Isi sesuai KTP/Paspor/SIM (tanpa tanda baca dan gelar)</small>
-                  </div>
+           <!-- Input untuk penumpang bayi -->
+            @if(!empty($passenger['infant']) && isset($passenger['infant']))
+              @for($b=0; $b < $passenger['infant']; $b++)
+                <div class="card my-4" id="detailPenumpangBayi{{$a}}">
+                  <div class="card-body p-4">
+                    <div class="form-row">
+                      <div class="col-12 mb-4">
+                        <span><i class="far fa-user"></i></span>
+                        <label for="" class="mb-4 pl-3"><h4>Detail Penumpang</h4></label>
+                        <div class="switch-box bg-gray p-2 mx-0 row align-items-center rounded">
+                          <div class="text-passenger col-12 col-md-6">Penumpang {{$i++}}: Bayi</div>
+                        </div>
+                      </div>
+                      <div class="form-group col-lg-3 mb-4">
+                        <select class="form-control" name="title_penumpang[]">
+                          <option value="tuan">Tuan</option>
+                          <option value="nyonya">Nyonya</option>
+                          <option value="nona">Nona</option>
+                        </select>
+                      </div>
+              
+                      <div class="form-group col-lg-12">
+                        <input type="text" name="nama_penumpang[]" class="form-control @error('nama_penumpang.*') is-invalid @enderror" autocomplete="off" placeholder="Nama Lengkap">
+                        <small class="text-muted">Isi sesuai KTP/Paspor/SIM (tanpa tanda baca dan gelar)</small>
+                      </div>
 
-                  @error('nama_penumpang.'.$loop++)
-                    <div class="text-danger ml-1 mb-3">{{$message}}</div>
-                  @enderror
+                      @error('nama_penumpang.'.$loop++)
+                        <div class="text-danger ml-1 mb-3">{{$message}}</div>
+                      @enderror
 
-                  <div class="form-group col-lg-12 mb-0">
-                    <input type="date" name="tanggal_lahir[]" class="form-control @error('tanggal_lahir.*') is-invalid @enderror" autocomplete="off" placeholder="Tanggal Lahir">
-                    <small class="text-muted">Penumpang Anak (2-11 tahun)</small>
+                      <div class="form-group col-lg-12 mb-0">
+                        <input type="date" name="tanggal_lahir[]" class="form-control @error('tanggal_lahir.*') is-invalid @enderror" autocomplete="off" placeholder="Tanggal Lahir">
+                        <small class="text-muted">Penumpang Anak (2-11 tahun)</small>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          @endfor
+              @endfor
+            @endif
           <!-- Akhir dari Detail Penumpang -->
 
           <!-- Fasilitas Ekstra -->
@@ -218,82 +224,57 @@
           <div class="d-flex justify-content-end">
             <button class="btn mb-4 btn-cta" data-toggle="modal" data-target="#modalOrderConfirmation" id="btnLanjutKePembayaran" type="submit">LANJUT KE PEMBAYARAN</button>
           </div>
-        </div>
-        <div class="col-lg-4 order-lg-2 order-1 col-detail-penerbangan mb-lg-0 mb-4 pl-lg-0">
-          <div class="card">
-            <div class="card-body">
-              <h4 class="card-title">Penerbangan</h4>
-              <div class="penerbangan-berangkat">
+        </form>
+      </div>
+      <div class="col-lg-4 order-lg-2 order-1 col-detail-penerbangan mb-lg-0 mb-4 pl-lg-0">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Penerbangan</h4>
+            @foreach($flightorderdetails as $flightorderdetail)
+              <div class="penerbangan-{{$loop->iteration}}">
                 <div class="bandara-penerbangan d-flex align-items-center">
-                  <span>{{$departureflight->fromAirport->city->nama}}</span>
+                  <span>{{$flightorderdetail->flight->fromAirport->city->nama}}</span>
                   <i class="fa fa-long-arrow-right mx-2"style="font-size:20px;"></i> 
-                  <span>{{$departureflight->toAirport->city->nama}}</span>
+                  <span>{{$flightorderdetail->flight->toAirport->city->nama}}</span>
                 </div>
                 <div class="d-flex mb-2 my-2">
                   <span class="text-penerbangan d-flex align-items-center">
-                    <span classs="text-truncate">{{$departureflight->fromAirport->kode_iata}}</span>
+                    <span classs="text-truncate">{{$flightorderdetail->flight->fromAirport->kode_iata}}</span>
                     <span class="mx-1">-</span>
-                    <span classs="text-truncate">{{$departureflight->toAirport->kode_iata}}</span> 
+                    <span classs="text-truncate">{{$flightorderdetail->flight->toAirport->kode_iata}}</span> 
                     <div class="dot-circle mx-2 my-0"></div>
-                    {{date('D, d M y', strtotime($departureflight->waktu_berangkat))}}
+                    {{date('D, d M y', strtotime($flightorderdetail->flight->waktu_berangkat))}}
                     <div class="dot-circle mx-2 my-0"></div>
-                    {{date('H:i', strtotime($departureflight->waktu_berangkat))}}
+                    {{date('H:i', strtotime($flightorderdetail->flight->waktu_berangkat))}}
                   </span>
-                  <span class="ml-auto"><a href="#modalDetailPenerbangan" data-toggle="modal" class="text-decoration-none btn-detail-penerbangan" data-id="{{$departureflight->id}}">Detail</a></span>
+                  <span class="ml-auto"><a href="#modalDetailPenerbangan" data-toggle="modal" class="text-decoration-none btn-detail-penerbangan" data-id="{{$flightorderdetail->flight->id}}">Detail</a></span>
                 </div>
-                <div class="penerbangan-1">
+                <div class="kebijakan-penerbangan-{{$loop->iteration}}">
                   <h5>Kebijakan Tiket</h5>
                   <div><img src="{{url('img/icons/ic_refundable.png')}}" class="mr-2" width="25px" height="25px" alt="Bisa Refund">Bisa Refund</div>
                   <div><img src="{{url('img/icons/ic_rescheduleable.png')}}" class="mr-2" width="25px" height="25px" alt="Bisa Reschedule">Bisa Reschedule</div>
                 </div>
               </div>
               <hr>
-              @if(!empty($arrivalflight))
-                <div class="penerbangan-pulang">
-                  <div class="bandara-penerbangan d-flex align-items-center">
-                    <span>{{$arrivalflight->fromAirport->city->nama}}</span>
-                    <i class="fa fa-long-arrow-right mx-2"style="font-size:20px;"></i> 
-                    <span>{{$arrivalflight->toAirport->city->nama}}</span>
-                  </div>
-                  <div class="d-flex mb-2 my-2">
-                    <span class="text-penerbangan d-flex align-items-center">
-                      <span classs="text-truncate">{{$arrivalflight->fromAirport->kode_iata}}</span>
-                      <span class="mx-1">-</span>
-                      <span classs="text-truncate">{{$arrivalflight->toAirport->kode_iata}}</span> 
-                      <div class="dot-circle mx-2 my-0"></div>
-                      {{date('D, d M y', strtotime($arrivalflight->waktu_berangkat))}}
-                      <div class="dot-circle mx-2 my-0"></div>
-                      {{date('H:i', strtotime($arrivalflight->waktu_berangkat))}}
-                    </span>
-                    <span class="ml-auto"><a href="#modalDetailPenerbangan" data-toggle="modal" class="text-decoration-none btn-detail-penerbangan" data-id="{{$arrivalflight->id}}">Detail</a></span>
-                  </div>
-                  <div class="penerbangan-1">
-                    <h5>Kebijakan Tiket</h5>
-                    <div><img src="{{url('img/icons/ic_refundable.png')}}" class="mr-2" width="25px" height="25px" alt="Bisa Refund">Bisa Refund</div>
-                    <div><img src="{{url('img/icons/ic_rescheduleable.png')}}" class="mr-2" width="25px" height="25px" alt="Bisa Reschedule">Bisa Reschedule</div>
-                  </div>
-                </div>
-                <hr>
-              @endif
-              
-              <div class="total-payments d-flex justify-content-between">
-                <span>Total Pembayaran</span>
+            @endforeach
+            <div class="total-payments d-flex justify-content-between">
+              <span>Total Pembayaran</span>
 
-                <div class="detail-harga">
-                  @if(!empty($arrivalflight))
-                    <span class="text-primary total-price">IDR {{number_format($departureflight->details->first()->harga, 2, ",", ".")}}</span>
+              <div class="detail-harga">
+                  @if(count($fares) > 1)
+                    <span class="text-primary total-price">IDR {{number_format($fares[0]['totalfare']+$fares[1]['totalfare'], 2, ",", ".")}}</span>
                   @else
-                    <span class="text-primary total-price">IDR {{number_format($departureflight->details->first()->harga, 2, ",", ".")}}</span>
+                    <span class="text-primary total-price">IDR {{number_format($fares[0]['totalfare'], 2, ",", ".")}}</span>
                   @endif
-                    <a href="#modalDetailHarga" data-toggle="modal" type="button"><i class="fa fa-chevron-down mx-0 text-primary" style="font-size:16px;"></i></a>
-                </div>
+                  <a href="#modalDetailHarga" data-toggle="modal" type="button"><i class="fa fa-chevron-down mx-0 text-primary" style="font-size:16px;"></i></a>
               </div>
-              
             </div>
+            
           </div>
         </div>
       </div>
-    </form>
+    </div>
+   
     <!-- Modal Fasilitas Ekstra -->
     <div class="modal modal-fasilitas-ekstra fade" id="modalFasilitasEkstra">
       <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
@@ -317,7 +298,7 @@
                   <div class="tab-content" id="nav-tabContent">
                     <div class="tab-pane fade show active" id="list-passenger1">
                       <div class="form-group">
-                        <div class="text-flight-route">{{$departureflight->fromAirport->kode_iata}}<i class="fa fa-long-arrow-right mx-2" aria-hidden="true"></i> {{$departureflight->toAirport->kode_iata}}</div>
+                        <div class="text-flight-route"><i class="fa fa-long-arrow-right mx-2" aria-hidden="true"></i> </div>
                         <select name="selectBoxBagasi" id="selectBoxBagasi" class="form-control">
                           <option value="5kg">Bagasi 5Kg</option>
                         </select>
@@ -330,7 +311,7 @@
             </div>
           </div>
           <div class="modal-footer">
-            <div class="text-subtotal mr-4">Subtotal IDR <span>{{number_format($departureflight->details->first()->harga, 0, ",", ".")}}</span></div>
+            <div class="text-subtotal mr-4">Subtotal IDR <span></span></div>
             <button type="button" class="btn btn-cta" class="close" data-dismiss="modal">SIMPAN</button>
           </div>
         </div>
@@ -361,12 +342,13 @@
               <div class="tab-pane pt-4 pl-1 fade show active" id="penerbangan">
                 
               <div class="container-fluid">
+                <div class="penerbangan"></div>
                 <div class="row align-items-center">
                   <div class="logo-airline col-2">
-                    <img src="{{asset('img/logo_partners/'.$departureflight->plane->airline->logo)}}" alt="LOGO_MASKAPAI_" class="img-fluid">
+                    <img src="" class="img-fluid">
                   </div>
 
-                  <span class="nama-maskapai col-3 px-0">{{$departureflight->plane->airline->nama}}</span>
+                  <span class="nama-maskapai col-3 px-0"></span>
 
                   <div class="col-7">
                     <div class="d-flex">
@@ -375,13 +357,11 @@
                           <div class="text-hour"></div>
                           <div class="text-date"></div>
                         </div>
-                        <div class="text-code">{{ $departureflight->fromAirport->kode_iata }}</div>
+                        <div class="text-code"></div>
                       </div>
   
                       <div class="flight-duration text-center mx-3">
                         <div class="text-total-time">
-                          {{$departureflight->getFlightDuration()->h}}j 
-                          {{$departureflight->getFlightDuration()->minutes}}m 
                         </div>
                         <div class="timeline">
                           <div class="fa-stack" style="height:18px;">
@@ -397,7 +377,7 @@
                           <div class="text-hour"></div>
                           <div class="text-date"></div> 
                         </div>
-                        <div class="text-code">{{ $departureflight->toAirport->kode_iata }}</div>
+                        <div class="text-code"></div>
                       </div>
                     </div>
                   </div>
@@ -405,9 +385,6 @@
                   <h5 class="my-3">Fasilitas</h5>
                   <div class="col-12 col-fasilitas-penerbangan">
                     <ul class="list-group list-group-horizontal-lg">
-                      @foreach($departureflight->facilities as $facility)
-                        <li class="list-group-item"><i class="{{$facility->icon}} mr-2"></i> {{$facility->nama}}</li>
-                      @endforeach
                     </ul>
                   </div>
                 </div>
@@ -465,85 +442,68 @@
             </button>
           </div>
           <div class="modal-body px-0 pb-0 pt-3">
-            <div class="badge badge-gray">Pergi</div>
-            <div class="text-departure-flight my-3">
-              {{$departureflight->fromAirport->city->nama}}
-              <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
-              {{$departureflight->toAirport->city->nama}}
-            </div>
-            <div class="text-tarif">Tarif</div>
-            <ul class="passenger-list pl-3">
-              @if($request->adult > 0)
-                <li class="passenger-item">
-                  <div class="d-flex">
-                    <span>Dewasa (x{{$request->adult}})</span> 
-                    <span class="ml-auto">IDR {{$pricedetails['departure_flight']['adult_price']}}</span>
-                  </div>
-                </li>
+            @foreach($flightorderdetails as $flightorderdetail)
+              @if($loop->index > 0)
+                <div class="badge badge-gray">Pulang</div>
+              @else
+                <div class="badge badge-gray">Pergi</div>
               @endif
-              @if($request->child > 0)
-                <li class="passenger-item">
-                  <div class="d-flex">
-                    <span>Anak (x{{$request->child}})</span> 
-                    <span class="ml-auto">IDR </span>
-                  </div>
-                </li>
-              @endif
-              @if($request->infant > 0)
-                <li class="passenger-item">
-                  <div class="d-flex">
-                    <span>Bayi (x{{$request->infant}})</span> 
-                    <span class="ml-auto">IDR </span>
-                  </div>
-                </li>
-              @endif
-            </ul>
-
-            @if(!empty($arrivalflight))
-              <div class="badge badge-gray">Pulang</div>
-              <div class="text-arrival-flight my-3">
-                {{$arrivalflight->fromAirport->city->nama}}
+              <div class="text-departure-flight my-3">
+                {{$flightorderdetail->flight->fromAirport->city->nama}}
                 <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
-                {{$arrivalflight->toAirport->city->nama}}
+                {{$flightorderdetail->flight->toAirport->city->nama}}
               </div>
               <div class="text-tarif">Tarif</div>
               <ul class="passenger-list pl-3">
-                @if($request->adult > 0)
+               
+                @if($passenger['adult'] > 0)
                   <li class="passenger-item">
                     <div class="d-flex">
-                      <span>Dewasa (x{{$request->adult}})</span> 
-                      <span class="ml-auto">IDR</span>
+                      <span>Dewasa (x{{$passenger['adult']}})</span> 
+                      <span class="ml-auto">IDR {{number_format($fares[$loop->index]['adult'], 0, ",", ".")}}</span>
                     </div>
                   </li>
                 @endif
-                @if($request->child > 0)
+                @if($passenger['child'] > 0)
                   <li class="passenger-item">
                     <div class="d-flex">
-                      <span>Anak (x{{$request->child}})</span> 
-                      <span class="ml-auto">IDR</span>
+                      <span>Anak (x{{$passenger['child']}})</span> 
+                      <span class="ml-auto">IDR {{number_format($fares[$loop->index]['child'], 0, ",", ".")}}</span>
                     </div>
                   </li>
                 @endif
-                @if($request->infant > 0)
+                @if($passenger['infant'] > 0)
                   <li class="passenger-item">
                     <div class="d-flex">
-                      <span>Bayi (x{{$request->infant}})</span> 
-                      <span class="ml-auto">IDR </span>
+                      <span>Bayi (x{{$passenger['infant']}})</span> 
+                      <span class="ml-auto">IDR {{number_format($fares[$loop->index]['infant'], 0, ",", ".")}}</span>
                     </div>
                   </li>
                 @endif
               </ul>
-            @endif
 
-            <div class="text-tarif">Biaya Lainnya</div>
-            <ul class="tax-list pl-3">
-              <li class="tax-item">
-                <div class="d-flex">
-                  <span>Pajak</span> 
-                  <span class="ml-auto">Termasuk</span>
-                </div>
-              </li>
-            </ul>
+              <div class="text-tarif">Biaya Lainnya</div>
+              <ul class="tax-list pl-3">
+                <li class="tax-item">
+                  <div class="d-flex">
+                    <span>PPN (10%)</span> 
+                    <span class="ml-auto">IDR {{number_format($fares[$loop->index]['tax'], 0, ",", ".")}}</span>
+                  </div>
+                </li>
+                <li class="tax-item">
+                  <div class="d-flex">
+                    <span>Iuran Wajib (IW)</span> 
+                    <span class="ml-auto">IDR {{number_format($fares[$loop->index]['assurance'], 0, ",", ".")}}</span>
+                  </div>
+                </li>
+                <li class="tax-item">
+                  <div class="d-flex">
+                    <span>Pajak Bandara</span> 
+                    <span class="ml-auto">Termasuk</span>
+                  </div>
+                </li>
+              </ul>
+            @endforeach
           </div>
           <div class="modal-footer" style="border-top: none;">
           </div>
@@ -551,70 +511,45 @@
       </div>
     </div>
     <!-- Akhir Modal Detail Harga -->
+
+    <!-- Modal Notifikasi Waktu Pemesanan -->
+    <div class="modal modal-notifikasi" id="modalNotifikasi">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h5>Waktu Pemesanan Habis!</h5>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Akhir Modal Notifikasi Waktu Pemesanan -->
   </div>
 @endsection
 
 @push('scripts')
 <script src="{{asset('plugin/moment-js/moment-js.js')}}"></script>
+<script src="{{asset('plugin/jquery.countdown-2.2.0/jquery.countdown.min.js')}}"></script>
+<script src="{{asset('js/script-halaman-checkout.js')}}"></script>
 <script>
-  $("#btnCancelOrderBaggage").on("click", function(){
-    $("#modalFasilitasEkstra").modal("hide");
-    $("#modalCancelOrderBaggage").modal("hide");
-  });
-
-  $("#customSwitch").on('click', function(){
-    let selectedTitle = $("select[name='title_pemesan']").val();
-    let namapemesan = $("input[name='nama_pemesan']").val();
-    if($(this).is(':checked')){
-      $("#inputPenumpang1").val(namapemesan);
-      $("#titlePenumpang1").val(selectedTitle);
-    }else{
-      $("#inputPenumpang1").val("");
-      $("#titlePenumpang1").val("tuan");
-    }
-  });
-
-  $.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-    }
-  });
-  
-  $(".btn-detail-penerbangan").on("click", function(){
-    let idpenerbangan = $(this).data('id');
-
-    $.ajax({
-      url: "{{ route('flight_detail') }}",
-      method: 'post',
-      data:{id:idpenerbangan, _token: $('meta[name="_token"]').attr('content')},
-      dataType: 'json',
-      success: function(data) {
-        const penerbangan = data.flight;
-        const pesawat = penerbangan.plane;
-        const maskapai = pesawat.airline;
-        const fasilitas = penerbangan.facilities;
-        const waktuberangkat = penerbangan.waktu_berangkat;
-        const waktupulang = penerbangan.waktu_tiba;
-        const departureTimeElement = $("#modalDetailPenerbangan .departure-time .text-time .text-hour");
-        const arrivalTimeElement = $("#modalDetailPenerbangan .arrival-time .text-time .text-hour");
-        const departureDateElement = $("#modalDetailPenerbangan .departure-time .text-time .text-date");
-        const arrivalDateElement = $("#modalDetailPenerbangan .arrival-time .text-time .text-date");
-
-        $("#modalDetailPenerbangan .nama-maskapai").html(maskapai.nama);
-        $("#modalDetailPenerbangan .logo-airline img").attr('src', `{{asset('img/logo_partners/${maskapai.logo}')}}`);
-        departureTimeElement.html(moment(waktuberangkat).format("HH:mm"));
-        arrivalTimeElement.html(moment(waktupulang).format("HH:mm"));
-        departureDateElement.html(moment(waktuberangkat).format("D MMM"));
-        arrivalDateElement.html(moment(waktupulang).format("D MMM"));
-      }
+  $("#time-countdown")
+    .countdown("{{$ordertimelimit}}", function (
+        event
+    ) {
+        $(this).html(
+            `<span class="border border-dark rounded p-1">${event.strftime(
+                "%H"
+            )}</span> : <span class="border border-dark rounded p-1">${event.strftime(
+                "%M"
+            )}</span> : </span><span class="border border-dark rounded p-1">${event.strftime(
+                "%S"
+            )}</span>`
+        );
+    })
+    .on("finish.countdown", function () {
+        $("#modalNotifikasi").modal("show");
     });
-
-  });
-  // $("#btnLanjutKePembayaran").on('click', function(e){
-  //   e.preventDefault();
-  // })
-  // $("#YES").on('click', function(){
-  //   $("#btnLanjutKePembayaran").submit();
-  // })
 </script>
 @endpush

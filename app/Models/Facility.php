@@ -24,6 +24,6 @@ class Facility extends Model
      */
     public function flight()
     {
-        return $this->belongsTo("App\Models\FlightDetail", "id_fasilitas");
+        return $this->belongsTo("App\Models\FlightDetail");
     }
 }

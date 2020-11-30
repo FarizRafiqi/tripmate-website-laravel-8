@@ -15,17 +15,17 @@ class CreateFlightsTable extends Migration
     {
         Schema::create('flights', function (Blueprint $table) {
             $table->char("id", 7)->primary();
-            $table->integer("id_pesawat")->unsigned()->unique();
-            $table->integer("id_bandara_asal")->unsigned()->unique();
-            $table->integer("id_bandara_tujuan")->unsigned()->unique();
-            $table->time("durasi");
-            $table->dateTime('waktu_berangkat');
-            $table->dateTime('waktu_tiba');
-            $table->float("kecepatan_rata_rata")->nullable();
-            $table->float("jarak_perjalanan")->nullable();
-            $table->foreign("id_pesawat")->references("id")->on("planes")->cascadeOnUpdate();
-            $table->foreign("id_bandara_asal")->references("id")->on("airports")->cascadeOnUpdate();
-            $table->foreign("id_bandara_tujuan")->references("id")->on("airports")->cascadeOnUpdate();
+            $table->integer("plane_id")->unsigned()->index();
+            $table->integer("departure_airport_id")->unsigned()->index();
+            $table->integer("arrival_airport_id")->unsigned()->index();
+            $table->dateTime('departure_time');
+            $table->dateTime('arrival_time');
+            $table->float("velocity_avg")->nullable();
+            $table->float("trip_distance")->nullable();
+            $table->enum("class", ['ekonomi', 'premium ekonomi', 'bisnis', 'first']);
+            $table->foreign("plane_id")->references("id")->on("planes")->cascadeOnUpdate();
+            $table->foreign("departure_airport_id")->references("id")->on("airports")->cascadeOnUpdate();
+            $table->foreign("arrival_airport_id")->references("id")->on("airports")->cascadeOnUpdate();
         });
     }
 

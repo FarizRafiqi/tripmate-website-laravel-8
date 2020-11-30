@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\User;
+use App\Models\UserRole;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -23,16 +24,13 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'id' => 'C'.rand(00000, 99999),
-            'gambar' => $this->faker->imageUrl(100,100,'people'),
-            'nama' => $this->faker->name,
+            'picture' => $this->faker->imageUrl(100,100,'people'),
+            'name' => $this->faker->name,
             'email' => $this->faker->unique()->safeEmail,
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
-            'no_telp' => '08'.rand(0000000000,9999999999),
-            'id_role' => 3,
-            'status' => 0
+            'phone_number' => '08'.rand(0000000000,9999999999)
         ];
     }
 }

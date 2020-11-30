@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Gloudemans\Shoppingcart\Contracts\Buyable;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -40,7 +41,7 @@ class Flight extends Model
      */
     public function details()
     {
-        return $this->hasMany("App\Models\FlightDetail", "id_penerbangan");
+        return $this->hasMany("App\Models\FlightDetail");
     }
 
     /**
@@ -48,8 +49,7 @@ class Flight extends Model
      */
     public function facilities()
     {
-        return $this->belongsToMany("App\Models\Facility", "flight_details", "id_penerbangan", "id_fasilitas")
-        ->withPivot(["harga"])
+        return $this->belongsToMany("App\Models\Facility", "flight_details")
         ->as("flight_details");
     }
 
@@ -58,7 +58,7 @@ class Flight extends Model
      */
     public function fromAirport()
     {
-        return $this->belongsTo("App\Models\Airport", "id_bandara_asal");
+        return $this->belongsTo("App\Models\Airport", "departure_airport_id");
     }
 
     /**
@@ -66,7 +66,7 @@ class Flight extends Model
      */
     public function toAirport()
     {
-        return $this->belongsTo("App\Models\Airport", "id_bandara_tujuan");
+        return $this->belongsTo("App\Models\Airport", "arrival_airport_id");
     }
 
     
@@ -75,18 +75,52 @@ class Flight extends Model
      */
     public function plane()
     {
-        return $this->belongsTo("App\Models\Plane", "id_pesawat");
+        return $this->belongsTo("App\Models\Plane");
     }
     
+    public function flightOrders()
+    {
+        return $this->belongsToMany("App\Models\FlightOrder", "flight_order_details", "flight_id", "flight_order_id");
+    }
+
+    public function fares()
+    {
+        return $this->hasMany("App\Models\FlightFare");
+    }
     /**
-     * Method ini digunakan untuk mendapatkan durasi penerbangan,
-     * dengan menghitung interval antara waktu berangkat dan tiba suatu penerbangan
+     * Method ini digunakan untuk mendapatkan durasi penerbangan, dengan menghitung
+     * interval antara waktu berangkat dan tiba suatu penerbangan
      */
     public function getFlightDuration()
     {
-        $waktuberangkat = Carbon::parse($this->attributes["waktu_berangkat"]);
-        $waktutiba = Carbon::parse($this->attributes["waktu_tiba"]);
+        $departuretime = Carbon::parse($this->attributes["departure_time"]);
+        $arrivaltime = Carbon::parse($this->attributes["arrival_time"]);
 
-        return $waktutiba->diffAsCarbonInterval($waktuberangkat)->locale("id");
+        return $arrivaltime->diffAsCarbonInterval($departuretime)->locale("id");
+    }
+
+    /**
+     * Method ini digunakan untuk mengecek, apakah penerbangannya larut malam
+     * jika benar maka akan mengembalikan nilai true, dan false jika salah
+     */
+    public function isRedEyeFlight()
+    {
+        $departuretime = Carbon::parse($this->attributes["departure_time"]);
+        $arrivaltime = Carbon::parse($this->attributes["arrival_time"]);
+        $duration = $departuretime->diffInDays($arrivaltime);
+        return ($duration > 0) ? true : false;    
+    }
+
+    /**
+     * Method ini digunakan untuk mencarikan penerbangan berdasarkan
+     * waktu berangkat, waktu pulang, kota asal, kota tujuan,
+     * dan juga kelas kabin
+     */
+    public function scopeSearch($query, $departuretime, $fromairport, $toairport, $cabinclass)
+    {   
+        return $query->whereDate("departure_time", Carbon::create($departuretime))
+                ->where('departure_airport_id', $fromairport->id)
+                ->where('arrival_airport_id', $toairport->id)
+                ->where('class', strtolower($cabinclass));
     }
 }

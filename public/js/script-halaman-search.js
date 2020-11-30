@@ -69,6 +69,7 @@ $("input[type='number']").inputSpinner(config);
 //     }
 // });
 
+//Ini digunakan untuk mengisi kembali inputan tanggal yang kosong
 let tanggalBerangkat = $("#inputTanggalBerangkat").val();
 let tanggalPulang = $("#inputTanggalPulang").val();
 
@@ -84,7 +85,7 @@ $("input[id*='inputTanggal']").on("hide", function (e) {
 
 $(".cabin-class").on("click", function () {
     let kelasKabin = $.trim($(this).text().toLowerCase());
-    $("input[name='kelas']").val(kelasKabin);
+    $("input[name='class']").val(kelasKabin);
 });
 
 function formatBandara(bandara) {
@@ -122,43 +123,14 @@ $("#selectBoxBandara2").on("select2:select", function (e) {
 //     },
 // });
 
-// $(".btn-change-search").on("click", function (e) {
-//     e.preventDefault();
-
-//     const bandaraAsal = $(
-//         ".wrapper-change-search input[name='bandara_asal']"
-//     ).val();
-//     const bandaraTujuan = $(
-//         ".wrapper-change-search input[name='bandara_tujuan']"
-//     ).val();
-//     const tanggalBerangkat = $(
-//         ".wrapper-change-search input[name='tanggal_berangkat']"
-//     ).val();
-//     const tanggalPulang = $(
-//         ".wrapper-change-search input[name='tanggal_pulang']"
-//     ).val();
-//     const dewasa = $("#adultPassenger").val();
-//     const anak = $("#childPassenger").val();
-//     const bayi = $("#infantPassenger").val();
-//     const jumlahPenumpang = dewasa + anak + bayi;
-//     const kelasKabin = $.trim($(".cabin-class.selected").text());
-
+// $(".change s").on("submit", function (e) {
 //     $.ajax({
-//         url: "/pesawat/search/ubah",
+//         url: "/pesawat/search/edit",
 //         method: "get",
 //         dataType: "json",
-//         data: {
-//             bandaraAsal: bandaraAsal,
-//             bandaraTujuan: bandaraTujuan,
-//             tanggalBerangkat: tanggalBerangkat,
-//             tanggalPulang: tanggalPulang,
-//             dewasa: dewasa,
-//             anak: anak,
-//             bayi: bayi,
-//             jumlahPenumpang: jumlahPenumpang,
-//             kelasKabin: kelasKabin,
-//         },
+//         data: $(this).serialize(),
 //         success: function (data) {
+//             console.log(data);
 //             let persen = 0;
 //             $(".progress").removeClass("d-none");
 //             let timer = setInterval(function () {
@@ -168,27 +140,6 @@ $("#selectBoxBandara2").on("select2:select", function (e) {
 //             let request = data.request;
 //             // Tutup modal ubah penerbangan
 //             $("#changeSearchModal").modal("hide");
-
-//             // Atur nilai input Form sesuai dengan request
-//             $(".wrapper-change-search input[name='bandaraAsal']").val(
-//                 request.bandaraAsal
-//             );
-//             $(".wrapper-change-search input[name='bandaraTujuan']").val(
-//                 request.bandaraTujuan
-//             );
-//             $(".wrapper-change-search input[name='tanggalBerangkat']").val(
-//                 request.tanggalBerangkat
-//             );
-//             $(".wrapper-change-search input[name='tanggalPulang']").val(
-//                 request.tanggalPulang
-//             );
-
-//             let penerbangan = data.penerbangan[0];
-//             console.log(penerbangan);
-//             $(".preview-flight .text-airport").html(penerbangan.bandara_asal);
-//             $(".preview-flight .text-airport-code").html(
-//                 penerbangan.kode_bandara_asal
-//             );
 //         },
 //     });
 // });

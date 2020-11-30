@@ -3,8 +3,8 @@
 @section('title', 'Harga Tiket Pesawat Murah')
 
 @push('stylesheets')
+	<link rel="stylesheet" href="{{ url('plugin/select2/dist/css/select2.css') }}">
   <link rel="stylesheet" href="{{ url('plugin/bootstrap-datepicker-master/dist/css/bootstrap-datepicker.css') }}">
-  <!-- <link rel="stylesheet" href="{{ url('plugin/jquery-ui-1.12.1/jquery-ui.min.css') }}"> -->
 @endpush
 
 @section("content")
@@ -48,7 +48,7 @@
 			<div class="container">
 				<!-- Flight Form -->
 				<div class="card flight-form p-4" id="flightForm">
-					<form action="/pesawat/search">
+					<form action="{{route('flight_search')}}">
 						<div class="row">
 							<div class="col-lg-6 col-md-12 col-sm-12">
 								<div class="row">
@@ -58,15 +58,23 @@
 										<label for="input-bandara-asal">Dari</label>
 										<div class="input-group product-search-input-container">
 											<img src="{{ url('img/icons/ic_pesawat_takeoff.png') }}" class="tm tm-pesawat-takeoff">
-											<input type="text" class="form-control product-search-input" name="bandara_asal" id="input-bandara-asal" placeholder="Mau ke mana?" autocomplete="off">
-										</div>
-										<div class="dropdown boxairport" id="boxAirport">
-											<div class="dropdown-menu shadow">
-												<div class="dropdown-header">
-														Pilih kota atau bandara
-														<i class="fa fa-times"></i>
+											<select name="origin" id="selectBoxKotaAsal" class="form-control product-search-input @error('origin') is-invalid @enderror" data-placeholder="Mau ke mana?">
+												<option value=""></option>
+												@foreach($cities as $city)
+													<optgroup label="{{$city->name}}">
+														@foreach($city->airports as $airport)
+															<option value="{{$airport->iata_code}}" {{ old('origin') == $airport->iata_code ? 'selected' : '' }}>
+																{{$airport->name}}
+															</option>
+														@endforeach
+													</optgroup>
+												@endforeach
+											</select>
+											@error('origin')
+												<div class="invalid-feedback">
+													{{ $message }}
 												</div>
-											</div>
+											@enderror
 										</div>
 									</div>
 
@@ -78,19 +86,27 @@
 										<label for="input-bandara-tujuan">Ke</label>
 										<div class="input-group product-search-input-container">
 											<img src="{{ url('img/icons/ic_pesawat_landing.png') }}" class="tm tm-pesawat-landing">
-											<input type="text" class="form-control product-search-input" name="bandara_tujuan" id="input-bandara-tujuan" placeholder="Mau ke mana?" autocomplete="off">
-										</div>
-
-										<div class="dropdown boxairport" id="boxAirport2">
-											<button class="btn btn-secondary dropdown-toggle d-none" type="button" id="btnBoxAirport2" data-toggle="dropdown"></button>
-											<div class="dropdown-menu shadow">
-												<div class="dropdown-header">
-													Pilih kota atau bandara
-													<i class="fa fa-times"></i>
+											<select name="destination" id="selectBoxKotaTujuan" class="form-control product-search-input @error('destination') is-invalid @enderror" data-placeholder="Mau ke mana?">
+												<option value=""></option>
+												@foreach($cities as $city)
+													<optgroup label="{{$city->name}}">
+														@foreach($city->airports as $airport)
+															<option value="{{$airport->iata_code}}" {{ old('destination') == $airport->iata_code ? 'selected' : '' }}>{{$airport->name}}</option>
+														@endforeach
+													</optgroup>
+												@endforeach
+											</select>
+											@error('destination')
+												<div class="invalid-feedback">
+													{{ $message }}
 												</div>
-											</div>
+											@enderror
+											@if(session('error_message'))
+												<small class="text-danger">
+													{{ session('error_message') }}
+												</small>
+											@endif
 										</div>
-
 									</div>
                   <!-- End of Airport Inputs -->
 
@@ -98,21 +114,28 @@
 									<div class="col-lg-6 col-md-6 col-sm-12 mb-3 form-group" id="containerTanggalBerangkat">
 										<label for="#input-tanggal-berangkat">Tanggal Berangkat</label>
 										<div class="input-group product-search-input-container date">
-												<img src="{{ url('img/icons/ic_kalender.png') }}" class="tm tm-kalender">
-												<input type="text" class="form-control product-search-input" name="tanggal_berangkat" id="input-tanggal-berangkat" value="<?= strftime("%a, %d %b %Y"); ?>" autocomplete="off">
+											<img src="{{ url('img/icons/ic_kalender.png') }}" class="tm tm-kalender">
+											<input type="text" class="form-control product-search-input @error('departure_date') is-invalid @enderror" name="departure_date" id="input-tanggal-berangkat" value="<?= strftime("%a, %d %b %Y"); ?>" autocomplete="off">
+											@error('departure_date')
+												<div class="invalid-feedback">
+													{{ $message }}
+												</div>
+											@enderror
 										</div>
-										<div id="datepicker"></div>
 									</div>
 									
 									<div class="col-lg-6 col-md-6 col-sm-12 mb-3 form-group" id="containerTanggalPulang">
-											<div class="custom-control custom-checkbox mb-2">
-													<input type="checkbox" class="custom-control-input" id="returnCheckbox">
-													<label class="custom-control-label" for="returnCheckbox">Tanggal Pulang</label>
-											</div>
-											<div class="input-group product-search-input-container date" id="inputTanggalPulangContainer">
-													<img src="{{ url('img/icons/ic_kalender.png') }}" class="tm tm-kalender">
-													<input type="text" class="form-control product-search-input" name="tanggal_pulang" id="input-tanggal-pulang">
-											</div>
+										<div class="custom-control custom-checkbox mb-2">
+											<input type="checkbox" class="custom-control-input" name="trip" value="roundtrip" id="returnCheckbox">
+											<label class="custom-control-label" for="returnCheckbox">Tanggal Pulang</label>
+										</div>
+										<div class="input-group product-search-input-container date" id="inputTanggalPulangContainer">
+											<img src="{{ url('img/icons/ic_kalender.png') }}" class="tm tm-kalender">
+											<input type="text" class="form-control product-search-input @error('arrival_date') is-invalid @enderror" name="arrival_date" id="input-tanggal-pulang">
+											@error('arrival_date')
+												<div class="invalid-feedback">{{$message}}</div>
+											@enderror
+										</div>
 									</div>
                   <!-- End Flight Date Inputs -->
 									<!-- Passenger Amount Inputs -->
@@ -132,7 +155,7 @@
 															<label for="adultPassenger">Dewasa</label>
 														</div>
 														<div class="col-7">
-															<input type="number" name="dewasa" min="1" max="7" id="adultPassenger" value="1">
+															<input type="number" name="adult" min="1" max="7" id="adultPassenger" value="1">
 														</div>
 													</div>
 												</div>
@@ -143,7 +166,7 @@
 															<label for="childPassenger">Anak</label>
 														</div>
 														<div class="col-7">
-															<input type="number" name="anak" id="childPassenger" min="0"
+															<input type="number" name="child" id="childPassenger" min="0"
 															max="6" value="0">
 														</div>
 													</div>
@@ -155,7 +178,7 @@
 																<label for="infantPassenger">Bayi</label>
 														</div>
 														<div class="col-7">
-																<input type="number" name="bayi" id="infantPassenger" min="0" max="4" value="0">
+																<input type="number" name="infant" id="infantPassenger" min="0" max="4" value="0">
 														</div>
 													</div>
 												</div>
@@ -169,8 +192,11 @@
 										<label for="selectBoxKelasKabin">Kelas Kabin</label>
 										<div class="input-group">
 											<i class="tm tm-caret"></i>
-											<select class="form-control product-search-input" name="kelas" id="selectBoxKelasKabin">
+											<select class="form-control product-search-input" name="class" id="selectBoxKelasKabin">
 													<option>Ekonomi</option>
+													<option>Premium Ekonomi</option>
+													<option>Bisnis</option>
+													<option>First</option>
 											</select>
 										</div>
 									</div>
@@ -186,6 +212,9 @@
 
               <!-- Flight Illustration -->
 							<div class="col-lg-6 d-lg-inline-block d-none illustration-container">
+								<div class="d-flex">
+									<button data-target=""="#sidebar" class="btn text-decoration-none text-primary ml-auto" type="button" id="btnLastSearch">Pencarian terakhir</button>
+								</div>
 								<div class="row row-cols-1">
 									<img src="{{ url('img/icons/aircraft-illustration.svg') }}" alt="ilustrasi pesawat" height="320px">
 								</div>
@@ -333,9 +362,9 @@
 @push('scripts')
   <script src="{{ url('plugin/bootstrap-input-spinner/src/bootstrap-input-spinner.js') }}"></script>
   <script src="{{ url('plugin/moment-js/moment-js.js') }}"></script>
-  <!-- <script src="{{ url('plugin/jquery-ui-1.12.1/jquery-ui.min.js') }}"></script> -->
   <script src="{{ url('plugin/bootstrap-datepicker-master/dist/js/bootstrap-datepicker.min.js') }}"></script>
 	<script src="{{ url('plugin/bootstrap-datepicker-master/dist/locales/bootstrap-datepicker.id.min.js') }}"></script>
+	<script src="{{ url('plugin/select2/dist/js/select2.min.js') }}"></script>
 	<script>
 		// Plugin Input Spinner
 		let config = {
@@ -345,5 +374,26 @@
 		};
 
 		$("input[type='number']").inputSpinner(config);
+		function formatBandara (bandara) {
+			if (!bandara.id) {
+				return bandara.text;
+			}
+			let $cities = $(
+				`<i class="fa fa-city mr-2"></i><span>${bandara.text} </span><span class="dropdown-option-code ml-auto text-center">${bandara.id}</span>`
+			);
+			return $cities;
+		};
+
+		$("#selectBoxKotaAsal").select2({
+			dropdownParent: $("#containerInputBandara1"),
+			templateResult: formatBandara
+		});
+
+		$("#selectBoxKotaTujuan").select2({
+			dropdownParent: $("#containerInputBandara2"),
+			templateResult: formatBandara
+		});
+
+		console.log($("#selectBoxKotaTujuan"));
 	</script>
 @endpush

@@ -29,49 +29,60 @@ class CheckoutController extends Controller
      */
     public function index(Request $request, $id)
     {     
-        dd($request);
         //Ambil detail pemesanan penerbangan dan penerbangan
-        $flightorderdetail = FlightOrderDetail::where('id_pemesanan', $id)->firstOrFail();
-        $flightdetails = FlightDetail::where('id_penerbangan', $flightorderdetail->id_penerbangan)->get();
-        
-        $basicfare = $flightdetails->first()->harga;
-        $tax = $basicfare*10/100;
-        $assurance = 5000;
+        $flightorderdetails = FlightOrderDetail::with(['flight', 'flight.details'])->where('id_pemesanan', $id)->get();
 
-        $adultfare = $childfare = $basicfare;
-        $infantfare = $adultfare*10/100;
-        $fare = [
-            'adult' => $adultfare,
-            'infant' => $childfare,
-            'adult' => $infantfare,
-            'tax'   => $tax,
-            'assurance' => $assurance,
-        ];
-        return view('web.frontend.transaction.checkout', compact('request'));
+        //Hitung harga tiket tiap penerbangan
+        foreach($flightorderdetails as $item){
+            $basicfare = $item->flight->details->first()->harga;
+            
+            //Iuran Wajib Jasa Raharja (IWJR) yang ditetapkan pemerintah
+            $assurance = 5000;
+
+            // Pajak Pertambah Nilai (PPN) sebesar 10% yang ditetapkan pemerintah
+            $tax = $basicfare*10/100;
+
+            //Harga tiket dewasa dan anak adalah sama, sedangkan harga tiket bayi adalah 10% dari harga tiket dewasa
+            $adultfare = $childfare = $basicfare;
+            $infantfare = $adultfare*10/100;
+
+            //Hitung subtotal harga dari tiap penumpang
+            $adultfare *= $request->session()->get('adult', 1);
+            $childfare *= $request->session()->get('child', 0);
+            $infantfare *= $request->session()->get('infant', 0);
+            $airporttax = 0;
+            $fuelsurcharge = 0;
+
+            //Masukkan harga yang sudah dihitung sebelumnya ke dalam array fare
+            $fares[] = [
+                'adult' => $adultfare,
+                'child' => $childfare,
+                'infant' => $infantfare,
+                'tax'   => $tax,
+                'assurance' => $assurance,
+                'airporttax' => $airporttax,
+                'fuelsurcharge' => $fuelsurcharge,
+                'totalfare' => $adultfare+$childfare+$infantfare+$tax+$assurance
+            ];
+        }
+        
+        $request->session()->reflash();
+        $passenger = $request->session()->get('passenger');
+        
+        //Hitung batas pemesanan
+        $flightorder = FlightOrder::find($id);
+        $flightordertime = $flightorder->created_at;
+        $ordertimelimit = $flightordertime->add(30, 'minutes')->format("Y/m/d H:i:s");
+
+        return view('web.frontend.transaction.checkout', compact('passenger','flightorderdetails','fares', 'ordertimelimit'));
     }
 
     /**
-     * Method ini digunakan untuk memvalidasi inputan pelanggan,
-     * pada saat mengisikan detail pemesan dan detail 
-     * penumpang
+     * Method ini digunakan untuk membuat pesanan pelanggan dan detailnya,
+     * kemudian data tersebut dikirim ke halaman checkout
      */
     public function process(Request $request, Flight $departureid, Flight $arrivalid = null)
-    {   
-        /**
-         * Ambil data penumpang, seperti title dan namanya
-         * karena data-data tersebut di kumpulkan jadi satu array, 
-         * maka data tersebut perlu di looping kemudian dimasukkan ke
-         * dalam array baru dengan key yang sesuai dengan yang ada di 
-         * database
-         */
-        // $data = [];
-        // foreach($validated['title_penumpang'] as $key=>$title){
-        //     $data[$key] =  ['title'=>$title, 'nama_lengkap' => $validated['nama_penumpang'][$key]];
-        // }
-        
-        // Masukkan data penumpang tersebut ke dalam tabel passengers
-        // Passenger::insert($data);
-        
+    { 
         /**
          * Setiap pelanggan yang melakukan pemesanan penerbangan 
          * akan dicatat datanya dalam tabel flightorders,
@@ -82,27 +93,61 @@ class CheckoutController extends Controller
          * pemesanan pelanggan ini mempunyai dua kemungkinan, yaitu apakah
          * pemesanan ini akan dibayar atau dibatalkan
          */
+
+        $totalpassenger = $request->adult+$request->child+$request->infant;
         $flightorder = FlightOrder::create([
             'id' => uniqid("FO"),
             'id_pelanggan' => Auth::user()->id,
+            'jumlah_penumpang' => $totalpassenger,
             'status' => 'IN_CART'
         ]);
         
-        $flightorder->flightOrderDetails()->create(
-            ['id_penerbangan' => $departureid->id]
-        );
-        
         if($arrivalid != null){
-            $flightorder->flightOrderDetails()->create([
+            $flightorder->flightOrderDetails()->createMany([
+                ['id_penerbangan' => $departureid->id],
                 ['id_penerbangan' => $arrivalid->id]
             ]);
+        }else{
+            FlightOrderDetail::create(['id_pemesanan'=>$flightorder->id,'id_penerbangan' => $departureid->id]);
         }
-        return redirect()->route('checkout', $flightorder->id)->with('request', $request->all());
+      
+        $departuredate = date("Y-m-d", strtotime($request->departure_date));
+        $arrivaldate = date("Y-m-d", strtotime($request->arrival_date));
+        return redirect()->route('checkout', [
+            'id'=>$flightorder->id, 
+            'origin'        => $request->origin, 
+            'destination'   => $request->destination,
+            'departure_date'=> $departuredate,
+            'arrival_date'  => $arrivaldate,
+            'adult'         => $request->adult,
+            'child'         => $request->child,
+            'infant'        => $request->infant,
+            'class'         => $request->class
+            ]
+        )->with('passenger', $request->except('origin', 'destination', 'departure_date', 'arrival_date', 'class'));
     }
 
-    public function create(Request $request, $id)
+    /**
+     * Method ini digunakan untuk membuat data pemesanan berikut detailnya, dan penumpang,
+     * kemudian data-data tersebut dikirim ke halaman pembayaran
+     */
+    public function create(CheckoutRequest $request, $id)
     {
-       
+       /**
+         * Ambil data penumpang, seperti title dan namanya
+         * karena data-data tersebut di kumpulkan jadi satu array, 
+         * maka data tersebut perlu di looping kemudian dimasukkan ke
+         * dalam array baru dengan key yang sesuai dengan yang ada di 
+         * database
+         */
+        $validated = $request->validated();
+        $data = [];
+        foreach($validated['title_penumpang'] as $key=>$title){
+            $data[$key] =  ['title'=>$title, 'nama_lengkap' => $validated['nama_penumpang'][$key]];
+        }
+        
+        //Masukkan data penumpang tersebut ke dalam tabel passengers
+        Passenger::insert($data);
     }
 
     public function remove(Request $request, $id)
@@ -126,7 +171,7 @@ class CheckoutController extends Controller
      */
     public function getFlightDetail(Request $request)
     {
-        $flight = Flight::with(['facilities', 'fromAirport', 'toAirport', 'plane.airline'])->where('id', $request->id)->firstOrFail();
+        $flight = Flight::with(['facilities', 'fromAirport.city', 'toAirport.city', 'plane.airline'])->where('id', $request->id)->firstOrFail();
 
         return response()->json(['success' => 'data sukses dikirim', 'flight'=>$flight]);
     }

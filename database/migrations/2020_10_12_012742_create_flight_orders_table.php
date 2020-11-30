@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CreateFlightOrdersTable extends Migration
@@ -14,13 +15,13 @@ class CreateFlightOrdersTable extends Migration
     public function up()
     {
         Schema::create('flight_orders', function (Blueprint $table) {
-            $table->char('id', 5)->primary();
-            $table->char('id_pelanggan', 6)->index();
+            $table->integer('id', 9);
+            $table->foreignId('user_id')->constrained();
             $table->enum('status', ['IN_CART', 'PENDING', 'SUCCESS', 'CANCEL']);
             $table->softDeletes();
             $table->timestamps();
-            $table->foreign('id_pelanggan')->references('id')->on('users')->cascadeOnUpdate();
         });
+        
     }
 
     /**

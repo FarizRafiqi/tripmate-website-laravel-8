@@ -15,10 +15,10 @@ class CreateAirportsTable extends Migration
     {
         Schema::create('airports', function (Blueprint $table) {
             $table->increments('id');
-            $table->char('kode_iata', 3)->unique();
-            $table->string("nama", 128);
-            $table->integer("id_kota")->unsigned();
-            $table->foreign('id_kota')->references('id')->on('cities');
+            $table->char('iata_code', 3)->unique();
+            $table->string("name", 128);
+            $table->integer("city_id")->unsigned();
+            $table->foreign('city_id')->references('id')->on('cities');
             $table->timestamps();
         });
     }

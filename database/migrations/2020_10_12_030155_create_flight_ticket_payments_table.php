@@ -13,20 +13,16 @@ class CreateFlightTicketPaymentsTable extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('flight_ticket_payments');
         Schema::create('flight_ticket_payments', function (Blueprint $table) {
             $table->char('id', 6)->primary();
-            $table->unsignedBigInteger('id_pemesanan_detail')->index();
-            $table->unsignedBigInteger('id_operator')->index();
-            $table->decimal('tarif_per_penumpang', 10, 2);
-            $table->unsignedBigInteger('id_metode_pembayaran')->index();
-            $table->decimal('total_bayar',10,2);
+            $table->foreignId('flight_order_detail_id')->constrained();
+            $table->foreignId('user_id')->constrained();
+            $table->decimal('fare_per_pax', 10, 2);
+            $table->foreignId('payment_method_id')->constrained();
+            $table->decimal('total_payment',10,2);
+            $table->dateTime('pay_date');
             $table->softDeletes();
-            $table->dateTime('tanggal_bayar');
             $table->timestamps();
-            $table->foreign('id_pemesanan_detail')->references('id')->on('flight_order_details');
-            $table->foreign('id_operator')->references('id')->on('users')->cascadeOnUpdate();
-            $table->foreign('id_metode_pembayaran')->references('id')->on('payment_methods')->cascadeOnUpdate();
         });
     }
 

@@ -7,6 +7,11 @@
     src: url("../fonts/Open_Sans/OpenSans-SemiBold.ttf");
 }
 
+.btn:focus,
+.btn.focus {
+    box-shadow: none;
+}
+
 button.btn-cta {
     border-radius: 24px;
     background: #367ffa;
@@ -172,6 +177,136 @@ i.fa.fa-long-arrow-right {
     border-left: 11px solid #dee2ee;
     top: 0;
     left: 100px;
+}
+
+.order-payment .col-order-detail .card {
+    background-color: #fbfcfe !important;
+    font-size: 14px;
+}
+
+.order-payment .col-order-detail .fa-chevron-down {
+    font-size: 14px;
+    color: #367ffa;
+}
+
+.order-payment .col-order-detail .fa-plane {
+    font-size: 24px;
+    color: #367ffa;
+    transform: rotate(-45deg);
+}
+.order-payment .col-order-detail .title-extra i[class^="fa"],
+.order-payment .col-order-detail .flight-detail i[class^="fa"] {
+    font-size: 14px;
+}
+
+.order-detail-flight .tripline .card-body ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 48px 1fr;
+}
+.order-detail-flight .tripline .card-body ul li {
+    position: relative;
+}
+
+.order-detail-flight .tripline .card-body ul li:nth-child(2),
+.order-detail-flight .tripline .card-body ul li:nth-child(6) {
+    padding-left: 14px;
+}
+
+.order-detail-flight .tripline .card-body ul li:nth-child(3) {
+    padding-top: 30px;
+}
+
+.order-detail-flight .tripline .card-body ul li:nth-child(4) {
+    padding: 20px 0 20px 3px;
+}
+
+.order-detail-flight .tripline .card-body ul li:nth-child(2)::before,
+.order-detail-flight .tripline .card-body ul li:nth-child(4)::before {
+    content: "";
+    position: absolute;
+    left: 2px;
+    top: 8px;
+    bottom: -16px;
+    width: 1px;
+    background-color: #dee2ee;
+}
+
+.order-detail-flight .tripline .card-body ul li:nth-child(2)::after,
+.order-detail-flight .tripline .card-body ul li:nth-child(6)::after {
+    content: "";
+    width: 5px;
+    height: 5px;
+    position: absolute;
+    left: 0;
+    border-radius: 50%;
+    background-color: #dee2ee;
+}
+
+.order-detail-flight .tripline .card-body ul li:nth-child(2)::after {
+    top: 10px;
+}
+
+.order-detail-flight .tripline .card-body ul li:nth-child(6)::after {
+    top: 10px;
+}
+
+.order-detail-flight .tripline .card-body ul li > span {
+    display: block;
+    font-size: 12px;
+    color: #58627a;
+}
+
+.order-detail-flight .tripline .provider img {
+    width: 30px;
+    height: 15px;
+}
+
+.order-detail-flight .tripline .provider {
+    padding: 8px;
+    background-color: #f2f8ff;
+    color: #58627a;
+    display: grid;
+    grid-gap: 8px;
+    grid-template-columns: 30px 1fr;
+    margin: 0;
+}
+
+.error-boundary-wrapper .error-boundary-box {
+    text-align: center;
+}
+
+.error-boundary-wrapper .error-boundary-box .error-boundary-text {
+    max-width: 400px;
+    margin: 16px auto 16px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: normal;
+    text-align: center;
+    color: #8a93a7;
+}
+
+.error-boundary-wrapper .error-boundary-box .error-boundary-text > strong {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    color: #222;
+}
+
+.error-boundary-wrapper .error-boundary-box .error-boundary-area-button button {
+    width: 100%;
+    max-width: 400px;
+    height: 48px;
+    font-weight: 700;
+    font-size: 16px;
 }
 
 @media (min-width: 0px) {

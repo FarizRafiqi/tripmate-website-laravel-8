@@ -32,7 +32,6 @@ class CheckoutRequest extends FormRequest
             'email'         => 'required|string|email',
             'telepon'       => 'required|regex:/(08)[0-9]{10}/',
         ];
-
         /**
          * Buat rules untuk semua input nama_penumpang dan title_penumpang,
          * karena input yang ada sangat banyak, maka menggunakan foreach

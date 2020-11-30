@@ -23,8 +23,8 @@ class PassengerFactory extends Factory
     public function definition()
     {
         return [
-            'nama_lengkap' => $this->faker->name,
-            'tanggal_lahir' => $this->faker->date(),
+            'full_name' => $this->faker->name,
+            'date_of_birth' => $this->faker->date(),
         ];
     }
 }

@@ -15,11 +15,13 @@ class CreateFlightDetailsTable extends Migration
     {
         Schema::create('flight_details', function(Blueprint $table){
             $table->id();
-            $table->char('id_penerbangan', 7)->index();
-            $table->decimal('harga', 10, 2);
-            $table->unsignedBigInteger('id_fasilitas')->index();
-            $table->foreign("id_fasilitas")->references("id")->on("facilities")->onUpdate('cascade');
-            $table->foreign("id_penerbangan")->references("id")->on("flights")->onUpdate('cascade');
+            $table->char('flight_id', 7)->index();
+            $table->unsignedBigInteger('facility_id')->index();
+            $table->integer('weight');
+            $table->integer('amount');
+            $table->text('description');
+            $table->foreign("facility_id")->references("id")->on("facilities")->onUpdate('cascade');
+            $table->foreign("flight_id")->references("id")->on("flights")->onUpdate('cascade');
         });
     }
 

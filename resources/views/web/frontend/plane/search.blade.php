@@ -17,7 +17,7 @@
         <div class="container px-0 position-relative">
           
           <div class="row preview-flight-content">
-            @if(\Route::current()->getName() != 'next_flight_search')
+            @if(\Route::current()->getName() != 'flight_search_next')
               <div class="col-xl-10 col-lg-9 col-md-8 col-12">
                 <div class="choose-flight row align-items-center pl-lg-0">
                   <div class="left-side col-auto mr-4 pr-0 d-lg-inline-block d-md-none d-none">
@@ -28,7 +28,7 @@
                     
                     <div class="list d-flex align-items-center">
                       <div class="text-airport mr-1 d-lg-inline-block d-md-none d-none">
-                        {{$airports->firstWhere('kode_iata', $request['bandara_asal'])->nama}}
+                        {{$airports->firstWhere('iata_code', $request['bandara_asal'])->name}}
                       </div>
                       <div class="text-airport-code">({{$request["bandara_asal"]}})</div>
                       @if($request["trip"] == 'roundtrip')
@@ -38,7 +38,7 @@
                       @endif
 
                       <div class="text-airport mr-1 d-lg-inline-block d-md-none d-none">
-                        {{$airports->firstWhere('kode_iata', $request['bandara_tujuan'])->nama}}
+                        {{$airports->firstWhere('iata_code', $request['bandara_tujuan'])->name}}
                       </div>
                       <div class="text-airport-code">({{$request["bandara_tujuan"]}})</div>
       
@@ -95,13 +95,13 @@
                     <div class="text-choose">Pilih Penerbangan Pulang</div>
                     <div class="list d-flex align-items-center">
                       <div class="text-airport mr-1 d-lg-inline-block d-md-none d-none">
-                        {{$airports->firstWhere('kode_iata', $request['bandara_tujuan'])->nama}}</div>
+                        {{$airports->firstWhere('iata_code', $request['bandara_tujuan'])->name}}</div>
                       <div class="text-airport-code">({{$request["bandara_tujuan"]}})</div>
                       
                       <i class="fa fa-long-arrow-alt-right mx-2"></i>
       
                       <div class="text-airport mr-1 d-lg-inline-block d-md-none d-none">
-                        {{$airports->firstWhere('kode_iata', $request['bandara_asal'])->nama}}
+                        {{$airports->firstWhere('iata_code', $request['bandara_asal'])->name}}
                       </div>
                       <div class="text-airport-code">({{$request["bandara_asal"]}})</div>
   
@@ -135,7 +135,7 @@
                 <div class="modal-body p-lg-0 p-4 m-0">
                   <div class="wrapper-change-search container-fluid p-0">
                     <div class="wrapper-form container px-lg-0">
-                      <form action="/pesawat/search/edit">
+                      <form action="{{route('flight_search_edit')}}">
                         <div class="row">
                           <div class="col-lg-12 col-md-12 col-12 px-0 px-lg-3 px-xl-0">
                             <div class="row no-gutters">
@@ -145,9 +145,9 @@
                                   <label for="inputBandaraAsal">Dari</label><br>
                                   <select name="bandara_asal" id="selectBoxBandara1" class="form-control @error('bandara_asal') is-invalid @enderror text-truncate">
                                     @foreach($cities as $city)
-                                      <optgroup label="{{$city->nama}}">
+                                      <optgroup label="{{$city->name}}">
                                         @foreach($city->airports as $airport)
-                                          <option value="{{$airport->kode_iata}}" {{ old('bandara_asal') == $airport->kode_iata ? 'selected' : '' }} {{ ($airport->kode_iata == $request['bandara_asal']) ? 'selected' : '' }}>{{$airport->nama}}</option>
+                                          <option value="{{$airport->iata_code}}" {{ old('bandara_asal') == $airport->iata_code ? 'selected' : '' }} {{ ($airport->iata_code == $request['bandara_asal']) ? 'selected' : '' }}>{{$airport->name}}</option>
                                         @endforeach
                                       </optgroup>
                                     @endforeach
@@ -163,9 +163,9 @@
                                   <label for="inputBandaraTujuan">Ke</label>
                                   <select name="bandara_tujuan" id="selectBoxBandara2" class="form-control @error('bandara_tujuan') is-invalid @enderror text-truncate">
                                     @foreach($cities as $city)
-                                      <optgroup label="{{$city->nama}}">
+                                      <optgroup label="{{$city->name}}">
                                         @foreach($city->airports as $airport)
-                                          <option value="{{$airport->kode_iata}}" {{ old('bandara_tujuan') == $airport->kode_iata ? 'selected' : '' }} {{ ($airport->kode_iata == $request['bandara_tujuan']) ? 'selected' : '' }}>{{$airport->nama}}</option>
+                                          <option value="{{$airport->iata_code}}" {{ old('bandara_tujuan') == $airport->iata_code ? 'selected' : '' }} {{ ($airport->iata_code == $request['bandara_tujuan']) ? 'selected' : '' }}>{{$airport->name}}</option>
                                         @endforeach
                                       </optgroup>
                                     @endforeach
@@ -173,6 +173,11 @@
                                   @error('bandara_tujuan')
                                     <div class="invalid-feedback">{{$message}}</div>
                                   @enderror
+                                  @if(session('error_message'))
+                                    <small class="text-danger">
+                                      {{ session('error_message') }}
+                                    </small>
+                                  @endif
                                 </div>
                               </div>
                               <div class="col-xl-auto col-lg-auto col-12 px-lg-0">
@@ -635,7 +640,7 @@
                     <div class="row position-relative">
                       <!-- Nama Maskapai -->
                       <div class="col-md-12 col-9 px-lg-3 pt-lg-0 pb-3 col-airline">
-                          <span class="maskapai-penerbangan">{{$flight->plane->airline->nama}}</span>
+                          <span class="maskapai-penerbangan">{{$flight->plane->airline->name}}</span>
                       </div>
 
                       <!-- Left Side of Card -->
@@ -654,8 +659,8 @@
                           <div class="col-xl-5 col-lg-5 col-md-7 col-8 pl-lg-0 mt-lg-0 mt-md-2 flight-timeline">
                             <div class="row align-items-center">
                               <div class="departure-time col-lg-auto col-md-auto col-auto">
-                                <div class="text-time">{{date('H:i', strtotime($flight->waktu_berangkat))}}</div>
-                                <div class="text-code">{{$flight->fromAirport->kode_iata}}</div>
+                                <div class="text-time">{{date('H:i', strtotime($flight->departure_time))}}</div>
+                                <div class="text-code">{{$flight->fromAirport->iata_code}}</div>
                               </div>
                               <div class="flight-icon col-lg-auto col-md-2 col-2 text-center">
                                 <img src="{{ url('img/icons/ic_pesawat_tampak_atas_abu.png') }}" width="16px" height="16px" alt="ICON-pesawat">
@@ -668,11 +673,11 @@
                                 <div class="text-total-time">1 Transit</div>
                               </div> -->
                               <div class="arrival-time col-lg-auto col-md-auto col-auto">
-                                @if(\Carbon\Carbon::create($flight->waktu_berangkat)->diffInDays(\Carbon\Carbon::create($flight->waktu_tiba)) > 0)
-                                  <div class="badge badge-warning text-plus-day">+{{\Carbon\Carbon::create($flight->waktu_berangkat)->diffInDays($flight->waktu_tiba)}}h</div>
+                                @if(\Carbon\Carbon::create($flight->departure_time)->diffInDays(\Carbon\Carbon::create($flight->arrival_time)) > 0)
+                                  <div class="badge badge-warning text-plus-day">+{{\Carbon\Carbon::create($flight->departure_time)->diffInDays($flight->arrival_time)}}h</div>
                                 @endif
-                                <div class="text-time mr-lg-0">{{\Carbon\Carbon::create($flight->waktu_tiba)->format('H:i')}}</div>
-                                <div class="text-code">{{$flight->toAirport->kode_iata}}</div>
+                                <div class="text-time mr-lg-0">{{\Carbon\Carbon::create($flight->arrival_time)->format('H:i')}}</div>
+                                <div class="text-code">{{$flight->toAirport->iata_code}}</div>
                               </div>
                             </div>
                           </div>
@@ -729,10 +734,13 @@
                         @if($request['trip'] == 'oneway')
                           <form action="{{route('checkout_process', $flight->id)}}" method="POST">
                             @csrf
+                            <input type="hidden" name="adult" value="{{$request['dewasa']}}">
+                            <input type="hidden" name="child" value="{{$request['anak']}}">
+                            <input type="hidden" name="infant" value="{{$request['bayi']}}">
                             <button class="btn bg-gradation-blue text-white" type="submit">PILIH</button>
                           </form>
                         @elseif($request['trip'] == 'roundtrip')
-                          <form action="{{ route('next_flight_search') }}">
+                          <form action="{{ route('flight_search_next') }}">
                             <input type="hidden" name="bandara_asal" value="{{$request['bandara_asal']}}">
                             <input type="hidden" name="bandara_tujuan" value="{{$request['bandara_tujuan']}}">
                             <input type="hidden" name="fid" value="{{$flight->id}}">
@@ -748,8 +756,16 @@
                         @endif
 
                         @if(!empty($request->fid))
-                          <form action="{{ route('checkout_process', ['departureid' => $request->fid, 'arrivalid'=> $flight->id, 'adult' => $request['dewasa'], 'child' => $request['anak'], 'infant' => $request['bayi']]) }}" method="POST">
+                          <form action="{{ route('checkout_process', ['departureid' => $request->fid, 'arrivalid' => $flight->id]) }}" method="POST">
                             @csrf
+                            <input type="hidden" name="origin" value="{{$request['bandara_asal']}}">
+                            <input type="hidden" name="destination" value="{{$request['bandara_tujuan']}}">
+                            <input type="hidden" name="departure_date" value="{{$request['tanggal_berangkat']}}">
+                            <input type="hidden" name="arrival_date" value="{{$request['tanggal_pulang']}}">
+                            <input type="hidden" name="class" value="{{$request['kelas']}}">
+                            <input type="hidden" name="adult" value="{{$request['dewasa']}}">
+                            <input type="hidden" name="child" value="{{$request['anak']}}">
+                            <input type="hidden" name="infant" value="{{$request['bayi']}}">
                             <button class="btn bg-gradation-blue text-white" type="submit">PILIH</button>
                           </form>
                         @endif
@@ -893,6 +909,8 @@
                           <div class="col-12">
                             <div class="text-subtitle">Tarif</div>
                           </div>
+
+                          @if(!empty($request['dewasa']) && $request['dewasa'] > 0 && $request['dewasa'] <= 11)
                           <div class="col-12">
                             <div class="row">
                               <div class="col-6 col-passenger">
@@ -901,10 +919,11 @@
                                 </ul>
                               </div>
                               <div class="col-6 col-price text-right">
-                                IDR {{number_format($flight->details->first()->harga*$request['dewasa'], 0, ",", ".")}}
+                                IDR {{number_format($fares[$loop->index]['adult'], 0, ",", ".")}}
                               </div>
                             </div>
                           </div>
+                          @endif
 
                           @if(!empty($request['anak']))
                             <div class="col-12">
@@ -915,7 +934,7 @@
                                   </ul>
                                 </div>
                                 <div class="col-6 col-price text-right">
-                                  IDR {{number_format($flight->details->first()->harga-($flight->details->first()->harga*$request['anak'])*10/100, 0, ",", ".")}}
+                                  IDR {{number_format($fares[$loop->index]['child'], 0, ",", ".")}}
                                 </div>
                               </div>
                             </div>
@@ -930,7 +949,7 @@
                                   </ul>
                                 </div>
                                 <div class="col-6 col-price text-right">
-                                  IDR {{number_format($flight->details->first()->harga-($flight->details->first()->harga*$request['bayi'])*15/100, 0, ",", ".")}}
+                                  IDR {{number_format($fares[$loop->index]['infant'], 0, ",", ".")}}
                                 </div>
                               </div>
                             </div>
@@ -942,11 +961,27 @@
                             <div class="row">
                               <div class="col-6 col-tax">
                                 <ul class="pl-3"> 
-                                  <li>Pajak</li>
+                                  <li>PPN (10%)</li>
                                 </ul>
                               </div>
                               <div class="col-6 text-free text-right">
-                                Termasuk
+                                IDR {{number_format($fares[$loop->index]['tax'], 0, ",", ".")}}
+                              </div>
+                              <div class="col-6 col-tax">
+                                <ul class="pl-3"> 
+                                  <li>Iuran Wajib (IW)</li>
+                                </ul>
+                              </div>
+                              <div class="col-6 text-free text-right">
+                                IDR {{number_format($fares[$loop->index]['assurance'], 0, ",", ".")}}
+                              </div>
+                              <div class="col-6 col-tax">
+                                <ul class="pl-3"> 
+                                  <li>Pajak Bandara</li>
+                                </ul>
+                              </div>
+                              <div class="col-6 text-free text-right">
+                                IDR {{number_format($fares[$loop->index]['airporttax'], 0, ",", ".")}}
                               </div>
                             </div>
                           </div>
@@ -954,21 +989,8 @@
                             <hr class="mt-2 mb-3">
                             <div class="row">
                               <div class="col-6 text-total">Total</div>
-                              <div class="col-6 col-price-total text-right">IDR
-                                <?php 
-                                $hargatiketdewasa = $flight->details->first()->harga*$request['dewasa'];
-                                $hargatiketanak = $hargatiketbayi = $total = 0;
-                                  if(!empty($request['anak'])){
-                                    $hargatiketanak = $flight->details->first()->harga-($flight->details->first()->harga*$request['anak'])*10/100;
-                                  }
-
-                                  if(!empty($request['bayi'])){
-                                    $hargatiketbayi = $flight->details->first()->harga-($flight->details->first()->harga*$request['bayi'])*15/100;
-                                  }
-
-                                  $total = $hargatiketdewasa+$hargatiketanak+$hargatiketbayi;
-                                ?> 
-                                {{number_format($total, 0, ",", ".")}}
+                              <div class="col-6 col-price-total text-right">
+                                IDR {{number_format($fares[$loop->index]['totalfare'], 0, ",", ".")}}
                               </div>
                             </div>
                           </div>

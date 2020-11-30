@@ -3,6 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use \Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Airport;
+use App\Models\Flight;
+use App\Models\FlightOrder;
+use App\Models\FlightOrderDetail;
+use App\Models\City;
 
 /**
  * Modul ini digunakan untuk menampilkan halaman pesawat
@@ -16,9 +23,16 @@ class PlaneController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view("web.frontend.plane.index");
+        $cities = City::with('airports')->get();
+        // Cek apakah user sudah login, jika iya maka dapatkan pencarian penerbangan terakhir yang dibuat user tersebut
+        if($request->user() != null){
+            $flightorders = FlightOrder::where('user_id', Auth::user()->id)->get();
+            return view('web.frontend.plane.index', compact('cities', 'flightorders'));
+        }else{
+            return view('web.frontend.plane.index', compact('cities'));
+        }
     }
 
     /**
@@ -77,12 +91,12 @@ class PlaneController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Hapus semua peme
      *
-     * @param  int  $id
+     * @param  FlightOrder  $flightorderid
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function deleteLastSearch(FlightOrder $flightorderid)
     {
         //
     }

@@ -48,7 +48,7 @@
 		<div class="container">
 			<!-- Product Form -->
 			<div class="card product-widget p-4" id="productWidget">
-				<form action="pesawat/search/">
+				<form action="{{route('flight_search')}}">
 					<div class="row">
 
 						<!-- Left Side -->
@@ -75,7 +75,7 @@
                 <label class="custom-control-label" for="oneway">Sekali Jalan</label>
 							</div>
 							<div class="custom-control custom-radio custom-control-inline mt-3 col-md-5 col-5 d-lg-inline-block d-none">
-                <input type="radio" id="roundtrip" name="trip" value="roundtrip" class="custom-control-input">
+                <input type="radio" id="roundtrip" name="trip" value="roundtrip" class="custom-control-input" {{(\Cookie::get('trip') == 'roundtrip') ? 'checked' : ''}}>
                 <label class="custom-control-label" for="roundtrip">Pulang-Pergi</label>
 							</div>
 							<!-- End of Trip Type Inputs -->
@@ -86,8 +86,8 @@
                   <label for="input-bandara-asal">Dari</label>
                   <!-- <div class="input-group product-search-input-container">
                       <img src="{{ url('img/icons/ic_pesawat_takeoff.png') }}" class="tm tm-pesawat-takeoff">
-											<input type="text" name="bandara_asal" class="form-control product-search-input @error('bandara_asal') is-invalid @enderror" id="input-bandara-asal" autocomplete="off" placeholder="Mau ke mana?" value="{{old('bandara_asal')}}">
-											@error('bandara_asal')
+											<input type="text" name="origin" class="form-control product-search-input @error('origin') is-invalid @enderror" id="input-bandara-asal" autocomplete="off" placeholder="Mau ke mana?" value="{{old('origin')}}">
+											@error('origin')
 											<div class="invalid-feedback">
 												{{ $message }}
 											</div>
@@ -111,20 +111,19 @@
 											@endforeach
                     </div>
 									</div> -->
-									<input type="hidden" name="nama_bandara_asal" value="">
 									<div class="input-group product-search-input-container">
 										<img src="{{ url('img/icons/ic_pesawat_takeoff.png') }}" class="tm tm-pesawat-takeoff">
-										<select name="bandara_asal" id="selectBoxKotaAsal" class="form-control product-search-input @error('bandara_asal') is-invalid @enderror" data-placeholder="Mau ke mana?">
+										<select name="origin" id="selectBoxKotaAsal" class="form-control product-search-input @error('origin') is-invalid @enderror" data-placeholder="Mau ke mana?">
 											<option value=""></option>
 											@foreach($cities as $city)
-												<optgroup label="{{$city->nama}}">
+												<optgroup label="{{$city->name}}">
 													@foreach($city->airports as $airport)
-														<option value="{{$airport->kode_iata}}">{{$airport->nama}}</option>
+														<option value="{{$airport->iata_code}}" {{\Cookie::get('origin') == $airport->iata_code ? 'selected' : ''}}>{{$airport->name}}</option>
 													@endforeach
 												</optgroup>
 											@endforeach
 										</select>
-										@error('bandara_asal')
+										@error('origin')
 											<div class="invalid-feedback">
 												{{ $message }}
 											</div>
@@ -140,8 +139,8 @@
                   <label for="input-bandara-tujuan">Ke</label>
                   <!-- <div class="input-group product-search-input-container">
                     <img src="{{ url('img/icons/ic_pesawat_landing.png') }}" class="tm tm-pesawat-landing">
-										<input type="text" name="bandara_tujuan" class="form-control product-search-input @error('bandara_tujuan') is-invalid @enderror" id="input-bandara-tujuan" autocomplete="off" placeholder="Mau ke mana?" value="{{old('bandara_tujuan')}}">
-										@error('bandara_tujuan')
+										<input type="text" name="destination" class="form-control product-search-input @error('destination') is-invalid @enderror" id="input-bandara-tujuan" autocomplete="off" placeholder="Mau ke mana?" value="{{old('destination')}}">
+										@error('destination')
 											<div class="invalid-feedback">
 												{{ $message }}
 											</div>
@@ -165,20 +164,19 @@
 											@endforeach
                     </div>
 									</div> -->
-									<input type="hidden" name="nama_bandara_tujuan" value="">
 									<div class="input-group product-search-input-container">
 										<img src="{{ url('img/icons/ic_pesawat_landing.png') }}" class="tm tm-pesawat-takeoff">
-										<select name="bandara_tujuan" id="selectBoxKotaTujuan" class="form-control product-search-input @error('bandara_tujuan') is-invalid @enderror" data-placeholder="Mau ke mana?">
+										<select name="destination" id="selectBoxKotaTujuan" class="form-control product-search-input @error('destination') is-invalid @enderror" data-placeholder="Mau ke mana?">
 											<option value=""></option>
 											@foreach($cities as $city)
-												<optgroup label="{{$city->nama}}">
+												<optgroup label="{{$city->name}}">
 													@foreach($city->airports as $airport)
-														<option value="{{$airport->kode_iata}}">{{$airport->nama}}</option>
+														<option value="{{$airport->iata_code}}" {{\Cookie::get('destination') == $airport->iata_code ? 'selected' : ''}}>{{$airport->name}}</option>
 													@endforeach
 												</optgroup>
 											@endforeach
 										</select>
-										@error('bandara_tujuan')
+										@error('destination')
 											<div class="invalid-feedback">
 												{{ $message }}
 											</div>
@@ -197,10 +195,9 @@
                   <label for="#input-tanggal-berangkat">Tanggal Berangkat</label>
                   <div class="input-group product-search-input-container date">
                     <img src="{{ url('img/icons/ic_kalender.png') }}" class="tm tm-kalender">
-                    <input type="text" name="tanggal_berangkat" class="form-control product-search-input @error('tanggal_berangkat') is-invalid @enderror" id="input-tanggal-berangkat"
+                    <input type="text" name="departure_date" class="form-control product-search-input @error('departure_date') is-invalid @enderror" id="input-tanggal-berangkat"
 										value="">
-										<!-- <?= strftime("%a, %d %b %Y"); ?> -->
-										@error('tanggal_berangkat')
+										@error('departure_date')
 											<div class="invalid-feedback">
 												{{ $message }}
 											</div>
@@ -210,13 +207,13 @@
 								
 								<div class="col-lg-6 col-md-6 col-sm-12 mb-3 form-group" id="containerTanggalPulang">
                   <div class="custom-control custom-checkbox mb-2">
-                    <input type="checkbox" class="custom-control-input" id="returnCheckbox">
+                    <input type="checkbox" class="custom-control-input" id="returnCheckbox" {{(\Cookie::get('trip') == 'roundtrip') ? 'checked' : ''}}>
                     <label class="custom-control-label" for="returnCheckbox">Tanggal Pulang</label>
                   </div>
                   <div class="input-group product-search-input-container date" id="inputTanggalPulangContainer">
                     <img src="{{ url('img/icons/ic_kalender.png') }}" class="tm tm-kalender">
-										<input type="text" name="tanggal_pulang" class="form-control product-search-input @error('tanggal_pulang') is-invalid @enderror" id="input-tanggal-pulang">
-										@error('tanggal_pulang')
+										<input type="text" name="arrival_date" class="form-control product-search-input @error('arrival_date') is-invalid @enderror" id="input-tanggal-pulang">
+										@error('arrival_date')
 											<div class="invalid-feedback">{{$message}}</div>
 										@enderror
                   </div>
@@ -240,7 +237,7 @@
                             <label for="adultPassenger">Dewasa</label>
                           </div>
                           <div class="col-7">
-                            <input type="number" name="dewasa" min="1" max="7" id="adultPassenger" value="1">
+                            <input type="number" name="adult" min="1" max="7" id="adultPassenger" value="{{(\Cookie::get('adult')) ? \Cookie::get('adult') : 1}}">
                           </div>
                         </div>
                       </div>
@@ -251,8 +248,8 @@
                             <label for="childPassenger">Anak</label>
                           </div>
                           <div class="col-7">
-                            <input type="number" name="anak" id="childPassenger" min="0"
-                            max="6" value="0">
+                            <input type="number" name="child" id="childPassenger" min="0"
+                            max="6" value="{{(\Cookie::get('child')) ? \Cookie::get('child') : 0}}">
                           </div>
                         </div>
                       </div>
@@ -263,7 +260,7 @@
                             <label for="infantPassenger">Bayi</label>
                           </div>
                           <div class="col-7">
-                            <input type="number" name="bayi" id="infantPassenger" min="0" max="4" value="0">
+                            <input type="number" name="infant" id="infantPassenger" min="0" max="4" value="{{(\Cookie::get('infant')) ? \Cookie::get('infant') : 0}}">
                           </div>
                         </div>
                       </div>
@@ -277,11 +274,11 @@
 									<label for="selectBoxKelasKabin">Kelas Kabin</label>
 									<div class="input-group text-center">
                     <i class="tm tm-caret"></i>
-                    <select class="form-control product-search-input" name="kelas" id="selectBoxKelasKabin">
-                      <option value="Ekonomi">Ekonomi</option>
-                      <option value="Premium Ekonomi">Premium Ekonomi</option>
-                      <option value="Bisnis">Bisnis</option>
-                      <option value="First">First</option>
+                    <select class="form-control product-search-input" name="class" id="selectBoxKelasKabin">
+                      <option value="Ekonomi" {{(\Cookie::get('class') == 'Ekonomi') ? 'selected' : ''}}>Ekonomi</option>
+                      <option value="Premium Ekonomi" {{(\Cookie::get('class') == 'Premium Ekonomi') ? 'selected' : ''}}>Premium Ekonomi</option>
+                      <option value="Bisnis" {{(\Cookie::get('class') == 'Bisnis') ? 'selected' : ''}}>Bisnis</option>
+                      <option value="First" {{(\Cookie::get('class') == 'First') ? 'selected' : ''}}>First</option>
                     </select>
 									</div>
 								</div>
@@ -490,17 +487,6 @@
 		$("#selectBoxKotaTujuan").select2({
 			dropdownParent: $("#containerInputBandara2"),
 			templateResult: formatBandara
-		});
-
-		$('#selectBoxKotaAsal').on('select2:select', function (e) {
-			let data = e.params.data;
-			$("input[name='nama_bandara_asal']").val(data.text);
-			$("#select2-selectBoxKotaAsal-container").append(' ('+data.id+')');
-		});
-		$('#selectBoxKotaTujuan').on('select2:select', function (e) {
-			let data = e.params.data;
-			$("input[name='nama_bandara_tujuan']").val(data.text);
-			$("#select2-selectBoxKotaTujuan-container").append(' ('+data.id+')');
 		});
 	</script>
 @endpush

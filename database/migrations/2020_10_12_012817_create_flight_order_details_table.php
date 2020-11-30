@@ -15,16 +15,15 @@ class CreateFlightOrderDetailsTable extends Migration
     {
         Schema::create('flight_order_details', function (Blueprint $table) {
             $table->id();
-            $table->char('id_pemesanan', 5)->index();
-            $table->char('id_penerbangan', 7)->index();
-            $table->unsignedBigInteger('id_penumpang')->index();
-            $table->unsignedBigInteger('id_kursi')->index()->nullable();
+            $table->integer('flight_order_id')->index();
+            $table->char('flight_id', 7)->index();
+            $table->foreignId('passengger_id')->constrained();
+            $table->foreignId('plane_seat_id')->constrained()->default(null)->nullable();
+            $table->enum('category', ['departure', 'return']);
             $table->softDeletes();
             $table->timestamps();
-            $table->foreign('id_pemesanan')->references('id')->on('flight_orders');
-            $table->foreign('id_penerbangan')->references('id')->on('flights')->cascadeOnDelete();
-            $table->foreign('id_penumpang')->references('id')->on('passengers');
-            $table->foreign('id_kursi')->references('id')->on('plane_seats');
+            $table->foreign('flight_order_id')->references('id')->on('flight_orders');
+            $table->foreign('flight_id')->references('id')->on('flights')->cascadeOnDelete();
         });
     }
 

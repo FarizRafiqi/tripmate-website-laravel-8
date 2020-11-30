@@ -15,11 +15,12 @@ class CreateAirlinesTable extends Migration
     {
         Schema::create('airlines', function (Blueprint $table) {
             $table->increments('id');
-            $table->char('kode_iata', 2)->unique();
+            $table->char('iata_code', 2)->unique();
             $table->string('logo', 128);
-            $table->string('nama', 128);
-            $table->integer('id_kota')->unsigned();
-            $table->foreign('id_kota')->references('id')->on('cities');
+            $table->string('name', 128);
+            $table->integer('city_id')->unsigned();
+            $table->text('description')->nullable();
+            $table->foreign('city_id')->references('id')->on('cities');
             $table->timestamps();
         });
     }

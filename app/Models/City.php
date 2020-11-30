@@ -24,6 +24,6 @@ class City extends Model
      */
     public function airports()
     {
-        return $this->hasMany("App\Models\Airport", "id_kota");
+        return $this->hasMany("App\Models\Airport");
     }
 }

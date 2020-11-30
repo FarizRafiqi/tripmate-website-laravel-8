@@ -17,13 +17,22 @@ use Illuminate\Database\Eloquent\Model;
 class FlightOrder extends Model
 {
     use HasFactory;
-    protected $keyType = 'char';
-    public $incrementing = false;
-
     protected $guarded = [];
 
     public function flightOrderDetails()
     {
-        return $this->hasMany("App\Models\FlightOrderDetail", "id_pemesanan");
+        return $this->hasMany("App\Models\FlightOrderDetail");
+    }
+
+    public function flights()
+    {
+        return $this->belongsToMany("App\Models\Flight", "flight_order_details", "flight_order_id", "flight_id");
+    }
+
+    public function passengers()
+    {
+        return $this->belongsToMany('App\Models\Passengger', 'flight_order_details')
+                ->withPivot('flight_id','plane_seat_id', 'category')
+                ->withTimestamps();
     }
 }

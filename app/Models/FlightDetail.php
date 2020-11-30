@@ -27,7 +27,7 @@ class FlightDetail extends Model
      */
     public function flight()
     {
-        return $this->belongsTo("App\Models\Flight");
+        return $this->belongsTo("App\Models\Flight", "flight_id");
     }
 
     /**
@@ -35,6 +35,6 @@ class FlightDetail extends Model
      */
     public function facility()
     {
-        return $this->belongsTo("App\Models\Facility", "id_fasilitas");
+        return $this->belongsTo("App\Models\Facility", "facility_id");
     }
 }

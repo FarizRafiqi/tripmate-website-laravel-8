@@ -22,6 +22,6 @@ class Airline extends Model
      */
     public function city()
     {
-        return $this->belongsTo("App\Models\City", "id_kota");
+        return $this->belongsTo("App\Models\City");
     }
 }
